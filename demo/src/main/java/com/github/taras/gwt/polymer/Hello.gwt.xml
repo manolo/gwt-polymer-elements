@@ -1,0 +1,10 @@
+<module rename-to="hello">
+    <inherits name="com.google.gwt.user.User"/>
+    <inherits name='com.google.gwt.user.theme.standard.Standard'/>
+    <inherits name="com.github.taras.gwt.polymer.CoreField"/>
+
+
+    <entry-point class="com.github.taras.gwt.polymer.client.Demo"/>
+
+    <set-property name="user.agent" value="gecko1_8"/>
+</module>
