@@ -1,11 +1,10 @@
 package com.github.taras.gwt.polymer.client;
 
-import com.github.taras.gwt.polymer.elements.CoreField;
-import com.github.taras.gwt.polymer.elements.CoreLabel;
+import com.github.taras.gwt.polymer.client.elements.CoreField;
+import com.github.taras.gwt.polymer.client.elements.CoreLabel;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.DOM;
-import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -31,7 +30,8 @@ public class Demo implements EntryPoint {
         panel.add(coreLabel1);
 
         CoreLabel coreLabel2 = new CoreLabel();
-        coreLabel2.getElement().setAttribute("for", "#quux");
+        coreLabel2.setAttribute("for", "#quux");
+        coreLabel2.setFor("#quux");
         coreLabel2.getElement().setInnerHTML(
                 "label for checkbox");
         panel.add(coreLabel2);
