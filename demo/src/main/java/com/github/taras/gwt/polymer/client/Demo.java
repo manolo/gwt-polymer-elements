@@ -31,7 +31,7 @@ public class Demo implements EntryPoint {
         div.appendChild(DOM.createElement("br"));
 
         CoreLabel coreLabel2 = Polymer.create("core-label");
-        coreLabel2.setFor("#quux");
+        coreLabel2.setAttribute("for", "#quux");
         coreLabel2.setInnerHTML("label for checkbox");
         div.appendChild(coreLabel2);
 
@@ -42,7 +42,7 @@ public class Demo implements EntryPoint {
 
         PaperButton paperButton = Polymer.create("paper-button");
         paperButton.setInnerHTML("button");
-        paperButton.setRaised(true);
+        paperButton.setPropertyBoolean("raised", true);
         div.appendChild(paperButton);
 
         RootPanel.get().getElement().appendChild(div);

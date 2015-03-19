@@ -1,0 +1,14 @@
+package com.github.taras.gwt.polymer.client.elements;
+
+import com.github.taras.gwt.polymer.client.PolymerElement;
+
+public class <%= className %> extends <%= superClass(jsdoc) %> {
+
+    protected <%= className %>() {
+    }
+}
+<%
+function superClass(jsdoc) {
+    return jsdoc.baseClass ? jsdoc.baseClass : 'PolymerElement';
+}
+%>
