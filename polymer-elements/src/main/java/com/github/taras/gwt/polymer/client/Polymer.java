@@ -5,36 +5,35 @@ import com.github.taras.gwt.polymer.client.elements.CoreLabel;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.Element;
+import com.google.gwt.user.client.DOM;
 
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public class PolymerInjector {
+public class Polymer {
     
-    private static PolymerInjector instance = new PolymerInjector();
+    private static Polymer instance = new Polymer();
 
     private static Set<String> urlImported = new HashSet<>();
     
-    private static Map<Class, String> importMap = new HashMap<>();
+    private static Map<String, String> importMap = new HashMap<>();
     static {
-        importMap.put(CoreField.class, "components/core-field/core-field.html");
-        importMap.put(CoreLabel.class, "components/core-label/core-label.html");
+        importMap.put("core-field", "components/core-field/core-field.html");
+        importMap.put("core-label", "components/core-label/core-label.html");
+    }
+    
+    public static <T extends PolymerElement> T create(String tagName) {
+        Polymer.ensureHTMLImport(tagName);
+        return DOM.createElement(tagName).cast();
     }
 
     /*
 	 * Injects the correspondent html template to page head section.
 	 */
-    public static void ensureHTMLImport(Class clazz) {
-        String href = importMap.get(clazz);
-        ensureHTMLImport(href);
-    }
-
-    /*
-	 * Injects the html template to page head section.
-	 */
-    public static void ensureHTMLImport(String href) {
+    public static void ensureHTMLImport(String tagName) {
+        String href = importMap.get(tagName);
         if (!urlImported.contains(href)) {
             Element head = Document.get().getElementsByTagName("head").getItem(0);
             Element htmlImport = Document.get().createLinkElement();
@@ -45,10 +44,10 @@ public class PolymerInjector {
         }
     }
 
-    public static PolymerInjector getInstance() {
+    public static Polymer getInstance() {
         return instance;
     }
 
-    private PolymerInjector() {
+    private Polymer() {
     }
 }

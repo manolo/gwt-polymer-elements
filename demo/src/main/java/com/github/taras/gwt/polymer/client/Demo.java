@@ -7,39 +7,37 @@ import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.RootPanel;
-import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class Demo implements EntryPoint {
 
     public void onModuleLoad() {
         RootPanel.get().clear();
-        RootPanel.get().add(new HTML(
-                "<h2>Look at the core-field element below. Try to type something.</h2>"));
+        HTML html = new HTML("<h2>Look at the core-field element below."
+                + " Try to type something.</h2>");
+        RootPanel.get().add(html);
 
-        VerticalPanel panel = new VerticalPanel();
-        
-        CoreField coreField = new CoreField();
-        coreField.getElement().setInnerHTML(
-                "<label>I'm a label!</label>"
-                        + "<input placeholder='I have a label' flex>");
-        panel.add(coreField);
+        Element div = DOM.createDiv();
 
-        CoreLabel coreLabel1 = new CoreLabel();
-        coreLabel1.getElement().setInnerHTML(
-                "label next to checkbox<input for type=\"checkbox\">something");
-        panel.add(coreLabel1);
+        CoreField coreField = Polymer.create("core-field");
+        coreField.setInnerHTML("<label>I'm a label!</label>"
+                + "<input placeholder='I have a label' flex>");
+        div.appendChild(coreField);
 
-        CoreLabel coreLabel2 = new CoreLabel();
-        coreLabel2.setAttribute("for", "#quux");
+        CoreLabel coreLabel1 = Polymer.create("core-label");
+        coreLabel1.setInnerHTML("label next to checkbox"
+                + "<input for type='checkbox'>something");
+        div.appendChild(coreLabel1);
+        div.appendChild(DOM.createElement("br"));
+
+        CoreLabel coreLabel2 = Polymer.create("core-label");
         coreLabel2.setFor("#quux");
-        coreLabel2.getElement().setInnerHTML(
-                "label for checkbox");
-        panel.add(coreLabel2);
+        coreLabel2.setInnerHTML("label for checkbox");
+        div.appendChild(coreLabel2);
 
         Element inputCheck = DOM.createInputCheck();
         inputCheck.setId("quux");
-        panel.getElement().appendChild(inputCheck);
+        div.appendChild(inputCheck);
 
-        RootPanel.get().add(panel);
+        RootPanel.get().getElement().appendChild(div);
     }
 }
