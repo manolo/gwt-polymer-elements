@@ -27,7 +27,7 @@
         <!-- this is the dependency to the "jar"-subproject -->
         <dependency>
             <groupId>com.vaadin.prototype.wc</groupId>
-            <artifactId>core-field</artifactId>
+            <artifactId>polymer-elements</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>
