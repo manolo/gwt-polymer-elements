@@ -5,7 +5,7 @@
     <parent>
         <artifactId>gwt-polymer</artifactId>
         <groupId>com.vaadin.prototype.wc</groupId>
-        <version>${project.version}</version>
+        <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -28,7 +28,7 @@
         <dependency>
             <groupId>com.vaadin.prototype.wc</groupId>
             <artifactId>polymer-elements</artifactId>
-            <version>${project.version}</version>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
@@ -50,6 +50,7 @@
                     <runTarget>hello/demo.html</runTarget>
                     <draftCompile>true</draftCompile>
                     <optimizationLevel>1</optimizationLevel>
+                    <jsInteropMode>JS</jsInteropMode>
                 </configuration>
             </plugin>
             <plugin>
@@ -57,7 +58,7 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <version>2.1</version>
                 <configuration>
-                    <warSourceDirectory>war</warSourceDirectory>
+                    <warSourceDirectory>src/main/webapp</warSourceDirectory>
                     <webXml>src/main/webapp/WEB-INF/web.xml</webXml>
                 </configuration>
             </plugin>

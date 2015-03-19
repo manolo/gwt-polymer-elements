@@ -7,7 +7,7 @@
     <groupId>com.vaadin.prototype.wc</groupId>
     <artifactId>gwt-polymer</artifactId>
     <packaging>pom</packaging>
-    <version>${project.version}</version>
+    <version>1.0-SNAPSHOT</version>
     
     <modules>
         <module>polymer-elements</module>
@@ -15,7 +15,6 @@
     </modules>
     
     <properties>
-        <project.version>1.0-SNAPSHOT</project.version>
         <gwt-version>2.7.0</gwt-version>
     </properties>
 
