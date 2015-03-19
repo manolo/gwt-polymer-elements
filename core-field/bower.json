@@ -1,0 +1,22 @@
+{
+  "name": "gwt-polymer",
+  "version": "0.3.0",
+  "homepage": "https://github.com/cwayfinder/polymer-contacts-demo",
+  "authors": [
+    "Taras Hupalo <taras.hupalo@gmail.com>"
+  ],
+  "description": "Example project for Polymer",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "core-label": "Polymer/core-label#^0.5.0"
+  }
+}

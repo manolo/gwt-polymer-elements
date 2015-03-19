@@ -11,6 +11,7 @@
     
     <modules>
         <module>core-field</module>
+        <module>polymer-elements</module>
         <module>demo</module>
     </modules>
     
