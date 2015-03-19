@@ -32,6 +32,7 @@ public class CoreLabel extends Widget {
 			htmlImport.setAttribute("href", GWT.getModuleBaseForStaticFiles()
 					+ "components/core-label/core-label.html");
 			head.appendChild(htmlImport);
+            injected = true;
 		}
 	}
 }
