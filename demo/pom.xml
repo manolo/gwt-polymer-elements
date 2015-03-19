@@ -33,6 +33,7 @@
     </dependencies>
 
     <build>
+        <finalName>demo</finalName>
         <plugins>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
@@ -48,9 +49,13 @@
                 </executions>
                 <configuration>
                     <runTarget>hello/demo.html</runTarget>
-                    <draftCompile>true</draftCompile>
-                    <optimizationLevel>1</optimizationLevel>
+                    <draftCompile>false</draftCompile>
+                    <optimizationLevel>9</optimizationLevel>
                     <jsInteropMode>JS</jsInteropMode>
+                    <disableCastChecking>true</disableCastChecking>
+                    <disableClassMetadata>true</disableClassMetadata>
+                    <enableAssertions>false</enableAssertions>
+                    <closureCompiler>true</closureCompiler>
                 </configuration>
             </plugin>
             <plugin>
