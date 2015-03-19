@@ -47,7 +47,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <runTarget>hello/Hello.html</runTarget>
+                    <runTarget>hello/demo.html</runTarget>
                     <draftCompile>true</draftCompile>
                     <optimizationLevel>1</optimizationLevel>
                 </configuration>
