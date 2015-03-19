@@ -6,4 +6,8 @@ public class PolymerElement extends Element {
 
     protected PolymerElement() {
     }
+
+    public final void setNoink(boolean val) {
+        setPropertyBoolean("noink", val);
+    }
 }

@@ -22,6 +22,7 @@ public class Polymer {
     static {
         importMap.put("core-field", "components/core-field/core-field.html");
         importMap.put("core-label", "components/core-label/core-label.html");
+        importMap.put("paper-button", "components/paper-button/paper-button.html");
     }
     
     public static <T extends PolymerElement> T create(String tagName) {

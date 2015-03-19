@@ -2,6 +2,7 @@ package com.github.taras.gwt.polymer.client;
 
 import com.github.taras.gwt.polymer.client.elements.CoreField;
 import com.github.taras.gwt.polymer.client.elements.CoreLabel;
+import com.github.taras.gwt.polymer.client.elements.PaperButton;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.DOM;
@@ -37,6 +38,12 @@ public class Demo implements EntryPoint {
         Element inputCheck = DOM.createInputCheck();
         inputCheck.setId("quux");
         div.appendChild(inputCheck);
+        div.appendChild(DOM.createElement("br"));
+
+        PaperButton paperButton = Polymer.create("paper-button");
+        paperButton.setInnerHTML("button");
+        paperButton.setRaised(true);
+        div.appendChild(paperButton);
 
         RootPanel.get().getElement().appendChild(div);
     }
