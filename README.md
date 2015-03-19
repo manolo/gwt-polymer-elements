@@ -8,5 +8,6 @@ Instruction:
 3.  Run `bower install`
 4.  Run `gulp gwt-api`
 5.  Go one level up (to the `gwt-polymer` directory)
-6.  Run the `demo` module as GWT application
+6.  Run `mvn clean install`
+7.  Run the `demo` module as GWT application
 
