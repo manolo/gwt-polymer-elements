@@ -39,7 +39,7 @@
             <div>Flat buttons</div>
 
             <paper-button>button</paper-button>
-            <paper-button class="{style.colored}">colored</paper-button>
+            <paper-button ui:field="flatColoredButton" class="{style.colored}">colored</paper-button>
             <paper-button disabled="">disabled</paper-button>
             <paper-button noink="">noink</paper-button>
 
