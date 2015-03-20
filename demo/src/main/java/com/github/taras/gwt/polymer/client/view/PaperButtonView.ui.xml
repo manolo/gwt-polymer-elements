@@ -81,7 +81,7 @@
 
             <div>Toggle buttons</div>
 
-            <paper-button toggle="">button</paper-button>
+            <paper-button ui:field="toggleButton" toggle="">button</paper-button>
 
             <paper-button toggle="" raised="" noink="">noink</paper-button>
 

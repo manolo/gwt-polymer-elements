@@ -22,18 +22,43 @@ public class PaperButtonView extends Composite {
 
     @UiField
     PaperButton flatColoredButton;
+    @UiField
+    PaperButton toggleButton;
 
     public PaperButtonView() {
         initWidget(ourUiBinder.createAndBindUi(this));
 
+        EventListener listener = new EventListener() {
+            @Override
+            public void handleEvent(Event event) {
+                HTMLElement target = (HTMLElement) event.target();
+                showInfo(target);
+            }
+        };
         flatColoredButton.addEventListener("click", new EventListener() {
             @Override
             public void handleEvent(Event event) {
                 HTMLElement target = (HTMLElement) event.target();
-                consoleLog(target);
-                Window.alert("You pressed the " + target.innerHTML() + "!");
+                showInfo(target);
             }
         });
+        toggleButton.addEventListener("click", new EventListener() {
+            @Override
+            public void handleEvent(Event event) {
+                HTMLElement target = (HTMLElement) event.target();
+                showInfo(target);
+
+                PaperButton button = (PaperButton) target;
+                flatColoredButton.raised(button.active());
+            }
+        });
+    }
+
+    private void showInfo(HTMLElement target) {
+        consoleLog(target);
+        Window.alert("You pressed the button! [innerHTML: '"
+                + target.innerHTML() + "'] [toggle: "
+                + ((PaperButton) target).toggle() + "]");
     }
 
     native void consoleLog(EventTarget event) /*-{
