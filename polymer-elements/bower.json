@@ -23,6 +23,7 @@
     "core-icon-button": "Polymer/core-icon-button#^0.5.0",
     "core-drawer-panel": "Polymer/core-drawer-panel#^0.5.0",
     "paper-button": "Polymer/paper-button#^0.5.0",
-    "paper-input": "Polymer/paper-input#^0.5.0"
+    "paper-input": "Polymer/paper-input#^0.5.0",
+    "paper-tabs": "Polymer/paper-tabs#^0.5.0"
   }
 }
