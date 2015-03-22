@@ -6,6 +6,12 @@ import com.github.taras.gwt.polymer.client.webapi.Event;
 public class <%= camelCase(name) %>Event extends PolymerWidgetEvent<<%= camelCase(name) %>EventHandler> {
     public static Type<<%= camelCase(name) %>EventHandler> TYPE = new Type<<%= camelCase(name) %>EventHandler>();
     
+    private com.github.taras.gwt.polymer.client.element.event.<%= camelCase(name) %>Event nativeEvent;
+    
+    public <%= camelCase(name) %>Event(com.github.taras.gwt.polymer.client.element.event.<%= camelCase(name) %>Event nativeEvent) {
+        super(nativeEvent);
+    }
+ 
     public <%= camelCase(name) %>Event(Event nativeEvent) {
         super(nativeEvent);
     }
@@ -17,4 +23,13 @@ public class <%= camelCase(name) %>Event extends PolymerWidgetEvent<<%= camelCas
     protected void dispatch(<%= camelCase(name) %>EventHandler handler) {
         handler.on<%= camelCase(name) %>(this);
     }
+    
+    public com.github.taras.gwt.polymer.client.element.event.<%= camelCase(name) %>Event getNativeEvent() {
+        return nativeEvent;
+    }
+<% if (hasParams())  _.forEach(params, function(param){ %>
+    public <%= computeType(param.type) %> <%= computeGetterWithPrefix(param) %>() {
+        return getNativeEvent().getDetail().<%= computeGetter(param) %>();
+    }
+<% }); %>   
 }

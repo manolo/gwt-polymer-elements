@@ -52,8 +52,16 @@ module.exports = {
     }
   },
   computeGetterWithPrefix: function(item) {
+    var name = item.name;
+    if (this.startsWith(name, "detail.")) {
+      name = name.substring("detail.".length);
+    }
     var prefix = item.type === 'boolean' ? 'is' : 'get';
-    return prefix + this.capitalizeFirstLetter(item.name);
+    if (this.startsWith(name, prefix)) {
+      return name;      
+    } else {
+      return prefix + this.capitalizeFirstLetter(name);
+    }
   },
   computeSetter: function(item) {
     if (this.javaKeywords.indexOf(item.name) >= 0) {
