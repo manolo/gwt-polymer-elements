@@ -1,4 +1,4 @@
-package com.github.taras.gwt.polymer.client.elements;
+package com.github.taras.gwt.polymer.client.element;
 
 import java.util.HashMap;
 

@@ -1,4 +1,4 @@
-package com.github.taras.gwt.polymer.client.elements;
+package com.github.taras.gwt.polymer.client.element;
 
 import com.github.taras.gwt.polymer.client.webapi.*;
 import com.github.taras.gwt.polymer.client.webapi.alias.*;
