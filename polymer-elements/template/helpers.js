@@ -31,15 +31,22 @@ module.exports = {
   hasMethods: function() {
     return !!this.methods;
   },
+  hasParams: function() {
+    return !!this.params;
+  },
   capitalizeFirstLetter: function(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   },
   computeGetter: function(item) {
-    if (this.javaKeywords.indexOf(item.name) >= 0) {
+    var name = item.name;
+    if (this.startsWith(name, "detail.")) {
+      name = name.substring("detail.".length);
+    }
+    if (this.javaKeywords.indexOf(name) >= 0) {
       var prefix = item.type === 'boolean' ? 'is' : 'get';
-      return prefix + item.name;
+      return prefix + name;
     } else {
-      return item.name;
+      return name;
     }
   },
   computeSetter: function(item) {
@@ -48,5 +55,8 @@ module.exports = {
     } else {
       return item.name;
     }
+  },
+  startsWith: function (str, substr){
+    return str.indexOf(substr) === 0;
   }
 };
