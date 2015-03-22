@@ -6,6 +6,9 @@ module.exports = {
   baseClassName: function () {
     return this['extends'] ? this.camelCase(this['extends']) : 'PolymerElement';
   },
+  baseWidgetName: function () {
+    return this['extends'] ? this.camelCase(this['extends']) : 'PolymerWidget';
+  },
   camelCase: function(s) {
     return (s || '').toLowerCase().replace(/(\b|-)\w/g, function (m) {
       return m.toUpperCase().replace(/-/, '');
@@ -43,18 +46,24 @@ module.exports = {
       name = name.substring("detail.".length);
     }
     if (this.javaKeywords.indexOf(name) >= 0) {
-      var prefix = item.type === 'boolean' ? 'is' : 'get';
-      return prefix + name;
+      return this.computeGetterWithPrefix(item);
     } else {
       return name;
     }
   },
+  computeGetterWithPrefix: function(item) {
+    var prefix = item.type === 'boolean' ? 'is' : 'get';
+    return prefix + this.capitalizeFirstLetter(item.name);
+  },
   computeSetter: function(item) {
     if (this.javaKeywords.indexOf(item.name) >= 0) {
-      return 'set' + item.name;
+      return this.computeSetterWithPrefix(item);
     } else {
       return item.name;
     }
+  },
+  computeSetterWithPrefix: function(item) {
+    return 'set' + this.capitalizeFirstLetter(item.name);
   },
   startsWith: function (str, substr){
     return str.indexOf(substr) === 0;

@@ -1,0 +1,40 @@
+package com.github.taras.gwt.polymer.client.widget;
+
+import com.github.taras.gwt.polymer.client.PolymerWidget;
+
+public class <%= className() %> extends <%= baseWidgetName() %> {
+
+    public <%= className() %>(String html) {
+        super("<%= name %>", html);
+    }
+    
+    public <%= className() %>(String tag, String html) {
+        super(tag, html);
+    }
+
+    public com.github.taras.gwt.polymer.client.element.<%= className() %> getPolymerElement() {
+        return (com.github.taras.gwt.polymer.client.element.<%= className() %>) getElement();
+    }
+    
+<% if (hasAttributes()) _.forEach(attributes, function(attribute){ %>
+    public <%= computeType(attribute.type) %> <%= computeGetterWithPrefix(attribute) %>() {
+        return getPolymerElement().<%= computeGetter(attribute) %>();
+    }
+    public void <%= computeSetterWithPrefix(attribute) %>(<%= computeType(attribute.type) %> value) {
+        getPolymerElement().<%= computeSetter(attribute) %>(value);
+    }
+<% }); %>
+<% if (hasProperties()) _.forEach(properties, function(property){ %>
+    public <%= computeType(property.type) %> <%= computeGetterWithPrefix(property) %>(){
+        return getPolymerElement().<%= computeGetter(property) %>();
+    }
+    public void <%= computeSetterWithPrefix(property) %>(<%= computeType(property.type) %> value) {
+        getPolymerElement().<%= computeSetter(property) %>(value);
+    }
+<% }); %>
+<% if (hasMethods()) _.forEach(methods, function(method){ %>
+    public void <%= method.name %>() {
+        getPolymerElement().<%= method.name %>();
+    }
+<% }); %>
+}

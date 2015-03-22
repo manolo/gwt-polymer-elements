@@ -91,6 +91,23 @@ gulp.task('gwt-api:generate-events', ['gwt-api:parse'], function() {
     }));
 });
 
+gulp.task('gwt-api:generate-widgets', ['gwt-api:parse'], function() {
+  return gulp.src('dist-tmp/**.json')
+    .pipe(map(function(file, cb) {
+      gutil.log('Generating widget class from ' + file.relative);
+
+      var tpl = _.template(fs.readFileSync('./template/Widget.template'));
+      file.contents = new Buffer(tpl(_.merge({}, null, JSON.parse(file.contents), helpers)));
+
+      cb(null, file);
+    }))
+    .pipe(rename(function (file) {
+      file.basename = camelCase(file.basename);
+      file.extname = '.java';
+    }))
+    .pipe(gulp.dest('./src/main/java/com/github/taras/gwt/polymer/client/widget'));
+});
+
 gulp.task('gwt-api:generate-imports-map', ['gwt-api:parse'], function() {
   return gulp.src('./template/ImportsMap.template')
     .pipe(map(function(file, cb) {
@@ -107,4 +124,4 @@ gulp.task('gwt-api:generate-imports-map', ['gwt-api:parse'], function() {
     .pipe(gulp.dest('./src/main/java/com/github/taras/gwt/polymer/client/element'));
 });
 
-gulp.task('gwt-api', ['gwt-api:generate-elements', 'gwt-api:generate-events', 'gwt-api:generate-imports-map']);
+gulp.task('gwt-api', ['gwt-api:generate-elements', 'gwt-api:generate-events', 'gwt-api:generate-widgets', 'gwt-api:generate-imports-map']);
