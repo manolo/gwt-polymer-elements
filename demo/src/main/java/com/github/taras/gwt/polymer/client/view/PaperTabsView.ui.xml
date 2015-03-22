@@ -1,0 +1,28 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+    
+    <ui:style>
+        paper-tabs {
+            background-color: #00bcd4;
+            color: #fff;
+            box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        h3 {
+            font-size: 16px;
+            font-weight: 400;
+        }
+    </ui:style>
+    
+    <g:HTMLPanel>
+        <h3>Paper Tabs based on gwt-polymer elements</h3>
+        
+        <paper-tabs ui:field="paperTabs" selected="0">
+            <paper-tab>ITEM ONE</paper-tab>
+            <paper-tab>ITEM TWO</paper-tab>
+            <paper-tab>ITEM THREE</paper-tab>
+        </paper-tabs>
+
+        <paper-toast ui:field="toast" text="Your draft has been discarded."></paper-toast>
+    </g:HTMLPanel>
+</ui:UiBinder>
