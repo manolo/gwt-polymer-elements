@@ -12,7 +12,7 @@ public interface <%= className() %> extends <%= baseClassName() %> {
 
 <% if (hasAttributes()) _.forEach(attributes, function(attribute){ %>
     @JsProperty <%= computeType(attribute.type) %> <%= computeGetter(attribute) %>();
-    @JsProperty void <%= computeGetter(attribute) %>(<%= computeType(attribute.type) %> value);
+    @JsProperty void <%= computeSetter(attribute) %>(<%= computeType(attribute.type) %> value);
 <% }); %>
 <% if (hasProperties()) _.forEach(properties, function(property){ %>
     @JsProperty <%= computeType(property.type) %> <%= computeGetter(property) %>();
