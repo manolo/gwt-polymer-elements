@@ -17,7 +17,7 @@ module.exports = {
     if (type === 'array') return 'JsArray';
     if (type === 'element' || type === 'Element') return 'Element';
     if (type === 'number' || type === 'Number') return 'double';
-    return "JavaScriptObject";
+    return "Object";
   },
   hasEvents: function() {
     return !!this.events;
