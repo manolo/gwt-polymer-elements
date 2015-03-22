@@ -2,6 +2,7 @@ package com.github.taras.gwt.polymer.client.element;
 
 import com.github.taras.gwt.polymer.client.webapi.*;
 import com.github.taras.gwt.polymer.client.webapi.alias.*;
+import com.github.taras.gwt.polymer.client.PolymerElement;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.JsArray;
 import com.google.gwt.core.client.js.JsProperty;
