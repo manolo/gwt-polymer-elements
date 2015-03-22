@@ -84,8 +84,6 @@ gulp.task('gwt-api:generate-events', ['gwt-api:parse'], function() {
           fs.writeFileSync(path, new Buffer(content));
         });
       }
-      
-      file.contents = new Buffer(tpl(_.merge({}, null, JSON.parse(file.contents), helpers)));
 
       cb(null, file);
     }));
@@ -108,6 +106,36 @@ gulp.task('gwt-api:generate-widgets', ['gwt-api:parse'], function() {
     .pipe(gulp.dest('./src/main/java/com/github/taras/gwt/polymer/client/widget'));
 });
 
+gulp.task('gwt-api:generate-widget-events', ['gwt-api:parse'], function() {
+  var eventTpl = _.template(fs.readFileSync('./template/WidgetEvent.template'));
+  var handlerTpl = _.template(fs.readFileSync('./template/WidgetEventHandler.template'));
+
+  return gulp.src('dist-tmp/**.json')
+    .pipe(map(function(file, cb) {
+      var json = JSON.parse(file.contents);
+      if (json.events) {
+        console.log("--------- " + json.events);
+        json.events.forEach(function(event) {
+          var dirname = 'src/main/java/com/github/taras/gwt/polymer/client/widget/event/';
+          var filename = camelCase(event.name) + 'Event.java';
+          gutil.log('Generating ' + filename + ' from ' + file.relative);
+          var path = dirname + filename;
+          fs.ensureFileSync(path);
+          fs.writeFileSync(path, new Buffer(eventTpl(_.merge({}, null, event, helpers))));
+
+          dirname = 'src/main/java/com/github/taras/gwt/polymer/client/widget/event/';
+          filename = camelCase(event.name) + 'EventHandler.java';
+          gutil.log('Generating ' + filename + ' from ' + file.relative);
+          path = dirname + filename;
+          fs.ensureFileSync(path);
+          fs.writeFileSync(path, new Buffer(handlerTpl(_.merge({}, null, event, helpers))));
+        });
+      }
+
+      cb(null, file);
+    }));
+});
+
 gulp.task('gwt-api:generate-imports-map', ['gwt-api:parse'], function() {
   return gulp.src('./template/ImportsMap.template')
     .pipe(map(function(file, cb) {
@@ -124,4 +152,4 @@ gulp.task('gwt-api:generate-imports-map', ['gwt-api:parse'], function() {
     .pipe(gulp.dest('./src/main/java/com/github/taras/gwt/polymer/client/element'));
 });
 
-gulp.task('gwt-api', ['gwt-api:generate-elements', 'gwt-api:generate-events', 'gwt-api:generate-widgets', 'gwt-api:generate-imports-map']);
+gulp.task('gwt-api', ['gwt-api:generate-elements', 'gwt-api:generate-events', 'gwt-api:generate-widgets', 'gwt-api:generate-widget-events', 'gwt-api:generate-imports-map']);

@@ -1,10 +1,10 @@
 package com.github.taras.gwt.polymer.client.view;
 
-import com.github.taras.gwt.polymer.client.event.CoreSelectEvent;
-import com.github.taras.gwt.polymer.client.event.CoreSelectEventHandler;
 import com.github.taras.gwt.polymer.client.widget.PaperTab;
 import com.github.taras.gwt.polymer.client.widget.PaperTabs;
 import com.github.taras.gwt.polymer.client.widget.PaperToast;
+import com.github.taras.gwt.polymer.client.widget.event.CoreSelectEvent;
+import com.github.taras.gwt.polymer.client.widget.event.CoreSelectEventHandler;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;

@@ -1,15 +1,27 @@
 package com.github.taras.gwt.polymer.client.widget;
 
 import com.github.taras.gwt.polymer.client.PolymerWidget;
+import com.github.taras.gwt.polymer.client.widget.event.*;
+import com.google.gwt.event.shared.HandlerRegistration;
 
 public class <%= className() %> extends <%= baseWidgetName() %> {
 
     public <%= className() %>(String html) {
-        super("<%= name %>", html);
+        this("<%= name %>", html);
     }
     
     public <%= className() %>(String tag, String html) {
         super(tag, html);
+<% if (hasEvents()) _.forEach(events, function(event){ %>
+        getPolymerElement().addEventListener(
+                com.github.taras.gwt.polymer.client.element.event.<%= camelCase(event.name) %>Event.NAME,
+                new com.github.taras.gwt.polymer.client.element.event.<%= camelCase(event.name) %>Event.Listener() {
+            @Override
+            protected void handleEvent(com.github.taras.gwt.polymer.client.element.event.<%= camelCase(event.name) %>Event event) {
+                fireEvent(new <%= camelCase(event.name) %>Event(event));
+            }
+        });
+<% }); %>
     }
 
     public com.github.taras.gwt.polymer.client.element.<%= className() %> getPolymerElement() {
@@ -35,6 +47,11 @@ public class <%= className() %> extends <%= baseWidgetName() %> {
 <% if (hasMethods()) _.forEach(methods, function(method){ %>
     public void <%= method.name %>() {
         getPolymerElement().<%= method.name %>();
+    }
+<% }); %>
+<% if (hasEvents()) _.forEach(events, function(event){ %>
+    public HandlerRegistration add<%= camelCase(event.name) %>Handler(<%= camelCase(event.name) %>EventHandler handler) {
+        return addHandler(handler, <%= camelCase(event.name) %>Event.TYPE);
     }
 <% }); %>
 }
