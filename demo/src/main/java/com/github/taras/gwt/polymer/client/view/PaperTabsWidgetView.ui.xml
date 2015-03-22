@@ -12,5 +12,7 @@
             <p:PaperTab>ITEM TWO</p:PaperTab>
             <p:PaperTab>ITEM THREE</p:PaperTab>
         </p:PaperTabs>
+
+        <p:PaperToast ui:field="toast" text="Your message."></p:PaperToast>
     </g:HTMLPanel>
 </ui:UiBinder>

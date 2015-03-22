@@ -1,7 +1,10 @@
 package com.github.taras.gwt.polymer.client.view;
 
+import com.github.taras.gwt.polymer.client.event.CoreSelectEvent;
+import com.github.taras.gwt.polymer.client.event.CoreSelectEventHandler;
 import com.github.taras.gwt.polymer.client.widget.PaperTab;
 import com.github.taras.gwt.polymer.client.widget.PaperTabs;
+import com.github.taras.gwt.polymer.client.widget.PaperToast;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -16,6 +19,8 @@ public class PaperTabsWidgetView extends Composite {
     
     @UiField
     PaperTabs tabs;
+    @UiField
+    PaperToast toast;
 
     public PaperTabsWidgetView() {
         initWidget(ourUiBinder.createAndBindUi(this));
@@ -24,5 +29,13 @@ public class PaperTabsWidgetView extends Composite {
 
         PaperTab tab = new PaperTab("dynamically created item");
         tabs.add(tab);
+        
+        tabs.addCoreSelectHandler(new CoreSelectEventHandler() {
+            @Override
+            public void onCoreSelect(CoreSelectEvent event) {
+                toast.setText("widget event handler");
+                toast.show();
+            }
+        });
     }
 }
