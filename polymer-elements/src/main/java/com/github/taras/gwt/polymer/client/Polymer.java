@@ -3,11 +3,10 @@ package com.github.taras.gwt.polymer.client;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.github.taras.gwt.polymer.client.elements.ImportsMap;
+import com.github.taras.gwt.polymer.client.element.ImportsMap;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.Element;
-import com.google.gwt.user.client.DOM;
 
 public class Polymer {
     
@@ -15,14 +14,15 @@ public class Polymer {
 
     private static Set<String> urlImported = new HashSet<>();
     
-    public static <T extends PolymerElement> T create(String tagName) {
-        Polymer.ensureHTMLImport(tagName);
-        return DOM.createElement(tagName).cast();
-    }
-
     /*
 	 * Injects the correspondent html template to page head section.
 	 */
+    public static void ensureHTMLImport(Class<?> clazz) {
+        String tagName = computeTagName(clazz);
+        GWT.log(tagName);
+        ensureHTMLImport(tagName);
+    }
+
     public static void ensureHTMLImport(String tagName) {
         String href = "components/" + ImportsMap.getInstance().get(tagName);
         if (!urlImported.contains(href)) {
@@ -33,6 +33,10 @@ public class Polymer {
             head.appendChild(htmlImport);
             urlImported.add(href);
         }
+    }
+
+    private static String computeTagName(Class<?> clazz) {
+        return clazz.getSimpleName().replaceAll("([A-Z])", "-$1").replaceFirst("^-+", "").toLowerCase();
     }
 
     public static Polymer getInstance() {
