@@ -20,6 +20,6 @@ public interface <%= className() %> extends <%= baseClassName() %> {
     @JsProperty void <%= computeSetter(property) %>(<%= computeType(property.type) %> value);
 <% }); %>
 <% if (hasMethods()) _.forEach(methods, function(method){ %>
-    void <%= method.name %>();
+    void <%= method.name %>(<%= typedParamsString(method) %>);
 <% }); %>
 }

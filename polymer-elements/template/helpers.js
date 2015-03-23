@@ -75,5 +75,24 @@ module.exports = {
   },
   startsWith: function (str, substr){
     return str.indexOf(substr) === 0;
+  },
+  typedParamsString: function(method) {
+    var result = [];
+    if (method.params) {
+      method.params.forEach(function(param) {
+        var type = this.computeType(param.type);
+        result.push(type + ' ' + param.name);
+      }, this);
+    }
+    return result.join(', ');
+  },
+  paramsString: function(method) {
+    var result = [];
+    if (method.params) {
+      method.params.forEach(function(param) {
+        result.push(param.name);
+      }, this);
+    }
+    return result.join(', ');
   }
 };

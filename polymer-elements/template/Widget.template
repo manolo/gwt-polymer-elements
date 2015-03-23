@@ -47,8 +47,8 @@ public class <%= className() %> extends <%= baseWidgetName() %> {
     }
 <% }); %>
 <% if (hasMethods()) _.forEach(methods, function(method){ %>
-    public void <%= method.name %>() {
-        getPolymerElement().<%= method.name %>();
+    public void <%= method.name %>(<%= typedParamsString(method) %>) {
+        getPolymerElement().<%= method.name %>(<%= paramsString(method) %>);
     }
 <% }); %>
 <% if (hasEvents()) _.forEach(events, function(event){ %>
