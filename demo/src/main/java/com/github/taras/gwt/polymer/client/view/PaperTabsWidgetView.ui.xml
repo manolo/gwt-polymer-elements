@@ -2,7 +2,7 @@
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
              xmlns:p='urn:import:com.github.taras.gwt.polymer.client.widget'>
     <g:HTMLPanel>
-        <h3>Paper Tabs based on gwt-polymer widgets</h3>
+        <h2>Paper Tabs based on gwt-polymer widgets</h2>
 
         
         <p:PaperTabs ui:field="tabs">

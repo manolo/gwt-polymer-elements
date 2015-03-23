@@ -1,0 +1,16 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:p='urn:import:com.github.taras.gwt.polymer.client.widget'>
+    
+    <g:HTMLPanel>
+        <p:SamplerScaffold ui:field="scaffold" label="Paper Elements">
+            <!--<paper-icon-button class="menuButton" icon="menu" ></paper-icon-button>-->
+            <!--<paper-fab class="sourceButton bottom" icon="launch"></paper-fab>-->
+            
+            <core-item label="Checkbox" tag="paper-checkbox" url="../paper-checkbox/demo.html"></core-item>
+            <core-item label="Radio Button" tag="paper-radio-button" url="../paper-radio-group/demo.html"></core-item>
+            <core-item label="Toggle Button" tag="paper-toggle-button" url="../paper-toggle-button/demo.html"></core-item>
+            <core-item label="Input" tag="paper-input" url="../paper-input/demo.html"></core-item>
+        </p:SamplerScaffold>
+    </g:HTMLPanel>
+</ui:UiBinder>

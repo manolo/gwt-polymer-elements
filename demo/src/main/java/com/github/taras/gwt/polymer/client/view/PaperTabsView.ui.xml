@@ -15,7 +15,7 @@
     </ui:style>
     
     <g:HTMLPanel>
-        <h3>Paper Tabs based on gwt-polymer elements</h3>
+        <h2>Paper Tabs based on gwt-polymer elements</h2>
         
         <paper-tabs ui:field="paperTabs" selected="0">
             <paper-tab>ITEM ONE</paper-tab>
