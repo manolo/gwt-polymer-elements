@@ -13,5 +13,6 @@ public interface Element extends Node {
     DOMTokenList classList();
     
     void setAttribute(String name, String value);
+    String getAttribute(String name);
     void removeAttribute(String name);
 }
