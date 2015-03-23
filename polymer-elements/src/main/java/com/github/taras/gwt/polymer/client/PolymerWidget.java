@@ -50,4 +50,14 @@ public class PolymerWidget extends HTMLPanel {
     public void setChecked(String checked) {
         setBooleanAttribute("checked", true);
     }
+
+    // TODO: Remove this hack for core-selector
+    public void setSelected(String value) {
+        getElement().setAttribute("selected", value);
+    }
+
+    // TODO: Remove this hack for paper-radio-button
+    public void setName(String value) {
+        getElement().setAttribute("name", value);
+    }
 }
