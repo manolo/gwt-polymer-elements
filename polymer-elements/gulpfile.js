@@ -22,7 +22,7 @@ gulp.task('gwt-api:clean', function() {
 });
 
 gulp.task('gwt-api:parse', ['gwt-api:clean'], function() {
-  var path = "src/main/resources/com/github/taras/gwt/polymer/public/components/";
+  var path = "src/main/resources/com/github/taras/gwt/polymer/public/bower_components/";
   return gulp.src([path + "*/*.html", 
     "!" + path + "*/*demo.html",        // ignore all the demo.html files
     "!" + path + "*/*index.html",       // ignore all the index.html files
@@ -114,7 +114,6 @@ gulp.task('gwt-api:generate-widget-events', ['gwt-api:parse'], function() {
     .pipe(map(function(file, cb) {
       var json = JSON.parse(file.contents);
       if (json.events) {
-        console.log("--------- " + json.events);
         json.events.forEach(function(event) {
           var dirname = 'src/main/java/com/github/taras/gwt/polymer/client/widget/event/';
           var filename = camelCase(event.name) + 'Event.java';

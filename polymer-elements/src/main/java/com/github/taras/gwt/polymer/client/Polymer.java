@@ -24,7 +24,7 @@ public class Polymer {
     }
 
     public static void ensureHTMLImport(String tagName) {
-        String href = "components/" + ImportsMap.getInstance().get(tagName);
+        String href = "bower_components/" + ImportsMap.getInstance().get(tagName);
         if (!urlImported.contains(href)) {
             Element head = Document.get().getElementsByTagName("head").getItem(0);
             Element htmlImport = Document.get().createLinkElement();
