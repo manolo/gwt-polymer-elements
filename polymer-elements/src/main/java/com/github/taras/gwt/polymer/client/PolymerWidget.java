@@ -13,4 +13,41 @@ public class PolymerWidget extends HTMLPanel {
     public PolymerWidget(String tag, SafeHtml safeHtml) {
         super(tag, safeHtml.asString());
     }
+
+    public void setHorizontal(boolean horizontal) {
+        setBooleanAttribute("horizontal", horizontal);
+    }
+    public void setHorizontal(String horizontal) {
+        setBooleanAttribute("horizontal", true);
+    }
+    
+    public void setLayout(boolean layout) {
+        setBooleanAttribute("layout", layout);
+    }
+    public void setLayout(String layout) {
+        setBooleanAttribute("layout", true);
+    }
+
+    public void setCenter(boolean center) {
+        setBooleanAttribute("center", center);
+    }
+    public void setCenter(String center) {
+        setBooleanAttribute("center", true);
+    }
+
+    private void setBooleanAttribute(String name, boolean value) {
+        if (value) {
+            getElement().setAttribute(name, "");
+        } else {
+            getElement().removeAttribute(name);
+        }
+    }
+
+
+    public void setDisabled(String disabled) {
+        setBooleanAttribute("disabled", true);
+    }
+    public void setChecked(String checked) {
+        setBooleanAttribute("checked", true);
+    }
 }
