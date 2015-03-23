@@ -1,21 +1,16 @@
 package com.github.taras.gwt.polymer.client.widget.event;
 
-import com.github.taras.gwt.polymer.client.PolymerWidgetEvent;
-import com.github.taras.gwt.polymer.client.webapi.element.Event;
+import com.google.gwt.event.shared.GwtEvent;
 
-public class <%= camelCase(name) %>Event extends PolymerWidgetEvent<<%= camelCase(name) %>EventHandler> {
+public class <%= camelCase(name) %>Event extends GwtEvent<<%= camelCase(name) %>EventHandler> {
     public static Type<<%= camelCase(name) %>EventHandler> TYPE = new Type<<%= camelCase(name) %>EventHandler>();
     
     private com.github.taras.gwt.polymer.client.element.event.<%= camelCase(name) %>Event nativeEvent;
     
     public <%= camelCase(name) %>Event(com.github.taras.gwt.polymer.client.element.event.<%= camelCase(name) %>Event nativeEvent) {
-        super(nativeEvent);
+        this.nativeEvent = nativeEvent;
     }
  
-    public <%= camelCase(name) %>Event(Event nativeEvent) {
-        super(nativeEvent);
-    }
-
     public Type<<%= camelCase(name) %>EventHandler> getAssociatedType() {
         return TYPE;
     }
