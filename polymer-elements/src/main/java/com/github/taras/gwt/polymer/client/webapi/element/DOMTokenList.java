@@ -1,4 +1,4 @@
-package com.github.taras.gwt.polymer.client.webapi;
+package com.github.taras.gwt.polymer.client.webapi.element;
 
 import com.google.gwt.core.client.js.JsProperty;
 import com.google.gwt.core.client.js.JsType;

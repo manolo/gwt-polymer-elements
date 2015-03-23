@@ -1,6 +1,6 @@
-package com.github.taras.gwt.polymer.client.webapi.alias;
+package com.github.taras.gwt.polymer.client.webapi.element.alias;
 
-import com.github.taras.gwt.polymer.client.webapi.HTMLInputElement;
+import com.github.taras.gwt.polymer.client.webapi.element.HTMLInputElement;
 import com.google.gwt.core.client.js.JsType;
 
 /**

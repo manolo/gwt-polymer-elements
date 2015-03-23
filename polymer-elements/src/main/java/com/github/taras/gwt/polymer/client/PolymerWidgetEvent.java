@@ -1,6 +1,6 @@
 package com.github.taras.gwt.polymer.client;
 
-import com.github.taras.gwt.polymer.client.webapi.Event;
+import com.github.taras.gwt.polymer.client.webapi.element.Event;
 import com.google.gwt.event.shared.EventHandler;
 import com.google.gwt.event.shared.GwtEvent;
 
