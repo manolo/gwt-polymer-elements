@@ -1,6 +1,6 @@
 package com.github.taras.gwt.polymer.client.element;
 
-import com.github.taras.gwt.polymer.client.webapi.*;
+import com.github.taras.gwt.polymer.client.webapi.element.*;
 import com.github.taras.gwt.polymer.client.webapi.element.alias.*;
 import com.github.taras.gwt.polymer.client.PolymerElement;
 import com.google.gwt.core.client.JavaScriptObject;
