@@ -3,6 +3,8 @@
              xmlns:p='urn:import:com.github.taras.gwt.polymer.client.widget'>
     
     <ui:style>
+        @external .checked;
+
         .container {
             font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
             margin: 0;
@@ -91,17 +93,17 @@
 
             <p:CoreLabel center="" horizontal="" layout="">
                 <div flex="">Touch sounds</div>
-                <p:PaperCheckbox addStyleNames="blue" checked=""></p:PaperCheckbox>
+                <p:PaperCheckbox addStyleNames="{style.blue}" checked=""></p:PaperCheckbox>
             </p:CoreLabel>
 
             <p:CoreLabel center="" horizontal="" layout="">
                 <div flex="">Screen lock sound</div>
-                <p:PaperCheckbox addStyleNames="blue"></p:PaperCheckbox>
+                <p:PaperCheckbox addStyleNames="{style.blue}"></p:PaperCheckbox>
             </p:CoreLabel>
 
             <p:CoreLabel center="" horizontal="" layout="">
                 <div flex="">Vibrate on touch</div>
-                <p:PaperCheckbox addStyleNames="blue"></p:PaperCheckbox>
+                <p:PaperCheckbox addStyleNames="{style.blue}"></p:PaperCheckbox>
             </p:CoreLabel>
         </section>
     </g:HTMLPanel>
