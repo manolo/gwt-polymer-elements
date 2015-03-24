@@ -28,6 +28,7 @@
     "paper-toggle-button": "Polymer/paper-toggle-button#^0.5.0",
     "paper-button": "Polymer/paper-button#^0.5.0",
     "paper-spinner": "Polymer/paper-spinner#^0.5.0",
+    "paper-progress": "Polymer/paper-progress#^0.5.0",
     "paper-fab": "Polymer/paper-fab#^0.5.0",
     "paper-input": "Polymer/paper-input#^0.5.0",
     "paper-tabs": "Polymer/paper-tabs#^0.5.0",

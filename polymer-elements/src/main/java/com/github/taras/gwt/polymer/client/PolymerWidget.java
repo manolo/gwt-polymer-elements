@@ -1,5 +1,8 @@
 package com.github.taras.gwt.polymer.client;
 
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.safehtml.shared.SafeHtml;
 import com.google.gwt.user.client.ui.HTMLPanel;
 
@@ -34,6 +37,14 @@ public class PolymerWidget extends HTMLPanel {
     public void setCenter(String center) {
         setBooleanAttribute("center", true);
     }
+    
+
+    public void setDisabled(boolean disabled) {
+        setBooleanAttribute("disabled", disabled);
+    }
+    public void setDisabled(String disabled) {
+        setBooleanAttribute("disabled", true);
+    }
 
     public void setBooleanAttribute(String name, boolean value) {
         if (value) {
@@ -46,5 +57,9 @@ public class PolymerWidget extends HTMLPanel {
     // TODO: Remove this hack for paper-radio-button
     public void setName(String value) {
         getElement().setAttribute("name", value);
+    }
+
+    public HandlerRegistration addClickHandler(ClickHandler handler) {
+        return addDomHandler(handler, ClickEvent.getType());
     }
 }
