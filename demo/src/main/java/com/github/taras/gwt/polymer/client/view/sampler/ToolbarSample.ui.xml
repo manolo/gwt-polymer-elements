@@ -100,6 +100,6 @@
             <div flex="" class="bottom indent" style="font-size: 18px;">Title2</div>
         </p:CoreToolbar>
 
-        <p:CoreMediaQuery debugId="mediaQuery" query="max-width: 800px"/>
+        <p:CoreMediaQuery ui:field="mediaQuery" query="max-width: 800px"/>
     </g:HTMLPanel>
 </ui:UiBinder>
