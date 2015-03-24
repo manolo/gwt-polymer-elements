@@ -15,7 +15,7 @@
             padding: 20px 20px 20px 0;
         }
 
-        section {
+        .wrapper {
             width: 300px;
         }
 
@@ -33,7 +33,7 @@
         <hr />
         <h2>Checkbox</h2>
         
-        <section>
+        <section class="{style.wrapper}">
 
             <p:CoreLabel horizontal="true" layout="true">
                 <p:PaperCheckbox></p:PaperCheckbox>
@@ -86,7 +86,7 @@
         <br />
         <br />
 
-        <section>
+        <section class="{style.wrapper}">
             <h3>Sound</h3>
 
             <p:CoreLabel center="" horizontal="" layout="">
