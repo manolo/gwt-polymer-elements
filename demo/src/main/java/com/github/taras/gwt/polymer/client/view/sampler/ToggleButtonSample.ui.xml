@@ -3,6 +3,8 @@
              xmlns:p='urn:import:com.github.taras.gwt.polymer.client.widget'>
     
     <ui:style>
+        @external .toggle-ink, .toggle, .toggle-bar, .toggle-button;
+
         .container {
             font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
             margin: 0;
