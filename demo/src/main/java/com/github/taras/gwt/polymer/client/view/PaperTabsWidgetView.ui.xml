@@ -13,6 +13,6 @@
             <p:PaperTab>ITEM THREE</p:PaperTab>
         </p:PaperTabs>
 
-        <p:PaperToast ui:field="toast" text="Your message."></p:PaperToast>
+        <p:PaperToast ui:field="toast" text="Your message."/>
     </g:HTMLPanel>
 </ui:UiBinder>
