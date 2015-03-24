@@ -94,5 +94,19 @@ module.exports = {
       }, this);
     }
     return result.join(', ');
+  },
+  extraSetter: function(attribute) {
+    var type = this.computeType(attribute.type);
+    if (type === 'String') {
+      return '';      
+    } else if (type === 'boolean') {
+      return 'public void ' + this.computeSetterWithPrefix(attribute) + '(String ' + attribute.name + ') {\n' + 
+        '        setBooleanAttribute("' + attribute.name + '", true);\n' +
+        '    }';
+    } else {
+      return 'public void ' + this.computeSetterWithPrefix(attribute) + '(String ' + attribute.name + ') {\n' +
+        '        getElement().setAttribute("' + attribute.name + '", ' + attribute.name + ');\n' +
+        '    }';
+    }
   }
 };

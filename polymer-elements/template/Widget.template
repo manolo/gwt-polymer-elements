@@ -38,6 +38,7 @@ public class <%= className() %> extends <%= baseWidgetName() %> {
     public void <%= computeSetterWithPrefix(attribute) %>(<%= computeType(attribute.type) %> value) {
         getPolymerElement().<%= computeSetter(attribute) %>(value);
     }
+    <%= extraSetter(attribute) %>
 <% }); %>
 <% if (hasProperties()) _.forEach(properties, function(property){ %>
     public <%= computeType(property.type) %> <%= computeGetterWithPrefix(property) %>(){

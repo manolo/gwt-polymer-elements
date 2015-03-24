@@ -35,25 +35,12 @@ public class PolymerWidget extends HTMLPanel {
         setBooleanAttribute("center", true);
     }
 
-    private void setBooleanAttribute(String name, boolean value) {
+    public void setBooleanAttribute(String name, boolean value) {
         if (value) {
             getElement().setAttribute(name, "");
         } else {
             getElement().removeAttribute(name);
         }
-    }
-
-
-    public void setDisabled(String disabled) {
-        setBooleanAttribute("disabled", true);
-    }
-    public void setChecked(String checked) {
-        setBooleanAttribute("checked", true);
-    }
-
-    // TODO: Remove this hack for core-selector
-    public void setSelected(String value) {
-        getElement().setAttribute("selected", value);
     }
 
     // TODO: Remove this hack for paper-radio-button
