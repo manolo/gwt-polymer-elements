@@ -1,0 +1,116 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:p='urn:import:com.github.taras.gwt.polymer.client.widget'>
+
+    <ui:style>
+        .container {
+            font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
+            font-size: 14px;
+            margin: 0;
+            padding: 24px;
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
+            -webkit-touch-callout: none;
+        }
+
+        .container section {
+            padding: 20px 0;
+        }
+
+        .container section > div {
+            padding: 14px;
+            font-size: 16px;
+        }
+
+        .container paper-button.colored {
+            color: #4285f4;
+        }
+
+        .container paper-button[raised].colored {
+            background: #4285f4;
+            color: #fff;
+        }
+
+        .container paper-button.custom > core-icon {
+            margin-right: 4px;
+        }
+
+        .container paper-button.hover:hover {
+            background: #eee;
+        }
+
+        .container paper-button.blue-ripple::shadow #ripple {
+            color: #4285f4;
+        }
+    </ui:style>
+
+    <g:HTMLPanel addStyleNames="{style.container}">
+        <hr />
+        <h2>Button</h2>
+
+        <section>
+
+            <div>Flat buttons</div>
+
+            <p:PaperButton>button</p:PaperButton>
+            <p:PaperButton addStyleNames="{style.colored}">colored</p:PaperButton>
+            <p:PaperButton disabled="">disabled</p:PaperButton>
+            <p:PaperButton noink="">noink</p:PaperButton>
+
+        </section>
+
+        <br/>
+
+        <section>
+
+            <div>Raised buttons</div>
+
+            <p:PaperButton raised="">button</p:PaperButton>
+            <p:PaperButton raised="" addStyleNames="{style.colored}">colored</p:PaperButton>
+            <p:PaperButton raised="" disabled="">disabled</p:PaperButton>
+            <p:PaperButton raised="" noink="">noink</p:PaperButton>
+
+        </section>
+
+        <section>
+
+            <div>Custom button content</div>
+
+            <p:PaperButton addStyleNames="{style.colored} {style.custom}">
+                <core-icon icon="check"/>
+                ok
+            </p:PaperButton>
+            <p:PaperButton addStyleNames="{style.custom}">
+                <core-icon icon="clear"/>
+                cancel
+            </p:PaperButton>
+            <br/>
+            <p:PaperButton>
+                <a href="https://www.polymer-project.org" target="_blank">link</a>
+            </p:PaperButton>
+
+        </section>
+
+        <section>
+
+            <div>Toggle buttons</div>
+
+            <p:PaperButton toggle="">button</p:PaperButton>
+
+            <p:PaperButton toggle="" raised="" noink="">noink</p:PaperButton>
+
+            <p:PaperButton toggle="" active="" addStyleNames="{style.colored}">active</p:PaperButton>
+
+            <p:PaperButton toggle="" raised="" active="" addStyleNames="{style.colored}">active</p:PaperButton>
+
+        </section>
+
+        <section>
+
+            <div>Styling options</div>
+
+            <p:PaperButton addStyleNames="{style.hover}">hover</p:PaperButton>
+            <p:PaperButton addStyleNames="{style.blue-ripple}">custom ripple</p:PaperButton>
+
+        </section>
+    </g:HTMLPanel>
+</ui:UiBinder>

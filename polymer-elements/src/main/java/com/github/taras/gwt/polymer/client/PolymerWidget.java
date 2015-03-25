@@ -78,6 +78,17 @@ public class PolymerWidget extends HTMLPanel {
         getElement().setAttribute("link", link);
     }
 
+    // TODO: Remove this hacks for paper-button
+    public void setActive(String active) {
+        getElement().setAttribute("active", active);
+    }
+    public void setToggle(String toggle) {
+        getElement().setAttribute("toggle", toggle);
+    }
+    public void setNoink(String noink) {
+        getElement().setAttribute("noink", noink);
+    }
+
     public HandlerRegistration addClickHandler(ClickHandler handler) {
         return addDomHandler(handler, ClickEvent.getType());
     }

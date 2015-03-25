@@ -2,6 +2,7 @@ package com.github.taras.gwt.polymer.client;
 
 import com.github.taras.gwt.polymer.client.view.PaperTabsView;
 import com.github.taras.gwt.polymer.client.view.PaperTabsWidgetView;
+import com.github.taras.gwt.polymer.client.view.sampler.ButtonSample;
 import com.github.taras.gwt.polymer.client.view.sampler.CheckboxSample;
 import com.github.taras.gwt.polymer.client.view.sampler.InputSample;
 import com.github.taras.gwt.polymer.client.view.sampler.ProgressBarSample;
@@ -28,5 +29,6 @@ public class Demo implements EntryPoint {
         RootPanel.get().add(new ProgressBarSample());
         RootPanel.get().add(new SliderSample());
         RootPanel.get().add(new TabsSample());
+        RootPanel.get().add(new ButtonSample());
     }
 }
