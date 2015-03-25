@@ -33,6 +33,9 @@
     "paper-fab": "Polymer/paper-fab#^0.5.0",
     "paper-input": "Polymer/paper-input#^0.5.0",
     "paper-tabs": "Polymer/paper-tabs#^0.5.0",
+    "paper-dropdown": "Polymer/paper-dropdown#^0.5.0",
+    "paper-dropdown-menu": "Polymer/paper-dropdown-menu#^0.5.0",
+    "paper-item": "Polymer/paper-item#^0.5.0",
     "paper-toast": "Polymer/paper-toast#^0.5.0"
   }
 }

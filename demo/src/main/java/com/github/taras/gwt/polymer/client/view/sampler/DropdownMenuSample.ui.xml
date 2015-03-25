@@ -1,0 +1,146 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:p='urn:import:com.github.taras.gwt.polymer.client.widget'>
+
+    <ui:style>
+        @external .dropdown;
+
+        .container {
+            font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
+            font-size: 14px;
+            margin: 0;
+            padding: 24px;
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
+            -webkit-touch-callout: none;
+        }
+
+        .container section {
+            padding: 20px 0;
+        }
+
+        .container section > div {
+            padding: 14px;
+            font-size: 16px;
+        }
+
+        .container paper-dropdown-menu {
+            box-sizing: border-box;
+            width: 170px;
+        }
+
+        .container core-menu {
+            box-sizing: border-box;
+            width: 170px;
+        }
+
+        .container paper-item {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .container core-collapse {
+            border: 1px solid #ccc;
+            padding: 8px;
+        }
+
+        .container core-overlay {
+            border: 1px solid #ccc;
+            padding: 8px;
+            background: #fff;
+        }
+
+        .constrained-height {
+            height: 150px;
+        }
+
+        .colored {
+            color: #0f9d58;
+        }
+
+        .dropdown.colored::shadow #ripple,
+        .dropdown.colored::shadow #background {
+            border: 1px solid #0f9d58;
+            background-color: #b7e1cd;
+        }
+    </ui:style>
+
+    <g:HTMLPanel addStyleNames="{style.container}">
+        <hr />
+        <h2>Dropdown Menu</h2>
+
+        <section>
+
+        <div>Absolutely positioned dropdowns</div>
+
+            <p:PaperDropdownMenu label="Your favorite pastry">
+                <p:PaperDropdown addStyleNames="dropdown">
+                    <p:CoreMenu ui:field="menu0" addStyleNames="menu"/>
+                </p:PaperDropdown>
+            </p:PaperDropdownMenu>
+
+            <br/><br/>
+
+            <p:PaperDropdownMenu label="Disabled" disabled="">
+                <p:PaperDropdown addStyleNames="dropdown">
+                    <p:CoreMenu addStyleNames="menu">
+                        <p:PaperItem>Should not see this</p:PaperItem>
+                    </p:CoreMenu>
+                </p:PaperDropdown>
+            </p:PaperDropdownMenu>
+
+        </section>
+
+        <section>
+
+            <div>Layered dropdowns</div>
+
+            <g:Button ui:field="button1">toggle core-overlay</g:Button>
+
+            <p:CoreOverlay ui:field="overlay">
+
+                <p:PaperDropdownMenu label="Your favorite pastry">
+                    <p:PaperDropdown layered="" addStyleNames="dropdown">
+                        <p:CoreMenu ui:field="menu1" addStyleNames="menu"/>
+                    </p:PaperDropdown>
+                </p:PaperDropdownMenu>
+
+            </p:CoreOverlay>
+
+            <g:Button ui:field="button2">toggle core-collapse</g:Button>
+
+            <br/>
+
+            <p:CoreCollapse ui:field="collapse">
+
+                <p:PaperDropdownMenu label="Your favorite pastry">
+                    <p:PaperDropdown layered="" addStyleNames="dropdown">
+                        <p:CoreMenu ui:field="menu2" addStyleNames="menu"/>
+                    </p:PaperDropdown>
+                </p:PaperDropdownMenu>
+
+            </p:CoreCollapse>
+
+        </section>
+
+        <section>
+
+            <div>Custom styling</div>
+
+            <p:PaperDropdownMenu label="Constrained height">
+                <p:PaperDropdown addStyleNames="dropdown {style.constrained-height}">
+                    <p:CoreMenu ui:field="menu3" addStyleNames="menu"/>
+                </p:PaperDropdown>
+            </p:PaperDropdownMenu>
+
+            <br/><br/>
+
+            <p:PaperDropdownMenu label="Colored">
+                <p:PaperDropdown addStyleNames="dropdown {style.colored}">
+                    <p:CoreMenu ui:field="menu4" addStyleNames="menu"/>
+                </p:PaperDropdown>
+            </p:PaperDropdownMenu>
+
+        </section>
+    </g:HTMLPanel>
+</ui:UiBinder>
