@@ -59,6 +59,11 @@ public class PolymerWidget extends HTMLPanel {
     public void setDisabled(String disabled) {
         setBooleanAttribute("disabled", true);
     }
+    
+    
+    public void setAriaLabel(String ariaLabel) {
+        getElement().setAttribute("ariaLabel", ariaLabel);
+    }
 
     public void setBooleanAttribute(String name, boolean value) {
         if (value) {
