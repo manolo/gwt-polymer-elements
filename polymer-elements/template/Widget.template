@@ -36,7 +36,7 @@ public class <%= className() %> extends <%= baseWidgetName() %> {
         return getPolymerElement().<%= computeGetter(attribute) %>();
     }
     public void <%= computeSetterWithPrefix(attribute) %>(<%= computeType(attribute.type) %> value) {
-        getPolymerElement().<%= computeSetter(attribute) %>(value);
+        getElement().setAttribute("<%= attribute.name %>", String.valueOf(value));
     }
     <%= extraSetter(attribute) %>
 <% }); %>

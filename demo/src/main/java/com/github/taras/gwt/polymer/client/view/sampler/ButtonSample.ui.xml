@@ -76,11 +76,11 @@
             <div>Custom button content</div>
 
             <p:PaperButton addStyleNames="{style.colored} {style.custom}">
-                <core-icon icon="check"/>
+                <p:CoreIcon icon="check"/>
                 ok
             </p:PaperButton>
             <p:PaperButton addStyleNames="{style.custom}">
-                <core-icon icon="clear"/>
+                <p:CoreIcon icon="clear"/>
                 cancel
             </p:PaperButton>
             <br/>
@@ -95,11 +95,8 @@
             <div>Toggle buttons</div>
 
             <p:PaperButton toggle="">button</p:PaperButton>
-
             <p:PaperButton toggle="" raised="" noink="">noink</p:PaperButton>
-
             <p:PaperButton toggle="" active="" addStyleNames="{style.colored}">active</p:PaperButton>
-
             <p:PaperButton toggle="" raised="" active="" addStyleNames="{style.colored}">active</p:PaperButton>
 
         </section>
