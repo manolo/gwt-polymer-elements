@@ -37,6 +37,20 @@ public class PolymerWidget extends HTMLPanel {
     public void setCenter(String center) {
         setBooleanAttribute("center", true);
     }
+
+    public void setFlex(boolean flex) {
+        setBooleanAttribute("flex", flex);
+    }
+    public void setFlex(String flex) {
+        setBooleanAttribute("flex", true);
+    }
+
+    public void setSelfEnd(boolean selfEnd) {
+        setBooleanAttribute("self-end", selfEnd);
+    }
+    public void setSelfEnd(String selfEnd) {
+        setBooleanAttribute("self-end", true);
+    }
     
 
     public void setDisabled(boolean disabled) {
@@ -57,6 +71,11 @@ public class PolymerWidget extends HTMLPanel {
     // TODO: Remove this hack for paper-radio-button
     public void setName(String value) {
         getElement().setAttribute("name", value);
+    }
+
+    // TODO: Remove this hack for paper-tabs
+    public void setLink(String link) {
+        getElement().setAttribute("link", link);
     }
 
     public HandlerRegistration addClickHandler(ClickHandler handler) {
