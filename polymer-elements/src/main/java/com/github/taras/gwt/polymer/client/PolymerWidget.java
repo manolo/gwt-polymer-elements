@@ -93,6 +93,15 @@ public class PolymerWidget extends HTMLPanel {
     public void setNoink(String noink) {
         getElement().setAttribute("noink", noink);
     }
+    public void setDismissive(String dismissive) {
+        getElement().setAttribute("dismissive", dismissive);
+    }
+    public void setAffirmative(String affirmative) {
+        getElement().setAttribute("affirmative", affirmative);
+    }
+    public void setAutofocus(String autofocus) {
+        getElement().setAttribute("autofocus", autofocus);
+    }
 
     // TODO: Remove this hacks for paper-menu-button
     public void setLabel(String label) {
