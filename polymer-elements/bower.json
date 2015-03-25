@@ -35,6 +35,7 @@
     "paper-tabs": "Polymer/paper-tabs#^0.5.0",
     "paper-dropdown": "Polymer/paper-dropdown#^0.5.0",
     "paper-dropdown-menu": "Polymer/paper-dropdown-menu#^0.5.0",
+    "paper-menu-button": "Polymer/paper-menu-button#^0.5.0",
     "paper-item": "Polymer/paper-item#^0.5.0",
     "paper-toast": "Polymer/paper-toast#^0.5.0"
   }

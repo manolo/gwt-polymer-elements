@@ -8,6 +8,7 @@ import com.github.taras.gwt.polymer.client.view.sampler.DropdownMenuSample;
 import com.github.taras.gwt.polymer.client.view.sampler.FloatingActionButtonSample;
 import com.github.taras.gwt.polymer.client.view.sampler.IconButtonSample;
 import com.github.taras.gwt.polymer.client.view.sampler.InputSample;
+import com.github.taras.gwt.polymer.client.view.sampler.MenuButtonSample;
 import com.github.taras.gwt.polymer.client.view.sampler.ProgressBarSample;
 import com.github.taras.gwt.polymer.client.view.sampler.RadioButtonSample;
 import com.github.taras.gwt.polymer.client.view.sampler.SliderSample;
@@ -36,5 +37,6 @@ public class Demo implements EntryPoint {
         RootPanel.get().add(new IconButtonSample());
         RootPanel.get().add(new FloatingActionButtonSample());
         RootPanel.get().add(new DropdownMenuSample());
+        RootPanel.get().add(new MenuButtonSample());
     }
 }

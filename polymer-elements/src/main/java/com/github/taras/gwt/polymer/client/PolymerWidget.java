@@ -94,6 +94,11 @@ public class PolymerWidget extends HTMLPanel {
         getElement().setAttribute("noink", noink);
     }
 
+    // TODO: Remove this hacks for paper-menu-button
+    public void setLabel(String label) {
+        getElement().setAttribute("label", label);
+    }
+
     public HandlerRegistration addClickHandler(ClickHandler handler) {
         return addDomHandler(handler, ClickEvent.getType());
     }
