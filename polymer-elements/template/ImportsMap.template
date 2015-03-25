@@ -16,4 +16,13 @@ public class ImportsMap extends HashMap<String, String> {
 
     private ImportsMap() {
     }
+    
+    @Override
+    public String get(Object key) {
+        String value = super.get(key);
+        if (value == null) {
+            throw new RuntimeException("You have to generate GWT API for " + key);
+        }
+        return value;
+    }
 }
