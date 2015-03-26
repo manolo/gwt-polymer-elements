@@ -42,5 +42,6 @@ public class Demo implements EntryPoint {
         RootPanel.get().add(new MenuButtonSample());
         RootPanel.get().add(new ItemSample());
         RootPanel.get().add(new DialogSample());
+//        RootPanel.get().add(new ShadowSample());
     }
 }

@@ -65,6 +65,12 @@ public class PolymerWidget extends HTMLPanel {
         getElement().setAttribute("ariaLabel", ariaLabel);
     }
 
+
+    public void setCenterCenter(String centerCenter) {
+        getElement().setAttribute("center-center", centerCenter);
+    }
+    
+
     public void setBooleanAttribute(String name, boolean value) {
         if (value) {
             getElement().setAttribute(name, "");
