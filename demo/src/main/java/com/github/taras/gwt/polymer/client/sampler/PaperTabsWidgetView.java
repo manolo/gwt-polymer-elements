@@ -1,4 +1,4 @@
-package com.github.taras.gwt.polymer.client.view;
+package com.github.taras.gwt.polymer.client.sampler;
 
 import com.github.taras.gwt.polymer.client.widget.PaperTab;
 import com.github.taras.gwt.polymer.client.widget.PaperTabs;
