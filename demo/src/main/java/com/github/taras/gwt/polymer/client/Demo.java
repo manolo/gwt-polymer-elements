@@ -16,6 +16,7 @@ import com.github.taras.gwt.polymer.client.view.sampler.RadioButtonSample;
 import com.github.taras.gwt.polymer.client.view.sampler.SliderSample;
 import com.github.taras.gwt.polymer.client.view.sampler.SpinnerSample;
 import com.github.taras.gwt.polymer.client.view.sampler.TabsSample;
+import com.github.taras.gwt.polymer.client.view.sampler.ToastSample;
 import com.github.taras.gwt.polymer.client.view.sampler.ToggleButtonSample;
 import com.github.taras.gwt.polymer.client.view.sampler.ToolbarSample;
 import com.google.gwt.core.client.EntryPoint;
@@ -43,5 +44,6 @@ public class Demo implements EntryPoint {
         RootPanel.get().add(new ItemSample());
         RootPanel.get().add(new DialogSample());
 //        RootPanel.get().add(new ShadowSample());
+        RootPanel.get().add(new ToastSample());
     }
 }

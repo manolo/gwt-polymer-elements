@@ -1,14 +1,41 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
-        >
+             xmlns:p='urn:import:com.github.taras.gwt.polymer.client.widget'>
 
     <ui:style>
+        .container {
+            overflow: hidden;
+            margin: 0;
+            font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
+            -webkit-touch-callout: none;
+        }
 
+        .container paper-button {
+            margin: 20px;
+        }
+
+        .padding {
+            padding-right: 60px;
+        }
     </ui:style>
 
-    <g:HTMLPanel>
+    <g:HTMLPanel addStyleNames="{style.container}">
         <hr />
         <h2>Toast</h2>
 
+        <p:PaperButton ui:field="button1" raised="">Discard Draft</p:PaperButton>
+
+        <p:PaperButton ui:field="button2" raised="">Get Messages</p:PaperButton>
+
+        <p:PaperButton ui:field="button3" raised="">Send Message</p:PaperButton>
+
+        <p:PaperToast ui:field="toast1" text="Your draft has been discarded."/>
+
+        <p:PaperToast ui:field="toast2" text="Connection timed out. Showing limited messages.">
+            <div style="color: #eeff41;" onclick="console.log('RETRY')">Retry</div>
+        </p:PaperToast>
+
+        <p:PaperToast ui:field="toast3" addStyleNames="capsule {style.padding}" text="Message sent"/>
     </g:HTMLPanel>
 </ui:UiBinder>
