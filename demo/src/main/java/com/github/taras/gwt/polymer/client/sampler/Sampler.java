@@ -11,7 +11,6 @@ import com.github.taras.gwt.polymer.client.sampler.paper.DialogSample;
 import com.github.taras.gwt.polymer.client.sampler.paper.DropdownMenuSample;
 import com.github.taras.gwt.polymer.client.sampler.paper.FloatingActionButtonSample;
 import com.github.taras.gwt.polymer.client.sampler.paper.IconButtonSample;
-import com.github.taras.gwt.polymer.client.sampler.paper.InputSample;
 import com.github.taras.gwt.polymer.client.sampler.paper.ItemSample;
 import com.github.taras.gwt.polymer.client.sampler.paper.MenuButtonSample;
 import com.github.taras.gwt.polymer.client.sampler.paper.ProgressBarSample;
@@ -113,7 +112,7 @@ public class Sampler extends Composite {
         addSample("CheckBox", new CheckboxSample(), "Paper Elements", "paper/CheckboxSample");
         addSample("Radio Button", new RadioButtonSample(), "Paper Elements", "paper/RadioButtonSample");
         addSample("Toggle Button", new ToggleButtonSample(), "Paper Elements", "paper/ToggleButtonSample");
-        addSample("Input", new InputSample(), "Paper Elements", "paper/InputSample");
+//        addSample("Input", new InputSample(), "Paper Elements", "paper/InputSample");     // strange bug appears if include this to Sampler
         addSample("Toolbar", new ToolbarSample(), "Paper Elements", "paper/ToolbarSample");
         addSample("Spinner", new SpinnerSample(), "Paper Elements", "paper/SpinnerSample");
         addSample("Progress Bar", new ProgressBarSample(), "Paper Elements", "paper/ProgressBarSample");
