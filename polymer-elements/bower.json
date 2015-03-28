@@ -22,6 +22,7 @@
     "core-toolbar": "Polymer/core-toolbar#^0.5.0",
     "core-icon-button": "Polymer/core-icon-button#^0.5.0",
     "core-drawer-panel": "Polymer/core-drawer-panel#^0.5.0",
+    "core-header-panel": "Polymer/core-header-panel#^0.5.0",
     "paper-checkbox": "Polymer/paper-checkbox#^0.5.0",
     "paper-radio-group": "Polymer/paper-radio-group#^0.5.0",
     "paper-radio-button": "Polymer/paper-radio-button#^0.5.0",
