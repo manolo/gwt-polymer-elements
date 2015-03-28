@@ -1,7 +1,0 @@
-package com.github.taras.gwt.polymer.client.widget.event;
-
-import com.google.gwt.event.shared.EventHandler;
-
-public interface <%= camelCase(name) %>EventHandler extends EventHandler {
-    void on<%= camelCase(name) %>(<%= camelCase(name) %>Event event);
-}
