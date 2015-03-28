@@ -29,9 +29,7 @@
     </ui:style>
     
     <g:HTMLPanel addStyleNames="{style.container}">
-        <hr />
-        <h2>Radio Button</h2>
-        
+
         <section>
 
             <h4>Keep Wi-Fi on during sleep</h4>

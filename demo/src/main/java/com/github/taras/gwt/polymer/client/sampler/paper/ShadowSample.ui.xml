@@ -46,8 +46,6 @@
     </ui:style>
 
     <g:HTMLPanel addStyleNames="{style.container}">
-        <hr />
-        <h2>Shadow</h2>
 
         <section>
 

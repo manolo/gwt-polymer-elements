@@ -21,9 +21,6 @@
     </ui:style>
 
     <g:HTMLPanel addStyleNames="{style.container}">
-        <hr />
-        <h2>Toast</h2>
-
         <p:PaperButton ui:field="button1" raised="">Discard Draft</p:PaperButton>
 
         <p:PaperButton ui:field="button2" raised="">Get Messages</p:PaperButton>

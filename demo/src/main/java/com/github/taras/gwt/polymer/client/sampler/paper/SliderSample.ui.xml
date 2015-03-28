@@ -41,9 +41,7 @@
     </ui:style>
     
     <g:HTMLPanel addStyleNames="{style.container}">
-        <hr />
-        <h2>Slider</h2>
-        
+
         <section class="{style.section} {style.yellow-slider}">
 
             <div>Music, video, games &amp; other media</div>

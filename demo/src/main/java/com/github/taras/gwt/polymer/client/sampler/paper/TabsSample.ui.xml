@@ -59,9 +59,6 @@
     </ui:style>
 
     <g:HTMLPanel addStyleNames="{style.container}">
-        <hr />
-        <h2>Tabs</h2>
-
         <h3>A. No ink effect and no sliding bar</h3>
 
         <p:PaperTabs selected="0" noink="" nobar="">

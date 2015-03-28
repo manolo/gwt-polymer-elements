@@ -42,9 +42,6 @@
     </ui:style>
     
     <g:HTMLPanel addStyleNames="{style.container}">
-        <hr />
-        <h2>Toolbar</h2>
-        
         <p:CoreToolbar addStyleNames="{style.toolbar} {style.first}">
             <paper-icon-button icon="menu"/>
             <span flex="">Title</span>

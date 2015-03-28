@@ -23,9 +23,6 @@
     </ui:style>
     
     <g:HTMLPanel>
-        <hr />
-        <h2>Spinner</h2>
-        
         <p:PaperSpinner ui:field="spinner1" addStyleNames="{style.blue}" active=""/>
         <p:PaperSpinner ui:field="spinner2" addStyleNames="{style.red}" active=""/>
         <p:PaperSpinner ui:field="spinner3" addStyleNames="{style.yellow}" active=""/>

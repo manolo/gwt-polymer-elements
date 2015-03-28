@@ -35,8 +35,6 @@
     </ui:style>
 
     <g:HTMLPanel addStyleNames="{style.container}">
-        <hr />
-        <h2>Item</h2>
 
         <section>
 

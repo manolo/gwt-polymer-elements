@@ -25,9 +25,7 @@
     </ui:style>
     
     <g:HTMLPanel addStyleNames="{style.container}">
-        <hr />
-        <h2>Progress Bar</h2>
-        
+
         <p:PaperProgress ui:field="progress"/>
         <p:PaperButton ui:field="button" raised="">Start</p:PaperButton>
         <br/><br/><br/>

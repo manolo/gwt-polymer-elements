@@ -81,9 +81,7 @@
     </ui:style>
     
     <g:HTMLPanel addStyleNames="{style.container}">
-        <hr />
-        <h2>Input</h2>
-        
+
         <section class="{style.wrapper}">
             <div>Standalone</div><br/>
             <p:PaperInput label="label"/><br/>

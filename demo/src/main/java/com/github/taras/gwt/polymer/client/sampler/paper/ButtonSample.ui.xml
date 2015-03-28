@@ -44,8 +44,6 @@
     </ui:style>
 
     <g:HTMLPanel addStyleNames="{style.container}">
-        <hr />
-        <h2>Button</h2>
 
         <section>
 
