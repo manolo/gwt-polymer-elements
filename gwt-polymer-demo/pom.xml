@@ -3,13 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>gwt-polymer</artifactId>
-        <groupId>com.vaadin.prototype.wc</groupId>
+        <artifactId>gwt-polymer-parent</artifactId>
+        <groupId>com.vaadin.components</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>demo</artifactId>
+    <artifactId>gwt-polymer-demo</artifactId>
     <packaging>war</packaging>
 
     <dependencies>
@@ -26,14 +26,14 @@
 
         <!-- this is the dependency to the "jar"-subproject -->
         <dependency>
-            <groupId>com.vaadin.prototype.wc</groupId>
-            <artifactId>polymer-elements</artifactId>
+            <groupId>com.vaadin.components</groupId>
+            <artifactId>gwt-polymer-elements</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
     <build>
-        <finalName>demo</finalName>
+        <finalName>gwt-polymer-demo</finalName>
         <plugins>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
