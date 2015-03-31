@@ -1,7 +1,7 @@
 # gwt-polymer
 Allows to use polymer elements in GWT projects.
 
-## [Showcase](http://cwayfinder.github.io/gwt-polymer/demo.html)
+## [Showcase](http://vaadin.github.io/gwt-polymer/demo.html)
 
 
 ## Instruction:
