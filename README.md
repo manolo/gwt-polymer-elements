@@ -1,10 +1,10 @@
 # gwt-polymer
 Allows to use polymer elements in GWT projects.
 
-[Paper Samples](https://github.com/cwayfinder/gwt-polymer/tree/master/demo/src/main/java/com/github/taras/gwt/polymer/client/sampler/paper)
+## [Showcase](http://cwayfinder.github.io/gwt-polymer/demo.html)
 
 
-Instruction:
+## Instruction:
 
 1.  Go to the `polymer-elements` directory
 2.  Run `npm install`
