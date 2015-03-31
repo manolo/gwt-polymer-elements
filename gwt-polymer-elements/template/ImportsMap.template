@@ -1,0 +1,28 @@
+package com.vaadin.components.gwt.polymer.client.element;
+
+import java.util.HashMap;
+
+public class ImportsMap extends HashMap<String, String> {
+
+    private static ImportsMap instance = new ImportsMap();
+    
+    static { <% _.forEach(imports, function(item){ %>
+        instance.put("<%= item.element %>", "<%= item.path %>");<% }) %>
+    }
+
+    public static ImportsMap getInstance() {
+        return instance;
+    }
+
+    private ImportsMap() {
+    }
+    
+    @Override
+    public String get(Object key) {
+        String value = super.get(key);
+        if (value == null) {
+            throw new RuntimeException("You have to generate GWT API for " + key);
+        }
+        return value;
+    }
+}

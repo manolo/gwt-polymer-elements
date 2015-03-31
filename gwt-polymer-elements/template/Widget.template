@@ -1,0 +1,62 @@
+package com.vaadin.components.gwt.polymer.client.widget;
+
+import com.vaadin.components.gwt.polymer.client.PolymerWidget;
+import com.vaadin.components.gwt.polymer.client.element.*;
+import com.vaadin.components.gwt.polymer.client.webapi.element.*;
+import com.vaadin.components.gwt.polymer.client.webapi.widget.alias.*;
+import com.vaadin.components.gwt.polymer.client.widget.event.*;
+import com.google.gwt.core.client.JsArray;
+import com.google.gwt.event.shared.HandlerRegistration;
+
+public class <%= className() %> extends <%= baseWidgetName() %> {
+
+    public <%= className() %>(String html) {
+        this("<%= name %>", html);
+    }
+    
+    public <%= className() %>(String tag, String html) {
+        super(tag, html);
+<% if (hasEvents()) _.forEach(events, function(event){ %>
+        getPolymerElement().addEventListener(
+                com.vaadin.components.gwt.polymer.client.element.event.<%= camelCase(event.name) %>Event.NAME,
+                new com.vaadin.components.gwt.polymer.client.element.event.<%= camelCase(event.name) %>Event.Listener() {
+            @Override
+            protected void handleEvent(com.vaadin.components.gwt.polymer.client.element.event.<%= camelCase(event.name) %>Event event) {
+                fireEvent(new <%= camelCase(event.name) %>Event(event));
+            }
+        });
+<% }); %>
+    }
+
+    public <%= className() %>Element getPolymerElement() {
+        return (<%= className() %>Element) getElement();
+    }
+    
+<% if (hasAttributes()) _.forEach(attributes, function(attribute){ %>
+    public <%= computeType(attribute.type) %> <%= computeGetterWithPrefix(attribute) %>() {
+        return getPolymerElement().<%= computeGetter(attribute) %>();
+    }
+    public void <%= computeSetterWithPrefix(attribute) %>(<%= computeType(attribute.type) %> value) {
+        getElement().setAttribute("<%= attribute.name %>", String.valueOf(value));
+    }
+    <%= extraSetter(attribute) %>
+<% }); %>
+<% if (hasProperties()) _.forEach(properties, function(property){ %>
+    public <%= computeType(property.type) %> <%= computeGetterWithPrefix(property) %>(){
+        return getPolymerElement().<%= computeGetter(property) %>();
+    }
+    public void <%= computeSetterWithPrefix(property) %>(<%= computeType(property.type) %> value) {
+        getPolymerElement().<%= computeSetter(property) %>(value);
+    }
+<% }); %>
+<% if (hasMethods()) _.forEach(methods, function(method){ %>
+    public void <%= method.name %>(<%= typedParamsString(method) %>) {
+        getPolymerElement().<%= method.name %>(<%= paramsString(method) %>);
+    }
+<% }); %>
+<% if (hasEvents()) _.forEach(events, function(event){ %>
+    public HandlerRegistration add<%= camelCase(event.name) %>Handler(<%= camelCase(event.name) %>EventHandler handler) {
+        return addHandler(handler, <%= camelCase(event.name) %>Event.TYPE);
+    }
+<% }); %>
+}

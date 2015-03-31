@@ -1,0 +1,30 @@
+package com.vaadin.components.gwt.polymer.client.widget.event;
+
+import com.google.gwt.event.shared.GwtEvent;
+
+public class <%= camelCase(name) %>Event extends GwtEvent<<%= camelCase(name) %>EventHandler> {
+    public static Type<<%= camelCase(name) %>EventHandler> TYPE = new Type<<%= camelCase(name) %>EventHandler>();
+    
+    private com.vaadin.components.gwt.polymer.client.element.event.<%= camelCase(name) %>Event nativeEvent;
+    
+    public <%= camelCase(name) %>Event(com.vaadin.components.gwt.polymer.client.element.event.<%= camelCase(name) %>Event nativeEvent) {
+        this.nativeEvent = nativeEvent;
+    }
+ 
+    public Type<<%= camelCase(name) %>EventHandler> getAssociatedType() {
+        return TYPE;
+    }
+
+    protected void dispatch(<%= camelCase(name) %>EventHandler handler) {
+        handler.on<%= camelCase(name) %>(this);
+    }
+    
+    public com.vaadin.components.gwt.polymer.client.element.event.<%= camelCase(name) %>Event getNativeEvent() {
+        return nativeEvent;
+    }
+<% if (hasParams())  _.forEach(params, function(param){ %>
+    public <%= computeType(param.type) %> <%= computeGetterWithPrefix(param) %>() {
+        return getNativeEvent().getDetail().<%= computeGetter(param) %>();
+    }
+<% }); %>   
+}

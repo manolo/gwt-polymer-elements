@@ -1,0 +1,42 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:p='urn:import:com.vaadin.components.gwt.polymer.client.widget'>
+    
+    <ui:style>
+        .container {
+            height: 100%;
+            font-family: sans-serif;
+            color: #FFF;
+            margin: 0;
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
+        }
+
+        [drawer] {
+            background-color: #B99588;
+            border-right: 1px solid #ccc;
+        }
+
+        [main] {
+            background-color: #4F7DC9;
+        }
+
+        button {
+            width: 160px;
+            height: 40px;
+            font-size: 16px;
+            margin: 8px;
+        }
+    </ui:style>
+    
+    <g:HTMLPanel addStyleNames="{style.container}">
+        <p:CoreDrawerPanel>
+
+            <div drawer=""></div>
+
+            <div main="">
+                <button core-drawer-toggle="">toggle drawer</button>
+            </div>
+
+        </p:CoreDrawerPanel>
+    </g:HTMLPanel>
+</ui:UiBinder>

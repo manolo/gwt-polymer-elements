@@ -1,0 +1,89 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:p='urn:import:com.vaadin.components.gwt.polymer.client.widget'>
+
+    <ui:style>
+        .container {
+            font-family: sans-serif;
+            margin: 8px 24px;
+        }
+
+        .heading {
+            padding: 10px 15px;
+            background-color: #f3f3f3;
+            border: 1px solid #dedede;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+
+        .content {
+            padding: 15px;
+            border: 1px solid #dedede;
+            border-top: none;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+    </ui:style>
+
+    <g:HTMLPanel addStyleNames="{style.container}">
+        <g:FlowPanel ui:field="heading1" addStyleNames="{style.heading}">
+            <g:Label>Collapse #1</g:Label>
+        </g:FlowPanel>
+        <p:CoreCollapse ui:field="collapse1">
+            <div class="{style.content}">
+                <div>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea, id minim
+                    maiestatis incorrupte duo. Dolorum verterem ad ius, his et nullam verterem. Eu alia debet usu, an
+                    doming tritani est. Vix ad ponderum petentium suavitate, eum eu tempor populo, graece sententiae
+                    constituam vim ex. Cu torquatos reprimique neglegentur nec, voluptua periculis has ut, at eos
+                    discere deleniti sensibus. Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit
+                    oportere ea, id minim maiestatis incorrupte duo. Dolorum verterem ad ius, his et nullam verterem. Eu
+                    alia debet usu, an doming tritani est. Vix ad ponderum petentium suavitate, eum eu tempor populo,
+                    graece sententiae constituam vim ex. Cu torquatos reprimique neglegentur nec, voluptua periculis has
+                    ut, at eos discere deleniti sensibus.
+                </div>
+            </div>
+        </p:CoreCollapse>
+
+        <br/>
+
+        <g:FlowPanel ui:field="heading2" addStyleNames="{style.heading}">
+            <g:Label>Collapse #2</g:Label>
+        </g:FlowPanel>
+        <p:CoreCollapse ui:field="collapse2">
+            <div class="{style.content}">
+                <div>Pro saepe pertinax ei, ad pri animal labores suscipiantur. Modus commodo minimum eum te, vero
+                    utinam assueverit per eu, zril oportere suscipiantur pri te. Partem percipitur deterruisset ad sea,
+                    at eam suas luptatum dissentiunt. No error alienum pro, erant senserit ex mei, pri semper alterum
+                    no. Ut habemus menandri vulputate mea. Feugiat verterem ut sed. Dolores maiestatis id per. Pro saepe
+                    pertinax ei, ad pri animal labores suscipiantur. Modus commodo minimum eum te, vero utinam
+                    assueverit per eu, zril oportere suscipiantur pri te. Partem percipitur deterruisset ad sea, at eam
+                    suas luptatum dissentiunt. No error alienum pro, erant senserit ex mei, pri semper alterum no. Ut
+                    habemus menandri vulputate mea. Feugiat verterem ut sed. Dolores maiestatis id per.
+                </div>
+                <br/>
+                <g:FlowPanel ui:field="heading3" addStyleNames="{style.heading}">
+                    <g:Label>Collapse #3</g:Label>
+                </g:FlowPanel>
+                <p:CoreCollapse ui:field="collapse3">
+                    <div class="{style.content}">
+                        <div>Iisque perfecto dissentiet cum et, sit ut quot mandamus, ut vim tibique splendide
+                            instructior. Id nam odio natum malorum, tibique copiosae expetenda mel ea. Mea melius
+                            malorum ut. Ut nec tollit vocent timeam. Facer nonumy numquam id his, munere salutatus
+                            consequuntur eum et, eum cotidieque definitionem signiferumque id. Ei oblique graecis
+                            patrioque vis, et probatus dignissim inciderint vel. Sed id paulo erroribus, autem semper
+                            accusamus in mel. Iisque perfecto dissentiet cum et, sit ut quot mandamus, ut vim tibique
+                            splendide instructior. Id nam odio natum malorum, tibique copiosae expetenda mel ea. Mea
+                            melius malorum ut. Ut nec tollit vocent timeam. Facer nonumy numquam id his, munere
+                            salutatus consequuntur eum et, eum cotidieque definitionem signiferumque id. Ei oblique
+                            graecis patrioque vis, et probatus dignissim inciderint vel. Sed id paulo erroribus, autem
+                            semper accusamus in mel.
+                        </div>
+                    </div>
+                </p:CoreCollapse>
+            </div>
+        </p:CoreCollapse>
+    </g:HTMLPanel>
+</ui:UiBinder>

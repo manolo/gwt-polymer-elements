@@ -1,0 +1,25 @@
+package com.vaadin.components.gwt.polymer.client.element;
+
+import com.vaadin.components.gwt.polymer.client.webapi.element.*;
+import com.vaadin.components.gwt.polymer.client.webapi.element.alias.*;
+import com.vaadin.components.gwt.polymer.client.PolymerElement;
+import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.core.client.JsArray;
+import com.google.gwt.core.client.js.JsProperty;
+import com.google.gwt.core.client.js.JsType;
+
+@JsType
+public interface <%= className() %>Element extends <%= baseClassName() %> {
+
+<% if (hasAttributes()) _.forEach(attributes, function(attribute){ %>
+    @JsProperty <%= computeType(attribute.type) %> <%= computeGetter(attribute) %>();
+    @JsProperty void <%= computeSetter(attribute) %>(<%= computeType(attribute.type) %> value);
+<% }); %>
+<% if (hasProperties()) _.forEach(properties, function(property){ %>
+    @JsProperty <%= computeType(property.type) %> <%= computeGetter(property) %>();
+    @JsProperty void <%= computeSetter(property) %>(<%= computeType(property.type) %> value);
+<% }); %>
+<% if (hasMethods()) _.forEach(methods, function(method){ %>
+    void <%= method.name %>(<%= typedParamsString(method) %>);
+<% }); %>
+}

@@ -1,8 +1,0 @@
-<module rename-to="hello">
-    <inherits name="com.google.gwt.user.User"/>
-    <inherits name='com.google.gwt.user.theme.standard.Standard'/>
-    <inherits name="com.github.taras.gwt.polymer.PolymerElements"/>
-
-
-    <entry-point class="com.github.taras.gwt.polymer.client.Demo"/>
-</module>
