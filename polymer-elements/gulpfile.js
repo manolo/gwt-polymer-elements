@@ -17,12 +17,12 @@ function camelCase(s) {
 }
 
 gulp.task('gwt-api:clean', function() {
-  fs.removeSync('src/main/java/com/github/taras/gwt/polymer/client/element');
+  fs.removeSync('src/main/java/com/vaadin/components/gwt/polymer/client/element');
   fs.removeSync('dist-tmp');
 });
 
 gulp.task('gwt-api:parse', ['gwt-api:clean'], function() {
-  var path = "src/main/resources/com/github/taras/gwt/polymer/public/bower_components/";
+  var path = "src/main/resources/com/vaadin/components/gwt/polymer/public/bower_components/";
   return gulp.src([path + "*/*.html", 
     "!" + path + "*/*demo.html",        // ignore all the demo.html files
     "!" + path + "*/*index.html",       // ignore all the index.html files
@@ -62,7 +62,7 @@ gulp.task('gwt-api:generate-elements', ['gwt-api:parse'], function() {
       file.basename = camelCase(file.basename) + 'Element';
       file.extname = '.java';
     }))
-    .pipe(gulp.dest('./src/main/java/com/github/taras/gwt/polymer/client/element'));
+    .pipe(gulp.dest('./src/main/java/com/vaadin/components/gwt/polymer/client/element'));
 });
 
 gulp.task('gwt-api:generate-events', ['gwt-api:parse'], function() {
@@ -76,7 +76,7 @@ gulp.task('gwt-api:generate-events', ['gwt-api:parse'], function() {
           var content = tpl(_.merge({}, null, event, helpers));
 
           // saves the result object as JSON
-          var dirname = 'src/main/java/com/github/taras/gwt/polymer/client/element/event/';
+          var dirname = 'src/main/java/com/vaadin/components/gwt/polymer/client/element/event/';
           var filename = camelCase(event.name) + 'Event.java';
           gutil.log('Generating ' + filename + ' from ' + file.relative);
           var path = dirname + filename;
@@ -103,7 +103,7 @@ gulp.task('gwt-api:generate-widgets', ['gwt-api:parse'], function() {
       file.basename = camelCase(file.basename);
       file.extname = '.java';
     }))
-    .pipe(gulp.dest('./src/main/java/com/github/taras/gwt/polymer/client/widget'));
+    .pipe(gulp.dest('./src/main/java/com/vaadin/components/gwt/polymer/client/widget'));
 });
 
 gulp.task('gwt-api:generate-widget-events', ['gwt-api:parse'], function() {
@@ -115,14 +115,14 @@ gulp.task('gwt-api:generate-widget-events', ['gwt-api:parse'], function() {
       var json = JSON.parse(file.contents);
       if (json.events) {
         json.events.forEach(function(event) {
-          var dirname = 'src/main/java/com/github/taras/gwt/polymer/client/widget/event/';
+          var dirname = 'src/main/java/com/vaadin/components/gwt/polymer/client/widget/event/';
           var filename = camelCase(event.name) + 'Event.java';
           gutil.log('Generating ' + filename + ' from ' + file.relative);
           var path = dirname + filename;
           fs.ensureFileSync(path);
           fs.writeFileSync(path, new Buffer(eventTpl(_.merge({}, null, event, helpers))));
 
-          dirname = 'src/main/java/com/github/taras/gwt/polymer/client/widget/event/';
+          dirname = 'src/main/java/com/vaadin/components/gwt/polymer/client/widget/event/';
           filename = camelCase(event.name) + 'EventHandler.java';
           gutil.log('Generating ' + filename + ' from ' + file.relative);
           path = dirname + filename;
@@ -148,7 +148,7 @@ gulp.task('gwt-api:generate-imports-map', ['gwt-api:parse'], function() {
     .pipe(rename(function (file) {
       file.extname = '.java';
     }))
-    .pipe(gulp.dest('./src/main/java/com/github/taras/gwt/polymer/client/element'));
+    .pipe(gulp.dest('./src/main/java/com/vaadin/components/gwt/polymer/client/element'));
 });
 
 gulp.task('gwt-api', ['gwt-api:generate-elements', 'gwt-api:generate-events', 'gwt-api:generate-widgets', 'gwt-api:generate-widget-events', 'gwt-api:generate-imports-map']);

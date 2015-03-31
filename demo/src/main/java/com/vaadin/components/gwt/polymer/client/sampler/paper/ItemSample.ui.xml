@@ -1,0 +1,87 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:p='urn:import:com.vaadin.components.gwt.polymer.client.widget'>
+
+    <ui:style>
+        .container {
+            font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
+            font-size: 14px;
+            margin: 0;
+            padding: 24px;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            -webkit-touch-callout: none;
+        }
+
+        .container section {
+            padding: 20px 0;
+        }
+
+        .container section > div {
+            padding: 14px;
+            font-size: 16px;
+        }
+
+        .container paper-shadow {
+            display: inline-block;
+        }
+
+        .container core-icon {
+            margin-right: 0.5em;
+        }
+
+        .fixed-width {
+            max-width: 10.5em;
+        }
+    </ui:style>
+
+    <g:HTMLPanel addStyleNames="{style.container}">
+
+        <section>
+
+            <div>Default</div>
+
+            <p:PaperShadow addStyleNames="{style.fixed-width}">
+                <p:PaperItem>Item</p:PaperItem>
+                <p:PaperItem disabled="">Disabled</p:PaperItem>
+                <p:PaperItem noink=""><a href="http://www.polymer-project.org" layout="" horizontal="" center="">Link</a></p:PaperItem>
+                <p:PaperItem>Long items wrap by default</p:PaperItem>
+            </p:PaperShadow>
+
+        </section>
+
+        <section>
+
+            <div>In a core-selector</div>
+
+            <p:PaperShadow>
+                <p:CoreSelector selected="1">
+                    <p:PaperItem>Item 1</p:PaperItem>
+                    <p:PaperItem>Item 2</p:PaperItem>
+                    <p:PaperItem>Item 3</p:PaperItem>
+                </p:CoreSelector>
+            </p:PaperShadow>
+
+        </section>
+
+        <section>
+
+            <div>Custom Content</div>
+
+            <p:PaperShadow>
+                <p:PaperItem>
+                    <p:CoreIcon icon="content-cut"/>
+                    Cut
+                </p:PaperItem>
+                <p:PaperItem>
+                    <p:CoreIcon icon="content-copy"/>
+                    Copy
+                </p:PaperItem>
+                <p:PaperItem>
+                    <p:CoreIcon icon="content-paste"/>
+                    Paste
+                </p:PaperItem>
+            </p:PaperShadow>
+
+        </section>
+    </g:HTMLPanel>
+</ui:UiBinder>
