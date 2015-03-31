@@ -4,7 +4,7 @@ Allows to use polymer elements in GWT projects.
 ## [Showcase](http://cwayfinder.github.io/gwt-polymer/demo.html)
 
 
-## Instruction:
+## Instructions:
 
 1.  Go to the `polymer-elements` directory
 2.  Run `npm install`
