@@ -48,7 +48,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <runTarget>hello/demo.html</runTarget>
+                    <runTarget>demo.html</runTarget>
                     <draftCompile>false</draftCompile>
                     <optimizationLevel>9</optimizationLevel>
                     <jsInteropMode>JS</jsInteropMode>
