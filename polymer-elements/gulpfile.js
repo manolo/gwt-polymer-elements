@@ -59,7 +59,7 @@ gulp.task('gwt-api:generate-elements', ['gwt-api:parse'], function() {
       cb(null, file);
     }))
     .pipe(rename(function (file) {
-      file.basename = camelCase(file.basename);
+      file.basename = camelCase(file.basename) + 'Element';
       file.extname = '.java';
     }))
     .pipe(gulp.dest('./src/main/java/com/github/taras/gwt/polymer/client/element'));

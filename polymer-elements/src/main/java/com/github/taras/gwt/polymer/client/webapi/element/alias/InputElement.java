@@ -7,5 +7,5 @@ import com.google.gwt.core.client.js.JsType;
  * Alias for HTMLInputElement
  */
 @JsType
-public interface Input extends HTMLInputElement {
+public interface InputElement extends HTMLInputElement {
 }

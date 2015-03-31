@@ -1,6 +1,7 @@
 package com.github.taras.gwt.polymer.client.widget;
 
 import com.github.taras.gwt.polymer.client.PolymerWidget;
+import com.github.taras.gwt.polymer.client.element.*;
 import com.github.taras.gwt.polymer.client.webapi.element.*;
 import com.github.taras.gwt.polymer.client.webapi.widget.alias.*;
 import com.github.taras.gwt.polymer.client.widget.event.*;
@@ -27,8 +28,8 @@ public class <%= className() %> extends <%= baseWidgetName() %> {
 <% }); %>
     }
 
-    public com.github.taras.gwt.polymer.client.element.<%= className() %> getPolymerElement() {
-        return (com.github.taras.gwt.polymer.client.element.<%= className() %>) getElement();
+    public <%= className() %>Element getPolymerElement() {
+        return (<%= className() %>Element) getElement();
     }
     
 <% if (hasAttributes()) _.forEach(attributes, function(attribute){ %>

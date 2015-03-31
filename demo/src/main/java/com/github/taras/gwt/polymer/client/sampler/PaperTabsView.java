@@ -1,9 +1,9 @@
 package com.github.taras.gwt.polymer.client.sampler;
 
 import com.github.taras.gwt.polymer.client.Polymer;
-import com.github.taras.gwt.polymer.client.element.PaperTab;
-import com.github.taras.gwt.polymer.client.element.PaperTabs;
-import com.github.taras.gwt.polymer.client.element.PaperToast;
+import com.github.taras.gwt.polymer.client.element.PaperTabElement;
+import com.github.taras.gwt.polymer.client.element.PaperTabsElement;
+import com.github.taras.gwt.polymer.client.element.PaperToastElement;
 import com.github.taras.gwt.polymer.client.element.event.CoreSelectEvent;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -18,9 +18,9 @@ public class PaperTabsView extends Composite {
     private static PaperTabsViewUiBinder ourUiBinder = GWT.create(PaperTabsViewUiBinder.class);
 
     @UiField
-    PaperTabs paperTabs;
+    PaperTabsElement paperTabs;
     @UiField
-    PaperToast toast;
+    PaperToastElement toast;
 
     public PaperTabsView() {
         Polymer.ensureHTMLImport("paper-tabs");
@@ -31,7 +31,7 @@ public class PaperTabsView extends Composite {
         paperTabs.addEventListener(CoreSelectEvent.NAME, new CoreSelectEvent.Listener() {
             @Override
             public void handleEvent(CoreSelectEvent event) {
-                PaperTab tab = (PaperTab) event.getDetail().item();
+                PaperTabElement tab = (PaperTabElement) event.getDetail().item();
                 toast.text("Tab \"" + tab.innerHTML() + "\" has been selected");
                 toast.show();
             }

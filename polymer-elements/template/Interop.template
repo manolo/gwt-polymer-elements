@@ -9,7 +9,7 @@ import com.google.gwt.core.client.js.JsProperty;
 import com.google.gwt.core.client.js.JsType;
 
 @JsType
-public interface <%= className() %> extends <%= baseClassName() %> {
+public interface <%= className() %>Element extends <%= baseClassName() %> {
 
 <% if (hasAttributes()) _.forEach(attributes, function(attribute){ %>
     @JsProperty <%= computeType(attribute.type) %> <%= computeGetter(attribute) %>();

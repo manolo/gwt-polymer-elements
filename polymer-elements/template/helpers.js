@@ -4,7 +4,7 @@ module.exports = {
     return this.camelCase(this['name']);
   },
   baseClassName: function () {
-    return this['extends'] ? this.camelCase(this['extends']) : 'PolymerElement';
+    return this['extends'] ? this.camelCase(this['extends']) + 'Element' : 'PolymerElement';
   },
   baseWidgetName: function () {
     return this['extends'] ? this.camelCase(this['extends']) : 'PolymerWidget';
