@@ -1,4 +1,4 @@
-package com.github.taras.gwt.polymer.client.widget.event;
+package com.vaadin.components.gwt.polymer.client.widget.event;
 
 import com.google.gwt.event.shared.EventHandler;
 

@@ -1,0 +1,10 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:p='urn:import:com.vaadin.components.gwt.polymer.client.widget'>
+    
+    <g:HTMLPanel>
+        <span>Press any of these keys: <em ui:field="label">{{keys}}</em></span>
+        <p:CoreA11yKeys ui:field="a11y"/>
+        <pre ui:field="output"/>
+    </g:HTMLPanel>
+</ui:UiBinder>

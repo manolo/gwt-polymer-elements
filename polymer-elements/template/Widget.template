@@ -1,10 +1,10 @@
-package com.github.taras.gwt.polymer.client.widget;
+package com.vaadin.components.gwt.polymer.client.widget;
 
-import com.github.taras.gwt.polymer.client.PolymerWidget;
-import com.github.taras.gwt.polymer.client.element.*;
-import com.github.taras.gwt.polymer.client.webapi.element.*;
-import com.github.taras.gwt.polymer.client.webapi.widget.alias.*;
-import com.github.taras.gwt.polymer.client.widget.event.*;
+import com.vaadin.components.gwt.polymer.client.PolymerWidget;
+import com.vaadin.components.gwt.polymer.client.element.*;
+import com.vaadin.components.gwt.polymer.client.webapi.element.*;
+import com.vaadin.components.gwt.polymer.client.webapi.widget.alias.*;
+import com.vaadin.components.gwt.polymer.client.widget.event.*;
 import com.google.gwt.core.client.JsArray;
 import com.google.gwt.event.shared.HandlerRegistration;
 
@@ -18,10 +18,10 @@ public class <%= className() %> extends <%= baseWidgetName() %> {
         super(tag, html);
 <% if (hasEvents()) _.forEach(events, function(event){ %>
         getPolymerElement().addEventListener(
-                com.github.taras.gwt.polymer.client.element.event.<%= camelCase(event.name) %>Event.NAME,
-                new com.github.taras.gwt.polymer.client.element.event.<%= camelCase(event.name) %>Event.Listener() {
+                com.vaadin.components.gwt.polymer.client.element.event.<%= camelCase(event.name) %>Event.NAME,
+                new com.vaadin.components.gwt.polymer.client.element.event.<%= camelCase(event.name) %>Event.Listener() {
             @Override
-            protected void handleEvent(com.github.taras.gwt.polymer.client.element.event.<%= camelCase(event.name) %>Event event) {
+            protected void handleEvent(com.vaadin.components.gwt.polymer.client.element.event.<%= camelCase(event.name) %>Event event) {
                 fireEvent(new <%= camelCase(event.name) %>Event(event));
             }
         });
