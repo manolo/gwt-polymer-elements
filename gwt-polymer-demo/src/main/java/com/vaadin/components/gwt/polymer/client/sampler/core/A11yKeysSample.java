@@ -41,7 +41,8 @@ public class A11yKeysSample extends Composite {
         a11y.addKeysPressedHandler(new KeysPressedEventHandler() {
             @Override
             public void onKeysPressed(KeysPressedEvent event) {
-                output.setInnerText(output.getInnerText() + event.getKey() + "\n");
+                // FIXME: does not compile
+                // output.setInnerText(output.getInnerText() + event.getKey() + "\n");
             }
         });
     }
