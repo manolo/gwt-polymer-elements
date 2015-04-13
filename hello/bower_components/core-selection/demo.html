@@ -40,11 +40,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <script>
     Polymer('selection-example', {
       itemTapAction: function(e, detail, sender) {
-        console.log(this.$)
         this.$.selection.select(e.target);
       },
       selectAction: function(e, detail, sender) {
-        console.log(this.$)
         detail.item.classList.toggle('selected', detail.isSelected);
       }
     });

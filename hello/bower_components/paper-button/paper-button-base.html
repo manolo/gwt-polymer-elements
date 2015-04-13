@@ -107,13 +107,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           return;
         }
         if (this.active) {
-          this.$.shadow.z = 2;
+          this.$.shadow.setZ(2);
         } else if (this.disabled) {
-          this.$.shadow.z = 0;
+          this.$.shadow.setZ(0);
         } else if (this.focused) {
-          this.$.shadow.z = 3;
+          this.$.shadow.setZ(3);
         } else {
-          this.$.shadow.z = 1;
+          this.$.shadow.setZ(1);
         }
       },
 

@@ -116,12 +116,12 @@ license that can be found in the LICENSE file.
   scope.tapAction = function(e) {
     var target = e.target;
     if (!target.down) {
-      target.z += 1;
+      target.setZ(target.z + 1);
       if (target.z === 5) {
         target.down = true;
       }
     } else {
-      target.z -= 1;
+      target.setZ(target.z - 1);
       if (target.z === 0) {
         target.down = false;
       }

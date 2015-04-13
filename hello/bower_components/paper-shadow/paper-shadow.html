@@ -64,17 +64,20 @@ Example:
 
     },
 
-    domReady: function() {
-      this.isDomReady = true;
-    },
-
-    zChanged: function(oldValue, newValue) {
-      console.dir(this.isDomReady);
-      if (this.isDomReady) {
-        this.$['shadow-bottom'].classList.remove('paper-shadow-bottom-z-' + oldValue);
-        this.$['shadow-bottom'].classList.add('paper-shadow-bottom-z-' + newValue);
-        this.$['shadow-top'].classList.remove('paper-shadow-top-z-' + oldValue);
-        this.$['shadow-top'].classList.add('paper-shadow-top-z-' + newValue);
+    /**
+     * Set the z-depth of the shadow. This should be used after element
+     * creation instead of setting the z property directly.
+     *
+     * @method setZ
+     * @param {Number} newZ
+     */
+    setZ: function(newZ) {
+      if (this.z !== newZ) {
+        this.$['shadow-bottom'].classList.remove('paper-shadow-bottom-z-' + this.z);
+        this.$['shadow-bottom'].classList.add('paper-shadow-bottom-z-' + newZ);
+        this.$['shadow-top'].classList.remove('paper-shadow-top-z-' + this.z);
+        this.$['shadow-top'].classList.add('paper-shadow-top-z-' + newZ);
+        this.z = newZ;
       }
     }
 

@@ -74,18 +74,6 @@ Keys Syntax Grammar:
 @homepage github.io
 -->
 
-<!--
-Fired when a keycombo in `keys` is pressed.
-
-@event keys-pressed
-@param {Object} detail
-  @param {boolean} detail.shift true if shift key is pressed
-  @param {boolean} detail.ctrl true if ctrl key is pressed
-  @param {boolean} detail.meta true if meta key is pressed
-  @param {boolean} detail.alt true if alt key is pressed
-  @param {String} detail.key the normalized key
--->
-
 <link rel="import" href="../polymer/polymer.html">
 
 <style shim-shadowdom>
@@ -270,6 +258,11 @@ Fired when a keycombo in `keys` is pressed.
       return Boolean(a.alt) == Boolean(b.alt) && Boolean(a.ctrl) == Boolean(b.ctrl) && Boolean(a.shift) == Boolean(b.shift) && a.key === b.key;
     }
 
+    /**
+     * Fired when a keycombo in `keys` is pressed.
+     *
+     * @event keys-pressed
+     */
     function processKeys(ev) {
       var current = keyboardEventToKey(ev);
       for (var i = 0, dk; i < this._desiredKeys.length; i++) {
@@ -277,7 +270,6 @@ Fired when a keycombo in `keys` is pressed.
         if (keyMatches(dk, current)) {
           ev.preventDefault();
           ev.stopPropagation();
-          console.log(current);
           this.fire('keys-pressed', current, this, false);
           break;
         }

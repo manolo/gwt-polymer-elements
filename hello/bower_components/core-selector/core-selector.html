@@ -467,7 +467,6 @@ Fired when an item element is tapped.
 
       // event fired from host
       activateHandler: function(e) {
-        console.log(e);
         if (!this.notap) {
           var i = this.findDistributedTarget(e.target, this.items);
           if (i >= 0) {
