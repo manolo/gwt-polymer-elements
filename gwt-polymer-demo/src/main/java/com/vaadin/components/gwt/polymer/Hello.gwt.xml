@@ -5,4 +5,5 @@
 
 
     <entry-point class="com.vaadin.components.gwt.polymer.client.Demo"/>
+    <collapse-all-properties value="true" />
 </module>

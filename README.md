@@ -12,9 +12,10 @@ Allows to use polymer elements in GWT projects.
 3.  The "dependencies" section of the `bower.json` file includes all paper
 elements, if you Add/remove any component remember to run `bower install` after any modification.
 5.  Run `gulp gwt-api` in order to create all Element and Widgets java files in the  `gwt-polymer-elements/src/main/java/` folder
-6.  Go one level up (to the `gwt-polymer` directory)
-7.  Run `mvn clean package`
-8.  Run the `gwt-polymer-demo/target/demo.war` application
+6.  Run `mvn clean install` to install the components library in you local maven repo
+6.  Go to the demo folder `../gwt-polymer-demo`
+7.  Run `mvn gwt:run` to run the demo in SuperDevMode, otherwise run `mvn clean package` to
+get produce the `target/demo.war` application
 
  - example with polymer GWT widgets: [all-in-one](http://prntscr.com/6k8np9)
  - example with polymer GWT elements: [all-in-one](http://prntscr.com/6k8nm6)
