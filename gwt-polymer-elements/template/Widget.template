@@ -34,7 +34,7 @@ public class <%= className() %> extends <%= baseWidgetName() %> {
     
 <% if (hasAttributes()) _.forEach(attributes, function(attribute){ %>
     public <%= computeType(attribute.type) %> <%= computeGetterWithPrefix(attribute) %>() {
-        return getPolymerElement().<%= computeGetter(attribute) %>();
+        return getPolymerElement().<%= computeGetterWithPrefix(attribute) %>();
     }
     public void <%= computeSetterWithPrefix(attribute) %>(<%= computeType(attribute.type) %> value) {
         getElement().setAttribute("<%= attribute.name %>", String.valueOf(value));
@@ -43,10 +43,10 @@ public class <%= className() %> extends <%= baseWidgetName() %> {
 <% }); %>
 <% if (hasProperties()) _.forEach(properties, function(property){ %>
     public <%= computeType(property.type) %> <%= computeGetterWithPrefix(property) %>(){
-        return getPolymerElement().<%= computeGetter(property) %>();
+        return getPolymerElement().<%= computeGetterWithPrefix(property) %>();
     }
     public void <%= computeSetterWithPrefix(property) %>(<%= computeType(property.type) %> value) {
-        getPolymerElement().<%= computeSetter(property) %>(value);
+        getPolymerElement().<%= computeSetterWithPrefix(property) %>(value);
     }
 <% }); %>
 <% if (hasMethods()) _.forEach(methods, function(method){ %>

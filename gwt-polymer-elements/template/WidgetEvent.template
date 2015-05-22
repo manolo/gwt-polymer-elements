@@ -24,7 +24,7 @@ public class <%= camelCase(name) %>Event extends GwtEvent<<%= camelCase(name) %>
     }
 <% if (hasParams())  _.forEach(params, function(param){ %>
     public <%= computeType(param.type) %> <%= computeGetterWithPrefix(param) %>() {
-        return getNativeEvent().getDetail().<%= computeGetter(param) %>();
+        return getNativeEvent().getDetail().<%= computeGetterWithPrefix(param) %>();
     }
 <% }); %>   
 }

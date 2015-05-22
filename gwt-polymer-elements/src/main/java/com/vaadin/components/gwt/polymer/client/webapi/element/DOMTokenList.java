@@ -7,7 +7,7 @@ import com.google.gwt.core.client.js.JsType;
 public interface DOMTokenList {
 
     @JsProperty
-    int length();
+    int getLength();
     
     boolean contains();
 }

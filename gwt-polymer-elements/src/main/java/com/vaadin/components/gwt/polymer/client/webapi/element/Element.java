@@ -7,10 +7,10 @@ import com.google.gwt.core.client.js.JsType;
 public interface Element extends Node {
     
     @JsProperty
-    String innerHTML();
+    String getInnerHTML();
 
     @JsProperty
-    DOMTokenList classList();
+    DOMTokenList getClassList();
     
     void setAttribute(String name, String value);
     String getAttribute(String name);

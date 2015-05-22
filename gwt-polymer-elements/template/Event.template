@@ -18,7 +18,7 @@ public interface <%= camelCase(name) %>Event extends Event {
     @JsType
     interface Detail extends Event.Detail {
 <% _.forEach(params, function(param){ %>
-        @JsProperty <%= computeType(param.type) %> <%= computeGetter(param) %>();
+        @JsProperty <%= computeType(param.type) %> <%= computeGetterWithPrefix(param) %>();
 <% }); %>
     }
 <% } %>

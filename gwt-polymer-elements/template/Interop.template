@@ -12,13 +12,12 @@ import com.google.gwt.core.client.js.JsType;
 public interface <%= className() %>Element extends <%= baseClassName() %> {
 
 <% if (hasAttributes()) _.forEach(attributes, function(attribute){ %>
-    @JsProperty <%= computeType(attribute.type) %> <%= computeGetter(attribute) %>();
-    @JsProperty void <%= computeSetter(attribute) %>(<%= computeType(attribute.type) %> value);
+    @JsProperty <%= computeType(attribute.type) %> <%= computeGetterWithPrefix(attribute) %>();
+    @JsProperty void <%= computeSetterWithPrefix(attribute) %>(<%= computeType(attribute.type) %> value);
 <% }); %>
 <% if (hasProperties()) _.forEach(properties, function(property){ %>
-    @JsProperty <%= computeType(property.type) %> <%= computeGetter(property) %>();
-    @JsProperty void <%= computeSetter(property) %>(<%= computeType(property.type) %> value);
-<% }); %>
+    @JsProperty <%= computeType(property.type) %> <%= computeGetterWithPrefix(property) %>();
+    @JsProperty void <%= computeSetterWithPrefix(property) %>(<%= computeType(property.type) %> value);<% }); %>
 <% if (hasMethods()) _.forEach(methods, function(method){ %>
     void <%= method.name %>(<%= typedParamsString(method) %>);
 <% }); %>

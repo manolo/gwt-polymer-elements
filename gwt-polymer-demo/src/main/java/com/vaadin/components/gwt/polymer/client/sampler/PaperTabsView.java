@@ -31,8 +31,8 @@ public class PaperTabsView extends Composite {
         paperTabs.addEventListener(CoreSelectEvent.NAME, new CoreSelectEvent.Listener() {
             @Override
             public void handleEvent(CoreSelectEvent event) {
-                PaperTabElement tab = (PaperTabElement) event.getDetail().item();
-                toast.text("Tab \"" + tab.innerHTML() + "\" has been selected");
+                PaperTabElement tab = (PaperTabElement) event.getDetail().getItem();
+                toast.setText("Tab \"" + tab.getInnerHTML() + "\" has been selected");
                 toast.show();
             }
         });

@@ -34,11 +34,11 @@ public class CoreSelectorSample extends Composite {
     public CoreSelectorSample() {
         initWidget(ourUiBinder.createAndBindUi(this));
         
-        multiSelector.getPolymerElement().selected(new int[]{1, 3});
+        multiSelector.getPolymerElement().setSelected(new int[]{1, 3});
 
-        listSelector.getPolymerElement().target(list);
+        listSelector.getPolymerElement().setTarget(list);
         
-        radioSelector.getPolymerElement().target(myForm);
+        radioSelector.getPolymerElement().setTarget(myForm);
         radioSelector.addCoreSelectHandler(new CoreSelectEventHandler() {
             @Override
             public void onCoreSelect(CoreSelectEvent event) {

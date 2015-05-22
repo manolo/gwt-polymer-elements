@@ -10,7 +10,7 @@ public interface Event {
     Detail getDetail();
     
     @JsProperty
-    EventTarget target();
+    EventTarget getTarget();
 
     @JsType
     public interface Detail {
