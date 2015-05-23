@@ -1,8 +1,8 @@
 package com.vaadin.components.gwt.polymer.client.webapi.element;
 
-import com.google.gwt.core.client.js.JsType;
+import com.google.gwt.core.client.js.JsFunction;
 
-@JsType
-public interface EventListener {
-    void handleEvent(Event event);
+@JsFunction
+public interface EventListener<T extends Event> {
+    void handleEvent(T event);
 }

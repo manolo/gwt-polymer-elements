@@ -26,9 +26,9 @@ public class <%= className() %> extends <%= baseWidgetName() %> {
 <% if (hasEvents()) _.forEach(events, function(event){ %>
         getPolymerElement().addEventListener(
                 com.vaadin.components.gwt.polymer.client.element.event.<%= camelCase(event.name) %>Event.NAME,
-                new com.vaadin.components.gwt.polymer.client.element.event.<%= camelCase(event.name) %>Event.Listener() {
+                new EventListener<com.vaadin.components.gwt.polymer.client.element.event.<%= camelCase(event.name) %>Event>() {
             @Override
-            protected void handleEvent(com.vaadin.components.gwt.polymer.client.element.event.<%= camelCase(event.name) %>Event event) {
+            public void handleEvent(com.vaadin.components.gwt.polymer.client.element.event.<%= camelCase(event.name) %>Event event) {
                 fireEvent(new <%= camelCase(event.name) %>Event(event));
             }
         });
