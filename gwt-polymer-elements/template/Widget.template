@@ -1,3 +1,7 @@
+/**
+ * Code generated with gwt-polymer an Apache 2.0 Licensed library
+ * developed at Vaadin Labs.
+ */
 package com.vaadin.components.gwt.polymer.client.widget;
 
 import com.vaadin.components.gwt.polymer.client.PolymerWidget;
@@ -8,12 +12,15 @@ import com.vaadin.components.gwt.polymer.client.widget.event.*;
 import com.google.gwt.core.client.JsArray;
 import com.google.gwt.event.shared.HandlerRegistration;
 
+/**
+ * AUTO-GENERATED CODE, DO NOT EDIT
+ */
 public class <%= className() %> extends <%= baseWidgetName() %> {
 
     public <%= className() %>(String html) {
         this("<%= name %>", html);
     }
-    
+
     public <%= className() %>(String tag, String html) {
         super(tag, html);
 <% if (hasEvents()) _.forEach(events, function(event){ %>
@@ -31,12 +38,13 @@ public class <%= className() %> extends <%= baseWidgetName() %> {
     public <%= className() %>Element getPolymerElement() {
         return (<%= className() %>Element) getElement();
     }
-    
+
 <% if (hasAttributes()) _.forEach(attributes, function(attribute){ %>
     public <%= computeType(attribute.type) %> <%= computeGetterWithPrefix(attribute) %>() {
         return getPolymerElement().<%= computeGetterWithPrefix(attribute) %>();
     }
     public void <%= computeSetterWithPrefix(attribute) %>(<%= computeType(attribute.type) %> value) {
+        // getElement().setPropertyObject("<%= attribute.name %>", value);
         getElement().setAttribute("<%= attribute.name %>", String.valueOf(value));
     }
     <%= extraSetter(attribute) %>
@@ -50,9 +58,11 @@ public class <%= className() %> extends <%= baseWidgetName() %> {
     }
 <% }); %>
 <% if (hasMethods()) _.forEach(methods, function(method){ %>
+  <% if (method.name != 'setZ') { // FIXME(manolo) %>
     public void <%= method.name %>(<%= typedParamsString(method) %>) {
         getPolymerElement().<%= method.name %>(<%= paramsString(method) %>);
     }
+  <% } %>
 <% }); %>
 <% if (hasEvents()) _.forEach(events, function(event){ %>
     public HandlerRegistration add<%= camelCase(event.name) %>Handler(<%= camelCase(event.name) %>EventHandler handler) {

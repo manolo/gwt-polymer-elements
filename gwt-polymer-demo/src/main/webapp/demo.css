@@ -1,5 +1,14 @@
 html, html body {
 	height: 100%;
 	width: 100%;
+	font-family: helvetica;
+}
+
+button, button:active, button:focus {
+  border: none;
+  background: #BCDFFF;
+  font-size: 95%;
+  padding: 10px;
+  cursor: pointer;
 }
 

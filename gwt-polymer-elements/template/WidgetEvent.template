@@ -1,16 +1,23 @@
+/**
+ * Code generated with gwt-polymer an Apache 2.0 Licensed library
+ * developed at Vaadin Labs.
+ */
 package com.vaadin.components.gwt.polymer.client.widget.event;
 
 import com.google.gwt.event.shared.GwtEvent;
 
+/**
+ * AUTO-GENERATED CODE, DO NOT EDIT
+ */
 public class <%= camelCase(name) %>Event extends GwtEvent<<%= camelCase(name) %>EventHandler> {
     public static Type<<%= camelCase(name) %>EventHandler> TYPE = new Type<<%= camelCase(name) %>EventHandler>();
-    
+
     private com.vaadin.components.gwt.polymer.client.element.event.<%= camelCase(name) %>Event nativeEvent;
-    
+
     public <%= camelCase(name) %>Event(com.vaadin.components.gwt.polymer.client.element.event.<%= camelCase(name) %>Event nativeEvent) {
         this.nativeEvent = nativeEvent;
     }
- 
+
     public Type<<%= camelCase(name) %>EventHandler> getAssociatedType() {
         return TYPE;
     }
@@ -18,7 +25,7 @@ public class <%= camelCase(name) %>Event extends GwtEvent<<%= camelCase(name) %>
     protected void dispatch(<%= camelCase(name) %>EventHandler handler) {
         handler.on<%= camelCase(name) %>(this);
     }
-    
+
     public com.vaadin.components.gwt.polymer.client.element.event.<%= camelCase(name) %>Event getNativeEvent() {
         return nativeEvent;
     }
@@ -26,5 +33,5 @@ public class <%= camelCase(name) %>Event extends GwtEvent<<%= camelCase(name) %>
     public <%= computeType(param.type) %> <%= computeGetterWithPrefix(param) %>() {
         return getNativeEvent().getDetail().<%= computeGetterWithPrefix(param) %>();
     }
-<% }); %>   
+<% }); %>
 }

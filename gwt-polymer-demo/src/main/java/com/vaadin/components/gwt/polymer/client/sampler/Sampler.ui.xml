@@ -29,14 +29,14 @@
             padding-left: 20px;
         }
     </ui:style>
-    
+
     <g:HTMLPanel>
         <p:CoreDrawerPanel ui:field="drawerPanel">
 
             <div drawer="">
                 <p:CoreHeaderPanel mode="seamed">
                     <p:CoreToolbar addStyleNames="{style.toolbar}"/>
-                    <g:FlowPanel ui:field="listPanel" addStyleNames="content"/>
+                    <g:FlowPanel ui:field="listPanel" addStyleNames="list"/>
                 </p:CoreHeaderPanel>
             </div>
 
@@ -44,11 +44,11 @@
                 <p:CoreHeaderPanel mode="seamed">
                     <p:CoreToolbar addStyleNames="{style.toolbar}">
                         <p:PaperIconButton ui:field="menuButton" icon="menu"/>
-                        <span ui:field="label" flex="">Button</span>
+                        <span ui:field="currentLabel" flex="">Button</span>
                         <p:PaperButton ui:field="xmlButton"><p:CoreIcon icon="launch"/>.ui.xml</p:PaperButton>
                         <p:PaperButton ui:field="javaButton"><p:CoreIcon icon="launch"/>.java</p:PaperButton>
                     </p:CoreToolbar>
-                    <g:SimplePanel ui:field="content" addStyleNames="content"/>
+                    <g:DeckPanel ui:field="content" animationEnabled="true" />
                 </p:CoreHeaderPanel>
             </div>
 

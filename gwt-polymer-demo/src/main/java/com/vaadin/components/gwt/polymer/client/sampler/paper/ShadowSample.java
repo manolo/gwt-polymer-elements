@@ -1,5 +1,7 @@
 package com.vaadin.components.gwt.polymer.client.sampler.paper;
 
+import static com.google.gwt.query.client.GQuery.console;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -14,13 +16,13 @@ public class ShadowSample extends Composite {
     }
 
     private static ShadowSampleUiBinder ourUiBinder = GWT.create(ShadowSampleUiBinder.class);
-    
+
     @UiField PaperShadow shadow1;
     @UiField PaperShadow shadow2;
 
     public ShadowSample() {
         initWidget(ourUiBinder.createAndBindUi(this));
-        
+
         shadow1.addClickHandler(new MyClickHandler(shadow1));
         shadow2.addClickHandler(new MyClickHandler(shadow2));
     }
@@ -36,13 +38,16 @@ public class ShadowSample extends Composite {
 
         @Override
         public void onClick(ClickEvent event) {
+            console.log(target.getElement());
             if (down) {
                 target.setZ(target.getZ() - 1);
+                target.getElement().setAttribute("z", "" + (target.getZ() -1));
                 if (target.getZ() == 0) {
                     down = false;
                 }
             } else {
                 target.setZ(target.getZ() + 1);
+                target.getElement().setAttribute("z", "" + (target.getZ() +1));
                 if (target.getZ() == 5) {
                     down = true;
                 }

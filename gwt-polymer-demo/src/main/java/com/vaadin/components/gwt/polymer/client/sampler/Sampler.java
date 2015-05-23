@@ -13,9 +13,9 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.DeckPanel;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HTMLPanel;
-import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.vaadin.components.gwt.polymer.client.sampler.core.A11yKeysSample;
 import com.vaadin.components.gwt.polymer.client.sampler.core.CoreCollapseSample;
@@ -25,10 +25,12 @@ import com.vaadin.components.gwt.polymer.client.sampler.paper.DialogSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.DropdownMenuSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.FloatingActionButtonSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.IconButtonSample;
+import com.vaadin.components.gwt.polymer.client.sampler.paper.InputSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.ItemSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.MenuButtonSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.ProgressBarSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.RadioButtonSample;
+import com.vaadin.components.gwt.polymer.client.sampler.paper.ShadowSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.SliderSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.SpinnerSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.TabsSample;
@@ -61,49 +63,50 @@ public class Sampler extends Composite {
 
     private Map<String, CoreSelector> selectorMap = new HashMap<>();
     private String path;
+    private Widget currentWidget;
 
     @UiField Style style;
-    
+
     @UiField CoreDrawerPanel drawerPanel;
     @UiField PaperIconButton menuButton;
     @UiField FlowPanel listPanel;
-    @UiField SimplePanel content;
-    @UiField SpanElement label;
+    @UiField DeckPanel content;
+    @UiField SpanElement currentLabel;
     @UiField PaperButton xmlButton;
     @UiField PaperButton javaButton;
 
     public Sampler() {
         initWidget(ourUiBinder.createAndBindUi(this));
-        
+
         drawerPanel.addCoreResponsiveChangeHandler(new CoreResponsiveChangeEventHandler() {
             @Override
             public void onCoreResponsiveChange(CoreResponsiveChangeEvent event) {
                 menuButton.setVisible(drawerPanel.isNarrow());
             }
         });
-     
+
         menuButton.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {
                 drawerPanel.togglePanel();
             }
         });
-        
+
         xmlButton.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {
                 Window.open(REPO_PATH + path + ".ui.xml", "_blank", "");
             }
         });
-        
+
         javaButton.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {
                 Window.open(REPO_PATH + path + ".java", "_blank", "");
             }
         });
-        
-        
+
+
         addCategory("Core Elements");
         addSample("a11y keys", new A11yKeysSample(), "Core Elements", "core/A11yKeysSample");
         addSample("Collapse", new CoreCollapseSample(), "Core Elements", "core/CoreCollapseSample");
@@ -112,7 +115,8 @@ public class Sampler extends Composite {
         addSample("CheckBox", new CheckboxSample(), "Paper Elements", "paper/CheckboxSample");
         addSample("Radio Button", new RadioButtonSample(), "Paper Elements", "paper/RadioButtonSample");
         addSample("Toggle Button", new ToggleButtonSample(), "Paper Elements", "paper/ToggleButtonSample");
-//        addSample("Input", new InputSample(), "Paper Elements", "paper/InputSample");     // strange bug appears if include this to Sampler
+        // strange bug appears if include this to Sampler
+        addSample("Input", new InputSample(), "Paper Elements", "paper/InputSample");
         addSample("Toolbar", new ToolbarSample(), "Paper Elements", "paper/ToolbarSample");
         addSample("Spinner", new SpinnerSample(), "Paper Elements", "paper/SpinnerSample");
         addSample("Progress Bar", new ProgressBarSample(), "Paper Elements", "paper/ProgressBarSample");
@@ -121,12 +125,14 @@ public class Sampler extends Composite {
         addSample("Button", new ButtonSample(), "Paper Elements", "paper/ButtonSample");
         addSample("Icon Button", new IconButtonSample(), "Paper Elements", "paper/IconButtonSample");
         addSample("Floating Action Button", new FloatingActionButtonSample(), "Paper Elements", "paper/FloatingActionButtonSample");
-//        addSample("Dropdown", new DropdownSample(), "Paper Elements", "paper/DropdownSample");        // not fully implemented yet
+        // not fully implemented yet
+//        addSample("Dropdown", new DropdownSample(), "Paper Elements", "paper/DropdownSample");
         addSample("Dropdown Menu", new DropdownMenuSample(), "Paper Elements", "paper/DropdownMenuSample");
         addSample("Menu Button", new MenuButtonSample(), "Paper Elements", "paper/MenuButtonSample");
         addSample("Item", new ItemSample(), "Paper Elements", "paper/ItemSample");
         addSample("Dialog", new DialogSample(), "Paper Elements", "paper/DialogSample");
-//        addSample("Shadow", new ShadowSample(), "Paper Elements", "paper/ShadowSample");    // wait for pull-request
+        // wait for pull-request, because setZ seems not working.
+        addSample("Shadow", new ShadowSample(), "Paper Elements", "paper/ShadowSample");
         addSample("Toast", new ToastSample(), "Paper Elements", "paper/ToastSample");
 
         addCategory("Other");
@@ -160,14 +166,15 @@ public class Sampler extends Composite {
     private void addSample(final String name, final Widget sample, String categoryName, final String path) {
         PaperItem item = new PaperItem(name);
         item.addStyleName(style.item());
+        final int idx = content.getWidgetCount();
+        content.add(sample);
 
         item.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {
-                label.setInnerText(name);
-                content.setWidget(sample);
-
+                currentLabel.setInnerText(name);
                 Sampler.this.path = path;
+                content.showWidget(idx);
             }
         });
 
