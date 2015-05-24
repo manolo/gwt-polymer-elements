@@ -36,7 +36,7 @@
 
             <div drawer="">
                 <p:CoreHeaderPanel mode="seamed">
-                    <p:CoreToolbar addStyleNames="{style.toolbar}"/>
+                    <p:CoreToolbar addStyleNames="{style.toolbar}">GWT-Polymer</p:CoreToolbar>
                     <g:FlowPanel ui:field="listPanel" addStyleNames="list"/>
                 </p:CoreHeaderPanel>
             </div>
