@@ -1,7 +1,5 @@
 package com.vaadin.components.gwt.polymer.client.sampler;
 
-import static com.google.gwt.query.client.GQuery.console;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

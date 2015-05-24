@@ -6,7 +6,7 @@ package com.vaadin.components.gwt.polymer.client.widget;
 
 import com.vaadin.components.gwt.polymer.client.PolymerWidget;
 import com.vaadin.components.gwt.polymer.client.element.*;
-import com.vaadin.components.gwt.polymer.client.webapi.element.*;
+import com.vaadin.components.gwt.polymer.client.webapi.*;
 import com.vaadin.components.gwt.polymer.client.widget.event.*;
 import com.google.gwt.core.client.JsArray;
 import com.google.gwt.event.shared.HandlerRegistration;

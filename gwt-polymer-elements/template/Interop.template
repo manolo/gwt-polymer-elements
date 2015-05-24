@@ -4,7 +4,7 @@
  */
 package com.vaadin.components.gwt.polymer.client.element;
 
-import com.vaadin.components.gwt.polymer.client.webapi.element.*;
+import com.vaadin.components.gwt.polymer.client.webapi.*;
 import com.vaadin.components.gwt.polymer.client.PolymerElement;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.JsArray;

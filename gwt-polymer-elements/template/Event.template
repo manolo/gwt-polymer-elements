@@ -4,8 +4,7 @@
  */
 package com.vaadin.components.gwt.polymer.client.element.event;
 
-import com.vaadin.components.gwt.polymer.client.webapi.element.Event;
-import com.vaadin.components.gwt.polymer.client.webapi.element.EventListener;
+import com.vaadin.components.gwt.polymer.client.webapi.*;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.js.JsProperty;
 import com.google.gwt.core.client.js.JsType;
