@@ -4,7 +4,16 @@ module.exports = {
     return this.camelCase(this['name']);
   },
   baseClassName: function () {
-    return this['extends'] ? this.camelCase(this['extends']) + 'Element' : 'PolymerElement';
+    var e = this['extends'];
+    if (!e) {
+      return 'PolymerElement';
+    } else if (e.match(/[A-Z\-]/)) {
+      // CoreResizable -> CoreResizableElement, core-input -> CoreInputElment
+      return this.camelCase(e) + 'Element';
+    } else {
+      // input -> HTMLInputElement, table -> HTMLTableElement
+      return 'HTML' + this.camelCase(e) + 'Element';
+    }
   },
   baseWidgetName: function () {
     return this['extends'] ? this.camelCase(this['extends']) : 'PolymerWidget';
