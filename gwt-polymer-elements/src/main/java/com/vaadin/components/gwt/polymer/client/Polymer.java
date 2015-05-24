@@ -12,8 +12,10 @@ public abstract class Polymer {
 
     private static Set<String> urlImported = new HashSet<>();
 
-    // Ensures that the tagName has been registered, otherwise injects
-    // the appropriate <import> tag in the document header
+    /**
+     * Ensures that the tagName has been registered, otherwise injects
+     * the appropriate <import> tag in the document header
+     */
     public static void ensureHTMLImport(String tagName) {
         String href = "bower_components/" + ImportsMap.getInstance().get(tagName);
         if (!urlImported.contains(href)) {
@@ -25,4 +27,13 @@ public abstract class Polymer {
         }
     }
 
+
+    /**
+     * Returns a new instance of the Element. It loads the webcomponent
+     * if not loaded yet.
+     */
+    public static <T> T createElement(String tagName) {
+        ensureHTMLImport(tagName);
+        return (T)Document.get().createElement(tagName);
+    }
 }
