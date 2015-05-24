@@ -27,6 +27,7 @@
 
         .item {
             padding-left: 20px;
+            font-size: 13px;
         }
     </ui:style>
 
@@ -44,7 +45,7 @@
                 <p:CoreHeaderPanel mode="seamed">
                     <p:CoreToolbar addStyleNames="{style.toolbar}">
                         <p:PaperIconButton ui:field="menuButton" icon="menu"/>
-                        <span ui:field="currentLabel" flex="">Button</span>
+                        <span ui:field="currentLabel" flex=""></span>
                         <p:PaperButton ui:field="xmlButton"><p:CoreIcon icon="launch"/>.ui.xml</p:PaperButton>
                         <p:PaperButton ui:field="javaButton"><p:CoreIcon icon="launch"/>.java</p:PaperButton>
                     </p:CoreToolbar>
