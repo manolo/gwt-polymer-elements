@@ -5,10 +5,16 @@ html, html body {
 }
 
 button, button:active, button:focus {
-  border: none;
-  background: #BCDFFF;
-  font-size: 95%;
-  padding: 10px;
+  padding: 5px 7px;
   cursor: pointer;
+  font-size: small;
+  border: 1px solid #bbb;
+  background: #dadada;
+  border-bottom: 1px solid #a0a0a0;
+  border-radius: 3px;
+  outline: none;
+}
+button:hover {
+  background: #bbbbbb;
 }
 

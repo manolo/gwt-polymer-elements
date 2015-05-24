@@ -1,4 +1,4 @@
-package com.vaadin.components.gwt.polymer.client.sampler;
+package com.vaadin.components.gwt.polymer.client.sampler.gwt;
 
 import static com.google.gwt.query.client.GQuery.console;
 

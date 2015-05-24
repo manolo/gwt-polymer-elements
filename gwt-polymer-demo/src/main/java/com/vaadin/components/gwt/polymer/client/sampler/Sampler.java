@@ -19,6 +19,8 @@ import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.vaadin.components.gwt.polymer.client.sampler.core.A11yKeysSample;
 import com.vaadin.components.gwt.polymer.client.sampler.core.CoreCollapseSample;
+import com.vaadin.components.gwt.polymer.client.sampler.gwt.PaperTabsView;
+import com.vaadin.components.gwt.polymer.client.sampler.gwt.PaperTabsWidgetView;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.ButtonSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.CheckboxSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.DialogSample;

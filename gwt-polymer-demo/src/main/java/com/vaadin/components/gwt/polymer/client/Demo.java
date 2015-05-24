@@ -2,7 +2,6 @@ package com.vaadin.components.gwt.polymer.client;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.user.client.ui.RootPanel;
-import com.vaadin.components.gwt.polymer.client.sampler.PaperTabsView;
 import com.vaadin.components.gwt.polymer.client.sampler.Sampler;
 
 public class Demo implements EntryPoint {
