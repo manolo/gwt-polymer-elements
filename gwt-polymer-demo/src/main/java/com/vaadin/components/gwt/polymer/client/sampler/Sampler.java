@@ -1,5 +1,7 @@
 package com.vaadin.components.gwt.polymer.client.sampler;
 
+import static com.google.gwt.query.client.GQuery.console;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -207,7 +209,7 @@ public class Sampler extends Composite {
         int sampleIdx;
 
         public Item(CoreCollapse collapse, CoreSelector selector, String category, String path, int idx, String name) {
-            super(path);
+            super(name);
             this.collapse = collapse;
             this.selector = selector;
             this.category = category;
@@ -222,6 +224,9 @@ public class Sampler extends Composite {
         }
 
         public void onClick(ClickEvent event) {
+            for (CoreSelector s : selectorMap.values()) {
+                s.setSelected(-1);
+            }
             collapse.setOpened(true);
             selector.setSelected(selectorIdx);
             content.showWidget(sampleIdx);
