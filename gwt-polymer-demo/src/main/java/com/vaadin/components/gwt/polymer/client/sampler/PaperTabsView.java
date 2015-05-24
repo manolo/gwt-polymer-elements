@@ -1,7 +1,5 @@
 package com.vaadin.components.gwt.polymer.client.sampler;
 
-import static com.google.gwt.query.client.GQuery.console;
-
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -12,8 +10,6 @@ import com.vaadin.components.gwt.polymer.client.element.PaperTabElement;
 import com.vaadin.components.gwt.polymer.client.element.PaperTabsElement;
 import com.vaadin.components.gwt.polymer.client.element.PaperToastElement;
 import com.vaadin.components.gwt.polymer.client.element.event.CoreSelectEvent;
-import com.vaadin.components.gwt.polymer.client.webapi.element.Event;
-import com.vaadin.components.gwt.polymer.client.webapi.element.EventListener;
 
 public class PaperTabsView extends Composite {
     interface PaperTabsViewUiBinder extends UiBinder<HTMLPanel, PaperTabsView> {
@@ -31,8 +27,8 @@ public class PaperTabsView extends Composite {
         Polymer.ensureHTMLImport("paper-toast");
 
         initWidget(ourUiBinder.createAndBindUi(this));
-
-        paperTabs.addEventListener(CoreSelectEvent.NAME, new EventListener<CoreSelectEvent>() {
+        
+        paperTabs.addEventListener(CoreSelectEvent.NAME, new CoreSelectEvent.Listener() {
             @Override
             public void handleEvent(CoreSelectEvent event) {
                 PaperTabElement tab = (PaperTabElement) event.getDetail().getItem();
