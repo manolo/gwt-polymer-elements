@@ -5,14 +5,12 @@ module.exports = {
   },
   baseClassName: function () {
     var e = this['extends'];
-    if (!e) {
-      return 'PolymerElement';
-    } else if (e.match(/[A-Z\-]/)) {
+    if (e && e.match(/[A-Z\-]/)) {
       // CoreResizable -> CoreResizableElement, core-input -> CoreInputElment
       return this.camelCase(e) + 'Element';
     } else {
       // input -> HTMLInputElement, table -> HTMLTableElement
-      return 'HTML' + this.camelCase(e) + 'Element';
+      return 'HTML' + (e ? this.camelCase(e) : '') + 'Element';
     }
   },
   baseWidgetName: function () {
@@ -78,7 +76,7 @@ module.exports = {
     }
     var prefix = item.type === 'boolean' ? 'is' : 'get';
     if (this.startsWith(name, prefix)) {
-      return name;      
+      return name;
     } else {
       return prefix + this.capitalizeFirstLetter(this.computeMethodName(name));
     }
@@ -118,9 +116,9 @@ module.exports = {
   extraSetter: function(attribute) {
     var type = this.computeType(attribute.type);
     if (type === 'String') {
-      return '';      
+      return '';
     } else if (type === 'boolean') {
-      return 'public void ' + this.computeSetterWithPrefix(attribute) + '(String ' + attribute.name + ') {\n' + 
+      return 'public void ' + this.computeSetterWithPrefix(attribute) + '(String ' + attribute.name + ') {\n' +
         '        setBooleanAttribute("' + attribute.name + '", true);\n' +
         '    }';
     } else {

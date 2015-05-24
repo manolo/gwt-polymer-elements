@@ -5,7 +5,6 @@
 package com.vaadin.components.gwt.polymer.client.element;
 
 import com.vaadin.components.gwt.polymer.client.webapi.*;
-import com.vaadin.components.gwt.polymer.client.PolymerElement;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.JsArray;
 import com.google.gwt.core.client.js.JsProperty;
@@ -38,7 +37,7 @@ public interface <%= className() %>Element extends <%= baseClassName() %> {
     @JsProperty void <%= computeSetterWithPrefix(property) %>(<%= computeType(property.type) %> value);
 <% }); %>
 <% if (hasMethods()) _.forEach(methods, function(method){ %>
-    /** 
+    /**
      * <%= method.description.trim().split('\n').join('\n     * ') %>
      *
      * @method <%= method.name %><% if (!!method.params) _.forEach(method.params, function(param) { %>
