@@ -16,7 +16,13 @@ module.exports = {
     }
   },
   baseWidgetName: function () {
-    return this['extends'] ? this.camelCase(this['extends']) : 'PolymerWidget';
+    var e = this['extends'];
+    if (e && e.match(/[A-Z\-]/)) {
+      // CoreResizable -> CoreResizable, core-drop-downBase -> CoreDropdownBase
+      return this.camelCase(e);
+    } else {
+      return 'PolymerWidget';
+    }
   },
   camelCase: function(s) {
     return (s || '').toLowerCase().replace(/(\b|-)\w/g, function (m) {
