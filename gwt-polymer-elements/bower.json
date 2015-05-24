@@ -17,6 +17,7 @@
     "tests"
   ],
   "dependencies": {
+    "webcomponentsjs" : "",
     "core-field": "Polymer/core-field#^0.5.0",
     "core-label": "Polymer/core-label#^0.5.0",
     "core-toolbar": "Polymer/core-toolbar#^0.5.0",
