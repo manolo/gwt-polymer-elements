@@ -32,9 +32,6 @@ public class Demo implements EntryPoint {
 //        RootPanel.get().add(new CoreSelectorSample());
 //        RootPanel.get().add(new CoreDrawerPanelSample());
 
-
-//        RootPanel.get().add(new PaperTabsView());
-
         RootPanel.get().add(new Sampler());
     }
 }
