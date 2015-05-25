@@ -25,7 +25,7 @@ public class PaperJavaAPI extends FlowPanel {
         // GWT Element API
         PaperIconButtonElement iconElem = Polymer.createElement(PaperIconButtonElement.TAG);
         iconElem.setIcon("polymer");
-        iconElem.setAttribute("title", "huge");
+        iconElem.setAttribute("title", "Click to say Hello");
         iconElem.addEventListener("click", new EventListener() {
             public void handleEvent(Event event) {
                 Window.alert("Hi");
@@ -34,7 +34,7 @@ public class PaperJavaAPI extends FlowPanel {
         this.getElement().appendChild((Element)iconElem);
 
         // GWT Widget API
-        PaperIconButton iconWidget = new PaperIconButton("");
+        PaperIconButton iconWidget = new PaperIconButton();
         iconWidget.setIcon("language");
         iconWidget.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {

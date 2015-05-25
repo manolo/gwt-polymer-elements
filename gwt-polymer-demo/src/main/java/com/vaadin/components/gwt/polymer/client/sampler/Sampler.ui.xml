@@ -8,6 +8,7 @@
             color: #f1f1f1;
             fill: #f1f1f1;
             background: #4285f4;
+            height: 90px;
         }
 
         core-header-panel {
@@ -27,7 +28,22 @@
 
         .item {
             padding-left: 20px;
-            font-size: 13px;
+            font-size: 15px;
+        }
+        .list {
+            background-color: #F5F4F4;
+        }
+        .list paper-item {
+            border-top: dotted 1px #f5f5f5;
+
+        }
+        .buttons {
+            font-size: 10px !important;
+            margin: 0px;
+        }
+        .current {
+            overflow: hidden;
+            white-space: nowrap;
         }
     </ui:style>
 
@@ -37,7 +53,7 @@
             <div drawer="">
                 <p:CoreHeaderPanel mode="seamed">
                     <p:CoreToolbar addStyleNames="{style.toolbar}">GWT-Polymer</p:CoreToolbar>
-                    <g:FlowPanel ui:field="listPanel" addStyleNames="list"/>
+                    <g:FlowPanel ui:field="listPanel" addStyleNames="{style.list}"/>
                 </p:CoreHeaderPanel>
             </div>
 
@@ -45,9 +61,9 @@
                 <p:CoreHeaderPanel mode="seamed">
                     <p:CoreToolbar addStyleNames="{style.toolbar}">
                         <p:PaperIconButton ui:field="menuButton" icon="menu"/>
-                        <span ui:field="currentLabel" flex=""></span>
-                        <p:PaperButton ui:field="xmlButton"><p:CoreIcon icon="launch"/>.ui.xml</p:PaperButton>
-                        <p:PaperButton ui:field="javaButton"><p:CoreIcon icon="launch"/>.java</p:PaperButton>
+                        <span ui:field="currentLabel" flex="" addStyleNames="{style.current}"></span>
+                        <p:PaperButton ui:field="xmlButton" addStyleNames="{style.buttons}"><p:CoreIcon icon="launch"/>.ui.xml</p:PaperButton>
+                        <p:PaperButton ui:field="javaButton" addStyleNames="{style.buttons}"><p:CoreIcon icon="launch"/>.java</p:PaperButton>
                     </p:CoreToolbar>
                     <g:DeckPanel ui:field="content" animationEnabled="true" />
                 </p:CoreHeaderPanel>
