@@ -12,6 +12,15 @@
     <artifactId>gwt-polymer-demo</artifactId>
     <packaging>war</packaging>
 
+    <repositories>
+       <repository>
+         <id>sonatype-snapshots</id>
+         <url>http://oss.sonatype.org/content/repositories/snapshots</url>
+         <snapshots><enabled>true</enabled></snapshots>
+         <releases><enabled>false</enabled></releases>
+       </repository>
+    </repositories>
+
     <dependencies>
         <dependency>
             <groupId>com.google.gwt</groupId>
