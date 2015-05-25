@@ -16,20 +16,22 @@ import com.google.gwt.event.shared.HandlerRegistration;
  */
 public class <%= className() %> extends <%= baseWidgetName() %> {
 
+    /**
+     * Default Constructor.
+     */
     public <%= className() %>() {
        this("");
     }
 
     /**
-     * Constructor used to create widgets with content.
-     * Normally used in UIBinder files.
+     * Constructor used by UIBinder to create widgets with content.
      */
     public <%= className() %>(String html) {
         this(<%= className() %>Element.TAG, html);
     }
 
     /**
-     * Used when this class is extended by other element.
+     * Used when this element is extended by another.
      */
     protected <%= className() %>(String tag, String html) {
         super(tag, html);
