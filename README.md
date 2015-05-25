@@ -10,7 +10,7 @@ We have produced a `.jar` file which includes all the visual components of
 Polymer and Paper collections, so as you don't have to deal with the process of
 creating it.
 
- - If your project uses maven, configure it to use the Sonatype snapshot repository
+ - If your project uses maven, configure it to use the Sonatype snapshot repository and add the dependency:
 
   ```
    <repositories>
@@ -20,7 +20,16 @@ creating it.
        <snapshots><enabled>true</enabled></snapshots>
        <releases><enabled>false</enabled></releases>
      </repository>
+    ...
    </repositories>
+   <dependencies>
+     <dependency>
+       <groupId>com.vaadin.components</groupId>
+       <artifactId>gwt-polymer-elements</artifactId>
+       <version>1.0-SNAPSHOT</version>
+       <scope>provided</scope>
+     </dependency>
+   </dependencies>
   ```
 
 - otherwise you can [download](https://oss.sonatype.org/content/repositories/snapshots/com/vaadin/components/gwt-polymer-elements/1.0-SNAPSHOT/)

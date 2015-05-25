@@ -14,15 +14,17 @@
         }
     </ui:style>
     
-    <g:HTMLPanel>
-        <h2>Paper Tabs based on gwt-polymer elements</h2>
-        
-        <paper-tabs ui:field="paperTabs" selected="0">
-            <paper-tab>ITEM ONE</paper-tab>
-            <paper-tab>ITEM TWO</paper-tab>
-            <paper-tab>ITEM THREE</paper-tab>
-        </paper-tabs>
+ <g:HTMLPanel>
+     <h2>Paper Tabs based on gwt-polymer elements</h2>
+     
+     <paper-tabs ui:field="paperTabs" selected="0">
+         <paper-tab>ITEM ONE</paper-tab>
+         <paper-tab>ITEM TWO</paper-tab>
+         <paper-tab>ITEM THREE</paper-tab>
+     </paper-tabs>
+     
+     <paper-button raised="" noink="">Click me</paper-button>
 
-        <paper-toast ui:field="toast" text="Your draft has been discarded."></paper-toast>
-    </g:HTMLPanel>
+     <paper-toast ui:field="toast" text="Your draft has been discarded."></paper-toast>
+ </g:HTMLPanel>
 </ui:UiBinder>
