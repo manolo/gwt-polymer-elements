@@ -16,11 +16,22 @@ import com.google.gwt.event.shared.HandlerRegistration;
  */
 public class <%= className() %> extends <%= baseWidgetName() %> {
 
-    public <%= className() %>(String html) {
-        this("<%= name %>", html);
+    public <%= className() %>() {
+       this("");
     }
 
-    public <%= className() %>(String tag, String html) {
+    /**
+     * Constructor used to create widgets with content.
+     * Normally used in UIBinder files.
+     */
+    public <%= className() %>(String html) {
+        this(<%= className() %>Element.TAG, html);
+    }
+
+    /**
+     * Used when this class is extended by other element.
+     */
+    protected <%= className() %>(String tag, String html) {
         super(tag, html);
 <% if (hasEvents()) _.forEach(events, function(event){ %>
         getPolymerElement().addEventListener(

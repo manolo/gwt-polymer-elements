@@ -16,6 +16,8 @@ import com.google.gwt.core.client.js.JsType;
 @JsType
 public interface <%= className() %>Element extends <%= baseClassName() %> {
 
+    public static final String TAG = "<%= name %>";
+
 <% if (hasAttributes()) _.forEach(attributes, function(attribute){ %>
     /**
      * <%= attribute.description.trim().split('\n').join('\n     * ') %>
