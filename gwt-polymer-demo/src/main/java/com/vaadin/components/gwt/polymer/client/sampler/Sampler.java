@@ -147,7 +147,7 @@ public class Sampler extends Composite {
         addCategory("gwt", "Other");
         addSample("Element UiBinder", new PaperTabsView(), "gwt", "PaperTabsView");
         addSample("Widget UiBinder", new PaperTabsWidgetView(), "gwt", "PaperTabsWidgetView");
-        addSample("Java API", new PaperJavaAPI(), "gwt", "PaperJavaAPI");
+        addSample("Java API", new PaperJavaAPI(), "gwt", "PaperJavaAPI", false);
 
 
         RootPanel.get().add(new PaperJavaAPI());
@@ -182,12 +182,16 @@ public class Sampler extends Composite {
     }
 
     private void addSample(final String name, final Widget sample, String category, String path) {
+        addSample(name, sample, category, path, true);
+    }
+
+    private void addSample(final String name, final Widget sample, String category, String path, boolean hasxml) {
         final int idx = content.getWidgetCount();
         content.add(sample);
 
         CoreCollapse collapse = collapseMap.get(category);
         CoreSelector selector = selectorMap.get(category);
-        items.add(new Item(collapse, selector, category, path, idx, name));
+        items.add(new Item(collapse, selector, category, path, idx, name, hasxml));
     }
 
     private void selectItem(String hash) {
@@ -211,8 +215,9 @@ public class Sampler extends Composite {
         String name;
         int selectorIdx;
         int sampleIdx;
+        boolean uixml;
 
-        public Item(CoreCollapse collapse, CoreSelector selector, String category, String path, int idx, String name) {
+        public Item(CoreCollapse collapse, CoreSelector selector, String category, String path, int idx, String name, boolean uixml) {
             super(name);
             this.collapse = collapse;
             this.selector = selector;
@@ -220,6 +225,7 @@ public class Sampler extends Composite {
             this.path = path;
             this.name = name;
             this.sampleIdx = idx;
+            this.uixml = uixml;
             selectorIdx = selector.getWidgetCount();
             selector.add(this);
             setName(name);
@@ -237,6 +243,7 @@ public class Sampler extends Composite {
             currentItem = this;
             History.newItem(category + "/" + path, false);
             currentLabel.setInnerText(name);
+            xmlButton.setVisible(uixml);
         }
     }
 }

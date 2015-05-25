@@ -1,7 +1,5 @@
 package com.vaadin.components.gwt.polymer.client.sampler.core;
 
-import static com.google.gwt.query.client.GQuery.console;
-
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.PreElement;
@@ -44,8 +42,6 @@ public class A11yKeysSample extends Composite {
         a11y.addKeysPressedHandler(new KeysPressedEventHandler() {
             @Override
             public void onKeysPressed(KeysPressedEvent event) {
-//                console.log(output.getInnerText(), event.getKey());
-                // FIXME: does not compile
                  output.setInnerText(output.getInnerText() + event.getKey() + "\n");
             }
         });
