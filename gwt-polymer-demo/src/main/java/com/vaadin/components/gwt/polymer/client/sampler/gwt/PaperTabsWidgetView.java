@@ -1,4 +1,4 @@
-package com.vaadin.components.gwt.polymer.client.sampler;
+package com.vaadin.components.gwt.polymer.client.sampler.gwt;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;

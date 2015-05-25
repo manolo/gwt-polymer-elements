@@ -1,15 +1,22 @@
+/**
+ * Code generated with gwt-polymer an Apache 2.0 Licensed library
+ * developed at Vaadin Labs.
+ */
 package com.vaadin.components.gwt.polymer.client.element;
 
-import com.vaadin.components.gwt.polymer.client.webapi.element.*;
-import com.vaadin.components.gwt.polymer.client.webapi.element.alias.*;
-import com.vaadin.components.gwt.polymer.client.PolymerElement;
+import com.vaadin.components.gwt.polymer.client.webapi.*;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.core.client.JsArray;
 import com.google.gwt.core.client.js.JsProperty;
 import com.google.gwt.core.client.js.JsType;
 
+/**
+ * AUTO-GENERATED CODE, DO NOT EDIT
+ */
 @JsType
 public interface <%= className() %>Element extends <%= baseClassName() %> {
+
+    public static final String TAG = "<%= name %>";
 
 <% if (hasAttributes()) _.forEach(attributes, function(attribute){ %>
     /**
@@ -18,8 +25,8 @@ public interface <%= className() %>Element extends <%= baseClassName() %> {
      * @attribute <%= attribute.name %>
      * @type <%= attribute.type %>
      */
-    @JsProperty <%= computeType(attribute.type) %> <%= computeGetter(attribute) %>();
-    @JsProperty void <%= computeSetter(attribute) %>(<%= computeType(attribute.type) %> value);
+    @JsProperty <%= computeType(attribute.type) %> <%= computeGetterWithPrefix(attribute) %>();
+    @JsProperty void <%= computeSetterWithPrefix(attribute) %>(<%= computeType(attribute.type) %> value);
 <% }); %>
 <% if (hasProperties()) _.forEach(properties, function(property){ %>
     /**
@@ -28,11 +35,11 @@ public interface <%= className() %>Element extends <%= baseClassName() %> {
      * @property <%= property.name %>
      * @type <%= property.type %>
      */
-    @JsProperty <%= computeType(property.type) %> <%= computeGetter(property) %>();
-    @JsProperty void <%= computeSetter(property) %>(<%= computeType(property.type) %> value);
+    @JsProperty <%= computeType(property.type) %> <%= computeGetterWithPrefix(property) %>();
+    @JsProperty void <%= computeSetterWithPrefix(property) %>(<%= computeType(property.type) %> value);
 <% }); %>
 <% if (hasMethods()) _.forEach(methods, function(method){ %>
-    /** 
+    /**
      * <%= method.description.trim().split('\n').join('\n     * ') %>
      *
      * @method <%= method.name %><% if (!!method.params) _.forEach(method.params, function(param) { %>

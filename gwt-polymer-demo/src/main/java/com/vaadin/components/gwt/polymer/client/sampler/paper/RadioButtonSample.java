@@ -5,9 +5,6 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 
-/**
- * Created by Taras on 23.03.2015.
- */
 public class RadioButtonSample extends Composite {
     interface RadioButtonSampleUiBinder extends UiBinder<HTMLPanel, RadioButtonSample> {
     }

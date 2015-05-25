@@ -20,7 +20,7 @@ public class A11yKeysSample extends Composite {
     private static A11yKeysSampleUiBinder ourUiBinder = GWT.create(A11yKeysSampleUiBinder.class);
 
     private String keys = "* pageup pagedown left right down up shift+a alt+a home end space enter";
-    
+
     @UiField
     Element label;
     @UiField
@@ -31,18 +31,18 @@ public class A11yKeysSample extends Composite {
     public A11yKeysSample() {
         Polymer.ensureHTMLImport("core-a11y-keys");
         initWidget(ourUiBinder.createAndBindUi(this));
-        
+
         label.setInnerText(keys);
+
+//        a11y.setTarget(RootPanel.getBodyElement());
         // TODO: set target directly
         a11y.getElement().setPropertyObject("target", RootPanel.getBodyElement());
-//        a11y.setTarget(RootPanel.getBodyElement());
         a11y.setKeys(keys);
 
         a11y.addKeysPressedHandler(new KeysPressedEventHandler() {
             @Override
             public void onKeysPressed(KeysPressedEvent event) {
-                // FIXME: does not compile
-                // output.setInnerText(output.getInnerText() + event.getKey() + "\n");
+                 output.setInnerText(output.getInnerText() + event.getKey() + "\n");
             }
         });
     }

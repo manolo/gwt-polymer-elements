@@ -27,16 +27,17 @@
 
         .item {
             padding-left: 20px;
+            font-size: 13px;
         }
     </ui:style>
-    
+
     <g:HTMLPanel>
         <p:CoreDrawerPanel ui:field="drawerPanel">
 
             <div drawer="">
                 <p:CoreHeaderPanel mode="seamed">
-                    <p:CoreToolbar addStyleNames="{style.toolbar}"/>
-                    <g:FlowPanel ui:field="listPanel" addStyleNames="content"/>
+                    <p:CoreToolbar addStyleNames="{style.toolbar}">GWT-Polymer</p:CoreToolbar>
+                    <g:FlowPanel ui:field="listPanel" addStyleNames="list"/>
                 </p:CoreHeaderPanel>
             </div>
 
@@ -44,11 +45,11 @@
                 <p:CoreHeaderPanel mode="seamed">
                     <p:CoreToolbar addStyleNames="{style.toolbar}">
                         <p:PaperIconButton ui:field="menuButton" icon="menu"/>
-                        <span ui:field="label" flex="">Button</span>
+                        <span ui:field="currentLabel" flex=""></span>
                         <p:PaperButton ui:field="xmlButton"><p:CoreIcon icon="launch"/>.ui.xml</p:PaperButton>
                         <p:PaperButton ui:field="javaButton"><p:CoreIcon icon="launch"/>.java</p:PaperButton>
                     </p:CoreToolbar>
-                    <g:SimplePanel ui:field="content" addStyleNames="content"/>
+                    <g:DeckPanel ui:field="content" animationEnabled="true" />
                 </p:CoreHeaderPanel>
             </div>
 

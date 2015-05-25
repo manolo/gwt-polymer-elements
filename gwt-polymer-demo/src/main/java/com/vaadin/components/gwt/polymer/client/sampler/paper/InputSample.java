@@ -5,9 +5,6 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 
-/**
- * Created by Taras on 24.03.2015.
- */
 public class InputSample extends Composite {
     interface InputSampleUiBinder extends UiBinder<HTMLPanel, InputSample> {
     }
