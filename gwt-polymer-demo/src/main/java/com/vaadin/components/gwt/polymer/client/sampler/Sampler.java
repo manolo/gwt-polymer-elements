@@ -20,9 +20,11 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DeckPanel;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HTMLPanel;
+import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.vaadin.components.gwt.polymer.client.sampler.core.A11yKeysSample;
 import com.vaadin.components.gwt.polymer.client.sampler.core.CoreCollapseSample;
+import com.vaadin.components.gwt.polymer.client.sampler.gwt.PaperJavaAPI;
 import com.vaadin.components.gwt.polymer.client.sampler.gwt.PaperTabsView;
 import com.vaadin.components.gwt.polymer.client.sampler.gwt.PaperTabsWidgetView;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.ButtonSample;
@@ -143,8 +145,12 @@ public class Sampler extends Composite {
         addSample("Toast", new ToastSample(), "paper", "ToastSample");
 
         addCategory("gwt", "Other");
-        addSample("JsInterop wrappers", new PaperTabsView(), "gwt", "PaperTabsView");
-        addSample("Widget wrappers", new PaperTabsWidgetView(), "gwt", "PaperTabsWidgetView");
+        addSample("Element UiBinder", new PaperTabsView(), "gwt", "PaperTabsView");
+        addSample("Widget UiBinder", new PaperTabsWidgetView(), "gwt", "PaperTabsWidgetView");
+        addSample("Java API", new PaperJavaAPI(), "gwt", "PaperJavaAPI");
+
+
+        RootPanel.get().add(new PaperJavaAPI());
 
         selectItem(Window.Location.getHash().replace("#", ""));
 
