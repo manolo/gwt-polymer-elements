@@ -1,5 +1,20 @@
 html, html body {
 	height: 100%;
 	width: 100%;
+	font-family: helvetica;
+}
+
+button, button:active, button:focus {
+  padding: 5px 7px;
+  cursor: pointer;
+  font-size: small;
+  border: 1px solid #bbb;
+  background: #dadada;
+  border-bottom: 1px solid #a0a0a0;
+  border-radius: 3px;
+  outline: none;
+}
+button:hover {
+  background: #bbbbbb;
 }
 

@@ -1,20 +1,39 @@
+/**
+ * Code generated with gwt-polymer an Apache 2.0 Licensed library
+ * developed at Vaadin Labs.
+ */
 package com.vaadin.components.gwt.polymer.client.widget;
 
 import com.vaadin.components.gwt.polymer.client.PolymerWidget;
 import com.vaadin.components.gwt.polymer.client.element.*;
-import com.vaadin.components.gwt.polymer.client.webapi.element.*;
-import com.vaadin.components.gwt.polymer.client.webapi.widget.alias.*;
+import com.vaadin.components.gwt.polymer.client.webapi.*;
 import com.vaadin.components.gwt.polymer.client.widget.event.*;
 import com.google.gwt.core.client.JsArray;
 import com.google.gwt.event.shared.HandlerRegistration;
 
+/**
+ * AUTO-GENERATED CODE, DO NOT EDIT
+ */
 public class <%= className() %> extends <%= baseWidgetName() %> {
 
-    public <%= className() %>(String html) {
-        this("<%= name %>", html);
+    /**
+     * Default Constructor.
+     */
+    public <%= className() %>() {
+       this("");
     }
-    
-    public <%= className() %>(String tag, String html) {
+
+    /**
+     * Constructor used by UIBinder to create widgets with content.
+     */
+    public <%= className() %>(String html) {
+        this(<%= className() %>Element.TAG, html);
+    }
+
+    /**
+     * Used when this element is extended by another.
+     */
+    protected <%= className() %>(String tag, String html) {
         super(tag, html);
 <% if (hasEvents()) _.forEach(events, function(event){ %>
         getPolymerElement().addEventListener(
@@ -28,33 +47,60 @@ public class <%= className() %> extends <%= baseWidgetName() %> {
 <% }); %>
     }
 
+    /**
+     * Gets a handle to the Polymer object's underlying DOM element.
+     */
     public <%= className() %>Element getPolymerElement() {
         return (<%= className() %>Element) getElement();
     }
-    
+
 <% if (hasAttributes()) _.forEach(attributes, function(attribute){ %>
+    /**
+     * <%= attribute.description.trim().split('\n').join('\n     * ') %>
+     *
+     * @attribute <%= attribute.name %>
+     * @type <%= attribute.type %>
+     */
     public <%= computeType(attribute.type) %> <%= computeGetterWithPrefix(attribute) %>() {
-        return getPolymerElement().<%= computeGetter(attribute) %>();
+        return getPolymerElement().<%= computeGetterWithPrefix(attribute) %>();
     }
     public void <%= computeSetterWithPrefix(attribute) %>(<%= computeType(attribute.type) %> value) {
+        // getElement().setPropertyObject("<%= attribute.name %>", value);
         getElement().setAttribute("<%= attribute.name %>", String.valueOf(value));
     }
     <%= extraSetter(attribute) %>
 <% }); %>
 <% if (hasProperties()) _.forEach(properties, function(property){ %>
+    /**
+     * <%= property.description.trim().split('\n').join('\n     * ') %>
+     *
+     * @property <%= property.name %>
+     * @type <%= property.type %>
+     */
     public <%= computeType(property.type) %> <%= computeGetterWithPrefix(property) %>(){
-        return getPolymerElement().<%= computeGetter(property) %>();
+        return getPolymerElement().<%= computeGetterWithPrefix(property) %>();
     }
     public void <%= computeSetterWithPrefix(property) %>(<%= computeType(property.type) %> value) {
-        getPolymerElement().<%= computeSetter(property) %>(value);
+        getPolymerElement().<%= computeSetterWithPrefix(property) %>(value);
     }
 <% }); %>
 <% if (hasMethods()) _.forEach(methods, function(method){ %>
+  <% if (method.name != 'setZ') { // FIXME(manolo) %>
+    /**
+     * <%= method.description.trim().split('\n').join('\n     * ') %>
+     *
+     * @method <%= method.name %><% if (!!method.params) _.forEach(method.params, function(param) { %>
+     * @param {<%= param.type %>} <%= param.name %> <%= param.description %> <% }); %>
+     */
     public void <%= method.name %>(<%= typedParamsString(method) %>) {
         getPolymerElement().<%= method.name %>(<%= paramsString(method) %>);
     }
+  <% } %>
 <% }); %>
 <% if (hasEvents()) _.forEach(events, function(event){ %>
+    /**
+     * <%= event.description.trim().split('\n').join('\n     * ') %>
+     */
     public HandlerRegistration add<%= camelCase(event.name) %>Handler(<%= camelCase(event.name) %>EventHandler handler) {
         return addHandler(handler, <%= camelCase(event.name) %>Event.TYPE);
     }

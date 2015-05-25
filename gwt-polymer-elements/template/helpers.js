@@ -4,13 +4,31 @@ module.exports = {
     return this.camelCase(this['name']);
   },
   baseClassName: function () {
-    return this['extends'] ? this.camelCase(this['extends']) + 'Element' : 'PolymerElement';
+    var e = this['extends'];
+    if (e && e.match(/[A-Z\-]/)) {
+      // CoreResizable -> CoreResizableElement, core-input -> CoreInputElment
+      return this.camelCase(e) + 'Element';
+    } else {
+      // input -> HTMLInputElement, table -> HTMLTableElement
+      return 'HTML' + (e ? this.camelCase(e) : '') + 'Element';
+    }
   },
   baseWidgetName: function () {
-    return this['extends'] ? this.camelCase(this['extends']) : 'PolymerWidget';
+    var e = this['extends'];
+    if (e && e.match(/[A-Z\-]/)) {
+      // CoreResizable -> CoreResizable, core-drop-downBase -> CoreDropdownBase
+      return this.camelCase(e);
+    } else {
+      return 'PolymerWidget';
+    }
   },
   camelCase: function(s) {
     return (s || '').toLowerCase().replace(/(\b|-)\w/g, function (m) {
+      return m.toUpperCase().replace(/-/, '');
+    });
+  },
+  computeMethodName: function(s) {
+    return (s || '').replace(/-\w/g, function (m) {
       return m.toUpperCase().replace(/-/, '');
     });
   },
@@ -48,7 +66,7 @@ module.exports = {
     if (this.javaKeywords.indexOf(name) >= 0) {
       return this.computeGetterWithPrefix(item);
     } else {
-      return name;
+      return this.computeMethodName(name);
     }
   },
   computeGetterWithPrefix: function(item) {
@@ -58,20 +76,20 @@ module.exports = {
     }
     var prefix = item.type === 'boolean' ? 'is' : 'get';
     if (this.startsWith(name, prefix)) {
-      return name;      
+      return name;
     } else {
-      return prefix + this.capitalizeFirstLetter(name);
+      return prefix + this.capitalizeFirstLetter(this.computeMethodName(name));
     }
   },
   computeSetter: function(item) {
     if (this.javaKeywords.indexOf(item.name) >= 0) {
       return this.computeSetterWithPrefix(item);
     } else {
-      return item.name;
+      return this.computeMethodName(item.name);
     }
   },
   computeSetterWithPrefix: function(item) {
-    return 'set' + this.capitalizeFirstLetter(item.name);
+    return 'set' + this.capitalizeFirstLetter(this.computeMethodName(item.name));
   },
   startsWith: function (str, substr){
     return str.indexOf(substr) === 0;
@@ -81,7 +99,7 @@ module.exports = {
     if (method.params) {
       method.params.forEach(function(param) {
         var type = this.computeType(param.type);
-        result.push(type + ' ' + param.name);
+        result.push(type + ' ' + this.computeMethodName(param.name));
       }, this);
     }
     return result.join(', ');
@@ -90,7 +108,7 @@ module.exports = {
     var result = [];
     if (method.params) {
       method.params.forEach(function(param) {
-        result.push(param.name);
+        result.push(this.computeMethodName(param.name));
       }, this);
     }
     return result.join(', ');
@@ -98,14 +116,14 @@ module.exports = {
   extraSetter: function(attribute) {
     var type = this.computeType(attribute.type);
     if (type === 'String') {
-      return '';      
+      return '';
     } else if (type === 'boolean') {
-      return 'public void ' + this.computeSetterWithPrefix(attribute) + '(String ' + attribute.name + ') {\n' + 
+      return 'public void ' + this.computeSetterWithPrefix(attribute) + '(String ' + attribute.name + ') {\n' +
         '        setBooleanAttribute("' + attribute.name + '", true);\n' +
         '    }';
     } else {
-      return 'public void ' + this.computeSetterWithPrefix(attribute) + '(String ' + attribute.name + ') {\n' +
-        '        getElement().setAttribute("' + attribute.name + '", ' + attribute.name + ');\n' +
+      return 'public void ' + this.computeSetterWithPrefix(attribute) + '(String ' + this.computeMethodName(attribute.name) + ') {\n' +
+        '        getElement().setAttribute("' + attribute.name + '", ' + this.computeMethodName(attribute.name) + ');\n' +
         '    }';
     }
   }

@@ -46,7 +46,6 @@
     </ui:style>
 
     <g:HTMLPanel addStyleNames="{style.container}">
-
         <section>
 
             <div>Shadows</div>
@@ -81,7 +80,7 @@
 
             <div>Animated</div>
 
-            <p:PaperShadow ui:field="shadow1" addStyleNames="{style.card}" z="0" animated="">
+            <p:PaperShadow ui:field="shadow1" addStyleNames="{style.card}" z="1" animated="">
                 tap
             </p:PaperShadow>
 

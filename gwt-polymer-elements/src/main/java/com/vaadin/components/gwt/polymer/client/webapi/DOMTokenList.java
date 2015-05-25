@@ -1,4 +1,4 @@
-package com.vaadin.components.gwt.polymer.client.webapi.element;
+package com.vaadin.components.gwt.polymer.client.webapi;
 
 import com.google.gwt.core.client.js.JsProperty;
 import com.google.gwt.core.client.js.JsType;
@@ -7,7 +7,7 @@ import com.google.gwt.core.client.js.JsType;
 public interface DOMTokenList {
 
     @JsProperty
-    int length();
+    int getLength();
     
     boolean contains();
 }

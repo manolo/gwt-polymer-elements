@@ -22,16 +22,17 @@ public class Demo implements EntryPoint {
 //        RootPanel.get().add(new IconButtonSample());
 //        RootPanel.get().add(new FloatingActionButtonSample());
 //        RootPanel.get().add(new DropdownMenuSample());
+//        RootPanel.get().add(new DropdownSample());
 //        RootPanel.get().add(new MenuButtonSample());
 //        RootPanel.get().add(new ItemSample());
 //        RootPanel.get().add(new DialogSample());
 //        RootPanel.get().add(new ShadowSample());
 //        RootPanel.get().add(new ToastSample());
-//        
 //        RootPanel.get().add(new A11yKeysSample());
 //        RootPanel.get().add(new CoreSelectorSample());
 //        RootPanel.get().add(new CoreDrawerPanelSample());
-        
+//        RootPanel.get().add(new PaperJavaAPI());
+
         RootPanel.get().add(new Sampler());
     }
 }

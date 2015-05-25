@@ -12,6 +12,15 @@
     <artifactId>gwt-polymer-demo</artifactId>
     <packaging>war</packaging>
 
+    <repositories>
+       <repository>
+         <id>sonatype-snapshots</id>
+         <url>http://oss.sonatype.org/content/repositories/snapshots</url>
+         <snapshots><enabled>true</enabled></snapshots>
+         <releases><enabled>false</enabled></releases>
+       </repository>
+    </repositories>
+
     <dependencies>
         <dependency>
             <groupId>com.google.gwt</groupId>
@@ -20,8 +29,8 @@
         </dependency>
         <dependency>
             <groupId>com.google.gwt</groupId>
-            <artifactId>gwt-servlet</artifactId>
-            <scope>runtime</scope>
+            <artifactId>gwt-codeserver</artifactId>
+            <scope>provided</scope>
         </dependency>
 
         <!-- this is the dependency to the "jar"-subproject -->
@@ -29,6 +38,13 @@
             <groupId>com.vaadin.components</groupId>
             <artifactId>gwt-polymer-elements</artifactId>
             <version>1.0-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.googlecode.gwtquery</groupId>
+            <artifactId>gwtquery</artifactId>
+            <version>1.4.4-SNAPSHOT</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 

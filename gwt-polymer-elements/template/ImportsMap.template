@@ -1,11 +1,18 @@
+/**
+ * Code generated with gwt-polymer an Apache 2.0 Licensed library
+ * developed at Vaadin Labs.
+ */
 package com.vaadin.components.gwt.polymer.client.element;
 
 import java.util.HashMap;
 
+/**
+ * AUTO-GENERATED CODE, DO NOT EDIT
+ */
 public class ImportsMap extends HashMap<String, String> {
 
     private static ImportsMap instance = new ImportsMap();
-    
+
     static { <% _.forEach(imports, function(item){ %>
         instance.put("<%= item.element %>", "<%= item.path %>");<% }) %>
     }
@@ -16,7 +23,7 @@ public class ImportsMap extends HashMap<String, String> {
 
     private ImportsMap() {
     }
-    
+
     @Override
     public String get(Object key) {
         String value = super.get(key);
