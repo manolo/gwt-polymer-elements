@@ -28,7 +28,7 @@ module.exports = {
     });
   },
   computeMethodName: function(s) {
-    return (s || '').replace(/-\w/g, function (m) {
+    return (s || '').replace(/[^\w$]/g, '_').replace(/-\w/g, function (m) {
       return m.toUpperCase().replace(/-/, '');
     });
   },
