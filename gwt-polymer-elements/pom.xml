@@ -13,6 +13,11 @@
     <artifactId>gwt-polymer-elements</artifactId>
     <packaging>jar</packaging>
 
+    <properties>
+      <name>${artifactId}</name>
+      <release>${version}</release>
+    </properties>
+
     <distributionManagement>
       <snapshotRepository>
         <id>sonatype-nexus-snapshots</id>
@@ -29,6 +34,7 @@
         </dependency>
     </dependencies>
     <build>
+        <finalName>${name}-${release}</finalName>
         <resources>
             <resource>
                 <directory>src/main/java</directory>

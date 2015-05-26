@@ -49,16 +49,19 @@ follow these instructions:
  1.  Preparation: install `node.js`, `npm` and `bower` in your system, and check
  that `npm` and `bower` are in your PATH.
  1.  Go to the `gwt-polymer-elements` directory
- 2.  Run `npm install`
- 3.  Edit the `bower.json` file and add/remove the components you need for your project.
- 4.  By default, the "dependencies" section of the `bower.json` file includes all paper
- elements
- 5.  Any time you modify the list of components you have to run `bower install`.
- 5.  Run `gulp gwt-api` in order to create all java files needed for GWT in the  `gwt-polymer-elements/src/main/java/` folder.
- 6.  Run `mvn clean install` to install the components library in you local maven repo.
- 7.  You might save the `.jar` generated in the folder `gwt-polymer-elements/target` folder
- 7.  If you want to run the demo, go to the demo folder `../gwt-polymer-demo`
- 8.  Run `mvn gwt:run` to run the demo in SuperDevMode, otherwise run `mvn clean package` to
+ 1.  Run `npm install`
+ 1.  Edit the `bower.json` file and add/remove the components you need for your project.
+ 1.  By default, the "dependencies" section of the `bower.json` file includes all paper
+     elements
+ 1.  Any time you modify the list of components you have to run `bower install`.
+ 1.  Run `gulp gwt-api` in order to create all java files needed for GWT in the
+     `gwt-polymer-elements/src/main/java/` folder.
+ 1.  Run `mvn clean install` to install the components library in you local maven repo.
+ 1.  You might save the `.jar` generated in the folder `gwt-polymer-elements/target` folder
+ 1.  To customize the name of the distributable artefact run
+     `mvn clean install -Dname=your-library -Drelease=your-version`
+ 1.  If you want to run the demo, go to the demo folder `../gwt-polymer-demo`
+ 1.  Run `mvn gwt:run` to run the demo in SuperDevMode, otherwise run `mvn clean package` to
  obtain the `target/demo.war` application
 
 ## Screenshots
