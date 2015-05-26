@@ -20,7 +20,6 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.DeckPanel;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HTMLPanel;
-import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.vaadin.components.gwt.polymer.client.sampler.core.A11yKeysSample;
 import com.vaadin.components.gwt.polymer.client.sampler.core.CoreCollapseSample;
@@ -72,7 +71,7 @@ public class Sampler extends Composite {
     private Map<String, CoreSelector> selectorMap = new HashMap<>();
     private Map<String, CoreCollapse> collapseMap = new HashMap<>();
     private List<Item> items = new ArrayList<>();
-    Item currentItem;
+    private Item currentItem;
 
     @UiField Style style;
 
@@ -149,11 +148,7 @@ public class Sampler extends Composite {
         addSample("Widget UiBinder", new PaperTabsWidgetView(), "gwt", "PaperTabsWidgetView");
         addSample("Java API", new PaperJavaAPI(), "gwt", "PaperJavaAPI", false);
 
-
-        RootPanel.get().add(new PaperJavaAPI());
-
         selectItem(Window.Location.getHash().replace("#", ""));
-
         History.addValueChangeHandler(new ValueChangeHandler<String>() {
             public void onValueChange(ValueChangeEvent<String> event) {
                 selectItem(event.getValue());
@@ -244,6 +239,9 @@ public class Sampler extends Composite {
             History.newItem(category + "/" + path, false);
             currentLabel.setInnerText(name);
             xmlButton.setVisible(uixml);
+            if (drawerPanel.isNarrow()) {
+                drawerPanel.closeDrawer();
+            }
         }
     }
 }

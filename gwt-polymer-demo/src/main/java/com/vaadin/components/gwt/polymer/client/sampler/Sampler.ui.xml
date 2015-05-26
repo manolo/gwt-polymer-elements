@@ -43,7 +43,9 @@
         }
         .current {
             overflow: hidden;
+            text-overflow: ellipsis;
             white-space: nowrap;
+            
         }
     </ui:style>
 
@@ -61,7 +63,7 @@
                 <p:CoreHeaderPanel mode="seamed">
                     <p:CoreToolbar addStyleNames="{style.toolbar}">
                         <p:PaperIconButton ui:field="menuButton" icon="menu"/>
-                        <span ui:field="currentLabel" flex="" addStyleNames="{style.current}"></span>
+                        <span ui:field="currentLabel" flex="" class="{style.current}"></span>
                         <p:PaperButton ui:field="xmlButton" addStyleNames="{style.buttons}"><p:CoreIcon icon="launch"/>.ui.xml</p:PaperButton>
                         <p:PaperButton ui:field="javaButton" addStyleNames="{style.buttons}"><p:CoreIcon icon="launch"/>.java</p:PaperButton>
                     </p:CoreToolbar>
