@@ -17,17 +17,15 @@ public class PaperTabsView extends Composite {
 
     private static PaperTabsViewUiBinder ourUiBinder = GWT.create(PaperTabsViewUiBinder.class);
 
-    @UiField
-    PaperTabsElement paperTabs;
-    @UiField
-    PaperToastElement toast;
+    @UiField PaperTabsElement paperTabs;
+    @UiField PaperToastElement toast;
 
     public PaperTabsView() {
         Polymer.ensureHTMLImport("paper-tabs");
         Polymer.ensureHTMLImport("paper-toast");
 
         initWidget(ourUiBinder.createAndBindUi(this));
-        
+
         paperTabs.addEventListener(CoreSelectEvent.NAME, new CoreSelectEvent.Listener() {
             @Override
             public void handleEvent(CoreSelectEvent event) {

@@ -16,7 +16,6 @@ import com.vaadin.components.gwt.polymer.client.widget.PaperIconButton;
 public class PaperJavaAPI extends FlowPanel {
 
     public PaperJavaAPI() {
-
         this.getElement().getStyle().setPadding(20, Unit.PX);
         Label label = new Label("Buttons created with Paper Java API");
         label.getElement().getStyle().setFontSize(20, Unit.PX);

@@ -12,6 +12,9 @@ public interface Element extends Node {
     @JsProperty
     DOMTokenList getClassList();
 
+    @JsProperty
+    CSSStyleDeclaration getStyle();
+
     void setAttribute(String name, Object value);
     String getAttribute(String name);
     void removeAttribute(String name);

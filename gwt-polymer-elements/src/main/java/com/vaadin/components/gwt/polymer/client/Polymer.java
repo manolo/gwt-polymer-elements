@@ -36,4 +36,8 @@ public abstract class Polymer {
         ensureHTMLImport(tagName);
         return (T)Document.get().createElement(tagName);
     }
+
+    public static com.vaadin.components.gwt.polymer.client.webapi.Document getDocument() {
+        return (com.vaadin.components.gwt.polymer.client.webapi.Document)Document.get();
+    }
 }
