@@ -12,7 +12,7 @@ creating it.
 
  - If your project uses maven, configure it to use the Sonatype snapshot repository and add the dependency:
 
-  ```
+  ```xml
    <repositories>
      <repository>
        <id>sonatype-snapshots</id>
@@ -68,7 +68,7 @@ follow these instructions:
 ## Usage
 
  - Consuming Polymer components in Java using the Element API
-```
+```java
   // Create a new instance of PaperButton
   PaperButtonElement button = Polymer.create(PaperButtonElement.TAG;
 
@@ -89,7 +89,7 @@ follow these instructions:
 ```
  - Consuming Polymer components in Java using classic Widgets
 
-```
+```java
 PaperButton button = new PaperButton();
 
 button.addClickHandler(new ClickHandler() {
@@ -102,7 +102,7 @@ RootPanel.get().add(button);
 ```
 
  - Consuming Polymer components in UiBinder
-```
+```xml
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
     xmlns:g='urn:import:com.google.gwt.user.client.ui'
     xmlns:p='urn:import:com.vaadin.components.gwt.polymer.client.widget'>
