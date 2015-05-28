@@ -4,7 +4,7 @@ Allows to use polymer elements in GWT projects.
 ## Demo
   http://vaadin.github.io/gwt-polymer/demo.html
 
-## Use the ready to use Polymer/Paper library for GWT
+## The ready to use Polymer/Paper library for GWT
 
 We have produced a `.jar` file which includes all the visual components of
 Polymer and Paper collections, so as you don't have to deal with the process of
@@ -41,7 +41,7 @@ creating it.
 
  ```
 
-## Build your own set of components.
+## Building your own set of components.
 
 You might want to select the components for your project, in this case you need to
 follow these instructions:
@@ -63,9 +63,62 @@ follow these instructions:
  1.  If you want to run the demo, go to the demo folder `../gwt-polymer-demo`
  1.  Run `mvn gwt:run` to run the demo in SuperDevMode, otherwise run `mvn clean package` to
  obtain the `target/demo.war` application
+  - Optionally you can specify the final name and version of your package `mvn clean package -Dname=my_components -Drelease=0.9.0`
 
-## Screenshots
+## Usage
 
- - Example with GWT widgets: [all-in-one](http://prntscr.com/6k8np9)
- - Example with polymer GWT elements: [all-in-one](http://prntscr.com/6k8nm6)
- - Code generator in action: [Screencast](http://screencast.com/t/UMz0MG9nxhs)
+ - Consuming Polymer components in Java using the Element API
+```
+  // Create a new instance of PaperButton
+  PaperButtonElement button = Polymer.create(PaperButtonElement.TAG;
+
+  // Set some properties
+  button.icon("polymer")
+        .label("Polymer")
+        .raisedButton(false);
+
+  // Add event listeners
+  button.addEventListener("click", new EventListener() {
+      public void onBrowserEvent(Event event) {
+      ...    
+      }
+  });
+
+  // Append to the document
+  myContainerElement.appendChild(button);
+```
+ - Consuming Polymer components in Java using classic Widgets
+
+```
+PaperButton button = new PaperButton();
+
+button.addClickHandler(new ClickHandler() {
+  public void onClick(ClickEvent event) {
+    // ...
+  }
+});
+
+RootPanel.get().add(button);
+```
+
+ - Consuming Polymer components in UiBinder
+```
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+    xmlns:g='urn:import:com.google.gwt.user.client.ui'
+    xmlns:p='urn:import:com.vaadin.components.gwt.polymer.client.widget'>
+
+<ui:style>
+  .container paper-button.colored {
+    background: #4285f4;
+    color: #fff;
+  }
+</ui:style>
+
+<g:HTMLPanel>
+  <!-- As Widget -->
+  <p:PaperButton toggle="" raised="" active="" addStyleNames="{style.colored}">active</p:PaperButton>
+	<!-- As Element -->	 	
+  <paper-button raised="" noink="">Click me</paper-button>
+</g:HTMLPanel>
+
+```
