@@ -18,7 +18,11 @@ function camelCase(s) {
 
 gulp.task('gwt-api:clean', function() {
   fs.removeSync('src/main/java/com/vaadin/components/gwt/polymer/client/element');
-  fs.removeSync('dist-tmp');
+  fs.removeSync('src/main/java/com/vaadin/components/gwt/polymer/client/widget');
+});
+
+gulp.task('clean', function() {
+  fs.removeSync('src/main/resources/com/vaadin/components/gwt/polymer/public');
 });
 
 gulp.task('gwt-api:parse', ['gwt-api:clean'], function() {
@@ -44,6 +48,7 @@ gulp.task('gwt-api:parse', ['gwt-api:clean'], function() {
           path: file.relative.replace(/\\/, '/')
         });
       });
+      fs.removeSync('dist-tmp');
       cb(null, file);
     }));
 });
