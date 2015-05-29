@@ -36,7 +36,7 @@ creating it.
   the `.jar` archive and put it in your gwt project classpath
 
 - Add this line to your GWT module file:
- ```
+ ```xml
   <inherits name="com.vaadin.components.gwt.polymer.PolymerElements"/>
 
  ```
@@ -73,7 +73,7 @@ follow these instructions:
  - Consuming Polymer components in Java using the Element API
 ```java
   // Create a new instance of PaperButton
-  PaperButtonElement button = Polymer.create(PaperButtonElement.TAG;
+  PaperButtonElement button = Polymer.create(PaperButtonElement.TAG);
 
   // Set some properties
   button.icon("polymer")
@@ -83,7 +83,7 @@ follow these instructions:
   // Add event listeners
   button.addEventListener("click", new EventListener() {
       public void onBrowserEvent(Event event) {
-      ...    
+      // ...    
       }
   });
 
