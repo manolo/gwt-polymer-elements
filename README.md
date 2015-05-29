@@ -35,11 +35,14 @@ creating it.
 - otherwise you can [download](https://oss.sonatype.org/content/repositories/snapshots/com/vaadin/components/gwt-polymer-elements/1.0-SNAPSHOT/)
   the `.jar` archive and put it in your gwt project classpath
 
-- Finally add this line to your GWT module file:
+- Add this line to your GWT module file:
  ```
   <inherits name="com.vaadin.components.gwt.polymer.PolymerElements"/>
 
  ```
+ 
+- Finally you must add the JsInterop flag to your compiler in order to make it run: `-XjsInteropMode JS`
+ 
 
 ## Building your own set of components.
 
