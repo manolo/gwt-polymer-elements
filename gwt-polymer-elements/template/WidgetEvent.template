@@ -5,6 +5,7 @@
 package com.vaadin.components.gwt.polymer.client.widget.event;
 
 import com.google.gwt.event.shared.GwtEvent;
+import com.google.gwt.core.client.JavaScriptObject;
 
 /**
  * <%= getDescription(' ') %>

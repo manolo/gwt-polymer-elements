@@ -27,7 +27,6 @@ public abstract class Polymer {
         }
     }
 
-
     /**
      * Returns a new instance of the Element. It loads the webcomponent
      * if not loaded yet.

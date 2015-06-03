@@ -32,13 +32,14 @@ module.exports = {
       return m.toUpperCase().replace(/-/, '');
     });
   },
-  computeType: function(type) {
-    if (type === 'string' || type === 'String') return 'String';
-    if (type === 'boolean') return 'boolean';
-    if (type === 'array') return 'JsArray';
-    if (type === 'element' || type === 'Element') return 'Element';
-    if (type === 'number' || type === 'Number') return 'double';
-    return "Object";
+  computeType: function(t) {
+    if (/^string$/i.test(t)) return 'String';
+    if (/^boolean/i.test(t)) return 'boolean';
+    if (/^array/i.test(t)) return 'JsArray';
+    if (/^element/i.test(t)) return 'Element';
+    if (/^number/i.test(t)) return 'double';
+    if (/^function/i.test(t)) return 'Function';
+    return "JavaScriptObject";
   },
   removeDuplicates: function(arr, prop) {
     for (var i = 0; i < arr.length; i++) {
