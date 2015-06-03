@@ -23,6 +23,7 @@ gulp.task('clean', function() {
 function serializeJson(path, item) {
   // Sometime the property is defined twice
   helpers.removeDuplicates(item.properties, 'name');
+  helpers.removePrivateApi(item.properties, 'name');
   fs.ensureFileSync(path);
   fs.writeFileSync(path, new Buffer(JSON.stringify(item)));
   // remember href in separate json

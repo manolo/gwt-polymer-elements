@@ -49,6 +49,13 @@ module.exports = {
       }
     }
   },
+  removePrivateApi: function(arr, prop) {
+    for (var i = arr.length - 1; i >= 0; i--) {
+      if (/^_/.test(arr[i][prop])) {
+        arr.splice(i, 1);
+      }
+    }
+  },
   hasEvents: function() {
     return !!this.events;
   },
