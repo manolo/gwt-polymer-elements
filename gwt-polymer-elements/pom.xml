@@ -12,6 +12,9 @@
 
     <artifactId>gwt-polymer-elements</artifactId>
     <packaging>jar</packaging>
+  <properties>
+    <additionalparam>-Xdoclint:none</additionalparam>
+  </properties>
 
     <distributionManagement>
       <snapshotRepository>

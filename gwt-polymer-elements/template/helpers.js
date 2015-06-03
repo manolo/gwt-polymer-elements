@@ -23,8 +23,8 @@ module.exports = {
     }
   },
   camelCase: function(s) {
-    return (s || '').toLowerCase().replace(/(\b|-)\w/g, function (m) {
-      return m.toUpperCase().replace(/-/, '');
+    return (s || '').toLowerCase().replace(/(\b|-|\.)\w/g, function (m) {
+      return m.toUpperCase().replace(/[-\.]/g, '');
     });
   },
   computeMethodName: function(s) {
@@ -39,6 +39,15 @@ module.exports = {
     if (type === 'element' || type === 'Element') return 'Element';
     if (type === 'number' || type === 'Number') return 'double';
     return "Object";
+  },
+  removeDuplicates: function(arr, prop) {
+    for (var i = 0; i < arr.length; i++) {
+      for (var j = arr.length - 1; j > i; j--) {
+        if (arr[i][prop] == arr[j][prop]) {
+          arr.splice(j, 1);
+        }
+      }
+    }
   },
   hasEvents: function() {
     return !!this.events;

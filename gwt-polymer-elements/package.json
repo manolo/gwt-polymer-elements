@@ -14,7 +14,8 @@
     "gulp-rename": "latest",
     "lodash": "^3.5.0",
     "map-stream": "^0.0.5",
-    "polymer-context-free-parser": "^0.4.2"
+    "polymer-context-free-parser": "^0.4.2",
+    "hydrolysis": ""
   },
   "scripts": {
     "postinstall": "node_modules/.bin/bower install"
