@@ -11,16 +11,19 @@ import com.google.gwt.core.client.js.JsProperty;
 import com.google.gwt.core.client.js.JsType;
 
 /**
- * AUTO-GENERATED CODE, DO NOT EDIT
+ * <%= getDescription(' ') %>
  */
 @JsType
 public interface <%= className() %>Element extends <%= baseClassName() %> {
+	/**
+	 * AUTO-GENERATED CODE, DO NOT EDIT !!!
+	 */
 
     public static final String TAG = "<%= name %>";
 
 <% if (hasAttributes()) _.forEach(attributes, function(attribute){ %>
     /**
-     * <%= attribute.description && attribute.description.trim().split('\n').join('\n     * ') || '' %>
+     * <%= getDescription('     ', atribute) %>
      *
      * @attribute <%= attribute.name %>
      * @type <%= attribute.type %>
@@ -30,7 +33,7 @@ public interface <%= className() %>Element extends <%= baseClassName() %> {
 <% }); %>
 <% if (hasProperties()) _.forEach(properties, function(property){ %>
     /**
-     * <%= property.description && property.description.trim().split('\n').join('\n     * ') || '' %>
+     * <%= getDescription('     ', property) %>
      *
      * @property <%= property.name %>
      * @type <%= property.type %>
@@ -40,7 +43,7 @@ public interface <%= className() %>Element extends <%= baseClassName() %> {
 <% }); %>
 <% if (hasMethods()) _.forEach(methods, function(method){ %>
     /**
-     * <%= method.description && method.description.trim().split('\n').join('\n     * ') || ''  %>
+     * <%= getDescription('     ', method) %>
      *
      * @method <%= method.name %><% if (!!method.params) _.forEach(method.params, function(param) { %>
      * @param {<%= param.type %>} <%= param.name %> <%= param.description %> <% }); %>

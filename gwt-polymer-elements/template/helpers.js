@@ -142,5 +142,9 @@ module.exports = {
         '        getElement().setAttribute("' + attribute.name + '", ' + this.computeMethodName(attribute.name) + ');\n' +
         '    }';
     }
+  },
+  getDescription: function(spaces, o) {
+    o = o || this;
+    return (o.description || o.desc || '').trim().split('\n').join('\n' + spaces + '* ').replace(/\*\//g, "* /");
   }
 };

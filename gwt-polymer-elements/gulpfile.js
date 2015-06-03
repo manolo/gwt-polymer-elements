@@ -21,9 +21,9 @@ gulp.task('clean', function() {
 });
 
 function serializeJson(path, item) {
-  // Sometime the property is defined twice
   helpers.removeDuplicates(item.properties, 'name');
   helpers.removePrivateApi(item.properties, 'name');
+
   fs.ensureFileSync(path);
   fs.writeFileSync(path, new Buffer(JSON.stringify(item)));
   // remember href in separate json
@@ -34,7 +34,7 @@ function serializeJson(path, item) {
 }
 gulp.task('gwt-api:parse', ['gwt-api:clean'], function() {
   var path = "src/main/resources/com/vaadin/components/gwt/polymer/public/bower_components/";
-  return gulp.src([path + "*/*.html", 
+  return gulp.src([path + "*/*.html",
     "!" + path + "*/*demo.html",        // ignore all the demo.html files
     "!" + path + "*/*index.html",       // ignore all the index.html files
     "!" + path + "*/*metadata.html",
@@ -48,9 +48,8 @@ gulp.task('gwt-api:parse', ['gwt-api:clean'], function() {
           // saves the result object as JSON
           var dirname = 'dist-tmp/';
           var path = dirname + item.is + '.json';
-          item.name = item.is;
-          item.description = item.description || item.is;
-          if (item.name) {
+          if (item.is) {
+            item.name = item.is;
             gutil.log("Serializing " + path + " from: " + file.relative);
             serializeJson(path, item);
           } else {
@@ -89,7 +88,7 @@ gulp.task('gwt-api:generate-elements', ['gwt-api:parse'], function() {
 
 gulp.task('gwt-api:generate-events', ['gwt-api:parse'], function() {
   var tpl = _.template(fs.readFileSync('./template/Event.template'));
-  
+
   return gulp.src('dist-tmp/**.json')
     .pipe(map(function(file, cb) {
       var json = JSON.parse(file.contents);

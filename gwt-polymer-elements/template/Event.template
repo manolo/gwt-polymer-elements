@@ -10,10 +10,13 @@ import com.google.gwt.core.client.js.JsProperty;
 import com.google.gwt.core.client.js.JsType;
 
 /**
- * AUTO-GENERATED CODE, DO NOT EDIT
+ * <%= getDescription('  ') %>
  */
 @JsType
 public interface <%= camelCase(name) %>Event extends Event {
+	/**
+	 * AUTO-GENERATED CODE, DO NOT EDIT !!!
+	 */
 
     static final String NAME = "<%= name %>";
 <% if (hasParams()) { %>
