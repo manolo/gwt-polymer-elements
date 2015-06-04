@@ -28,23 +28,25 @@ public interface <%= className() %>Element extends <%= baseClassName() %> {
     @JsProperty <%= computeType(attribute.type) %> <%= computeGetterWithPrefix(attribute) %>();
     @JsProperty void <%= computeSetterWithPrefix(attribute) %>(<%= computeType(attribute.type) %> value);
 <% }); %>
-<% if (hasProperties()) _.forEach(properties, function(property){ %>
+<% if (hasProperties()) _.forEach(properties, function(item){ %>
+  <% if (item.type != 'Function') { %>
     /**
-     * <%= getDescription('     ', property) %>
+     * <%= getDescription('     ', item) %>
      *
-     * @property <%= property.name %>
-     * @type <%= property.type %>
+     * @property <%= item.name %>
+     * @type <%= item.type %>
      */
-    @JsProperty <%= computeType(property.type) %> <%= computeGetterWithPrefix(property) %>();
-    @JsProperty void <%= computeSetterWithPrefix(property) %>(<%= computeType(property.type) %> value);
-<% }); %>
-<% if (hasMethods()) _.forEach(methods, function(method){ %>
+    @JsProperty <%= computeType(item.type) %> <%= computeGetterWithPrefix(item) %>();
+    @JsProperty void <%= computeSetterWithPrefix(item) %>(<%= computeType(item.type) %> value);
+  <% } else { %>
     /**
-     * <%= getDescription('     ', method) %>
+     * <%= getDescription('     ', item) %>
      *
-     * @method <%= method.name %><% if (!!method.params) _.forEach(method.params, function(param) { %>
+     * @method <%= item.name %><% if (!!item.params) _.forEach(item.params, function(param) { %>
      * @param {<%= param.type %>} <%= param.name %> <%= param.description %> <% }); %>
      */
-    void <%= method.name %>(<%= typedParamsString(method) %>);
+    void <%= item.name %>(<%= typedParamsString(item) %>);
+
+  <% } %>
 <% }); %>
 }

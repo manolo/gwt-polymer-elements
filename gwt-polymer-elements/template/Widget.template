@@ -72,30 +72,29 @@ public class <%= className() %> extends <%= baseWidgetName() %> {
     }
     <%= extraSetter(attribute) %>
 <% }); %>
-<% if (hasProperties()) _.forEach(properties, function(property){ %>
+<% if (hasProperties()) _.forEach(properties, function(item){ %>
+  <% if (item.type != 'Function') { %>
     /**
-     * <%= getDescription('     ', property) %>
+     * <%= getDescription('     ', item) %>
      *
-     * @property <%= property.name %>
-     * @type <%= property.type %>
+     * @property <%= item.name %>
+     * @type <%= item.type %>
      */
-    public <%= computeType(property.type) %> <%= computeGetterWithPrefix(property) %>(){
-        return getPolymerElement().<%= computeGetterWithPrefix(property) %>();
+    public <%= computeType(item.type) %> <%= computeGetterWithPrefix(item) %>(){
+        return getPolymerElement().<%= computeGetterWithPrefix(item) %>();
     }
-    public void <%= computeSetterWithPrefix(property) %>(<%= computeType(property.type) %> value) {
-        getPolymerElement().<%= computeSetterWithPrefix(property) %>(value);
+    public void <%= computeSetterWithPrefix(item) %>(<%= computeType(item.type) %> value) {
+        getPolymerElement().<%= computeSetterWithPrefix(item) %>(value);
     }
-<% }); %>
-<% if (hasMethods()) _.forEach(methods, function(method){ %>
-  <% if (method.name != 'setZ') { // FIXME(manolo) %>
+  <% } else { %>
     /**
-     * <%= getDescription('     ', method) %>
+     * <%= getDescription('     ', item) %>
      *
-     * @method <%= method.name %><% if (!!method.params) _.forEach(method.params, function(param) { %>
+     * @method <%= item.name %><% if (!!item.params) _.forEach(item.params, function(param) { %>
      * @param {<%= param.type %>} <%= param.name %> <%= param.description %> <% }); %>
      */
-    public void <%= method.name %>(<%= typedParamsString(method) %>) {
-        getPolymerElement().<%= method.name %>(<%= paramsString(method) %>);
+    public void <%= item.name %>(<%= typedParamsString(item) %>) {
+        getPolymerElement().<%= item.name %>(<%= paramsString(item) %>);
     }
   <% } %>
 <% }); %>

@@ -69,9 +69,6 @@ module.exports = {
   hasProperties: function() {
     return !!this.properties;
   },
-  hasMethods: function() {
-    return !!this.methods;
-  },
   hasParams: function() {
     return !!this.params;
   },

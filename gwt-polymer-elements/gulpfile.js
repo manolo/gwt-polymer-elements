@@ -34,8 +34,17 @@ gulp.task('bower', ['clean'], function() {
     .pipe(map(function(file, cb){
       // iron-a11y-keys lacks the fire-keys-pressed annotation.
       if (/iron-a11y-keys.html/.test(file.relative)) {
+        var s = "/**\n" +
+                " * @event keys-pressed\n" +
+                " * @param {Object} detail\n" +
+                " *  @param {boolean} detail.shift true if shift key is pressed\n" +
+                " *  @param {boolean} detail.ctrl true if ctrl key is pressed\n" +
+                " *  @param {boolean} detail.meta true if meta key is pressed\n" +
+                " *  @param {boolean} detail.alt true if alt key is pressed\n" +
+                " *  @param {String} detail.key the normalized key\n" +
+                " */\n";
         file.contents = new Buffer(String(file.contents)
-          .replace(/(\n.*?_fireKeysPressed:)/,'\n/**\n * @event keys-pressed\n */\n$1')
+          .replace(/(\n.*?_fireKeysPressed:)/, s + '$1')
         );
       }
       cb(null, file);
