@@ -2,10 +2,10 @@
 var gulp = require('gulp');
 var bower = require('gulp-bower')
 var map = require('map-stream');
-var rename = require('gulp-rename');
 var fs = require('fs-extra');
 var gutil = require('gulp-util');
 var _ = require('lodash');
+var runSequence = require('run-sequence');
 var helpers = require("./template/helpers");
 var hyd = require("hydrolysis");
 var StreamFromArray = require('stream-from-array');
@@ -27,7 +27,7 @@ gulp.task('clean', function() {
   fs.removeSync(resources);
 });
 
-gulp.task('bower', function() {
+gulp.task('bower', ['clean'], function() {
   return bower({ cmd: 'update', directory: bowerdir});
 });
 
@@ -130,4 +130,9 @@ gulp.task('api:elements', ['api:gen:imports-map','api:gen:elements', 'api:gen:ev
 
 gulp.task('api:widgets', ['api:elements', 'api:gen:widgets', 'api:gen:widget-events']);
 
-gulp.task('api', ['clean', 'bower', 'api:elements', 'api:widgets']);
+gulp.task('api', ['api:elements', 'api:widgets']);
+
+gulp.task('default', function(){
+  runSequence('bower', 'api')
+})
+
