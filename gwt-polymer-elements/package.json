@@ -9,6 +9,7 @@
   "devDependencies": {
     "bower": "latest",
     "gulp": "latest",
+    "gulp-bower": "latest",
     "gulp-util": "latest",
     "fs-extra": "latest",
     "gulp-rename": "latest",

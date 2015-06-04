@@ -1,5 +1,6 @@
 "use strict";
 var gulp = require('gulp');
+var bower = require('gulp-bower')
 var map = require('map-stream');
 var rename = require('gulp-rename');
 var fs = require('fs-extra');
@@ -15,32 +16,35 @@ var parsed = [];
 var ns = "/com/vaadin/components/gwt/polymer/";
 var namespace = "./src/main/java" + ns + "client/";
 var resources = "./src/main/resources" + ns + "public/";
+var bowerdir = resources + "bower_components/";
 
 gulp.task('api:clean', function() {
-  fs.removeSync(namespace + 'client/element');
-  fs.removeSync(namespace + 'client/widget');
+  fs.removeSync(namespace + 'element');
+  fs.removeSync(namespace + 'widget');
 });
 
 gulp.task('clean', function() {
   fs.removeSync(resources);
 });
 
-gulp.task('api:parse', ['api:clean'], function() {
-  var path = resources + "bower_components/";
+gulp.task('bower', function() {
+  return bower({ cmd: 'update', directory: bowerdir});
+});
 
-  return gulp.src([path + "*/*.html",
+gulp.task('api:parse', ['api:clean'], function() {
+  return gulp.src([bowerdir + "*/*.html",
     // ignore all demo.html, index.html and metadata.html files
-    "!" + path + "*/*demo.html",
-    "!" + path + "*/*index.html",
-    "!" + path + "*/*metadata.html",
+    "!" + bowerdir + "*/*demo.html",
+    "!" + bowerdir + "*/*index.html",
+    "!" + bowerdir + "*/*metadata.html",
     // includes a set of js files only, and some do not exist
-    "!" + path + "*/*web-animations.html",
+    "!" + bowerdir + "*/*web-animations.html",
     // Not useful in gwt and also has spurious event names
-    "!" + path + "*/*iron-jsonp-library.html",
+    "!" + bowerdir + "*/*iron-jsonp-library.html",
     ])
     .pipe(map(function(file, cb) {
-      gutil.log('Parsing -> "' + path + file.relative + '"');
-      hyd.Analyzer.analyze(path + file.relative).then(function(result){
+      gutil.log('Parsing -> "' + bowerdir + file.relative + '"');
+      hyd.Analyzer.analyze(bowerdir + file.relative).then(function(result){
         var jsonArray = result.elements;
         jsonArray.forEach(function(item) {
           // saves the result object as JSON
@@ -126,4 +130,4 @@ gulp.task('api:elements', ['api:gen:imports-map','api:gen:elements', 'api:gen:ev
 
 gulp.task('api:widgets', ['api:elements', 'api:gen:widgets', 'api:gen:widget-events']);
 
-gulp.task('api', ['api:elements', 'api:widgets']);
+gulp.task('api', ['clean', 'bower', 'api:elements', 'api:widgets']);
