@@ -87,11 +87,8 @@ module.exports = {
     }
   },
   computeGetterWithPrefix: function(item) {
-    var name = item.name;
-    if (this.startsWith(name, "detail.")) {
-      name = name.substring("detail.".length);
-    }
-    var prefix = item.type === 'boolean' ? 'is' : 'get';
+    var name = item.name.replace(/^detail\./,'');
+    var prefix = /^boolean/i.test(item.type) ? 'is' : 'get';
     if (this.startsWith(name, prefix)) {
       return name;
     } else {
