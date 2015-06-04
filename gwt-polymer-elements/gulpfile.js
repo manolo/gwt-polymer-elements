@@ -29,11 +29,15 @@ gulp.task('api:parse', ['api:clean'], function() {
   var path = resources + "bower_components/";
 
   return gulp.src([path + "*/*.html",
-    "!" + path + "*/*demo.html",        // ignore all the demo.html files
-    "!" + path + "*/*index.html",       // ignore all the index.html files
+    // ignore all demo.html, index.html and metadata.html files
+    "!" + path + "*/*demo.html",
+    "!" + path + "*/*index.html",
     "!" + path + "*/*metadata.html",
-    "!" + path + "*/*web-animations.html", // it includes a set of js files only, and some do not exist
-    ])   // ignore all the metadata.html files
+    // includes a set of js files only, and some do not exist
+    "!" + path + "*/*web-animations.html",
+    // Not useful in gwt and also has spurious event names
+    "!" + path + "*/*iron-jsonp-library.html",
+    ])
     .pipe(map(function(file, cb) {
       gutil.log('Parsing -> "' + path + file.relative + '"');
       hyd.Analyzer.analyze(path + file.relative).then(function(result){
