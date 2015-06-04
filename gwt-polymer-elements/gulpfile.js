@@ -84,7 +84,7 @@ gulp.task('api:gen:imports-map', ['api:parse'], function() {
 gulp.task('api:gen:elements', ['api:parse'], function() {
   StreamFromArray(parsed,{objectMode: true})
    .on('data', function(item) {
-      parseTemplate('Interop', item, item.is, 'element/', 'Element.java');
+      parseTemplate('Element', item, item.is, 'element/', 'Element.java');
    })
 });
 
@@ -93,7 +93,7 @@ gulp.task('api:gen:events', ['api:parse'], function() {
    .on('data', function(item) {
       if (item.events) {
         item.events.forEach(function(event) {
-          parseTemplate('Event', event, event.name, 'element/event/', 'Event.java');
+          parseTemplate('ElementEvent', event, event.name, 'element/event/', 'Event.java');
         });
       }
    })
