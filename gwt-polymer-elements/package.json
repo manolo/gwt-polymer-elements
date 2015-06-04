@@ -12,8 +12,8 @@
     "gulp-bower": "latest",
     "gulp-util": "latest",
     "fs-extra": "latest",
-    "lodash": "^3.5.0",
-    "map-stream": "^0.0.5",
+    "lodash": "latest",
+    "map-stream": "latest",
     "stream-from-array": "latest",
     "hydrolysis": "latest",
     "run-sequence": "latest"

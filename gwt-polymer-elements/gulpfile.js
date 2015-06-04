@@ -30,7 +30,17 @@ gulp.task('clean', function() {
 });
 
 gulp.task('bower', ['clean'], function() {
-  return bower({ cmd: 'update', directory: bowerdir});
+  return bower({ cmd: 'update', directory: bowerdir})
+    .pipe(map(function(file, cb){
+      // iron-a11y-keys lacks the fire-keys-pressed annotation.
+      if (/iron-a11y-keys.html/.test(file.relative)) {
+        file.contents = new Buffer(String(file.contents)
+          .replace(/(\n.*?_fireKeysPressed:)/,'\n/**\n * @event keys-pressed\n */\n$1')
+        );
+      }
+      cb(null, file);
+    }))
+    .pipe(gulp.dest(bowerdir));
 });
 
 gulp.task('api:parse', ['api:clean'], function() {
