@@ -9,7 +9,7 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.vaadin.components.gwt.polymer.client.Polymer;
-import com.vaadin.components.gwt.polymer.client.widget.CoreA11yKeys;
+import com.vaadin.components.gwt.polymer.client.widget.IronA11yKeys;
 import com.vaadin.components.gwt.polymer.client.widget.event.KeysPressedEvent;
 import com.vaadin.components.gwt.polymer.client.widget.event.KeysPressedEventHandler;
 
@@ -24,7 +24,7 @@ public class A11yKeysSample extends Composite {
     @UiField
     Element label;
     @UiField
-    CoreA11yKeys a11y;
+    IronA11yKeys a11y;
     @UiField
     PreElement output;
 

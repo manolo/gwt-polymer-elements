@@ -32,7 +32,7 @@
         <g:FlowPanel ui:field="heading1" addStyleNames="{style.heading}">
             <g:Label>Collapse #1</g:Label>
         </g:FlowPanel>
-        <p:CoreCollapse ui:field="collapse1">
+        <p:IronCollapse ui:field="collapse1">
             <div class="{style.content}">
                 <div>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea, id minim
                     maiestatis incorrupte duo. Dolorum verterem ad ius, his et nullam verterem. Eu alia debet usu, an
@@ -45,14 +45,14 @@
                     ut, at eos discere deleniti sensibus.
                 </div>
             </div>
-        </p:CoreCollapse>
+        </p:IronCollapse>
 
         <br/>
 
         <g:FlowPanel ui:field="heading2" addStyleNames="{style.heading}">
             <g:Label>Collapse #2</g:Label>
         </g:FlowPanel>
-        <p:CoreCollapse ui:field="collapse2">
+        <p:IronCollapse ui:field="collapse2">
             <div class="{style.content}">
                 <div>Pro saepe pertinax ei, ad pri animal labores suscipiantur. Modus commodo minimum eum te, vero
                     utinam assueverit per eu, zril oportere suscipiantur pri te. Partem percipitur deterruisset ad sea,
@@ -67,7 +67,7 @@
                 <g:FlowPanel ui:field="heading3" addStyleNames="{style.heading}">
                     <g:Label>Collapse #3</g:Label>
                 </g:FlowPanel>
-                <p:CoreCollapse ui:field="collapse3">
+                <p:IronCollapse ui:field="collapse3">
                     <div class="{style.content}">
                         <div>Iisque perfecto dissentiet cum et, sit ut quot mandamus, ut vim tibique splendide
                             instructior. Id nam odio natum malorum, tibique copiosae expetenda mel ea. Mea melius
@@ -82,8 +82,8 @@
                             semper accusamus in mel.
                         </div>
                     </div>
-                </p:CoreCollapse>
+                </p:IronCollapse>
             </div>
-        </p:CoreCollapse>
+        </p:IronCollapse>
     </g:HTMLPanel>
 </ui:UiBinder>

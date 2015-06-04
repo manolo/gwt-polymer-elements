@@ -10,7 +10,7 @@
 
     <g:HTMLPanel addStyleNames="{style.container}">
         <span>Press any of these keys: <br></br><em ui:field="label"></em></span>
-        <p:CoreA11yKeys ui:field="a11y"/>
+        <p:IronA11yKeys ui:field="a11y"/>
         <pre ui:field="output"/>
     </g:HTMLPanel>
 </ui:UiBinder>

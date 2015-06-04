@@ -7,8 +7,9 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.vaadin.components.gwt.polymer.client.widget.PaperSlider;
-import com.vaadin.components.gwt.polymer.client.widget.event.CoreChangeEvent;
-import com.vaadin.components.gwt.polymer.client.widget.event.CoreChangeEventHandler;
+import com.vaadin.components.gwt.polymer.client.widget.event.ChangeEvent;
+import com.vaadin.components.gwt.polymer.client.widget.event.ChangeEventHandler;
+import com.vaadin.components.gwt.polymer.client.widget.event.IronChangeEvent;
 
 public class SliderSample extends Composite {
     interface SliderSampleUiBinder extends UiBinder<HTMLPanel, SliderSample> {
@@ -24,9 +25,10 @@ public class SliderSample extends Composite {
     public SliderSample() {
         initWidget(ourUiBinder.createAndBindUi(this));
         
-        ratings.addCoreChangeHandler(new CoreChangeEventHandler() {
+        ratings.addChangeHandler(new ChangeEventHandler() {
+
             @Override
-            public void onCoreChange(CoreChangeEvent event) {
+            public void onChange(ChangeEvent event) {
                 ratingsLabel.setInnerText(String.valueOf(ratings.getValue()));
             }
         });

@@ -8,30 +8,30 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HTMLPanel;
-import com.vaadin.components.gwt.polymer.client.widget.CoreCollapse;
+import com.vaadin.components.gwt.polymer.client.widget.IronCollapse;
 
-public class CoreCollapseSample extends Composite {
-    interface CoreCollapseSampleUiBinder extends UiBinder<HTMLPanel, CoreCollapseSample> {
+public class IronCollapseSample extends Composite {
+    interface IronCollapseSampleUiBinder extends UiBinder<HTMLPanel, IronCollapseSample> {
     }
 
-    private static CoreCollapseSampleUiBinder ourUiBinder = GWT.create(CoreCollapseSampleUiBinder.class);
-    
+    private static IronCollapseSampleUiBinder ourUiBinder = GWT.create(IronCollapseSampleUiBinder.class);
+
     @UiField
     FlowPanel heading1;
     @UiField
-    CoreCollapse collapse1;
+    IronCollapse collapse1;
     @UiField
     FlowPanel heading2;
     @UiField
-    CoreCollapse collapse2;
+    IronCollapse collapse2;
     @UiField
     FlowPanel heading3;
     @UiField
-    CoreCollapse collapse3;
+    IronCollapse collapse3;
 
-    public CoreCollapseSample() {
+    public IronCollapseSample() {
         initWidget(ourUiBinder.createAndBindUi(this));
-        
+
         heading1.addDomHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {
