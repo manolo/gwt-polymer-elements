@@ -10,13 +10,15 @@ var helpers = require("./template/helpers");
 var hyd = require("hydrolysis");
 var StreamFromArray = require('stream-from-array');
 
+// You can change the namespace of your package here.
+var ns = "com.vaadin.components.gwt.polymer";
+var namespace = "./src/main/java/" + ns.replace(/\./g,'/') + "/client/";
+var resources = "./src/main/resources/" + ns.replace(/\./g,'/') + "/public/";
+var bowerdir = resources + "bower_components/";
+
+// Used to store parser output
 var imports = [];
 var parsed = [];
-
-var ns = "/com/vaadin/components/gwt/polymer/";
-var namespace = "./src/main/java" + ns + "client/";
-var resources = "./src/main/resources" + ns + "public/";
-var bowerdir = resources + "bower_components/";
 
 gulp.task('api:clean', function() {
   fs.removeSync(namespace + 'element');
@@ -81,6 +83,7 @@ function parseTemplate(template, obj, name, dir, suffix) {
   gutil.log("Generating: ", name, path);
 
   var tpl = _.template(fs.readFileSync('./template/' + template + '.template'));
+  obj.ns = ns;
   fs.ensureFileSync(path);
   fs.writeFileSync(path, new Buffer(tpl(_.merge({}, null, obj, helpers))));
 }
