@@ -1,7 +1,4 @@
-/**
- * Code generated with gwt-polymer an Apache 2.0 Licensed library
- * developed at Vaadin Labs.
- */
+<%= disclaimer() %>
 package com.vaadin.components.gwt.polymer.client.element;
 
 import com.vaadin.components.gwt.polymer.client.webapi.*;

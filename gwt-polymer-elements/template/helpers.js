@@ -23,7 +23,7 @@ module.exports = {
     }
   },
   camelCase: function(s) {
-    return (s || '').toLowerCase().replace(/(\b|-|\.)\w/g, function (m) {
+    return (s || '').replace(/[^\-\w\.]/g,'').replace(/(\b|-|\.)\w/g, function (m) {
       return m.toUpperCase().replace(/[-\.]/g, '');
     });
   },
@@ -31,6 +31,9 @@ module.exports = {
     return (s || '').replace(/-\w/g, function (m) {
       return m.toUpperCase().replace(/-/, '');
     });
+  },
+  computeName: function(s) {
+    return (s || '').replace(/[^\w\-\.:]/g, '');
   },
   computeType: function(t) {
     if (/^string$/i.test(t)) return 'String';
@@ -147,5 +150,12 @@ module.exports = {
   getDescription: function(spaces, o) {
     o = o || this;
     return (o.description || o.desc || '').trim().split('\n').join('\n' + spaces + '* ').replace(/\*\//g, "* /");
+  },
+  disclaimer: function() {
+    return "/**\n" +
+           " * Copyright (c) 2015 Vaadin Components.\n" +
+           " * This code was generated with Vaadin GWT Generator, an\n" +
+           " * Apache 2.0 Licensed library developed at Vaadin Labs.\n" +
+           " */";
   }
 };

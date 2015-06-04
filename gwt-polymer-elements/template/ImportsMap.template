@@ -1,15 +1,16 @@
-/**
- * Code generated with gwt-polymer an Apache 2.0 Licensed library
- * developed at Vaadin Labs.
- */
+<%= disclaimer() %>
 package com.vaadin.components.gwt.polymer.client.element;
 
 import java.util.HashMap;
 
 /**
- * AUTO-GENERATED CODE, DO NOT EDIT
+ * This class is used to maintain a table between java types and
+ * files used for generating it, so as we can import correctly them.
  */
 public class ImportsMap extends HashMap<String, String> {
+	/**
+	 * AUTO-GENERATED CODE, DO NOT EDIT
+	 */
 
     private static ImportsMap instance = new ImportsMap();
 
