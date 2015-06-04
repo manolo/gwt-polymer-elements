@@ -16,16 +16,16 @@ var ns = "/com/vaadin/components/gwt/polymer/";
 var namespace = "./src/main/java" + ns + "client/";
 var resources = "./src/main/resources" + ns + "public/";
 
-gulp.task('gwt-api:clean', function() {
+gulp.task('api:clean', function() {
   fs.removeSync(namespace + 'client/element');
   fs.removeSync(namespace + 'client/widget');
 });
 
 gulp.task('clean', function() {
-  fs.removeSync(namespace + 'public');
+  fs.removeSync(resources);
 });
 
-gulp.task('gwt-api:parse', ['gwt-api:clean'], function() {
+gulp.task('api:parse', ['api:clean'], function() {
   var path = resources + "bower_components/";
 
   return gulp.src([path + "*/*.html",
@@ -77,14 +77,18 @@ function parseTemplate(template, obj, name, dir, suffix) {
   fs.writeFileSync(path, new Buffer(tpl(_.merge({}, null, obj, helpers))));
 }
 
-gulp.task('gwt-api:generate-elements', ['gwt-api:parse'], function() {
+gulp.task('api:gen:imports-map', ['api:parse'], function() {
+  parseTemplate('ImportsMap', {"imports" : imports}, 'imports-map', 'element/', '.java');
+});
+
+gulp.task('api:gen:elements', ['api:parse'], function() {
   StreamFromArray(parsed,{objectMode: true})
    .on('data', function(item) {
       parseTemplate('Interop', item, item.is, 'element/', 'Element.java');
    })
 });
 
-gulp.task('gwt-api:generate-events', ['gwt-api:parse'], function() {
+gulp.task('api:gen:events', ['api:parse'], function() {
   StreamFromArray(parsed,{objectMode: true})
    .on('data', function(item) {
       if (item.events) {
@@ -95,14 +99,14 @@ gulp.task('gwt-api:generate-events', ['gwt-api:parse'], function() {
    })
 });
 
-gulp.task('gwt-api:generate-widgets', ['gwt-api:parse'], function() {
+gulp.task('api:gen:widgets', ['api:parse'], function() {
   StreamFromArray(parsed,{objectMode: true})
    .on('data', function(item) {
       parseTemplate('Widget', item, item.is, 'widget/', '.java');
    })
 });
 
-gulp.task('gwt-api:generate-widget-events', ['gwt-api:parse'], function() {
+gulp.task('api:gen:widget-events', ['api:parse'], function() {
   StreamFromArray(parsed,{objectMode: true})
    .on('data', function(item) {
       if (item.events) {
@@ -114,8 +118,8 @@ gulp.task('gwt-api:generate-widget-events', ['gwt-api:parse'], function() {
    })
 });
 
-gulp.task('gwt-api:generate-imports-map', ['gwt-api:parse'], function() {
-  parseTemplate('ImportsMap', {"imports" : imports}, 'imports-map', 'element/', '.java');
-});
+gulp.task('api:elements', ['api:gen:imports-map','api:gen:elements', 'api:gen:events']);
 
-gulp.task('gwt-api', ['gwt-api:generate-elements', 'gwt-api:generate-events', 'gwt-api:generate-widgets', 'gwt-api:generate-widget-events', 'gwt-api:generate-imports-map']);
+gulp.task('api:widgets', ['api:elements', 'api:gen:widgets', 'api:gen:widget-events']);
+
+gulp.task('api', ['api:elements', 'api:widgets']);
