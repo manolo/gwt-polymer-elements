@@ -2,23 +2,20 @@ package com.vaadin.components.gwt.polymer.client.sampler.paper;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
-import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
-import com.vaadin.components.gwt.polymer.client.widget.PaperTabs;
+import com.vaadin.components.gwt.polymer.client.Polymer;
 
 public class TabsSample extends Composite {
-    interface TabsSampleUiBinder extends UiBinder<HTMLPanel, TabsSample> {
+    interface SampleUiBinder extends UiBinder<HTMLPanel, TabsSample> {
     }
 
-    private static TabsSampleUiBinder ourUiBinder = GWT.create(TabsSampleUiBinder.class);
-    
-    @UiField
-    PaperTabs scrollableTabs;
+    private static SampleUiBinder ourUiBinder = GWT.create(SampleUiBinder.class);
 
     public TabsSample() {
-        initWidget(ourUiBinder.createAndBindUi(this));
+        Polymer.ensureHTMLImport("paper-tabs/paper-tabs.html");
+        Polymer.ensureHTMLImport("../paper/tabs-sample-styles.html");
         
-        //TODO: add media-query listener
+        initWidget(ourUiBinder.createAndBindUi(this));
     }
 }

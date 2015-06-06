@@ -2,110 +2,58 @@
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
              xmlns:p='urn:import:com.vaadin.components.gwt.polymer.client.widget'>
 
-    <ui:style>
-        .container {
-            font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
-            font-size: 14px;
-            margin: 0;
-            padding: 24px;
-            -webkit-tap-highlight-color: rgba(0,0,0,0);
-            -webkit-touch-callout: none;
-        }
+    
 
-        .container section {
-            padding: 20px 0;
-        }
+    <g:HTMLPanel addStyleNames="button-sample">
 
-        .container section > div {
-            padding: 14px;
-            font-size: 16px;
-        }
+        <div class="horizontal center-justified layout">
+            <div>
+                <h4>Flat</h4>
+                <div class="horizontal-section">
+                    <p:PaperButton>button</p:PaperButton>
+                    <p:PaperButton addStyleNames="colorful">colorful</p:PaperButton>
+                    <p:PaperButton disabled="">disabled</p:PaperButton>
+                    <p:PaperButton noink="">noink</p:PaperButton>
+                    <p:PaperButton addStyleNames="colorful custom"><p:IronIcon icon="check"/>ok</p:PaperButton>
+                    <p:PaperButton addStyleNames="custom"><p:IronIcon icon="clear"/>cancel</p:PaperButton>
+                </div>
+            </div>
 
-        .container paper-button.colored {
-            color: #4285f4;
-        }
+            <div>
+                <h4>Raised</h4>
+                <div class="horizontal-section">
+                    <p:PaperButton raised="true">button</p:PaperButton>
+                    <paper-button tabindex="0" raised="" class="colorful">colorful</paper-button>
+                    <paper-button tabindex="0" raised="" disabled="">disabled</paper-button>
+                    <paper-button tabindex="0" raised="" noink="">noink</paper-button>
+                    <paper-button tabindex="0" raised="" class="colorful custom"><iron-icon icon="check"></iron-icon>ok</paper-button>
+                    <paper-button tabindex="0" raised="" class="custom"><iron-icon icon="clear"></iron-icon>cancel</paper-button>
+                </div>
+            </div>
 
-        .container paper-button[raised].colored {
-            background: #4285f4;
-            color: #fff;
-        }
+            <div>
+                <h4>Toggleable</h4>
+                <div class="horizontal-section">
+                    <paper-button tabindex="0" toggles="">button</paper-button>
+                    <paper-button tabindex="0" toggles="" raised="" noink="">noink</paper-button>
+                    <paper-button tabindex="0" toggles="" active="" class="colorful">colorful</paper-button>
+                    <paper-button tabindex="0" toggles="" raised="" active="" class="colorful">colorful</paper-button>
+                    <paper-button tabindex="0" toggles="" class="colorful custom"><iron-icon icon="check"></iron-icon>ok</paper-button>
+                    <paper-button tabindex="0" toggles="" class="custom"><iron-icon icon="clear"></iron-icon>cancel</paper-button>
+                </div>
+            </div>
 
-        .container paper-button.custom > core-icon {
-            margin-right: 4px;
-        }
-
-        .container paper-button.hover:hover {
-            background: #eee;
-        }
-
-        .container paper-button.blue-ripple::shadow #ripple {
-            color: #4285f4;
-        }
-    </ui:style>
-
-    <g:HTMLPanel addStyleNames="{style.container}">
-
-        <section>
-
-            <div>Flat buttons</div>
-
-            <p:PaperButton>button</p:PaperButton>
-            <p:PaperButton addStyleNames="{style.colored}">colored</p:PaperButton>
-            <p:PaperButton disabled="">disabled</p:PaperButton>
-            <p:PaperButton noink="">noink</p:PaperButton>
-
-        </section>
-
-        <br/>
-
-        <section>
-
-            <div>Raised buttons</div>
-
-            <p:PaperButton raised="">button</p:PaperButton>
-            <p:PaperButton raised="" addStyleNames="{style.colored}">colored</p:PaperButton>
-            <p:PaperButton raised="" disabled="">disabled</p:PaperButton>
-            <p:PaperButton raised="" noink="">noink</p:PaperButton>
-
-        </section>
-
-        <section>
-
-            <div>Custom button content</div>
-
-            <p:PaperButton addStyleNames="{style.colored} {style.custom}">
-                <p:CoreIcon icon="check"/>
-                ok
-            </p:PaperButton>
-            <p:PaperButton addStyleNames="{style.custom}">
-                <p:CoreIcon icon="clear"/>
-                cancel
-            </p:PaperButton>
-            <br/>
-            <p:PaperButton>
-                <a href="https://www.polymer-project.org" target="_blank">link</a>
-            </p:PaperButton>
-
-        </section>
-
-        <section>
-
-            <div>Toggle buttons</div>
-
-            <p:PaperButton toggle="">button</p:PaperButton>
-            <p:PaperButton toggle="" raised="" noink="">noink</p:PaperButton>
-            <p:PaperButton toggle="" active="" addStyleNames="{style.colored}">active</p:PaperButton>
-            <p:PaperButton toggle="" raised="" active="" addStyleNames="{style.colored}">active</p:PaperButton>
-
-        </section>
-
-        <section>
-
-            <div>Styling options</div>
-
-            <p:PaperButton addStyleNames="{style.hover}">hover</p:PaperButton>
-            <p:PaperButton addStyleNames="{style.blue-ripple}">custom ripple</p:PaperButton>
-
-        </section>
+            <div>
+                <h4>Color</h4>
+                <div class="horizontal-section">
+                    <paper-button tabindex="0" class="blue ripple">button</paper-button>
+                    <paper-button tabindex="0" class="red ripple">noink</paper-button>
+                    <paper-button tabindex="0" class="orange ripple">colorful</paper-button>
+                    <paper-button tabindex="0" class="green ripple">colorful</paper-button>
+                    <paper-button tabindex="0" class="red ripple"><iron-icon icon="check"></iron-icon>ok</paper-button>
+                    <paper-button tabindex="0" class="blue ripple"><iron-icon icon="clear"></iron-icon>cancel</paper-button>
+                </div>
+            </div>
+        </div>
     </g:HTMLPanel>
 </ui:UiBinder>

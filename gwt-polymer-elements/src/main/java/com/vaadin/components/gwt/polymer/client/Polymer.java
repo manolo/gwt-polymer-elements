@@ -16,8 +16,12 @@ public abstract class Polymer {
      * Ensures that the tagName has been registered, otherwise injects
      * the appropriate <import> tag in the document header
      */
-    public static void ensureHTMLImport(String tagName) {
-        String href = "bower_components/" + ImportsMap.getInstance().get(tagName);
+    public static void ensureTag(String tagName) {
+        ensureHTMLImport(ImportsMap.getInstance().get(tagName));
+    }
+
+    public static void ensureHTMLImport(String url) {
+        String href = "bower_components/" + url;
         if (!urlImported.contains(href)) {
             Element link = Document.get().createLinkElement();
             link.setAttribute("rel", "import");
