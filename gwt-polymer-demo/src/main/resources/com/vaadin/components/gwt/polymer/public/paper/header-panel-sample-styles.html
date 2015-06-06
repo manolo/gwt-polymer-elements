@@ -1,0 +1,87 @@
+<style is="custom-style">
+
+  .header-panel-sample {
+    padding: 40px;
+  }
+
+  .header-panel-sample paper-header-panel {
+    float: left;
+    width: 240px;
+    height: 240px;
+    margin: 12px;
+  @apply(--shadow-elevation-2dp);
+  }
+
+  .header-panel-sample .paper-header {
+    height: 60px;
+    font-size: 16px;
+    line-height: 60px;
+    padding: 0 10px;
+    color: white;
+    transition: height 0.2s;
+  }
+
+  .header-panel-sample .paper-header.tall {
+    height: 120px;
+  }
+
+  .header-panel-sample .paper-header.medium-tall {
+    height: 100px;
+    line-height: 50px;
+  }
+
+  .header-panel-sample .content {
+    height: 2000px;
+  }
+
+  .header-panel-sample .cover {
+    margin: 60px;
+  }
+
+  .header-panel-sample .blue .paper-header {
+    background-color: var(--paper-light-blue-500);
+  }
+  .header-panel-sample .red .paper-header {
+    background-color: var(--paper-red-500);
+  }
+  .header-panel-sample .orange .paper-header {
+    background-color: var(--paper-amber-500);
+  }
+  .header-panel-sample .green .paper-header {
+    background-color: var(--paper-green-500);
+  }
+  .header-panel-sample .cyan .paper-header {
+    background-color: var(--paper-cyan-500);
+  }
+  .header-panel-sample .lime .paper-header {
+    background-color: var(--paper-lime-500);
+  }
+  .header-panel-sample .pink .paper-header {
+    background-color: var(--paper-pink-a200);
+  }
+
+  /* TODO: replace these with background: linear-gradient(white, var(...))
+   when custom properties allow it */
+
+  .header-panel-sample .blue .content {
+    background: linear-gradient(white, #b3e5fc);
+  }
+  .header-panel-sample .red .content {
+    background: linear-gradient(white, #ffcdd2);
+  }
+  .header-panel-sample .orange .content {
+    background: linear-gradient(white, #ffecb3);
+  }
+  .header-panel-sample .green .content {
+    background: linear-gradient(white, #c8e6c9);
+  }
+  .header-panel-sample .cyan .content {
+    background: linear-gradient(white, #b2ebf2);
+  }
+  .header-panel-sample .lime .content {
+    background: linear-gradient(white, #f0f4c3);
+  }
+  .header-panel-sample .pink .content {
+    background: linear-gradient(white, #f8bbd0);
+  }
+</style>
