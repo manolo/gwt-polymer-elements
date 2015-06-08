@@ -1,0 +1,26 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:p='urn:import:com.vaadin.components.gwt.polymer.client.widget'>
+    
+    <ui:style>
+        .button {
+            margin: 20px;
+        }
+    </ui:style>
+
+    
+
+    <g:HTMLPanel addStyleNames="toast-sample">
+
+        <p:PaperButton ui:field="button1" raised="true" addStyleNames="{style.button}">Discard Draft</p:PaperButton>
+
+        <p:PaperButton ui:field="button2" raised="true" addStyleNames="{style.button}">Get Messages</p:PaperButton>
+
+        <p:PaperToast ui:field="toast1" text="Your draft has been discarded."/>
+
+        <p:PaperToast ui:field="toast2" text="Connection timed out. Showing limited messages.">
+            <span role="button" tabindex="0" style="color: #eeff41;margin: 10px" onclick="console.log('RETRY')">Retry</span>
+        </p:PaperToast>
+        
+    </g:HTMLPanel>
+</ui:UiBinder>

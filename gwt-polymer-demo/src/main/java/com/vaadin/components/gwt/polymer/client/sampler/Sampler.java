@@ -27,6 +27,7 @@ import com.vaadin.components.gwt.polymer.client.sampler.paper.DialogSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.HeaderPanelSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.ItemSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.TabsSample;
+import com.vaadin.components.gwt.polymer.client.sampler.paper.ToastSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.ToolbarSample;
 import com.vaadin.components.gwt.polymer.client.widget.IronCollapse;
 import com.vaadin.components.gwt.polymer.client.widget.IronSelector;
@@ -139,7 +140,7 @@ public class Sampler extends Composite {
 //        addSample("Dialog", new DialogSample(), "paper", "DialogSample");
 //        // wait for pull-request, because setZ seems not working.
 //        addSample("Shadow", new ShadowSample(), "paper", "ShadowSample");
-//        addSample("Toast", new ToastSample(), "paper", "ToastSample");
+        addSample("Toast", new ToastSample(), "paper", "ToastSample");
 //
         addCategory("gwt", "Other");
         addSample("Element UiBinder", new PaperTabsView(), "gwt", "PaperTabsView");

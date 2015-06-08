@@ -44,6 +44,8 @@ public class Demo implements EntryPoint {
         Polymer.ensureHTMLImport("iron-collapse/iron-collapse.html");
         
         Polymer.ensureHTMLImport("iron-selector/iron-selector.html");
+        
+        Polymer.ensureTag("paper-toast");
 
         (new Timer() {
             @Override
