@@ -1,4 +1,5 @@
 "use strict";
+var args = require('minimist')(process.argv.slice(2));
 var gulp = require('gulp');
 var bower = require('gulp-bower')
 var map = require('map-stream');
@@ -34,7 +35,11 @@ gulp.task('clean:resources', function() {
 gulp.task('clean', ['clean:target', 'clean:resources']);
 
 gulp.task('bower', ['clean'], function() {
-  return bower({ cmd: 'update', directory: bowerdir})
+  if(!args.package) {
+    args.package = 'PolymerElements/paper-elements';
+  }
+
+  return bower({ cmd: 'install', directory: bowerdir}, [[args.package]])
     .pipe(map(function(file, cb){
       // iron-a11y-keys lacks the fire-keys-pressed annotation.
       if (/iron-a11y-keys.html/.test(file.relative)) {
@@ -78,7 +83,7 @@ gulp.task('parse', ['analyze'], function(cb) {
   cb();
 });
 
-gulp.task('analyze', ['clean'], function() {
+gulp.task('analyze', ['clean:target'], function() {
   return gulp.src([bowerdir + "*/*.html",
     // ignore all demo.html, index.html and metadata.html files
     "!" + bowerdir + "*/*demo.html",
@@ -180,5 +185,5 @@ gulp.task('widgets', ['generate:widgets', 'generate:widget-events']);
 gulp.task('generate', ['generate:elements', 'generate:widgets']);
 
 gulp.task('default', function(){
-  runSequence('bower', 'generate')
+  runSequence('clean', 'bower', 'generate')
 })
