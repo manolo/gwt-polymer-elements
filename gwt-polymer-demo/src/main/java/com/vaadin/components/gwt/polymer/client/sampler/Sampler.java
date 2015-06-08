@@ -26,6 +26,7 @@ import com.vaadin.components.gwt.polymer.client.sampler.paper.CheckboxSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.DialogSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.FabSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.HeaderPanelSample;
+import com.vaadin.components.gwt.polymer.client.sampler.paper.IconButtonSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.ItemSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.TabsSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.ToastSample;
@@ -121,6 +122,7 @@ public class Sampler extends Composite {
 //        addSample("DrawerPanel", new DrawerPanelSample(), "paper", "DrawerPanelSample");
         addSample("Fab", new FabSample(), "paper", "FabSample");
         addSample("HeaderPanel", new HeaderPanelSample(), "paper", "HeaderPanelSample");
+        addSample("IconButton", new IconButtonSample(), "paper", "IconButtonSample");
         addSample("Item", new ItemSample(), "paper", "ItemSample");
         addSample("Toolbar", new ToolbarSample(), "paper", "ToolbarSample");
 //        addSample("Radio Button", new RadioButtonSample(), "paper", "RadioButtonSample");
