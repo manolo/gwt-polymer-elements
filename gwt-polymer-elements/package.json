@@ -8,10 +8,10 @@
   },
   "devDependencies": {
     "bower": "latest",
+    "fs-extra": "latest",
     "gulp": "latest",
     "gulp-bower": "latest",
     "gulp-util": "latest",
-    "fs-extra": "latest",
     "lodash": "latest",
     "map-stream": "latest",
     "stream-from-array": "latest",
