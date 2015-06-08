@@ -47,6 +47,9 @@ public class Demo implements EntryPoint {
         
         Polymer.ensureTag("paper-toast");
 
+        Polymer.ensureHTMLImport("../paper/fab-sample-styles.html");
+        Polymer.ensureHTMLImport("paper-fab/paper-fab.html");
+
         (new Timer() {
             @Override
             public void run() {
@@ -62,7 +65,7 @@ public class Demo implements EntryPoint {
 
                 RootPanel.get().add(new Sampler());
             }
-        }).schedule(500);
+        }).schedule(1000);
 
 
     }
