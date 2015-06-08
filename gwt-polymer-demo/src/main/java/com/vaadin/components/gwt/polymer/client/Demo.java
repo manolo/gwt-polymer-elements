@@ -52,6 +52,9 @@ public class Demo implements EntryPoint {
 
         Polymer.ensureHTMLImport("../paper/icon-button-sample-styles.html");
         Polymer.ensureHTMLImport("paper-icon-button/paper-icon-button.html");
+        
+        Polymer.ensureHTMLImport("paper-input/paper-input.html");
+        Polymer.ensureHTMLImport("paper-input/paper-textarea.html");
 
         (new Timer() {
             @Override

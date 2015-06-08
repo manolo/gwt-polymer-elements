@@ -27,6 +27,7 @@ import com.vaadin.components.gwt.polymer.client.sampler.paper.DialogSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.FabSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.HeaderPanelSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.IconButtonSample;
+import com.vaadin.components.gwt.polymer.client.sampler.paper.InputSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.ItemSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.TabsSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.ToastSample;
@@ -124,18 +125,17 @@ public class Sampler extends Composite {
         addSample("HeaderPanel", new HeaderPanelSample(), "paper", "HeaderPanelSample");
         addSample("IconButton", new IconButtonSample(), "paper", "IconButtonSample");
         addSample("Item", new ItemSample(), "paper", "ItemSample");
+        addSample("Input", new InputSample(), "paper", "InputSample");
         addSample("Toolbar", new ToolbarSample(), "paper", "ToolbarSample");
 //        addSample("Radio Button", new RadioButtonSample(), "paper", "RadioButtonSample");
 //        addSample("Toggle Button", new ToggleButtonSample(), "paper", "ToggleButtonSample");
 //        // strange bug appears if include this to Sampler
-//        addSample("Input", new InputSample(), "paper", "InputSample");
 //        addSample("Toolbar", new ToolbarSample(), "paper", "ToolbarSample");
 //        addSample("Spinner", new SpinnerSample(), "paper", "SpinnerSample");
 //        addSample("Progress Bar", new ProgressBarSample(), "paper", "ProgressBarSample");
 //        addSample("Slider", new SliderSample(), "paper", "SliderSample");
         addSample("Tabs", new TabsSample(), "paper", "TabsSample");
 //        addSample("Icon Button", new IconButtonSample(), "paper", "IconButtonSample");
-//        addSample("Floating Action Button", new FloatingActionButtonSample(), "paper", "FloatingActionButtonSample");
 //        // not fully implemented yet
 ////        addSample("Dropdown", new DropdownSample(), "paper", "DropdownSample");
 //        addSample("Dropdown Menu", new DropdownMenuSample(), "paper", "DropdownMenuSample");
