@@ -12,7 +12,7 @@ var StreamFromArray = require('stream-from-array');
 
 // You can change the namespace of your package here.
 var ns = "com.vaadin.components.gwt.polymer";
-var namespace = "./src/main/java/" + ns.replace(/\./g,'/') + "/client/";
+var target = "./src/main/java/" + ns.replace(/\./g,'/') + "/client/";
 var resources = "./src/main/resources/" + ns.replace(/\./g,'/') + "/public/";
 var bowerdir = resources + "bower_components/";
 
@@ -22,14 +22,16 @@ var bowerdir = resources + "bower_components/";
 global.parsed = []; // we store all parsed objects so as we can iterate or find behaviors
 global.imports = []; // we store a table for elements and import files
 
-gulp.task('api:clean', function() {
-  fs.removeSync(namespace + 'element');
-  fs.removeSync(namespace + 'widget');
+gulp.task('clean:target', function() {
+  fs.removeSync(target + 'element');
+  fs.removeSync(target + 'widget');
 });
 
-gulp.task('clean', function() {
+gulp.task('clean:resources', function() {
   fs.removeSync(resources);
 });
+
+gulp.task('clean', ['clean:target', 'clean:resources']);
 
 gulp.task('bower', ['clean'], function() {
   return bower({ cmd: 'update', directory: bowerdir})
@@ -54,7 +56,7 @@ gulp.task('bower', ['clean'], function() {
     .pipe(gulp.dest(bowerdir));
 });
 
-gulp.task('api:parse', ['api:analyze'], function(cb) {
+gulp.task('parse', ['analyze'], function(cb) {
   global.parsed.forEach(function(item) {
     if (!helpers.isBehavior(item) && item.behaviors && item.behaviors.length) {
       item.behaviors.forEach(function(name) {
@@ -76,8 +78,7 @@ gulp.task('api:parse', ['api:analyze'], function(cb) {
   cb();
 });
 
-gulp.task('api:analyze', ['api:clean'], function() {
-//  return gulp.src([bowerdir + "*/*(paper-chckbox|paper-radio-button|).html",
+gulp.task('analyze', ['clean'], function() {
   return gulp.src([bowerdir + "*/*.html",
     // ignore all demo.html, index.html and metadata.html files
     "!" + bowerdir + "*/*demo.html",
@@ -118,7 +119,7 @@ gulp.task('api:analyze', ['api:clean'], function() {
 // dir is relative to the namespace (gwt client) folder.
 function parseTemplate(template, obj, name, dir, suffix) {
   var file = helpers.camelCase(name) + suffix;
-  var path = namespace + dir + file;
+  var path = target + dir + file;
   gutil.log("Generating: ", name, path);
 
   var tpl = _.template(fs.readFileSync('./template/' + template + '.template'));
@@ -127,11 +128,11 @@ function parseTemplate(template, obj, name, dir, suffix) {
   fs.writeFileSync(path, new Buffer(tpl(_.merge({}, null, obj, helpers))));
 }
 
-gulp.task('api:gen:imports-map', ['api:parse'], function() {
+gulp.task('generate:imports-map', ['parse'], function() {
   parseTemplate('ImportsMap', {"imports" : global.imports}, 'imports-map', 'element/', '.java');
 });
 
-gulp.task('api:gen:elements', ['api:parse'], function() {
+gulp.task('generate:elements', ['parse'], function() {
   StreamFromArray(global.parsed,{objectMode: true})
    .on('data', function(item) {
      console.log("Data: ", item.is, item.type)
@@ -140,7 +141,7 @@ gulp.task('api:gen:elements', ['api:parse'], function() {
    })
 });
 
-gulp.task('api:gen:events', ['api:parse'], function() {
+gulp.task('generate:events', ['parse'], function() {
   StreamFromArray(global.parsed,{objectMode: true})
    .on('data', function(item) {
       if (item.events) {
@@ -151,7 +152,7 @@ gulp.task('api:gen:events', ['api:parse'], function() {
    })
 });
 
-gulp.task('api:gen:widgets', ['api:parse'], function() {
+gulp.task('generate:widgets', ['parse'], function() {
   StreamFromArray(global.parsed,{objectMode: true})
    .on('data', function(item) {
       if (!helpers.isBehavior(item)) {
@@ -160,7 +161,7 @@ gulp.task('api:gen:widgets', ['api:parse'], function() {
    })
 });
 
-gulp.task('api:gen:widget-events', ['api:parse'], function() {
+gulp.task('generate:widget-events', ['parse'], function() {
   StreamFromArray(global.parsed,{objectMode: true})
    .on('data', function(item) {
       if (item.events) {
@@ -172,13 +173,12 @@ gulp.task('api:gen:widget-events', ['api:parse'], function() {
    })
 });
 
-gulp.task('api:elements', ['api:gen:imports-map','api:gen:elements', 'api:gen:events']);
+gulp.task('elements', ['generate:imports-map','generate:elements', 'generate:events']);
 
-gulp.task('api:widgets', ['api:elements', 'api:gen:widgets', 'api:gen:widget-events']);
+gulp.task('widgets', ['generate:widgets', 'generate:widget-events']);
 
-gulp.task('api', ['api:elements', 'api:widgets']);
+gulp.task('generate', ['generate:elements', 'generate:widgets']);
 
 gulp.task('default', function(){
-  runSequence('bower', 'api')
+  runSequence('bower', 'generate')
 })
-
