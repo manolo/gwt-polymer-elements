@@ -138,7 +138,7 @@ gulp.task('generate:imports-map', ['parse'], function() {
 });
 
 gulp.task('generate:elements', ['parse'], function() {
-  StreamFromArray(global.parsed,{objectMode: true})
+  return StreamFromArray(global.parsed,{objectMode: true})
    .on('data', function(item) {
      console.log("Data: ", item.is, item.type)
      var e = item.type == 'behavior'? '' : 'Element';
@@ -147,7 +147,7 @@ gulp.task('generate:elements', ['parse'], function() {
 });
 
 gulp.task('generate:events', ['parse'], function() {
-  StreamFromArray(global.parsed,{objectMode: true})
+  return StreamFromArray(global.parsed,{objectMode: true})
    .on('data', function(item) {
       if (item.events) {
         item.events.forEach(function(event) {
@@ -158,7 +158,7 @@ gulp.task('generate:events', ['parse'], function() {
 });
 
 gulp.task('generate:widgets', ['parse'], function() {
-  StreamFromArray(global.parsed,{objectMode: true})
+  return StreamFromArray(global.parsed,{objectMode: true})
    .on('data', function(item) {
       if (!helpers.isBehavior(item)) {
         parseTemplate('Widget', item, item.is, 'widget/', '.java');
@@ -167,7 +167,7 @@ gulp.task('generate:widgets', ['parse'], function() {
 });
 
 gulp.task('generate:widget-events', ['parse'], function() {
-  StreamFromArray(global.parsed,{objectMode: true})
+  return StreamFromArray(global.parsed,{objectMode: true})
    .on('data', function(item) {
       if (item.events) {
         item.events.forEach(function(event) {
