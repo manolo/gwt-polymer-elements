@@ -26,6 +26,7 @@ import com.vaadin.components.gwt.polymer.client.sampler.gwt.PaperTabsView;
 import com.vaadin.components.gwt.polymer.client.sampler.gwt.PaperTabsWidgetView;
 import com.vaadin.components.gwt.polymer.client.sampler.iron.IronCollapseSample;
 import com.vaadin.components.gwt.polymer.client.sampler.iron.IronSelectorSample;
+import com.vaadin.components.gwt.polymer.client.sampler.iron.RadioGroupSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.ButtonSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.CheckboxSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.DialogSample;
@@ -135,6 +136,7 @@ public class Sampler extends Composite {
         addSample("Menu", new MenuSample(), "paper", "MenuSample");
         addSample("Progress", new ProgressSample(), "paper", "ProgressSample");
         addSample("Radio Button", new RadioButtonSample(), "paper", "RadioButtonSample");
+        addSample("Radio Group", new RadioGroupSample(), "paper", "RadioGroupSample");
         addSample("Spinner", new SpinnerSample(), "paper", "SpinnerSample");
         addSample("Tabs", new TabsSample(), "paper", "TabsSample");
         addSample("Toast", new ToastSample(), "paper", "ToastSample");
