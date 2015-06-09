@@ -64,6 +64,9 @@ public class Demo implements EntryPoint {
 
         Polymer.ensureHTMLImport("paper-menu/paper-menu.html");
 
+        Polymer.ensureHTMLImport("../paper/progress-sample-styles.html");
+        Polymer.ensureHTMLImport("paper-progress/paper-progress.html");
+
         (new Timer() {
             @Override
             public void run() {

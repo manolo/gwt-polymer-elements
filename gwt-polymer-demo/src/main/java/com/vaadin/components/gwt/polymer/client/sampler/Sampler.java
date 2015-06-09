@@ -118,13 +118,13 @@ public class Sampler extends Composite {
         addSample("Input", new InputSample(), "paper", "InputSample");
         addSample("Material", new MaterialSample(), "paper", "MaterialSample");
         addSample("Menu", new MenuSample(), "paper", "MenuSample");
+        addSample("Progress", new ProgressSample(), "paper", "ProgressSample");
         addSample("Spinner", new SpinnerSample(), "paper", "SpinnerSample");
         addSample("Tabs", new TabsSample(), "paper", "TabsSample");
         addSample("Toast", new ToastSample(), "paper", "ToastSample");
 //        addSample("Toggle Button", new ToggleButtonSample(), "paper", "ToggleButtonSample");
         addSample("Toolbar", new ToolbarSample(), "paper", "ToolbarSample");
 //        addSample("Radio Button", new RadioButtonSample(), "paper", "RadioButtonSample");
-//        addSample("Progress Bar", new ProgressBarSample(), "paper", "ProgressBarSample");
 //        addSample("Slider", new SliderSample(), "paper", "SliderSample");
 
         addCategory("gwt", "Other");
