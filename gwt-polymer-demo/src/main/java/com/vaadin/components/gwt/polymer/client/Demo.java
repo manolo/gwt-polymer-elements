@@ -58,23 +58,13 @@ public class Demo implements EntryPoint {
         Polymer.ensureHTMLImport("../paper/progress-sample-styles.html");
         Polymer.ensureHTMLImport("paper-progress/paper-progress.html");
 
+        Polymer.ensureHTMLImport("paper-radio-button/paper-radio-button.html");
+
         (new Timer() {
             @Override
             public void run() {
-//                RootPanel.get().add(new ButtonSample());
-//                RootPanel.get().add(new CheckboxSample());
-//                RootPanel.get().add(new DialogSample());
-//                RootPanel.get().add(new ItemSample());
-//                RootPanel.get().add(new DrawerPanelSample());
-//                RootPanel.get().add(new HeaderPanelSample());
-//                RootPanel.get().add(new ToolbarSample());
-//                RootPanel.get().add(new IronCollapseSample());
-//                RootPanel.get().add(new IronSelectorSample());
-
                 RootPanel.get().add(new Sampler());
             }
         }).schedule(2000);
-
-
     }
 }

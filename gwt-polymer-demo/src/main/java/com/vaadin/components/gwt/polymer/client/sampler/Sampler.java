@@ -1,5 +1,10 @@
 package com.vaadin.components.gwt.polymer.client.sampler;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.dom.client.SpanElement;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -21,18 +26,28 @@ import com.vaadin.components.gwt.polymer.client.sampler.gwt.PaperTabsView;
 import com.vaadin.components.gwt.polymer.client.sampler.gwt.PaperTabsWidgetView;
 import com.vaadin.components.gwt.polymer.client.sampler.iron.IronCollapseSample;
 import com.vaadin.components.gwt.polymer.client.sampler.iron.IronSelectorSample;
-import com.vaadin.components.gwt.polymer.client.sampler.paper.*;
+import com.vaadin.components.gwt.polymer.client.sampler.paper.ButtonSample;
+import com.vaadin.components.gwt.polymer.client.sampler.paper.CheckboxSample;
+import com.vaadin.components.gwt.polymer.client.sampler.paper.DialogSample;
+import com.vaadin.components.gwt.polymer.client.sampler.paper.FabSample;
+import com.vaadin.components.gwt.polymer.client.sampler.paper.HeaderPanelSample;
+import com.vaadin.components.gwt.polymer.client.sampler.paper.IconButtonSample;
+import com.vaadin.components.gwt.polymer.client.sampler.paper.InputSample;
+import com.vaadin.components.gwt.polymer.client.sampler.paper.ItemSample;
+import com.vaadin.components.gwt.polymer.client.sampler.paper.MaterialSample;
+import com.vaadin.components.gwt.polymer.client.sampler.paper.MenuSample;
+import com.vaadin.components.gwt.polymer.client.sampler.paper.ProgressSample;
+import com.vaadin.components.gwt.polymer.client.sampler.paper.RadioButtonSample;
+import com.vaadin.components.gwt.polymer.client.sampler.paper.SpinnerSample;
+import com.vaadin.components.gwt.polymer.client.sampler.paper.TabsSample;
+import com.vaadin.components.gwt.polymer.client.sampler.paper.ToastSample;
+import com.vaadin.components.gwt.polymer.client.sampler.paper.ToolbarSample;
 import com.vaadin.components.gwt.polymer.client.widget.IronCollapse;
 import com.vaadin.components.gwt.polymer.client.widget.IronSelector;
 import com.vaadin.components.gwt.polymer.client.widget.PaperButton;
 import com.vaadin.components.gwt.polymer.client.widget.PaperDrawerPanel;
 import com.vaadin.components.gwt.polymer.client.widget.PaperIconButton;
 import com.vaadin.components.gwt.polymer.client.widget.PaperItem;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class Sampler extends Composite {
 
@@ -119,12 +134,12 @@ public class Sampler extends Composite {
         addSample("Material", new MaterialSample(), "paper", "MaterialSample");
         addSample("Menu", new MenuSample(), "paper", "MenuSample");
         addSample("Progress", new ProgressSample(), "paper", "ProgressSample");
+        addSample("Radio Button", new RadioButtonSample(), "paper", "RadioButtonSample");
         addSample("Spinner", new SpinnerSample(), "paper", "SpinnerSample");
         addSample("Tabs", new TabsSample(), "paper", "TabsSample");
         addSample("Toast", new ToastSample(), "paper", "ToastSample");
 //        addSample("Toggle Button", new ToggleButtonSample(), "paper", "ToggleButtonSample");
         addSample("Toolbar", new ToolbarSample(), "paper", "ToolbarSample");
-//        addSample("Radio Button", new RadioButtonSample(), "paper", "RadioButtonSample");
 //        addSample("Slider", new SliderSample(), "paper", "SliderSample");
 
         addCategory("gwt", "Other");
