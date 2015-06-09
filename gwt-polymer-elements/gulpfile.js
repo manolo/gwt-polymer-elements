@@ -182,8 +182,10 @@ gulp.task('generate:elements-all', ['generate:imports-map','generate:elements', 
 
 gulp.task('generate:widgets-all', ['generate:widgets', 'generate:widget-events']);
 
-gulp.task('generate', ['generate:elements-all', 'generate:widgets-all']);
+gulp.task('generate', ['generate:elements-all', 'generate:widgets-all'], function() {
+  gutil.log('Done.');
+});
 
 gulp.task('default', function(){
-  runSequence('clean', 'bower:install', 'generate')
-})
+  runSequence('clean', 'bower:install', 'generate');
+});
