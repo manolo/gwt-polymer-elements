@@ -29,7 +29,7 @@ require('coa').Cmd() // main (top level) command declaration
     .opt()
       .name('package')
       .req()
-      .title('Bower package to use')
+      .title('Bower package(s) to use. Multiple packages can be defined with: package="foo bar" or package=foo,bar')
       .long('package')
       .act(function() {
         gulp.start('default');
