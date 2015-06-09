@@ -74,7 +74,7 @@ public class Demo implements EntryPoint {
 
                 RootPanel.get().add(new Sampler());
             }
-        }).schedule(1000);
+        }).schedule(2000);
 
 
     }

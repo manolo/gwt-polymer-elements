@@ -37,14 +37,12 @@ public class MaterialSample extends Composite {
         public void onClick(ClickEvent event) {
             PaperMaterial source = (PaperMaterial) event.getSource();
             if (!down) {
-//                TODO: investigate why we cannot set elevation as property
-//                source.setElevation(material.getElevation() + 1);
-                source.getPolymerElement().setAttribute("elevation", source.getElevation() + 1);
+                source.setElevation(material.getElevation() + 1);
                 if (source.getElevation() == 5) {
                     down = true;
                 }
             } else {
-                source.getPolymerElement().setAttribute("elevation", source.getElevation() - 1);
+                source.setElevation(material.getElevation() - 1);
                 if (source.getElevation() == 0) {
                     down = false;
                 }
