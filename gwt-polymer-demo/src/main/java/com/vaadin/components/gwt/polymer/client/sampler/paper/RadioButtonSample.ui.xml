@@ -5,33 +5,33 @@
     <g:HTMLPanel addStyleNames="radio-button-sample">
 
         <style is="custom-style">
-            paper-radio-button {
+            .radio-button-sample paper-radio-button {
                 display: block;
                 margin-bottom: 40px;
             }
-            
-            paper-radio-button.blue {
+
+            .radio-button-sample paper-radio-button.blue {
                 --paper-radio-button-checked-color: var(--paper-light-blue-500);
                 --paper-radio-button-checked-ink-color: var(--paper-light-blue-500);
                 --paper-radio-button-unchecked-color: var(--paper-light-blue-900);
                 --paper-radio-button-unchecked-ink-color: var(--paper-light-blue-900);
             }
 
-            paper-radio-button.red {
+            .radio-button-sample paper-radio-button.red {
                 --paper-radio-button-checked-color: var(--paper-red-500);
                 --paper-radio-button-checked-ink-color: var(--paper-red-500);
                 --paper-radio-button-unchecked-color: var(--paper-red-900);
                 --paper-radio-button-unchecked-ink-color: var(--paper-red-900);
             }
 
-            paper-radio-button.green {
+            .radio-button-sample paper-radio-button.green {
                 --paper-radio-button-checked-color: var(--paper-green-500);
                 --paper-radio-button-checked-ink-color: var(--paper-green-500);
                 --paper-radio-button-unchecked-color: var(--paper-green-900);
                 --paper-radio-button-unchecked-ink-color: var(--paper-green-900);
             }
 
-            paper-radio-button.orange {
+            .radio-button-sample paper-radio-button.orange {
                 --paper-radio-button-checked-color: var(--paper-orange-500);
                 --paper-radio-button-checked-ink-color: var(--paper-orange-500);
                 --paper-radio-button-unchecked-color: var(--paper-orange-900);
