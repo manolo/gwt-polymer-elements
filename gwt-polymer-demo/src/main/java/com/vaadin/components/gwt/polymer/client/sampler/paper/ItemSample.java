@@ -20,7 +20,6 @@ public class ItemSample extends Composite {
         Polymer.ensureHTMLImport("paper-toggle-button/paper-toggle-button.html");
         Polymer.ensureHTMLImport("paper-item/paper-icon-item.html");
         Polymer.ensureHTMLImport("paper-item/paper-item.html");
-        Polymer.ensureHTMLImport("../paper/item-sample-styles.html");
 
         initWidget(ourUiBinder.createAndBindUi(ItemSample.this));
     }

@@ -1,12 +1,38 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
-             xmlns:g='urn:import:com.google.gwt.user.client.ui'
-        >
-    
-    <ui:style>
-
-    </ui:style>
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
 
     <g:HTMLPanel addStyleNames="tabs-sample">
+
+    <style is="custom-style">
+    
+        .tabs-sample :root {
+            --paper-toolbar-background: #00bcd4;
+        }
+    
+        .tabs-sample paper-tabs, paper-toolbar {
+            background-color: #00bcd4;
+            color: #fff;
+            box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+        }
+    
+        .tabs-sample paper-toolbar paper-tabs {
+            box-shadow: none;
+        }
+    
+        .tabs-sample paper-tabs[noink][no-bar] paper-tab.iron-selected {
+            color: #ffff8d;
+        }
+    
+        .tabs-sample paper-tabs[alignBottom] {
+        	box-shadow: 0px -2px 6px rgba(0, 0, 0, 0.15);
+        }
+    
+        .tabs-sample h3 {
+            font-size: 16px;
+            font-weight: 400;
+            padding-top: 20px;
+        }
+    </style>
 
         <h3>A. No ink effect and no sliding bar</h3>
 

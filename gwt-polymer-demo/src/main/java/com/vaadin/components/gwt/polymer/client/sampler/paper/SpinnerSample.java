@@ -32,7 +32,6 @@ public class SpinnerSample extends Composite {
     @UiField PaperSpinner toggle2_4;
 
     public SpinnerSample() {
-        Polymer.ensureHTMLImport("../paper/spinner-sample-styles.html");
         Polymer.ensureHTMLImport("paper-spinner/paper-spinner.html");
 
         initWidget(ourUiBinder.createAndBindUi(SpinnerSample.this));

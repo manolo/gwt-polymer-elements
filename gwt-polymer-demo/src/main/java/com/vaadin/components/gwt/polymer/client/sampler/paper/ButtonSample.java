@@ -14,7 +14,6 @@ public class ButtonSample extends Composite {
 
     public ButtonSample() {
         Polymer.ensureHTMLImport("paper-button/paper-button.html");
-        Polymer.ensureHTMLImport("../paper/button-sample-styles.html");
         
         initWidget(ourUiBinder.createAndBindUi(ButtonSample.this));
     }

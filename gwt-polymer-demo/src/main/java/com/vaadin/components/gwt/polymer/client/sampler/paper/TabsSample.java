@@ -14,7 +14,6 @@ public class TabsSample extends Composite {
 
     public TabsSample() {
         Polymer.ensureHTMLImport("paper-tabs/paper-tabs.html");
-        Polymer.ensureHTMLImport("../paper/tabs-sample-styles.html");
         
         initWidget(ourUiBinder.createAndBindUi(this));
     }

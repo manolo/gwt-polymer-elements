@@ -25,7 +25,6 @@ public class DrawerPanelSample extends Composite {
 
     public DrawerPanelSample() {
         Polymer.ensureHTMLImport("paper-drawer-panel/paper-drawer-panel.html");
-        Polymer.ensureHTMLImport("../paper/drawer-panel-sample-styles.html");
 
         initWidget(ourUiBinder.createAndBindUi(DrawerPanelSample.this));
         
