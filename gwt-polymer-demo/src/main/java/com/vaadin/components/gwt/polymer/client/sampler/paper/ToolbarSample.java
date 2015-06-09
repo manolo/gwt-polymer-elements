@@ -14,7 +14,6 @@ public class ToolbarSample extends Composite {
 
     public ToolbarSample() {
         Polymer.ensureHTMLImport("paper-toolbar/paper-toolbar.html");
-        Polymer.ensureHTMLImport("../paper/toolbar-sample-styles.html");
 
         initWidget(ourUiBinder.createAndBindUi(ToolbarSample.this));
     }

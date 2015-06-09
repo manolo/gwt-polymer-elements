@@ -5,7 +5,12 @@
     
 
     <g:HTMLPanel addStyleNames="toolbar-sample">
-
+        <style is="custom-style">
+        
+            .toolbar-sample paper-toolbar + paper-toolbar {
+                margin-top: 20px;
+            }
+        </style>
         <p:PaperToolbar>
             <paper-icon-button icon="menu"></paper-icon-button>
             <span class="title">Toolbar</span>

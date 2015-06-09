@@ -14,7 +14,6 @@ public class HeaderPanelSample extends Composite {
     
     public HeaderPanelSample() {
         Polymer.ensureHTMLImport("paper-header-panel/paper-header-panel.html");
-        Polymer.ensureHTMLImport("../paper/header-panel-sample-styles.html");
 
         initWidget(ourUiBinder.createAndBindUi(HeaderPanelSample.this));
     }

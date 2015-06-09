@@ -14,7 +14,6 @@ public class CheckboxSample extends Composite {
 
     public CheckboxSample() {
         Polymer.ensureHTMLImport("paper-checkbox/paper-checkbox.html");
-        Polymer.ensureHTMLImport("../paper/checkbox-sample-styles.html");
         
         initWidget(ourUiBinder.createAndBindUi(CheckboxSample.this));
     }

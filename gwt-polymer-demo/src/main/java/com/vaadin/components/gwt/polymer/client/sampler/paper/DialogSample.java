@@ -40,7 +40,6 @@ public class DialogSample extends Composite {
 
     public DialogSample() {
         Polymer.ensureHTMLImport("paper-dialog/paper-dialog.html");
-        Polymer.ensureHTMLImport("../paper/dialog-sample-styles.html");
         
         initWidget(ourUiBinder.createAndBindUi(DialogSample.this));
         
