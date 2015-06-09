@@ -117,26 +117,16 @@ public class Sampler extends Composite {
         addSample("Item", new ItemSample(), "paper", "ItemSample");
         addSample("Input", new InputSample(), "paper", "InputSample");
         addSample("Material", new MaterialSample(), "paper", "MaterialSample");
+        addSample("Menu", new MenuSample(), "paper", "MenuSample");
+        addSample("Progress", new ProgressSample(), "paper", "ProgressSample");
+        addSample("Spinner", new SpinnerSample(), "paper", "SpinnerSample");
+        addSample("Tabs", new TabsSample(), "paper", "TabsSample");
+        addSample("Toast", new ToastSample(), "paper", "ToastSample");
+//        addSample("Toggle Button", new ToggleButtonSample(), "paper", "ToggleButtonSample");
         addSample("Toolbar", new ToolbarSample(), "paper", "ToolbarSample");
 //        addSample("Radio Button", new RadioButtonSample(), "paper", "RadioButtonSample");
-//        addSample("Toggle Button", new ToggleButtonSample(), "paper", "ToggleButtonSample");
-//        // strange bug appears if include this to Sampler
-//        addSample("Toolbar", new ToolbarSample(), "paper", "ToolbarSample");
-        addSample("Spinner", new SpinnerSample(), "paper", "SpinnerSample");
-//        addSample("Progress Bar", new ProgressBarSample(), "paper", "ProgressBarSample");
 //        addSample("Slider", new SliderSample(), "paper", "SliderSample");
-        addSample("Tabs", new TabsSample(), "paper", "TabsSample");
-//        addSample("Icon Button", new IconButtonSample(), "paper", "IconButtonSample");
-//        // not fully implemented yet
-////        addSample("Dropdown", new DropdownSample(), "paper", "DropdownSample");
-//        addSample("Dropdown Menu", new DropdownMenuSample(), "paper", "DropdownMenuSample");
-//        addSample("Menu Button", new MenuButtonSample(), "paper", "MenuButtonSample");
-//        addSample("Item", new ItemSample(), "paper", "ItemSample");
-//        addSample("Dialog", new DialogSample(), "paper", "DialogSample");
-//        // wait for pull-request, because setZ seems not working.
-//        addSample("Shadow", new ShadowSample(), "paper", "ShadowSample");
-        addSample("Toast", new ToastSample(), "paper", "ToastSample");
-//
+
         addCategory("gwt", "Other");
         addSample("Element UiBinder", new PaperTabsView(), "gwt", "PaperTabsView");
         addSample("Widget UiBinder", new PaperTabsWidgetView(), "gwt", "PaperTabsWidgetView");
