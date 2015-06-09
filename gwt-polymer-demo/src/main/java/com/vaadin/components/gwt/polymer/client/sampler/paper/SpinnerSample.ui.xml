@@ -7,10 +7,10 @@
             <div>
                 <h4>Default</h4>
                 <div class="horizontal-section">
-                    <p:PaperSpinner active="" ui:field="toggle1_1"></p:PaperSpinner>
-                    <p:PaperSpinner active="" ui:field="toggle1_2"></p:PaperSpinner>
-                    <p:PaperSpinner active="" ui:field="toggle1_3"></p:PaperSpinner>
-                    <p:PaperSpinner active="" ui:field="toggle1_4"></p:PaperSpinner>
+                    <p:PaperSpinner active="true" ui:field="toggle1_1"></p:PaperSpinner>
+                    <p:PaperSpinner active="true" ui:field="toggle1_2"></p:PaperSpinner>
+                    <p:PaperSpinner active="true" ui:field="toggle1_3"></p:PaperSpinner>
+                    <p:PaperSpinner active="true" ui:field="toggle1_4"></p:PaperSpinner>
                     <g:Button ui:field="toggleBtn1">Toggle</g:Button>
                 </div>
             </div>
@@ -18,10 +18,10 @@
             <div>
                 <h4>Color</h4>
                 <div class="horizontal-section">
-                    <p:PaperSpinner active="" ui:field="toggle2_1"></p:PaperSpinner>
-                    <p:PaperSpinner active="" ui:field="toggle2_2"></p:PaperSpinner>
-                    <p:PaperSpinner active="" ui:field="toggle2_3"></p:PaperSpinner>
-                    <p:PaperSpinner active="" ui:field="toggle2_4"></p:PaperSpinner>
+                    <p:PaperSpinner active="true" ui:field="toggle2_1" addStyleNames="blue"></p:PaperSpinner>
+                    <p:PaperSpinner active="true" ui:field="toggle2_2" addStyleNames="red"></p:PaperSpinner>
+                    <p:PaperSpinner active="true" ui:field="toggle2_3" addStyleNames="orange"></p:PaperSpinner>
+                    <paper-spinner ui:field="toggle2_4" active="" class="green"/>
                     <g:Button ui:field="toggleBtn2">Toggle</g:Button>
                 </div>
             </div>
