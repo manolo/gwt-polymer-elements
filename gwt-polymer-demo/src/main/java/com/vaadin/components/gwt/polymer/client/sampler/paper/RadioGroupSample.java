@@ -1,4 +1,4 @@
-package com.vaadin.components.gwt.polymer.client.sampler.iron;
+package com.vaadin.components.gwt.polymer.client.sampler.paper;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
