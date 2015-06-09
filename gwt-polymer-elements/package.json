@@ -18,6 +18,7 @@
     "run-sequence": "latest",
     "stream-from-array": "latest"
   },
+  "main": "bin/gwt-api-generator.js",
   "keywords": [
     "vaadin",
     "components",
