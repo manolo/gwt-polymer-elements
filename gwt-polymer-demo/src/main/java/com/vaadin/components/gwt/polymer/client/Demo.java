@@ -28,7 +28,7 @@ public class Demo implements EntryPoint {
         Polymer.ensureHTMLImport("paper-item/paper-icon-item.html");
         Polymer.ensureHTMLImport("paper-item/paper-item.html");
         Polymer.ensureHTMLImport("../paper/item-sample-styles.html");
-        
+
         Polymer.ensureHTMLImport("paper-button/paper-button.html");
         
         Polymer.ensureHTMLImport("paper-drawer-panel/paper-drawer-panel.html");
@@ -42,7 +42,7 @@ public class Demo implements EntryPoint {
         Polymer.ensureHTMLImport("../paper/toolbar-sample-styles.html");
         
         Polymer.ensureHTMLImport("iron-collapse/iron-collapse.html");
-        
+
         Polymer.ensureHTMLImport("iron-selector/iron-selector.html");
         
         Polymer.ensureTag("paper-toast");
@@ -58,6 +58,9 @@ public class Demo implements EntryPoint {
 
         Polymer.ensureHTMLImport("paper-styles/typography.html");
         Polymer.ensureHTMLImport("paper-material/paper-material.html");
+
+        Polymer.ensureHTMLImport("../paper/spinner-sample-styles.html");
+        Polymer.ensureHTMLImport("paper-spinner/paper-spinner.html");
 
         (new Timer() {
             @Override

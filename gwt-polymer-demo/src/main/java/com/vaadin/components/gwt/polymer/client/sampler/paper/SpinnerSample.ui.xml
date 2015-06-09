@@ -1,0 +1,30 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:p='urn:import:com.vaadin.components.gwt.polymer.client.widget'>
+
+    <g:HTMLPanel addStyleNames="spinner-sample">
+        <div class="horizontal center-justified layout">
+            <div>
+                <h4>Default</h4>
+                <div class="horizontal-section">
+                    <p:PaperSpinner active="" ui:field="toggle1_1"></p:PaperSpinner>
+                    <p:PaperSpinner active="" ui:field="toggle1_2"></p:PaperSpinner>
+                    <p:PaperSpinner active="" ui:field="toggle1_3"></p:PaperSpinner>
+                    <p:PaperSpinner active="" ui:field="toggle1_4"></p:PaperSpinner>
+                    <g:Button ui:field="toggleBtn1">Toggle</g:Button>
+                </div>
+            </div>
+
+            <div>
+                <h4>Color</h4>
+                <div class="horizontal-section">
+                    <p:PaperSpinner active="" ui:field="toggle2_1"></p:PaperSpinner>
+                    <p:PaperSpinner active="" ui:field="toggle2_2"></p:PaperSpinner>
+                    <p:PaperSpinner active="" ui:field="toggle2_3"></p:PaperSpinner>
+                    <p:PaperSpinner active="" ui:field="toggle2_4"></p:PaperSpinner>
+                    <g:Button ui:field="toggleBtn2">Toggle</g:Button>
+                </div>
+            </div>
+        </div>
+    </g:HTMLPanel>
+</ui:UiBinder>

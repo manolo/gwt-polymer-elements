@@ -21,18 +21,7 @@ import com.vaadin.components.gwt.polymer.client.sampler.gwt.PaperTabsView;
 import com.vaadin.components.gwt.polymer.client.sampler.gwt.PaperTabsWidgetView;
 import com.vaadin.components.gwt.polymer.client.sampler.iron.IronCollapseSample;
 import com.vaadin.components.gwt.polymer.client.sampler.iron.IronSelectorSample;
-import com.vaadin.components.gwt.polymer.client.sampler.paper.ButtonSample;
-import com.vaadin.components.gwt.polymer.client.sampler.paper.CheckboxSample;
-import com.vaadin.components.gwt.polymer.client.sampler.paper.DialogSample;
-import com.vaadin.components.gwt.polymer.client.sampler.paper.FabSample;
-import com.vaadin.components.gwt.polymer.client.sampler.paper.HeaderPanelSample;
-import com.vaadin.components.gwt.polymer.client.sampler.paper.IconButtonSample;
-import com.vaadin.components.gwt.polymer.client.sampler.paper.InputSample;
-import com.vaadin.components.gwt.polymer.client.sampler.paper.ItemSample;
-import com.vaadin.components.gwt.polymer.client.sampler.paper.MaterialSample;
-import com.vaadin.components.gwt.polymer.client.sampler.paper.TabsSample;
-import com.vaadin.components.gwt.polymer.client.sampler.paper.ToastSample;
-import com.vaadin.components.gwt.polymer.client.sampler.paper.ToolbarSample;
+import com.vaadin.components.gwt.polymer.client.sampler.paper.*;
 import com.vaadin.components.gwt.polymer.client.widget.IronCollapse;
 import com.vaadin.components.gwt.polymer.client.widget.IronSelector;
 import com.vaadin.components.gwt.polymer.client.widget.PaperButton;
@@ -133,7 +122,7 @@ public class Sampler extends Composite {
 //        addSample("Toggle Button", new ToggleButtonSample(), "paper", "ToggleButtonSample");
 //        // strange bug appears if include this to Sampler
 //        addSample("Toolbar", new ToolbarSample(), "paper", "ToolbarSample");
-//        addSample("Spinner", new SpinnerSample(), "paper", "SpinnerSample");
+        addSample("Spinner", new SpinnerSample(), "paper", "SpinnerSample");
 //        addSample("Progress Bar", new ProgressBarSample(), "paper", "ProgressBarSample");
 //        addSample("Slider", new SliderSample(), "paper", "SliderSample");
         addSample("Tabs", new TabsSample(), "paper", "TabsSample");
