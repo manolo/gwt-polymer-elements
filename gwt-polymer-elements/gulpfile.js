@@ -36,10 +36,12 @@ gulp.task('clean', ['clean:target', 'clean:resources']);
 
 gulp.task('bower:install', ['clean'], function() {
   if(!args.package) {
-    args.package = 'PolymerElements/paper-elements';
+    args.package = ['PolymerElements/paper-elements'];
+  } else {
+    args.package = args.package.replace(' ', ',').split(',')
   }
 
-  return bower({ cmd: 'install', directory: bowerdir}, [[args.package]])
+  return bower({ cmd: 'install', directory: bowerdir}, [args.package])
     .pipe(map(function(file, cb){
       // iron-a11y-keys lacks the fire-keys-pressed annotation.
       if (/iron-a11y-keys.html/.test(file.relative)) {
