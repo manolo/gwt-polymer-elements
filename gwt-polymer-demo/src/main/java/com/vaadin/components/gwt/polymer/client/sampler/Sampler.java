@@ -39,6 +39,7 @@ import com.vaadin.components.gwt.polymer.client.sampler.paper.MenuSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.ProgressSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.RadioButtonSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.RadioGroupSample;
+import com.vaadin.components.gwt.polymer.client.sampler.paper.RippleSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.SpinnerSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.TabsSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.ToastSample;
@@ -138,6 +139,7 @@ public class Sampler extends Composite {
         addSample("Radio Button", new RadioButtonSample(), "paper", "RadioButtonSample");
         addSample("Radio Group", new RadioGroupSample(), "paper", "RadioGroupSample");
         addSample("Spinner", new SpinnerSample(), "paper", "SpinnerSample");
+        addSample("Ripple", new RippleSample(), "paper", "RippleSample");
         addSample("Tabs", new TabsSample(), "paper", "TabsSample");
         addSample("Toast", new ToastSample(), "paper", "ToastSample");
 //        addSample("Toggle Button", new ToggleButtonSample(), "paper", "ToggleButtonSample");
