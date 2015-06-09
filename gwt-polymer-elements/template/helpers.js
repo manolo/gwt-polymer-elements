@@ -1,17 +1,42 @@
 module.exports = {
   javaKeywords: ['for', 'switch'], // TODO: if it's necessary add other keywords as well
-  className: function () {
-    return this.camelCase(this['name']);
+  findBehavior: function(name) {
+    for (var i = 0; i < global.parsed.length; i++) {
+      console.log(this.className(global.parsed[i].is), this.className(name), global.parsed[i].is, name);
+      if (this.className(global.parsed[i].is) == this.className(name)) {
+        return global.parsed[i];
+      }
+    }
+  },
+  isBehavior: function(item) {
+    return ((item && item.type) || this.type) == 'behavior';
+  },
+  className: function (name) {
+    return this.camelCase(name || this['name']);
+  },
+  elementClassName: function(name) {
+    return this.className(name) + (this.isBehavior() ? '' : 'Element');
   },
   baseClassName: function () {
-    var e = this['extends'];
-    if (e && e.match(/[A-Z\-]/)) {
-      // CoreResizable -> CoreResizableElement, core-input -> CoreInputElment
-      return this.camelCase(e) + 'Element';
-    } else {
-      // input -> HTMLInputElement, table -> HTMLTableElement
-      return 'HTML' + (e ? this.camelCase(e) : '') + 'Element';
+    var _this = this;
+    // Always extend native HTMLElement
+    var e = ['HTMLElement'];
+    if (this.behaviors && this.behaviors.length) {
+      this.behaviors.forEach(function(name){
+        // CoreResizable -> CoreResizableElement, core-input -> CoreInputElment
+        if (name && name.match(/[A-Z\-]/)) {
+          if (_this.findBehavior(name)) {
+            e.push(_this.camelCase(name));
+          } else {
+            console.log("NOT FOUND: " + name + " " + _this.camelCase(name));
+          }
+        } else {
+          // input -> HTMLInputElement, table -> HTMLTableElement
+          e.push('HTML' + _this.elementClassName(name));
+        }
+      });
     }
+    return "extends " + e.join(',');
   },
   baseWidgetName: function () {
     var e = this['extends'];
@@ -23,7 +48,7 @@ module.exports = {
     }
   },
   camelCase: function(s) {
-    return (s || '').replace(/[^\-\w\.]/g,'').replace(/(\b|-|\.)\w/g, function (m) {
+    return (s || '').replace(/^Polymer\./, '').replace(/[^\-\w\.]/g,'').replace(/(\b|-|\.)\w/g, function (m) {
       return m.toUpperCase().replace(/[-\.]/g, '');
     });
   },
@@ -55,7 +80,7 @@ module.exports = {
   },
   removePrivateApi: function(arr, prop) {
     for (var i = arr.length - 1; i >= 0; i--) {
-      if (/^_/.test(arr[i][prop])) {
+      if (/^(_.*|ready|created)$/.test(arr[i][prop])) {
         arr.splice(i, 1);
       }
     }
@@ -151,5 +176,18 @@ module.exports = {
            " * This code was generated with Vaadin GWT Generator, an\n" +
            " * Apache 2.0 Licensed library developed at Vaadin Labs.\n" +
            " */";
+  },
+  j2s: function(json, msg) {
+    msg = msg || '';
+    var cache = [];
+    console.log(msg + JSON.stringify(json, function(key, value) {
+        if (typeof value === 'object' && value !== null) {
+            if (cache.indexOf(value) !== -1) {
+                return;
+            }
+            cache.push(value);
+        }
+        return value;
+    }));
   }
 };

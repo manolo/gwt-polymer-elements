@@ -15,7 +15,7 @@
     "lodash": "latest",
     "map-stream": "latest",
     "stream-from-array": "latest",
-    "hydrolysis": "latest",
+    "hydrolysis": "git://github.com/Polymer/hydrolysis#master",
     "run-sequence": "latest"
   },
   "scripts": {

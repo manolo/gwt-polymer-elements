@@ -11,12 +11,13 @@ import com.google.gwt.core.client.js.JsType;
  * <%= getDescription(' ') %>
  */
 @JsType
-public interface <%= className() %>Element extends <%= baseClassName() %> {
-	/**
-	 * AUTO-GENERATED CODE, DO NOT EDIT !!!
-	 */
+public interface <%= elementClassName() %> <%= baseClassName() %> {
+    /**
+     * AUTO-GENERATED CODE, DO NOT EDIT !!!
+     */
 
     public static final String TAG = "<%= name %>";
+    public static final String SRC = "<%= path %>";
 
 <% if (hasAttributes()) _.forEach(attributes, function(attribute){ %>
     /**
@@ -28,8 +29,7 @@ public interface <%= className() %>Element extends <%= baseClassName() %> {
     @JsProperty <%= computeType(attribute.type) %> <%= computeGetterWithPrefix(attribute) %>();
     @JsProperty void <%= computeSetterWithPrefix(attribute) %>(<%= computeType(attribute.type) %> value);
 <% }); %>
-<% if (hasProperties()) _.forEach(properties, function(item){ %>
-  <% if (item.type != 'Function') { %>
+<% if (hasProperties()) _.forEach(properties, function(item){ if (isBehavior() || !item.isBehavior) if (item.type != 'Function') { %>
     /**
      * <%= getDescription('     ', item) %>
      *
@@ -46,7 +46,5 @@ public interface <%= className() %>Element extends <%= baseClassName() %> {
      * @param {<%= param.type %>} <%= param.name %> <%= param.description %> <% }); %>
      */
     void <%= item.name %>(<%= typedParamsString(item) %>);
-
-  <% } %>
-<% }); %>
+<% }}); %>
 }

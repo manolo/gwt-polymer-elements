@@ -16,9 +16,11 @@ var namespace = "./src/main/java/" + ns.replace(/\./g,'/') + "/client/";
 var resources = "./src/main/resources/" + ns.replace(/\./g,'/') + "/public/";
 var bowerdir = resources + "bower_components/";
 
-// Used to store parser output
-var imports = [];
-var parsed = [];
+// Using global because if we try to pass it to templates via the helper or any object
+// we need to call merge which makes a copy of the structure per template slowing down
+// the performance.
+global.parsed = []; // we store all parsed objects so as we can iterate or find behaviors
+global.imports = []; // we store a table for elements and import files
 
 gulp.task('api:clean', function() {
   fs.removeSync(namespace + 'element');
@@ -52,7 +54,30 @@ gulp.task('bower', ['clean'], function() {
     .pipe(gulp.dest(bowerdir));
 });
 
-gulp.task('api:parse', ['api:clean'], function() {
+gulp.task('api:parse', ['api:analyze'], function(cb) {
+  global.parsed.forEach(function(item) {
+    if (!helpers.isBehavior(item) && item.behaviors && item.behaviors.length) {
+      item.behaviors.forEach(function(name) {
+        var behavior = helpers.findBehavior(name)
+        if (behavior) {
+          behavior.properties.forEach(function(prop) {
+            prop.isBehavior = true;
+            prop.behavior = helpers.className(item.is);
+            item.properties.push(prop);
+          });
+        }
+      });
+    }
+    // Hydrolysis duplicates attributes
+    helpers.removeDuplicates(item.properties, 'name');
+    // We don't want to wrap any private api
+    helpers.removePrivateApi(item.properties, 'name');
+  });
+  cb();
+});
+
+gulp.task('api:analyze', ['api:clean'], function() {
+//  return gulp.src([bowerdir + "*/*(paper-chckbox|paper-radio-button|).html",
   return gulp.src([bowerdir + "*/*.html",
     // ignore all demo.html, index.html and metadata.html files
     "!" + bowerdir + "*/*demo.html",
@@ -64,30 +89,25 @@ gulp.task('api:parse', ['api:clean'], function() {
     "!" + bowerdir + "*/*iron-jsonp-library.html",
     ])
     .pipe(map(function(file, cb) {
-      gutil.log('Parsing -> "' + bowerdir + file.relative + '"');
-      hyd.Analyzer.analyze(bowerdir + file.relative).then(function(result){
-        var jsonArray = result.elements;
+      hyd.Analyzer.analyze(bowerdir + file.relative).then(function(result) {
+        var jsonArray = result.elements && result.elements[0] ? result.elements : result.behaviors;
         jsonArray.forEach(function(item) {
-          // saves the result object as JSON
-          var dirname = 'dist-tmp/';
-          var path = dirname + item.is + '.json';
+          var path = file.relative.replace(/\\/, '/');
           if (item.is) {
             item.name = item.is;
-            // Hydrolysis repeat certain attributes
-            helpers.removeDuplicates(item.properties, 'name');
-            // We don't want to wrap private api
-            helpers.removePrivateApi(item.properties, 'name');
+            item.path = path;
             // Save all items in an array for later processing
-            parsed.push(item);
-            // remember href in separate java file
-            imports.push({
+            global.parsed.push(item);
+            // remember href in a separate hash
+            global.imports.push({
               element: item.is,
-              path: file.relative.replace(/\\/, '/')
+              path: path
             });
           }
         });
         cb(null, file);
-      }).catch(function(e){
+      })
+      .catch(function(e){
         gutil.log(e.stack);
         cb(null, file);
       });
@@ -108,18 +128,20 @@ function parseTemplate(template, obj, name, dir, suffix) {
 }
 
 gulp.task('api:gen:imports-map', ['api:parse'], function() {
-  parseTemplate('ImportsMap', {"imports" : imports}, 'imports-map', 'element/', '.java');
+  parseTemplate('ImportsMap', {"imports" : global.imports}, 'imports-map', 'element/', '.java');
 });
 
 gulp.task('api:gen:elements', ['api:parse'], function() {
-  StreamFromArray(parsed,{objectMode: true})
+  StreamFromArray(global.parsed,{objectMode: true})
    .on('data', function(item) {
-      parseTemplate('Element', item, item.is, 'element/', 'Element.java');
+     console.log("Data: ", item.is, item.type)
+     var e = item.type == 'behavior'? '' : 'Element';
+     parseTemplate('Element', item, item.is, 'element/', e + '.java');
    })
 });
 
 gulp.task('api:gen:events', ['api:parse'], function() {
-  StreamFromArray(parsed,{objectMode: true})
+  StreamFromArray(global.parsed,{objectMode: true})
    .on('data', function(item) {
       if (item.events) {
         item.events.forEach(function(event) {
@@ -130,14 +152,16 @@ gulp.task('api:gen:events', ['api:parse'], function() {
 });
 
 gulp.task('api:gen:widgets', ['api:parse'], function() {
-  StreamFromArray(parsed,{objectMode: true})
+  StreamFromArray(global.parsed,{objectMode: true})
    .on('data', function(item) {
-      parseTemplate('Widget', item, item.is, 'widget/', '.java');
+      if (!helpers.isBehavior(item)) {
+        parseTemplate('Widget', item, item.is, 'widget/', '.java');
+      }
    })
 });
 
 gulp.task('api:gen:widget-events', ['api:parse'], function() {
-  StreamFromArray(parsed,{objectMode: true})
+  StreamFromArray(global.parsed,{objectMode: true})
    .on('data', function(item) {
       if (item.events) {
         item.events.forEach(function(event) {

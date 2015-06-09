@@ -29,7 +29,7 @@ public class <%= className() %> extends <%= baseWidgetName() %> {
      * Constructor used by UIBinder to create widgets with content.
      */
     public <%= className() %>(String html) {
-        this(<%= className() %>Element.TAG, html);
+        this(<%= elementClassName() %>.TAG, html);
     }
 
     /**
@@ -52,8 +52,8 @@ public class <%= className() %> extends <%= baseWidgetName() %> {
     /**
      * Gets a handle to the Polymer object's underlying DOM element.
      */
-    public <%= className() %>Element getPolymerElement() {
-        return (<%= className() %>Element) getElement();
+    public <%= elementClassName() %> getPolymerElement() {
+        return (<%= elementClassName() %>) getElement();
     }
 
 <% if (hasAttributes()) _.forEach(attributes, function(attribute){ %>
@@ -79,6 +79,7 @@ public class <%= className() %> extends <%= baseWidgetName() %> {
      *
      * @property <%= item.name %>
      * @type <%= item.type %>
+     * <%= item.isBehavior ? ('@behavior ' + item.behavior ) : ''%>
      */
     public <%= computeType(item.type) %> <%= computeGetterWithPrefix(item) %>(){
         return getPolymerElement().<%= computeGetterWithPrefix(item) %>();
@@ -92,6 +93,7 @@ public class <%= className() %> extends <%= baseWidgetName() %> {
      *
      * @method <%= item.name %><% if (!!item.params) _.forEach(item.params, function(param) { %>
      * @param {<%= param.type %>} <%= param.name %> <%= param.description %> <% }); %>
+     * <%= item.isBehavior ? ('@behavior ' + item.behavior ) : ''%>
      */
     public void <%= item.name %>(<%= typedParamsString(item) %>) {
         getPolymerElement().<%= item.name %>(<%= paramsString(item) %>);
