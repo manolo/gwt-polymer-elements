@@ -3,9 +3,9 @@
              xmlns:p='urn:import:com.vaadin.components.gwt.polymer.client.widget'>
     
     <ui:style>
-        @external .horizontal-section;
+        @external .menu-sample, .horizontal-section;
 
-        .horizontal-section {
+        .menu-sample .horizontal-section {
             padding: 0 !important;
         }
     </ui:style>
