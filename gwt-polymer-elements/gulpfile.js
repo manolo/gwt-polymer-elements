@@ -34,7 +34,7 @@ gulp.task('clean:resources', function() {
 
 gulp.task('clean', ['clean:target', 'clean:resources']);
 
-gulp.task('bower', ['clean'], function() {
+gulp.task('bower:install', ['clean'], function() {
   if(!args.package) {
     args.package = 'PolymerElements/paper-elements';
   }
@@ -178,12 +178,12 @@ gulp.task('generate:widget-events', ['parse'], function() {
    })
 });
 
-gulp.task('elements', ['generate:imports-map','generate:elements', 'generate:events']);
+gulp.task('generate:elements-all', ['generate:imports-map','generate:elements', 'generate:events']);
 
-gulp.task('widgets', ['generate:widgets', 'generate:widget-events']);
+gulp.task('generate:widgets-all', ['generate:widgets', 'generate:widget-events']);
 
-gulp.task('generate', ['generate:elements', 'generate:widgets']);
+gulp.task('generate', ['generate:elements-all', 'generate:widgets-all']);
 
 gulp.task('default', function(){
-  runSequence('clean', 'bower', 'generate')
+  runSequence('clean', 'bower:install', 'generate')
 })
