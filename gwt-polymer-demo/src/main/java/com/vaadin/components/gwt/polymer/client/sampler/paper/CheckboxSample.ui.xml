@@ -1,108 +1,42 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
              xmlns:p='urn:import:com.vaadin.components.gwt.polymer.client.widget'>
+
     
-    <ui:style>
-        @external .checked;
 
-        .container {
-            font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
-            margin: 0;
-            padding: 24px;
-            -webkit-tap-highlight-color: rgba(0,0,0,0);
-            -webkit-touch-callout: none;
-        }
+    <g:HTMLPanel addStyleNames="checkbox-sample">
 
-        paper-checkbox {
-            padding: 20px 20px 20px 0;
-        }
-
-        .wrapper {
-            width: 300px;
-        }
-
-        paper-checkbox.blue::shadow #ink[checked] {
-            color: #BBDEFB;
-        }
-
-        paper-checkbox.blue::shadow #checkbox.checked {
-            background-color: #2196F3;
-            border-color: #2196F3;
-        }
-    </ui:style>
-    
-    <g:HTMLPanel addStyleNames="{style.container}">
-
-        <section class="{style.wrapper}">
-
-            <p:CoreLabel horizontal="true" layout="true">
-                <p:PaperCheckbox></p:PaperCheckbox>
-                <div vertical="" layout="">
-                    <h4>Notifications</h4>
-                    <div>Notify me about updates to apps or games that I've downloaded</div>
+        <div class="horizontal center-justified layout">
+            <div>
+                <h4>Enabled</h4>
+                <div class="horizontal-section">
+                    <p:PaperCheckbox>Oxygen</p:PaperCheckbox>
+                    <p:PaperCheckbox>Carbon</p:PaperCheckbox>
+                    <p:PaperCheckbox checked="true">Hydrogen</p:PaperCheckbox>
+                    <p:PaperCheckbox checked="true">Nitrogen</p:PaperCheckbox>
+                    <p:PaperCheckbox checked="true">Calcium</p:PaperCheckbox>
                 </div>
-            </p:CoreLabel>
-
-            <br />
-
-            <p:CoreLabel horizontal="" layout="">
-                <p:PaperCheckbox checked=""></p:PaperCheckbox>
-                <div vertical="" layout="">
-                    <h4>Auto-updates</h4>
-                    <div>Auto-update apps over wifi only</div>
+            </div>
+            <div>
+                <h4>Disabled</h4>
+                <div class="horizontal-section">
+                    <paper-checkbox disabled="">Oxygen</paper-checkbox>
+                    <paper-checkbox disabled="">Carbon</paper-checkbox>
+                    <paper-checkbox checked="" disabled="">Hydrogen</paper-checkbox>
+                    <paper-checkbox checked="" disabled="">Nitrogen</paper-checkbox>
+                    <paper-checkbox checked="" disabled="">Calcium</paper-checkbox>
                 </div>
-            </p:CoreLabel>
-
-            <br />
-
-            <p:CoreLabel horizontal="" layout="">
-                <p:PaperCheckbox></p:PaperCheckbox>
-                <div vertical="" layout="">
-                    <h4>Clear search history</h4>
-                    <div>Remove all the searches you have ever performed</div>
+            </div>
+            <div>
+                <h4>Color</h4>
+                <div class="horizontal-section">
+                    <paper-checkbox class="blue" checked="">Oxygen</paper-checkbox>
+                    <paper-checkbox class="red" checked="">Carbon</paper-checkbox>
+                    <paper-checkbox class="orange" checked="">Hydrogen</paper-checkbox>
+                    <paper-checkbox class="green" checked="">Nitrogen</paper-checkbox>
+                    <paper-checkbox class="blue" checked="">Calcium</paper-checkbox>
                 </div>
-            </p:CoreLabel>
-
-            <br /> 
-
-            <p:CoreLabel horizontal="" layout="">
-                <p:PaperCheckbox disabled="" checked=""></p:PaperCheckbox>
-                <div vertical="" layout="">
-                    <h4>Use as default browser</h4>
-                </div>
-            </p:CoreLabel>
-
-            <br />
-
-            <p:CoreLabel horizontal="" layout="">
-                <p:PaperCheckbox disabled=""></p:PaperCheckbox>
-                <div vertical="" layout="">
-                    <h4>Allow in incognito</h4>
-                </div>
-            </p:CoreLabel>
-        </section>
-
-        <br />
-        <br />
-        <br />
-
-        <section class="{style.wrapper}">
-            <h3>Sound</h3>
-
-            <p:CoreLabel center="" horizontal="" layout="">
-                <div flex="">Touch sounds</div>
-                <p:PaperCheckbox addStyleNames="{style.blue}" checked=""></p:PaperCheckbox>
-            </p:CoreLabel>
-
-            <p:CoreLabel center="" horizontal="" layout="">
-                <div flex="">Screen lock sound</div>
-                <p:PaperCheckbox addStyleNames="{style.blue}"></p:PaperCheckbox>
-            </p:CoreLabel>
-
-            <p:CoreLabel center="" horizontal="" layout="">
-                <div flex="">Vibrate on touch</div>
-                <p:PaperCheckbox addStyleNames="{style.blue}"></p:PaperCheckbox>
-            </p:CoreLabel>
-        </section>
+            </div>
+        </div>
     </g:HTMLPanel>
 </ui:UiBinder>

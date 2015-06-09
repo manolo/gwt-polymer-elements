@@ -1,169 +1,50 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
-             xmlns:p='urn:import:com.vaadin.components.gwt.polymer.client.widget'>
+        >
     
     <ui:style>
-        @external .narrow, .error, .label-text, .unfocused-underline, .focused-underline, .focused-underline;
 
-        .container {
-            font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
-            font-size: 14px;
-            margin: 0;
-            padding: 24px;
-            -webkit-tap-highlight-color: rgba(0,0,0,0);
-            -webkit-touch-callout: none;
-        }
-
-        .wrapper {
-            padding: 20px 0;
-        }
-
-        section > div {
-            padding: 14px;
-            font-size: 16px;
-        }
-
-        paper-input {
-            width: 80%;
-        }
-
-        paper-input-decorator {
-            max-width: 80%;
-        }
-
-
-
-        paper-input.narrow {
-            width: 150px;
-        }
-
-        .custom::shadow ::-webkit-input-placeholder {
-            color: #f4b400;
-        }
-
-        .custom::shadow ::-moz-placeholder {
-            color: #f4b400;
-        }
-
-        .custom::shadow :-ms-input-placeholder {
-            color: #f4b400;
-        }
-
-        .custom::shadow .label-text,
-        .custom::shadow .error {
-            color: #f4b400;
-        }
-
-        .custom::shadow .unfocused-underline {
-            background-color: #f4b400;
-        }
-
-        .custom[focused]::shadow .floated-label .label-text {
-            color: #0f9d58;
-        }
-
-        .custom::shadow .focused-underline {
-            background-color: #0f9d58;
-        }
-
-        .custom.invalid::shadow .floated-label .label-text,
-        .custom::shadow .error {
-            color: #f06292;
-        }
-
-        .custom.invalid::shadow .focused-underline {
-            background-color: #f06292;
-        }
-
-        .custom {
-            color: #1a237e;
-        }
     </ui:style>
-    
-    <g:HTMLPanel addStyleNames="{style.container}">
 
-        <section class="{style.wrapper}">
-            <div>Standalone</div><br/>
-            <p:PaperInput label="label"/><br/>
-            <p:PaperInput label="floating label" floatingLabel=""/><br/>
-            <p:PaperInput label="disabled" disabled=""/>
-        </section>
+    <g:HTMLPanel addStyleNames="icon-button-sample">
 
-        <section class="{style.wrapper}">
-            <div>Decorator</div><br/>
+        <div class="vertical center-justified layout">
+            <h4>Text input</h4>
+            <div class="vertical-section">
+                <paper-input label="label"></paper-input>
 
-            <p:PaperInputDecorator label="with core-input">
-                <input is="core-input" />
-            </p:PaperInputDecorator>
-            <br />
+                <paper-input label="password" type="password"></paper-input>
 
-            <p:PaperInputDecorator label="with core-input + floatingLabel" floatingLabel="">
-                <input is="core-input" />
-            </p:PaperInputDecorator>
-            <br />
+                <paper-input no-label-float="" label="label (no-label-float)"></paper-input>
 
-            <p:PaperInputDecorator label="with autogrowing text area">
-                <p:PaperAutogrowTextarea>
-                    <textarea/>
-                </p:PaperAutogrowTextarea>
-            </p:PaperInputDecorator>
-            <br />
+                <paper-input label="disabled" disabled=""></paper-input>
+            </div>
 
-            <p:PaperInputDecorator label="with autogrowing text area + floatingLabel" floatingLabel="">
-                <p:PaperAutogrowTextarea>
-                    <textarea/>
-                </p:PaperAutogrowTextarea>
-            </p:PaperInputDecorator>
-        </section>
+            <h4>Text area</h4>
+            <div class="vertical-section">
+                <paper-textarea label="textarea label"></paper-textarea>
+            </div>
 
-        <section class="{style.wrapper}">
-            <div>Character counter</div>
+            <h4>Validation</h4>
+            <div class="vertical-section">
+                <paper-input label="only type letters (auto-validate)" auto-validate="" pattern="[a-zA-Z]*" error-message="letters only!"></paper-input>
 
-            <p:PaperInputDecorator label="input with visible character counter">
-                <input id="i1" is="core-input" maxlength="5" />
-                <p:PaperCharCounter addStyleNames="counter" target="i1"/>
-            </p:PaperInputDecorator>
-            <br />
+                <paper-input ui:field="inputForValidation" required="" label="only type letters (no auto validate)" pattern="[a-zA-Z]*" error-message="letters only, required input!"/>
+                <br/>
+                <g:Button ui:field="validateButton">Validate!</g:Button>
+            </div>
 
-            <p:PaperInputDecorator label="input with character counter and custom error"
-                                   error="maximum characters exceeded">
-                <input id="i2" is="core-input" maxlength="10" />
-                <p:PaperCharCounter addStyleNames="counter" target="i2"/>
-            </p:PaperInputDecorator>
+            <h4>Character counter</h4>
+            <div class="vertical-section">
+                <paper-input label="label" char-counter=""></paper-input>
 
-            <br />
+                <paper-input label="at most 10 letters" char-counter="" auto-validate="" pattern="[a-zA-Z]*" maxlength="10" error-message="letters only!"></paper-input>
 
-            <p:PaperInputDecorator label="input with hidden character counter"
-                                   error="maximum characters exceeded">
-                <input id="i3" is="core-input" maxlength="10" />
-                <p:PaperCharCounter addStyleNames="counter" showCounter="false" target="i3"/>
-            </p:PaperInputDecorator>
+                <paper-textarea label="textarea" char-counter=""></paper-textarea>
 
-            <p:PaperInputDecorator label="autogrowing text area with character counter">
-                <p:PaperAutogrowTextarea>
-                    <textarea id="t1" maxlength="100"/>
-                </p:PaperAutogrowTextarea>
-                <p:PaperCharCounter addStyleNames="counter" target="t1"/>
-            </p:PaperInputDecorator>
-
-        </section>
-
-        <section class="{style.wrapper}">
-            <div>Auto-Validation</div>
-
-            <p:PaperInputDecorator label="required" floatingLabel="" error="input is required!" autoValidate="">
-                <input is="core-input" required="" />
-            </p:PaperInputDecorator>
-        </section>
-
-        <section class="{style.wrapper}">
-            <div>Custom styling</div><br/>
-
-            <p:PaperInput addStyleNames="{style.custom}" label="paper-input"/><br/>
-
-            <p:PaperInputDecorator addStyleNames="{style.custom}" label="decorator">
-                <input is="core-input" />
-            </p:PaperInputDecorator>
-        </section>
+                <paper-textarea label="textarea with maxlength" char-counter="" maxlength="10"></paper-textarea>
+            </div>
+        </div>
+        
     </g:HTMLPanel>
 </ui:UiBinder>

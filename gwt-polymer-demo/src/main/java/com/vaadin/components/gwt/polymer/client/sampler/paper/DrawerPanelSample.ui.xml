@@ -1,0 +1,22 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:p='urn:import:com.vaadin.components.gwt.polymer.client.widget'>
+
+    
+
+    <g:HTMLPanel addStyleNames="drawer-panel-sample">
+
+        <p:PaperDrawerPanel ui:field="panel">
+            <div drawer=""></div>
+            <div main="">
+                <div>
+                    <p:PaperButton ui:field="flipButton" raised="true">flip drawer</p:PaperButton>
+                </div>
+                <div>
+                    <paper-button paper-drawer-toggle="" raised="">toggle drawer</paper-button>
+                </div>
+            </div>
+        </p:PaperDrawerPanel>
+        
+    </g:HTMLPanel>
+</ui:UiBinder>

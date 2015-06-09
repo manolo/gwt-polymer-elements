@@ -1,0 +1,48 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:p='urn:import:com.vaadin.components.gwt.polymer.client.widget'>
+    
+    <ui:style>
+        @external .iron-selected, .collapse-sample;
+
+        .collapse-sample iron-selector > * {
+            padding: 8px;
+        }
+
+        .collapse-sample .iron-selected {
+            background-color: #ddd;
+        }
+    </ui:style>
+
+    <g:HTMLPanel addStyleNames="selector-sample">
+
+        <h3>Basic</h3>
+
+        <iron-selector selected="0">
+            <div>Item 0</div>
+            <div>Item 1</div>
+            <div>Item 2</div>
+            <div>Item 3</div>
+            <div>Item 4</div>
+        </iron-selector>
+
+        <h3>Multi-select</h3>
+
+        <iron-selector multi="" selected-values='[0,2]'>
+            <div>Item 0</div>
+            <div>Item 1</div>
+            <div>Item 2</div>
+            <div>Item 3</div>
+            <div>Item 4</div>
+        </iron-selector>
+
+        <h3>Example</h3>
+
+        <iron-selector selected="foo" attr-for-selected="name">
+            <div name="foo">Foo</div>
+            <div name="bar">Bar</div>
+            <div name="zot">Zot</div>
+        </iron-selector>
+        
+    </g:HTMLPanel>
+</ui:UiBinder>

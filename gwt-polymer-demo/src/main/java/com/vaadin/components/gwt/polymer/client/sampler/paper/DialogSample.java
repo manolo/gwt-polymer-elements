@@ -1,115 +1,54 @@
 package com.vaadin.components.gwt.polymer.client.sampler.paper;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.dom.client.Element;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HTMLPanel;
-import com.vaadin.components.gwt.polymer.client.widget.PaperActionDialog;
+import com.vaadin.components.gwt.polymer.client.Polymer;
+import com.vaadin.components.gwt.polymer.client.widget.PaperButton;
 import com.vaadin.components.gwt.polymer.client.widget.PaperDialog;
 
 public class DialogSample extends Composite {
-    interface DialogSampleUiBinder extends UiBinder<HTMLPanel, DialogSample> {
+    interface SampleUiBinder extends UiBinder<HTMLPanel, DialogSample> {
     }
 
-    private static DialogSampleUiBinder ourUiBinder = GWT.create(DialogSampleUiBinder.class);
+    private static SampleUiBinder ourUiBinder = GWT.create(SampleUiBinder.class);
     
-    private static String[] transitions = {
-            "core-transition-center",
-            "core-transition-top",
-            "core-transition-bottom",
-            "core-transition-left",
-            "core-transition-right"
-    };
+    @UiField PaperButton dialogBtn;
+    @UiField PaperButton scrollingBtn;
+    @UiField PaperButton actionsBtn;
+    @UiField PaperButton modalBtn;
     
-    @UiField Button button1;
-    @UiField Button button2;
-    @UiField Button button3;
-    @UiField Button button4;
-    @UiField PaperDialog dialog1;
-    @UiField PaperDialog dialog2;
-    @UiField PaperActionDialog dialog3;
-    @UiField PaperActionDialog dialog4;
-
-    @UiField Button buttonS1;
-    @UiField Button buttonS2;
-    @UiField PaperDialog dialogS1;
-    @UiField PaperActionDialog dialogS2;
+    @UiField PaperDialog dialog;
+    @UiField PaperDialog scrollingDlg;
+    @UiField PaperDialog actionsDlg;
+    @UiField Element modalDlg;
     
-    @UiField FlowPanel transitionButtons;
-    @UiField PaperDialog transitionDialog;
+    @UiField PaperButton colorsBtn;
+    @UiField PaperButton positionBtn;    
     
-    @UiField Button buttonC1;
-    @UiField PaperDialog dialogC1;
-    @UiField Button buttonC2;
-    @UiField PaperDialog dialogC2;
+    @UiField Element colorsDlg;
+    @UiField Element positionDlg;
+    
+    @UiField PaperButton animatedBtn;
+    
+    @UiField Element animatedDlg;
 
     public DialogSample() {
-        initWidget(ourUiBinder.createAndBindUi(this));
+        Polymer.ensureHTMLImport("paper-dialog/paper-dialog.html");
+        Polymer.ensureHTMLImport("../paper/dialog-sample-styles.html");
         
-        button1.addClickHandler(new ClickHandler() {
+        initWidget(ourUiBinder.createAndBindUi(DialogSample.this));
+        
+        dialogBtn.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {
-                dialog1.toggle();
-            }
-        });
-        button2.addClickHandler(new ClickHandler() {
-            @Override
-            public void onClick(ClickEvent event) {
-                dialog2.toggle();
-            }
-        });
-        button3.addClickHandler(new ClickHandler() {
-            @Override
-            public void onClick(ClickEvent event) {
-                dialog3.toggle();
-            }
-        });
-        button4.addClickHandler(new ClickHandler() {
-            @Override
-            public void onClick(ClickEvent event) {
-                dialog4.toggle();
-            }
-        });
-
-        buttonS1.addClickHandler(new ClickHandler() {
-            @Override
-            public void onClick(ClickEvent event) {
-                dialogS1.toggle();
-            }
-        });
-        buttonS2.addClickHandler(new ClickHandler() {
-            @Override
-            public void onClick(ClickEvent event) {
-                dialogS2.toggle();
-            }
-        });
-
-        for (final String transition : transitions) {
-            transitionButtons.add(new Button(transition, new ClickHandler() {
-                @Override
-                public void onClick(ClickEvent event) {
-                    transitionDialog.setHeading(transition);
-                    transitionDialog.setTransition(transition);
-                    transitionDialog.toggle();
-                }
-            }));
-        }
-
-        buttonC1.addClickHandler(new ClickHandler() {
-            @Override
-            public void onClick(ClickEvent event) {
-                dialogC1.toggle();
-            }
-        });
-        buttonC2.addClickHandler(new ClickHandler() {
-            @Override
-            public void onClick(ClickEvent event) {
-                dialogC2.toggle();
+                // TODO: fix when behaviours will be supported
+//                dialog.open();
             }
         });
     }

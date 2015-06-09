@@ -6,16 +6,16 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.vaadin.components.gwt.polymer.client.Polymer;
 
-public class TabsSample extends Composite {
-    interface SampleUiBinder extends UiBinder<HTMLPanel, TabsSample> {
+public class HeaderPanelSample extends Composite {
+    interface SampleUiBinder extends UiBinder<HTMLPanel, HeaderPanelSample> {
     }
 
     private static SampleUiBinder ourUiBinder = GWT.create(SampleUiBinder.class);
+    
+    public HeaderPanelSample() {
+        Polymer.ensureHTMLImport("paper-header-panel/paper-header-panel.html");
+        Polymer.ensureHTMLImport("../paper/header-panel-sample-styles.html");
 
-    public TabsSample() {
-        Polymer.ensureHTMLImport("paper-tabs/paper-tabs.html");
-        Polymer.ensureHTMLImport("../paper/tabs-sample-styles.html");
-        
-        initWidget(ourUiBinder.createAndBindUi(this));
+        initWidget(ourUiBinder.createAndBindUi(HeaderPanelSample.this));
     }
 }

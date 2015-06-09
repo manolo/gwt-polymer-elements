@@ -10,7 +10,7 @@ public class PolymerWidget extends HTMLPanel {
 
     public PolymerWidget(String tag, String html) {
         super(tag, html);
-        Polymer.ensureHTMLImport(tag);
+        Polymer.ensureTag(tag);
     }
 
     public PolymerWidget(String tag, SafeHtml safeHtml) {

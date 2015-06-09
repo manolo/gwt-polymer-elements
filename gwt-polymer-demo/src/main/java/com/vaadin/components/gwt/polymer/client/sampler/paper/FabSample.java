@@ -10,13 +10,13 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.vaadin.components.gwt.polymer.client.widget.IronCollapse;
 
-public class IconButtonSample extends Composite {
-    interface SampleUiBinder extends UiBinder<HTMLPanel, IconButtonSample> {
+public class FabSample extends Composite {
+    interface SampleUiBinder extends UiBinder<HTMLPanel, FabSample> {
     }
 
     private static SampleUiBinder ourUiBinder = GWT.create(SampleUiBinder.class);
 
-    public IconButtonSample() {
+    public FabSample() {
         initWidget(ourUiBinder.createAndBindUi(this));
     }
 }

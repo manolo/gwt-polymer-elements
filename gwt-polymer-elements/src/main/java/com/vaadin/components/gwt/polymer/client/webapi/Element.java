@@ -17,5 +17,6 @@ public interface Element extends Node {
 
     void setAttribute(String name, Object value);
     String getAttribute(String name);
+    boolean hasAttribute(String name);
     void removeAttribute(String name);
 }

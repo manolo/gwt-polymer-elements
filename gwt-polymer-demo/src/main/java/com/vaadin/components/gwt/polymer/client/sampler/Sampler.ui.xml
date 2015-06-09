@@ -5,19 +5,11 @@
 
     <ui:style type="com.vaadin.components.gwt.polymer.client.sampler.Sampler.Style">
         .toolbar {
-            color: #f1f1f1;
-            fill: #f1f1f1;
-            background: #4285f4;
-            height: 90px;
-        }
-
-        core-header-panel {
-            width: 100%;
-            height: 100%;
+            background: #4285f4 !important;
         }
 
         [drawer] {
-            background-color: #ffffff;
+            background-color: #ffffff !important;
         }
 
         .category {
@@ -50,27 +42,26 @@
     </ui:style>
 
     <g:HTMLPanel>
-        <p:CoreDrawerPanel ui:field="drawerPanel">
-
+        
+        <p:PaperDrawerPanel ui:field="drawerPanel">
             <div drawer="">
-                <p:CoreHeaderPanel mode="seamed">
-                    <p:CoreToolbar addStyleNames="{style.toolbar}">GWT-Polymer</p:CoreToolbar>
+                <p:PaperHeaderPanel mode="seamed">
+                    <p:PaperToolbar addStyleNames="{style.toolbar}"><span class="title">GWT-Polymer</span></p:PaperToolbar>
                     <g:FlowPanel ui:field="listPanel" addStyleNames="{style.list}"/>
-                </p:CoreHeaderPanel>
+                </p:PaperHeaderPanel>
             </div>
-
             <div main="">
-                <p:CoreHeaderPanel mode="seamed">
-                    <p:CoreToolbar addStyleNames="{style.toolbar}">
+                <p:PaperHeaderPanel mode="seamed">
+                    <p:PaperToolbar addStyleNames="{style.toolbar}">
                         <p:PaperIconButton ui:field="menuButton" icon="menu"/>
-                        <span ui:field="currentLabel" flex="" class="{style.current}"></span>
-                        <p:PaperButton ui:field="xmlButton" addStyleNames="{style.buttons}"><p:CoreIcon icon="launch"/>.ui.xml</p:PaperButton>
-                        <p:PaperButton ui:field="javaButton" addStyleNames="{style.buttons}"><p:CoreIcon icon="launch"/>.java</p:PaperButton>
-                    </p:CoreToolbar>
+                        <span ui:field="currentLabel" class="flex {style.current}"></span>
+                        <p:PaperButton ui:field="xmlButton" addStyleNames="{style.buttons}"><p:IronIcon icon="launch"/>.ui.xml</p:PaperButton>
+                        <p:PaperButton ui:field="javaButton" addStyleNames="{style.buttons}"><p:IronIcon icon="launch"/>.java</p:PaperButton>
+                    </p:PaperToolbar>
                     <g:DeckPanel ui:field="content" animationEnabled="true" />
-                </p:CoreHeaderPanel>
+                </p:PaperHeaderPanel>
             </div>
-
-        </p:CoreDrawerPanel>
+        </p:PaperDrawerPanel>
+        
     </g:HTMLPanel>
 </ui:UiBinder>
