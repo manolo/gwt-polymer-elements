@@ -1,7 +1,6 @@
 package com.vaadin.components.gwt.polymer.client.sampler.paper;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.dom.client.Element;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -9,6 +8,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.vaadin.components.gwt.polymer.client.Polymer;
+import com.vaadin.components.gwt.polymer.client.element.PaperDialogElement;
 import com.vaadin.components.gwt.polymer.client.widget.PaperButton;
 import com.vaadin.components.gwt.polymer.client.widget.PaperDialog;
 
@@ -26,17 +26,17 @@ public class DialogSample extends Composite {
     @UiField PaperDialog dialog;
     @UiField PaperDialog scrollingDlg;
     @UiField PaperDialog actionsDlg;
-    @UiField Element modalDlg;
+    @UiField PaperDialogElement modalDlg;
     
     @UiField PaperButton colorsBtn;
     @UiField PaperButton positionBtn;    
     
-    @UiField Element colorsDlg;
-    @UiField Element positionDlg;
+    @UiField PaperDialogElement colorsDlg;
+    @UiField PaperDialogElement positionDlg;
     
     @UiField PaperButton animatedBtn;
     
-    @UiField Element animatedDlg;
+    @UiField PaperDialogElement animatedDlg;
 
     public DialogSample() {
         Polymer.ensureHTMLImport("paper-dialog/paper-dialog.html");
@@ -46,8 +46,49 @@ public class DialogSample extends Composite {
         dialogBtn.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {
-                // TODO: fix when behaviours will be supported
-//                dialog.open();
+                dialog.getPolymerElement().open();
+            }
+        });
+
+        scrollingBtn.addClickHandler(new ClickHandler() {
+            @Override
+            public void onClick(ClickEvent event) {
+                scrollingDlg.getPolymerElement().open();
+            }
+        });
+
+        actionsBtn.addClickHandler(new ClickHandler() {
+            @Override
+            public void onClick(ClickEvent event) {
+                actionsDlg.getPolymerElement().open();
+            }
+        });
+
+        modalBtn.addClickHandler(new ClickHandler() {
+            @Override
+            public void onClick(ClickEvent event) {
+                modalDlg.open();
+            }
+        });
+
+        colorsBtn.addClickHandler(new ClickHandler() {
+            @Override
+            public void onClick(ClickEvent event) {
+                colorsDlg.open();
+            }
+        });
+
+        positionBtn.addClickHandler(new ClickHandler() {
+            @Override
+            public void onClick(ClickEvent event) {
+                positionDlg.open();
+            }
+        });
+
+        animatedBtn.addClickHandler(new ClickHandler() {
+            @Override
+            public void onClick(ClickEvent event) {
+                animatedDlg.open();
             }
         });
     }
