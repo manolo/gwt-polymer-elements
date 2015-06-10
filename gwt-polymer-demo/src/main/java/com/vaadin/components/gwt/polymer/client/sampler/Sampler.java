@@ -40,6 +40,7 @@ import com.vaadin.components.gwt.polymer.client.sampler.paper.ProgressSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.RadioButtonSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.RadioGroupSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.RippleSample;
+import com.vaadin.components.gwt.polymer.client.sampler.paper.SliderSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.SpinnerSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.TabsSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.ToastSample;
@@ -138,13 +139,13 @@ public class Sampler extends Composite {
         addSample("Progress", new ProgressSample(), "paper", "ProgressSample");
         addSample("Radio Button", new RadioButtonSample(), "paper", "RadioButtonSample");
         addSample("Radio Group", new RadioGroupSample(), "paper", "RadioGroupSample");
-        addSample("Spinner", new SpinnerSample(), "paper", "SpinnerSample");
         addSample("Ripple", new RippleSample(), "paper", "RippleSample");
+        addSample("Spinner", new SpinnerSample(), "paper", "SpinnerSample");
+        addSample("Slider", new SliderSample(), "paper", "SliderSample");
         addSample("Tabs", new TabsSample(), "paper", "TabsSample");
         addSample("Toast", new ToastSample(), "paper", "ToastSample");
 //        addSample("Toggle Button", new ToggleButtonSample(), "paper", "ToggleButtonSample");
         addSample("Toolbar", new ToolbarSample(), "paper", "ToolbarSample");
-//        addSample("Slider", new SliderSample(), "paper", "SliderSample");
 
         addCategory("gwt", "Other");
         addSample("Element UiBinder", new PaperTabsView(), "gwt", "PaperTabsView");
