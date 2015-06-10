@@ -5,21 +5,10 @@
   "author": "Vaadin Ltd",
   "license": "Apache License 2.0",
   "dependencies": {
-  },
-  "devDependencies": {
-    "bower": "latest",
-    "gulp": "latest",
-    "gulp-bower": "latest",
-    "gulp-util": "latest",
-    "fs-extra": "latest",
-    "lodash": "latest",
-    "map-stream": "latest",
-    "stream-from-array": "latest",
-    "hydrolysis": "git://github.com/Polymer/hydrolysis#master",
-    "run-sequence": "latest"
+    "metathesis": "vaadin/metathesis"
   },
   "scripts": {
-    "postinstall": "node_modules/.bin/bower install"
+    "postinstall":"./node_modules/metathesis/bin/metathesis.js polymer --package=PolymerElements/paper-elements,PolymerElements/iron-elements"
   },
   "keywords": [
     "vaadin",
