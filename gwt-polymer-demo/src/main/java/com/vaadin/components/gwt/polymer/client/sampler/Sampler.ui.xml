@@ -4,6 +4,8 @@
         >
 
     <ui:style type="com.vaadin.components.gwt.polymer.client.sampler.Sampler.Style">
+        @external .iron-selected;
+
         .toolbar {
             background: #4285f4 !important;
         }
@@ -25,6 +27,9 @@
         .list {
             background-color: #F5F4F4;
         }
+        .list .iron-selected {
+            background-color: #ddd;
+        }
         .list paper-item {
             border-top: dotted 1px #f5f5f5;
 
@@ -37,7 +42,6 @@
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
-            
         }
     </ui:style>
 
