@@ -5,10 +5,10 @@
   "author": "Vaadin Ltd",
   "license": "Apache License 2.0",
   "dependencies": {
-    "metathesis": "vaadin/metathesis"
+    "gwt-api-generator": "vaadin/gwt-api-generator"
   },
   "scripts": {
-    "postinstall":"./node_modules/metathesis/bin/metathesis.js polymer --package=PolymerElements/paper-elements,PolymerElements/iron-elements"
+    "postinstall":"node_modules/gwt-api-generator/bin/gwt-api-generator.js --package=saulis/paper-drawer-panel#1.0.2-fix-event-annotations,PolymerElements/paper-elements,PolymerElements/iron-elements --pom && mvn package javadoc:jar"
   },
   "keywords": [
     "vaadin",
