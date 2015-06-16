@@ -7,11 +7,11 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Label;
-import com.vaadin.components.gwt.polymer.client.Polymer;
-import com.vaadin.components.gwt.polymer.client.element.PaperIconButtonElement;
-import com.vaadin.components.gwt.polymer.client.webapi.Event;
-import com.vaadin.components.gwt.polymer.client.webapi.EventListener;
-import com.vaadin.components.gwt.polymer.client.widget.PaperIconButton;
+import com.vaadin.polymer.Polymer;
+import com.vaadin.polymer.elemental.Event;
+import com.vaadin.polymer.elemental.EventListener;
+import com.vaadin.polymer.paper.element.PaperIconButtonElement;
+import com.vaadin.polymer.paper.widget.PaperIconButton;
 
 public class PaperJavaAPI extends FlowPanel {
 

@@ -7,10 +7,10 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
-import com.vaadin.components.gwt.polymer.client.Polymer;
-import com.vaadin.components.gwt.polymer.client.element.PaperDialogElement;
-import com.vaadin.components.gwt.polymer.client.widget.PaperButton;
-import com.vaadin.components.gwt.polymer.client.widget.PaperDialog;
+import com.vaadin.polymer.Polymer;
+import com.vaadin.polymer.paper.element.PaperDialogElement;
+import com.vaadin.polymer.paper.widget.PaperButton;
+import com.vaadin.polymer.paper.widget.PaperDialog;
 
 public class DialogSample extends Composite {
     interface SampleUiBinder extends UiBinder<HTMLPanel, DialogSample> {
