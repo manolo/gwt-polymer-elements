@@ -1,6 +1,7 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
-             xmlns:p='urn:import:com.vaadin.components.gwt.polymer.client.widget'
+             xmlns:p='urn:import:com.vaadin.polymer.paper.widget'
+             xmlns:i='urn:import:com.vaadin.polymer.iron.widget'
         >
 
     <ui:style type="com.vaadin.components.gwt.polymer.client.sampler.Sampler.Style">
@@ -59,8 +60,8 @@
                     <p:PaperToolbar addStyleNames="{style.toolbar}">
                         <p:PaperIconButton ui:field="menuButton" icon="menu"/>
                         <span ui:field="currentLabel" class="flex {style.current}"></span>
-                        <p:PaperButton ui:field="xmlButton" addStyleNames="{style.buttons}"><p:IronIcon icon="launch"/>.ui.xml</p:PaperButton>
-                        <p:PaperButton ui:field="javaButton" addStyleNames="{style.buttons}"><p:IronIcon icon="launch"/>.java</p:PaperButton>
+                        <p:PaperButton ui:field="xmlButton" addStyleNames="{style.buttons}"><i:IronIcon icon="launch"/>.ui.xml</p:PaperButton>
+                        <p:PaperButton ui:field="javaButton" addStyleNames="{style.buttons}"><i:IronIcon icon="launch"/>.java</p:PaperButton>
                     </p:PaperToolbar>
                     <g:DeckPanel ui:field="content" animationEnabled="true" />
                 </p:PaperHeaderPanel>

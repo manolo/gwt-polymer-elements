@@ -1,6 +1,6 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
-             xmlns:p='urn:import:com.vaadin.components.gwt.polymer.client.widget'>
+             xmlns:p='urn:import:com.vaadin.polymer.paper.widget'>
 
     <g:HTMLPanel addStyleNames="toggle-button-sample">
 

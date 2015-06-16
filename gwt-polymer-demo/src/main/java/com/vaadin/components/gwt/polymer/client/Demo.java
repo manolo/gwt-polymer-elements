@@ -4,6 +4,7 @@ import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.vaadin.components.gwt.polymer.client.sampler.Sampler;
+import com.vaadin.polymer.Polymer;
 
 public class Demo implements EntryPoint {
 

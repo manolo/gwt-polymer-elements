@@ -5,10 +5,9 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
-import com.vaadin.components.gwt.polymer.client.Polymer;
-import com.vaadin.components.gwt.polymer.client.element.PaperTabElement;
-import com.vaadin.components.gwt.polymer.client.element.PaperTabsElement;
-import com.vaadin.components.gwt.polymer.client.element.PaperToastElement;
+import com.vaadin.polymer.Polymer;
+import com.vaadin.polymer.paper.element.PaperTabsElement;
+import com.vaadin.polymer.paper.element.PaperToastElement;
 
 public class PaperTabsView extends Composite {
     interface PaperTabsViewUiBinder extends UiBinder<HTMLPanel, PaperTabsView> {
@@ -16,8 +15,10 @@ public class PaperTabsView extends Composite {
 
     private static PaperTabsViewUiBinder ourUiBinder = GWT.create(PaperTabsViewUiBinder.class);
 
-    @UiField PaperTabsElement paperTabs;
-    @UiField PaperToastElement toast;
+    @UiField
+    PaperTabsElement paperTabs;
+    @UiField
+    PaperToastElement toast;
 
     public PaperTabsView() {
         Polymer.ensureTag("paper-tabs");

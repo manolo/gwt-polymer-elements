@@ -4,7 +4,7 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
-import com.vaadin.components.gwt.polymer.client.Polymer;
+import com.vaadin.polymer.Polymer;
 
 public class HeaderPanelSample extends Composite {
     interface SampleUiBinder extends UiBinder<HTMLPanel, HeaderPanelSample> {

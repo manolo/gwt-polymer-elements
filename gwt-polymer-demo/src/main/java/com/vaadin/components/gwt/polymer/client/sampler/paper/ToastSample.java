@@ -5,12 +5,10 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
-import com.vaadin.components.gwt.polymer.client.widget.IronCollapse;
-import com.vaadin.components.gwt.polymer.client.widget.PaperButton;
-import com.vaadin.components.gwt.polymer.client.widget.PaperToast;
+import com.vaadin.polymer.paper.widget.PaperButton;
+import com.vaadin.polymer.paper.widget.PaperToast;
 
 public class ToastSample extends Composite {
     interface SampleUiBinder extends UiBinder<HTMLPanel, ToastSample> {

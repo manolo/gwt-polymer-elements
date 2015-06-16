@@ -27,12 +27,12 @@ import com.vaadin.components.gwt.polymer.client.sampler.gwt.PaperTabsWidgetView;
 import com.vaadin.components.gwt.polymer.client.sampler.iron.IronCollapseSample;
 import com.vaadin.components.gwt.polymer.client.sampler.iron.IronSelectorSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.*;
-import com.vaadin.components.gwt.polymer.client.widget.IronCollapse;
-import com.vaadin.components.gwt.polymer.client.widget.IronSelector;
-import com.vaadin.components.gwt.polymer.client.widget.PaperButton;
-import com.vaadin.components.gwt.polymer.client.widget.PaperDrawerPanel;
-import com.vaadin.components.gwt.polymer.client.widget.PaperIconButton;
-import com.vaadin.components.gwt.polymer.client.widget.PaperItem;
+import com.vaadin.polymer.iron.widget.IronCollapse;
+import com.vaadin.polymer.iron.widget.IronSelector;
+import com.vaadin.polymer.paper.widget.PaperButton;
+import com.vaadin.polymer.paper.widget.PaperDrawerPanel;
+import com.vaadin.polymer.paper.widget.PaperIconButton;
+import com.vaadin.polymer.paper.widget.PaperItem;
 
 public class Sampler extends Composite {
 

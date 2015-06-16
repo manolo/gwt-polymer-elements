@@ -7,9 +7,8 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HTMLPanel;
-import com.vaadin.components.gwt.polymer.client.widget.IronCollapse;
+import com.vaadin.polymer.iron.widget.IronCollapse;
 
 public class IronCollapseSample extends Composite {
     interface SampleUiBinder extends UiBinder<HTMLPanel, IronCollapseSample> {

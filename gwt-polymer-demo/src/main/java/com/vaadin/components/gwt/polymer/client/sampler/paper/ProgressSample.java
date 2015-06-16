@@ -7,13 +7,11 @@ import com.google.gwt.query.client.Function;
 import com.google.gwt.query.client.js.JsUtils;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
-import com.vaadin.components.gwt.polymer.client.webapi.Window;
-import com.vaadin.components.gwt.polymer.client.widget.IronCollapse;
-import com.vaadin.components.gwt.polymer.client.widget.PaperButton;
-import com.vaadin.components.gwt.polymer.client.widget.PaperProgress;
+import com.vaadin.polymer.elemental.Window;
+import com.vaadin.polymer.paper.widget.PaperButton;
+import com.vaadin.polymer.paper.widget.PaperProgress;
 
 public class ProgressSample extends Composite {
     interface SampleUiBinder extends UiBinder<HTMLPanel, ProgressSample> {

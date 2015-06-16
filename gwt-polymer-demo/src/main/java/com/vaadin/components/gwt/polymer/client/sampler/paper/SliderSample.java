@@ -6,9 +6,9 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
-import com.vaadin.components.gwt.polymer.client.widget.PaperSlider;
-import com.vaadin.components.gwt.polymer.client.widget.event.ValueChangeEvent;
-import com.vaadin.components.gwt.polymer.client.widget.event.ValueChangeEventHandler;
+import com.vaadin.polymer.paper.widget.PaperSlider;
+import com.vaadin.polymer.value.widget.event.ValueChangeEvent;
+import com.vaadin.polymer.value.widget.event.ValueChangeEventHandler;
 
 public class SliderSample extends Composite {
     interface SampleUiBinder extends UiBinder<HTMLPanel, SliderSample> {
