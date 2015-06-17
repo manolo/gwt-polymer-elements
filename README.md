@@ -1,4 +1,4 @@
-# gwt-polymer
+# gwt-polymer-elements
 Allows to use polymer elements in GWT projects.
 
 ## Demo
