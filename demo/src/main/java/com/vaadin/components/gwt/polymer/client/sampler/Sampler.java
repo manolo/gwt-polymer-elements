@@ -36,7 +36,7 @@ import com.vaadin.polymer.paper.widget.PaperItem;
 
 public class Sampler extends Composite {
 
-    public static final String REPO_PATH = "https://github.com/manolo/gwt-polymer/blob/mcm_fixes/gwt-polymer-demo/src/main/java/com/vaadin/components/gwt/polymer/client/sampler/";
+    public static final String REPO_PATH = "https://github.com/vaadin/gwt-polymer-elements/blob/master/demo/src/main/java/com/vaadin/components/gwt/polymer/client/sampler/";
 
     interface SamplerUiBinder extends UiBinder<HTMLPanel, Sampler> {
     }
