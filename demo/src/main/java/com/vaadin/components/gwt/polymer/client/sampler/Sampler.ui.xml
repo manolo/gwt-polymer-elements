@@ -5,7 +5,7 @@
         >
 
     <ui:style type="com.vaadin.components.gwt.polymer.client.sampler.Sampler.Style">
-        @external .iron-selected;
+        @external .iron-selected, .narrow-layout;
 
         .toolbar {
             background: #4285f4 !important;
@@ -47,6 +47,9 @@
 		div[main] {
 			position: relative;
 			z-index: 1;
+		}
+		.narrow-layout div[main] {
+			position: static;
 		}
     </ui:style>
 
