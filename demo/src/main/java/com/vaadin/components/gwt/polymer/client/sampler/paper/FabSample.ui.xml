@@ -1,6 +1,6 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
-        >
+             xmlns:p='urn:import:com.vaadin.polymer.paper.widget'>
     
     <ui:style>
 
@@ -40,7 +40,7 @@
             <div>
                 <h4>Enabled</h4>
                 <div class="horizontal-section">
-                    <paper-fab icon="arrow-forward" title="arrow-forward" tabindex="0"></paper-fab>
+                    <p:PaperFab icon="arrow-forward" title="arrow-forward"></p:PaperFab>
                     <paper-fab icon="create" title="create" tabindex="0"></paper-fab>
                     <paper-fab icon="favorite" title="heart" tabindex="0"></paper-fab>
                     <paper-fab mini="" icon="done" title="done" tabindex="0"></paper-fab>
