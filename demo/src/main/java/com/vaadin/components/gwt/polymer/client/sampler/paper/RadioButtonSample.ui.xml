@@ -1,6 +1,6 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
-        >
+             xmlns:p='urn:import:com.vaadin.polymer.paper.widget'>
 
     <g:HTMLPanel addStyleNames="radio-button-sample">
 
@@ -43,11 +43,11 @@
             <div>
                 <h4>Enabled</h4>
                 <div class="horizontal-section">
-                    <paper-radio-button>Oxygen</paper-radio-button>
-                    <paper-radio-button>Carbon</paper-radio-button>
-                    <paper-radio-button checked="">Hydrogen</paper-radio-button>
-                    <paper-radio-button checked="">Nitrogen</paper-radio-button>
-                    <paper-radio-button checked="">Calcium</paper-radio-button>
+                    <p:PaperRadioButton>Oxygen</p:PaperRadioButton>
+                    <p:PaperRadioButton>Carbon</p:PaperRadioButton>
+                    <p:PaperRadioButton checked="true">Hydrogen</p:PaperRadioButton>
+                    <p:PaperRadioButton checked="true">Nitrogen</p:PaperRadioButton>
+                    <p:PaperRadioButton checked="true">Calcium</p:PaperRadioButton>
                 </div>
             </div>
 
