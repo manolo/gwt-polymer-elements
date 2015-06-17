@@ -22,8 +22,6 @@ public class DrawerPanelSample extends Composite {
     @UiField PaperButton flipButton;
 
     public DrawerPanelSample() {
-        Polymer.ensureHTMLImport("paper-drawer-panel/paper-drawer-panel.html");
-
         initWidget(ourUiBinder.createAndBindUi(DrawerPanelSample.this));
 
         flipButton.addClickHandler(new ClickHandler() {

@@ -13,8 +13,6 @@ public class ToolbarSample extends Composite {
     private static SampleUiBinder ourUiBinder = GWT.create(SampleUiBinder.class);
 
     public ToolbarSample() {
-        Polymer.ensureHTMLImport("paper-toolbar/paper-toolbar.html");
-
         initWidget(ourUiBinder.createAndBindUi(ToolbarSample.this));
     }
 }

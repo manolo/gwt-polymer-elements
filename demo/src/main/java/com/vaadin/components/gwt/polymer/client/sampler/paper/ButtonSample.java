@@ -13,8 +13,6 @@ public class ButtonSample extends Composite {
     private static ButtonSampleUiBinder ourUiBinder = GWT.create(ButtonSampleUiBinder.class);
 
     public ButtonSample() {
-        Polymer.ensureHTMLImport("paper-button/paper-button.html");
-        
         initWidget(ourUiBinder.createAndBindUi(ButtonSample.this));
     }
 }

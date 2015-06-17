@@ -13,8 +13,6 @@ public class TabsSample extends Composite {
     private static SampleUiBinder ourUiBinder = GWT.create(SampleUiBinder.class);
 
     public TabsSample() {
-        Polymer.ensureHTMLImport("paper-tabs/paper-tabs.html");
-        
         initWidget(ourUiBinder.createAndBindUi(this));
     }
 }

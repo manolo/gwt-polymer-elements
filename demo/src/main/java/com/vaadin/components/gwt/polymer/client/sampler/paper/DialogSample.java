@@ -39,8 +39,6 @@ public class DialogSample extends Composite {
     @UiField PaperDialogElement animatedDlg;
 
     public DialogSample() {
-        Polymer.ensureHTMLImport("paper-dialog/paper-dialog.html");
-        
         initWidget(ourUiBinder.createAndBindUi(DialogSample.this));
         
         dialogBtn.addClickHandler(new ClickHandler() {
