@@ -225,7 +225,7 @@ public class Sampler extends Composite {
             History.newItem(category + "/" + path, false);
             currentLabel.setInnerText(name);
             xmlButton.setVisible(uixml);
-            if (drawerPanel.isNarrow()) {
+            if (drawerPanel.getNarrow()) {
                 drawerPanel.closeDrawer();
             }
         }
