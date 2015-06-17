@@ -5,7 +5,7 @@
         >
 
     <ui:style type="com.vaadin.components.gwt.polymer.client.sampler.Sampler.Style">
-        @external .iron-selected, .narrow-layout;
+        @external .iron-selected, .paper-toast-open;
 
         .toolbar {
             background: #4285f4 !important;
@@ -44,12 +44,11 @@
             text-overflow: ellipsis;
             white-space: nowrap;
         }
-		div[main] {
-			position: relative;
-			z-index: 1;
+		paper-header-panel {
+			z-index: auto !important;
 		}
-		.narrow-layout div[main] {
-			position: static;
+		.paper-toast-open {
+			z-index: 10;
 		}
     </ui:style>
 
