@@ -5,7 +5,8 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
-import com.vaadin.polymer.Polymer;
+import com.vaadin.polymer.iron.element.event.IronSelectEvent;
+import com.vaadin.polymer.paper.element.PaperTabElement;
 import com.vaadin.polymer.paper.element.PaperTabsElement;
 import com.vaadin.polymer.paper.element.PaperToastElement;
 
@@ -24,14 +25,13 @@ public class PaperTabsView extends Composite {
 
         initWidget(ourUiBinder.createAndBindUi(this));
 
-        // TODO: fix using iron-select event which is not supported yet
-//        paperTabs.addEventListener(CoreSelectEvent.NAME, new CoreSelectEvent.Listener() {
-//            @Override
-//            public void handleEvent(CoreSelectEvent event) {
-//                PaperTabElement tab = (PaperTabElement) event.getDetail().getItem();
-//                toast.setText("Tab \"" + tab.getInnerHTML() + "\" has been selected");
-//                toast.show();
-//            }
-//        });
+        paperTabs.addEventListener(IronSelectEvent.NAME, new IronSelectEvent.Listener() {
+            @Override
+            public void handleEvent(IronSelectEvent event) {
+                PaperTabElement tab = (PaperTabElement) event.getDetail().getItem();
+                toast.setText("Tab \"" + tab.getTextContent() + "\" has been selected");
+                toast.show();
+            }
+        });
     }
 }
