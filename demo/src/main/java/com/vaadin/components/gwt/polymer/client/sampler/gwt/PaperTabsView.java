@@ -21,8 +21,6 @@ public class PaperTabsView extends Composite {
     PaperToastElement toast;
 
     public PaperTabsView() {
-        Polymer.ensureTag("paper-tabs");
-        Polymer.ensureTag("paper-toast");
 
         initWidget(ourUiBinder.createAndBindUi(this));
 

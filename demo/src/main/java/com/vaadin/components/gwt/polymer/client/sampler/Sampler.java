@@ -216,9 +216,7 @@ public class Sampler extends Composite {
 
         public void onClick(ClickEvent event) {
             for (IronSelector s : selectorMap.values()) {
-                // TODO: use this line when behaviours are supported
-//                s.setSelected(-1);
-                s.getPolymerElement().setAttribute("selected", -1);
+                s.setSelected("-1");
             }
             collapse.setOpened(true);
             selector.getPolymerElement().setAttribute("selected", selectorIdx);
