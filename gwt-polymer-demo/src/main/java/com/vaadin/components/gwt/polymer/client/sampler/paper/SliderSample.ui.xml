@@ -1,113 +1,88 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
-             xmlns:p='urn:import:com.vaadin.components.gwt.polymer.client.widget'>
+             xmlns:p='urn:import:com.vaadin.polymer.paper.widget'>
     
     <ui:style>
-        .container {
-            font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
-            margin: 0;
-            padding: 24px;
+        @external .slider-sample;
+        
+        .slider-sample {
+            padding: 40px;
         }
 
-        .section paper-slider {
+        .slider-sample paper-slider {
             width: 100%;
         }
 
-        .section {
-            max-width: 1000px;
-            padding: 20px 0;
-            background-color: #f0f0f0;
-        }
-
-        .section > div {
-            padding: 14px;
-        }
-
-        .yellow-slider paper-slider::shadow #sliderKnobInner,
-        .yellow-slider paper-slider::shadow #sliderBar::shadow #activeProgress {
-            background-color: #f4b400;
-        }
-
-        .green-slider paper-slider::shadow #sliderKnobInner,
-        .green-slider paper-slider::shadow #sliderKnobInner::before,
-        .green-slider paper-slider::shadow #sliderBar::shadow #activeProgress {
-            background-color: #0f9d58;
-        }
-
-        .ratingsLabel {
+        .ratings-label {
             padding-left: 12px;
             color: #a0a0a0;
         }
     </ui:style>
-    
-    <g:HTMLPanel addStyleNames="{style.container}">
 
-        <section class="{style.section} {style.yellow-slider}">
+    <g:HTMLPanel addStyleNames="slider-sample">
 
-            <div>Music, video, games &amp; other media</div>
-            <p:PaperSlider value="50"/>
+        <style is="custom-style">
+            .slider-sample paper-slider.blue {
+                --paper-slider-knob-color: var(--paper-light-blue-500);
+                --paper-slider-active-color: var(--paper-light-blue-500);
+            }
 
-            <br/>
-            <br/>
+            .slider-sample paper-slider.red {
+                --paper-slider-knob-color: var(--paper-red-500);
+                --paper-slider-active-color: var(--paper-red-500);
+            }
 
-            <div>Notifications</div>
-            <p:PaperSlider value="50"/>
+            .slider-sample paper-slider.green {
+                --paper-slider-knob-color: var(--paper-green-500);
+                --paper-slider-active-color: var(--paper-green-500);
+            }
 
-            <br/>
-            <br/>
+            .slider-sample paper-slider.orange {
+                --paper-slider-knob-color: var(--paper-orange-500);
+                --paper-slider-active-color: var(--paper-orange-500);
+                --paper-slider-pin-color: var(--paper-orange-500);
+            }
+        </style>
 
-            <div>Alarms</div>
-            <p:PaperSlider value="80"/>
-
-        </section>
-
-        <br/>
-
-        <section class="{style.section}">
-
-            <div center="" horizontal="" layout="">
-                <div>R</div>
-                <p:PaperSlider value="23" max="255" editable=""/>
+        <div class="vertical center-justified layout">
+            <h4>Default</h4>
+            <div class="vertical-section">
+                <div>Oxygen</div>
+                <paper-slider value="21"></paper-slider><br/><br/>
+                <div>Argon</div>
+                <paper-slider value="1"></paper-slider><br/><br/>
+                <div>Hydrogen</div>
+                <paper-slider value="0"></paper-slider><br/><br/>
+                <div>Nitrogen</div>
+                <paper-slider value="78"></paper-slider><br/><br/>
+                <div>Sprinkles</div>
+                <paper-slider disabled="" value="33"></paper-slider>
             </div>
 
-            <br/>
-            <br/>
-
-            <div center="" horizontal="" layout="">
-                <div>G</div>
-                <p:PaperSlider value="183" max="255" editable=""/>
+            <h4>Editable</h4>
+            <div class="vertical-section">
+                <div class="center horizontal layout">
+                    <div>R</div>
+                    <paper-slider class="red" value="23" max="255" editable=""></paper-slider>
+                </div>
+                <div class="center horizontal layout">
+                    <div>G</div>
+                    <paper-slider class="green" value="183" max="255" editable=""></paper-slider>
+                </div>
+                <div class="center horizontal layout">
+                    <div>B</div>
+                    <paper-slider class="blue" value="211" max="255" editable=""></paper-slider>
+                </div>
             </div>
 
-            <br/>
-            <br/>
-
-            <div center="" horizontal="" layout="">
-                <div>B</div>
-                <p:PaperSlider value="211" max="255" editable=""/>
+            <h4>Labelled pins</h4>
+            <div class="vertical-section">
+                <div>Brightness</div><br/>
+                <paper-slider pin="" value="20" class="orange"></paper-slider>
+                <div>Ratings: <span ui:field="ratingsLabel" class="{style.ratings-label}"></span></div><br/>
+                <p:PaperSlider ui:field="ratings" pin="true" snaps="true" max="10" step="1" value="5" addStyleNames="orange"></p:PaperSlider>
             </div>
-
-        </section>
-
-        <br/>
-
-        <section class="{style.section} {style.green-slider}">
-
-            <div>Brightness</div>
-            <br/>
-            <p:PaperSlider pin="" value="50"/>
-
-        </section>
-
-        <br/>
-
-        <section class="{style.section} {style.green-slider}">
-
-            <div>
-                <span>Ratings</span><span ui:field="ratingsLabel" class="{style.ratingsLabel}"/>
-            </div>
-            <br/>
-            <p:PaperSlider ui:field="ratings" pin="" snaps="" max="10" step="1" value="5"/>
-
-        </section>
+        </div>
+        
     </g:HTMLPanel>
 </ui:UiBinder>

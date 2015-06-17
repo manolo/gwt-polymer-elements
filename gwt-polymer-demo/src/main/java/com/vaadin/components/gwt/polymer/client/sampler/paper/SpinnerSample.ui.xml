@@ -1,33 +1,70 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
-             xmlns:p='urn:import:com.vaadin.components.gwt.polymer.client.widget'>
-    
-    <ui:style>
-        @external .circle;
+             xmlns:p='urn:import:com.vaadin.polymer.paper.widget'>
 
-        .blue::shadow .circle {
-            border-color: #4285f4;
-        }
+    <g:HTMLPanel addStyleNames="spinner-sample">
+        <style is="custom-style">
+            .spinner-sample .horizontal-section {
+                width: 100px;
+            }
 
-        .red::shadow .circle {
-            border-color: #db4437;
-        }
+            .spinner-sample paper-spinner, button {
+                display: block;
+                margin-bottom: 24px;
+                margin-left: auto;
+                margin-right: auto;
+            }
 
-        .yellow::shadow .circle {
-            border-color: #f4b400;
-        }
+            .spinner-sample paper-spinner.blue {
+                --paper-spinner-layer-1-color: var(--paper-light-blue-500);
+                --paper-spinner-layer-2-color: var(--paper-light-blue-500);
+                --paper-spinner-layer-3-color: var(--paper-light-blue-500);
+                --paper-spinner-layer-4-color: var(--paper-light-blue-500);
+            }
 
-        .green::shadow .circle {
-            border-color: #0f9d58;
-        }
-    </ui:style>
-    
-    <g:HTMLPanel>
-        <p:PaperSpinner ui:field="spinner1" addStyleNames="{style.blue}" active=""/>
-        <p:PaperSpinner ui:field="spinner2" addStyleNames="{style.red}" active=""/>
-        <p:PaperSpinner ui:field="spinner3" addStyleNames="{style.yellow}" active=""/>
-        <p:PaperSpinner ui:field="spinner4" addStyleNames="{style.green}" active=""/>
-        <p:PaperSpinner ui:field="spinner5" active=""/>
-        <g:Button ui:field="button">Toggle</g:Button>
+            .spinner-sample paper-spinner.red {
+                --paper-spinner-layer-1-color: var(--paper-red-500);
+                --paper-spinner-layer-2-color: var(--paper-red-500);
+                --paper-spinner-layer-3-color: var(--paper-red-500);
+                --paper-spinner-layer-4-color: var(--paper-red-500);
+            }
+
+            .spinner-sample paper-spinner.orange {
+                --paper-spinner-layer-1-color: var(--paper-orange-500);
+                --paper-spinner-layer-2-color: var(--paper-orange-500);
+                --paper-spinner-layer-3-color: var(--paper-orange-500);
+                --paper-spinner-layer-4-color: var(--paper-orange-500);
+            }
+
+            .spinner-sample paper-spinner.green {
+                --paper-spinner-layer-1-color: var(--paper-green-500);
+                --paper-spinner-layer-2-color: var(--paper-green-500);
+                --paper-spinner-layer-3-color: var(--paper-green-500);
+                --paper-spinner-layer-4-color: var(--paper-green-500);
+            }
+        </style>
+        <div class="horizontal center-justified layout">
+            <div>
+                <h4>Default</h4>
+                <div class="horizontal-section">
+                    <p:PaperSpinner active="true" ui:field="toggle1_1"></p:PaperSpinner>
+                    <p:PaperSpinner active="true" ui:field="toggle1_2"></p:PaperSpinner>
+                    <p:PaperSpinner active="true" ui:field="toggle1_3"></p:PaperSpinner>
+                    <p:PaperSpinner active="true" ui:field="toggle1_4"></p:PaperSpinner>
+                    <g:Button ui:field="toggleBtn1">Toggle</g:Button>
+                </div>
+            </div>
+
+            <div>
+                <h4>Color</h4>
+                <div class="horizontal-section">
+                    <p:PaperSpinner active="true" ui:field="toggle2_1" addStyleNames="blue"></p:PaperSpinner>
+                    <p:PaperSpinner active="true" ui:field="toggle2_2" addStyleNames="red"></p:PaperSpinner>
+                    <p:PaperSpinner active="true" ui:field="toggle2_3" addStyleNames="orange"></p:PaperSpinner>
+                    <paper-spinner ui:field="toggle2_4" active="" class="green"/>
+                    <g:Button ui:field="toggleBtn2">Toggle</g:Button>
+                </div>
+            </div>
+        </div>
     </g:HTMLPanel>
 </ui:UiBinder>

@@ -6,12 +6,12 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 
 public class RadioButtonSample extends Composite {
-    interface RadioButtonSampleUiBinder extends UiBinder<HTMLPanel, RadioButtonSample> {
+    interface ButtonSampleUiBinder extends UiBinder<HTMLPanel, RadioButtonSample> {
     }
 
-    private static RadioButtonSampleUiBinder ourUiBinder = GWT.create(RadioButtonSampleUiBinder.class);
+    private static ButtonSampleUiBinder ourUiBinder = GWT.create(ButtonSampleUiBinder.class);
 
     public RadioButtonSample() {
-        initWidget(ourUiBinder.createAndBindUi(this));
+        initWidget(ourUiBinder.createAndBindUi(RadioButtonSample.this));
     }
 }

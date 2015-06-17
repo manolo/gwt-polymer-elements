@@ -5,11 +5,9 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
-import com.vaadin.components.gwt.polymer.client.Polymer;
-import com.vaadin.components.gwt.polymer.client.element.PaperTabElement;
-import com.vaadin.components.gwt.polymer.client.element.PaperTabsElement;
-import com.vaadin.components.gwt.polymer.client.element.PaperToastElement;
-import com.vaadin.components.gwt.polymer.client.element.event.CoreSelectEvent;
+import com.vaadin.polymer.Polymer;
+import com.vaadin.polymer.paper.element.PaperTabsElement;
+import com.vaadin.polymer.paper.element.PaperToastElement;
 
 public class PaperTabsView extends Composite {
     interface PaperTabsViewUiBinder extends UiBinder<HTMLPanel, PaperTabsView> {
@@ -23,18 +21,19 @@ public class PaperTabsView extends Composite {
     PaperToastElement toast;
 
     public PaperTabsView() {
-        Polymer.ensureHTMLImport("paper-tabs");
-        Polymer.ensureHTMLImport("paper-toast");
+        Polymer.ensureTag("paper-tabs");
+        Polymer.ensureTag("paper-toast");
 
         initWidget(ourUiBinder.createAndBindUi(this));
-        
-        paperTabs.addEventListener(CoreSelectEvent.NAME, new CoreSelectEvent.Listener() {
-            @Override
-            public void handleEvent(CoreSelectEvent event) {
-                PaperTabElement tab = (PaperTabElement) event.getDetail().getItem();
-                toast.setText("Tab \"" + tab.getInnerHTML() + "\" has been selected");
-                toast.show();
-            }
-        });
+
+        // TODO: fix using iron-select event which is not supported yet
+//        paperTabs.addEventListener(CoreSelectEvent.NAME, new CoreSelectEvent.Listener() {
+//            @Override
+//            public void handleEvent(CoreSelectEvent event) {
+//                PaperTabElement tab = (PaperTabElement) event.getDetail().getItem();
+//                toast.setText("Tab \"" + tab.getInnerHTML() + "\" has been selected");
+//                toast.show();
+//            }
+//        });
     }
 }

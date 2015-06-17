@@ -1,0 +1,35 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:p='urn:import:com.vaadin.polymer.paper.widget'>
+    
+    <ui:style>
+
+    </ui:style>
+
+    <g:HTMLPanel addStyleNames="progress-sample">
+
+        <div class="vertical layout">
+            <h4>Progress bar</h4>
+            <div class="vertical-section">
+                <p:PaperProgress ui:field="progress"/>
+                <p:PaperButton ui:field="startButton" raised="true">Start</p:PaperButton>
+            </div>
+
+            <h4>Indeterminate</h4>
+            <div class="vertical-section">
+                <paper-progress indeterminate=""></paper-progress><br/>
+                <paper-progress class="blue" indeterminate="" alue="800" min="100" max="1000"></paper-progress><br/>
+            </div>
+
+            <h4>Color</h4>
+            <div class="vertical-section">
+                <paper-progress value="40" class="blue"></paper-progress><br/>
+                <paper-progress value="800" min="100" max="1000" class="red"></paper-progress><br/>
+                <paper-progress value="40" class="orange"></paper-progress><br/>
+                <paper-progress value="200" max="200" class="green"></paper-progress><br/>
+                <paper-progress value="40" secondary-progress="80" class="blue"></paper-progress><br/>
+            </div>
+        </div>
+        
+    </g:HTMLPanel>
+</ui:UiBinder>

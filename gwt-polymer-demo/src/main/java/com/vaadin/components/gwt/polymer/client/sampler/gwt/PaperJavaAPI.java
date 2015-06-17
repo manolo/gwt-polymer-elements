@@ -7,16 +7,15 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Label;
-import com.vaadin.components.gwt.polymer.client.Polymer;
-import com.vaadin.components.gwt.polymer.client.element.PaperIconButtonElement;
-import com.vaadin.components.gwt.polymer.client.webapi.Event;
-import com.vaadin.components.gwt.polymer.client.webapi.EventListener;
-import com.vaadin.components.gwt.polymer.client.widget.PaperIconButton;
+import com.vaadin.polymer.Polymer;
+import com.vaadin.polymer.elemental.Event;
+import com.vaadin.polymer.elemental.EventListener;
+import com.vaadin.polymer.paper.element.PaperIconButtonElement;
+import com.vaadin.polymer.paper.widget.PaperIconButton;
 
 public class PaperJavaAPI extends FlowPanel {
 
     public PaperJavaAPI() {
-
         this.getElement().getStyle().setPadding(20, Unit.PX);
         Label label = new Label("Buttons created with Paper Java API");
         label.getElement().getStyle().setFontSize(20, Unit.PX);
@@ -25,7 +24,7 @@ public class PaperJavaAPI extends FlowPanel {
         // GWT Element API
         PaperIconButtonElement iconElem = Polymer.createElement(PaperIconButtonElement.TAG);
         iconElem.setIcon("polymer");
-        iconElem.setAttribute("title", "huge");
+        iconElem.setAttribute("title", "Click to say Hello");
         iconElem.addEventListener("click", new EventListener() {
             public void handleEvent(Event event) {
                 Window.alert("Hi");
@@ -34,7 +33,7 @@ public class PaperJavaAPI extends FlowPanel {
         this.getElement().appendChild((Element)iconElem);
 
         // GWT Widget API
-        PaperIconButton iconWidget = new PaperIconButton("");
+        PaperIconButton iconWidget = new PaperIconButton();
         iconWidget.setIcon("language");
         iconWidget.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {

@@ -1,22 +1,18 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
-             xmlns:p='urn:import:com.vaadin.components.gwt.polymer.client.widget'
+             xmlns:p='urn:import:com.vaadin.polymer.paper.widget'
+             xmlns:i='urn:import:com.vaadin.polymer.iron.widget'
         >
 
     <ui:style type="com.vaadin.components.gwt.polymer.client.sampler.Sampler.Style">
-        .toolbar {
-            color: #f1f1f1;
-            fill: #f1f1f1;
-            background: #4285f4;
-        }
+        @external .iron-selected;
 
-        core-header-panel {
-            width: 100%;
-            height: 100%;
+        .toolbar {
+            background: #4285f4 !important;
         }
 
         [drawer] {
-            background-color: #ffffff;
+            background-color: #ffffff !important;
         }
 
         .category {
@@ -27,32 +23,50 @@
 
         .item {
             padding-left: 20px;
-            font-size: 13px;
+            font-size: 15px;
+        }
+        .list {
+            background-color: #F5F4F4;
+        }
+        .list .iron-selected {
+            background-color: #ddd;
+        }
+        .list paper-item {
+            border-top: dotted 1px #f5f5f5;
+
+        }
+        .buttons {
+            font-size: 10px !important;
+            margin: 0px;
+        }
+        .current {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
     </ui:style>
 
     <g:HTMLPanel>
-        <p:CoreDrawerPanel ui:field="drawerPanel">
-
+        
+        <p:PaperDrawerPanel ui:field="drawerPanel">
             <div drawer="">
-                <p:CoreHeaderPanel mode="seamed">
-                    <p:CoreToolbar addStyleNames="{style.toolbar}">GWT-Polymer</p:CoreToolbar>
-                    <g:FlowPanel ui:field="listPanel" addStyleNames="list"/>
-                </p:CoreHeaderPanel>
+                <p:PaperHeaderPanel mode="seamed">
+                    <p:PaperToolbar addStyleNames="{style.toolbar}"><span class="title">GWT-Polymer</span></p:PaperToolbar>
+                    <g:FlowPanel ui:field="listPanel" addStyleNames="{style.list}"/>
+                </p:PaperHeaderPanel>
             </div>
-
             <div main="">
-                <p:CoreHeaderPanel mode="seamed">
-                    <p:CoreToolbar addStyleNames="{style.toolbar}">
+                <p:PaperHeaderPanel mode="seamed">
+                    <p:PaperToolbar addStyleNames="{style.toolbar}">
                         <p:PaperIconButton ui:field="menuButton" icon="menu"/>
-                        <span ui:field="currentLabel" flex=""></span>
-                        <p:PaperButton ui:field="xmlButton"><p:CoreIcon icon="launch"/>.ui.xml</p:PaperButton>
-                        <p:PaperButton ui:field="javaButton"><p:CoreIcon icon="launch"/>.java</p:PaperButton>
-                    </p:CoreToolbar>
+                        <span ui:field="currentLabel" class="flex {style.current}"></span>
+                        <p:PaperButton ui:field="xmlButton" addStyleNames="{style.buttons}"><i:IronIcon icon="launch"/>.ui.xml</p:PaperButton>
+                        <p:PaperButton ui:field="javaButton" addStyleNames="{style.buttons}"><i:IronIcon icon="launch"/>.java</p:PaperButton>
+                    </p:PaperToolbar>
                     <g:DeckPanel ui:field="content" animationEnabled="true" />
-                </p:CoreHeaderPanel>
+                </p:PaperHeaderPanel>
             </div>
-
-        </p:CoreDrawerPanel>
+        </p:PaperDrawerPanel>
+        
     </g:HTMLPanel>
 </ui:UiBinder>

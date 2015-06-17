@@ -1,0 +1,42 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:p='urn:import:com.vaadin.polymer.paper.widget'>
+
+    
+
+    <g:HTMLPanel addStyleNames="drawer-panel-sample">
+        <style is="custom-style">
+
+            .drawer-panel-sample #paperDrawerPanel [main] {
+                background-color: var(--google-grey-100);
+            }
+        
+            .drawer-panel-sample #paperDrawerPanel [drawer] {
+                border-right: 1px solid var(--google-grey-300);
+            }
+        
+            .drawer-panel-sample #paperDrawerPanel[right-drawer] [drawer] {
+                border-left: 1px solid var(--google-grey-300);
+            }
+        
+            .drawer-panel-sample paper-button {
+                color: white;
+                margin: 10px;
+                background-color: var(--google-blue-700);
+                white-space: nowrap;
+            }
+        </style>
+        <p:PaperDrawerPanel ui:field="panel">
+            <div drawer=""></div>
+            <div main="">
+                <div>
+                    <p:PaperButton ui:field="flipButton" raised="true">flip drawer</p:PaperButton>
+                </div>
+                <div>
+                    <paper-button paper-drawer-toggle="" raised="">toggle drawer</paper-button>
+                </div>
+            </div>
+        </p:PaperDrawerPanel>
+        
+    </g:HTMLPanel>
+</ui:UiBinder>

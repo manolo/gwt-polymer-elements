@@ -2,30 +2,19 @@ package com.vaadin.components.gwt.polymer.client.sampler.paper;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
-import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
-import com.vaadin.components.gwt.polymer.client.widget.CoreMediaQuery;
-import com.vaadin.components.gwt.polymer.client.widget.event.CoreMediaChangeEvent;
-import com.vaadin.components.gwt.polymer.client.widget.event.CoreMediaChangeEventHandler;
+import com.vaadin.polymer.Polymer;
 
 public class ToolbarSample extends Composite {
-    interface ToolbarSampleUiBinder extends UiBinder<HTMLPanel, ToolbarSample> {
+    interface SampleUiBinder extends UiBinder<HTMLPanel, ToolbarSample> {
     }
 
-    private static ToolbarSampleUiBinder ourUiBinder = GWT.create(ToolbarSampleUiBinder.class);
-    @UiField
-    CoreMediaQuery mediaQuery;
+    private static SampleUiBinder ourUiBinder = GWT.create(SampleUiBinder.class);
 
     public ToolbarSample() {
-        initWidget(ourUiBinder.createAndBindUi(this));
-        
-        mediaQuery.addCoreMediaChangeHandler(new CoreMediaChangeEventHandler() {
-            @Override
-            public void onCoreMediaChange(CoreMediaChangeEvent event) {
-                // TODO: investigate details of the CoreMediaChangeEvent
-//                if (event.getNativeEvent().getDetail().)
-            }
-        });
+        Polymer.ensureHTMLImport("paper-toolbar/paper-toolbar.html");
+
+        initWidget(ourUiBinder.createAndBindUi(ToolbarSample.this));
     }
 }

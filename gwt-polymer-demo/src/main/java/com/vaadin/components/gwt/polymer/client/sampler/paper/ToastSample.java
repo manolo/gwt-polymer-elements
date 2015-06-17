@@ -7,41 +7,38 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
-import com.vaadin.components.gwt.polymer.client.widget.PaperButton;
-import com.vaadin.components.gwt.polymer.client.widget.PaperToast;
+import com.vaadin.polymer.paper.widget.PaperButton;
+import com.vaadin.polymer.paper.widget.PaperToast;
 
 public class ToastSample extends Composite {
-    interface ToastSampleUiBinder extends UiBinder<HTMLPanel, ToastSample> {
+    interface SampleUiBinder extends UiBinder<HTMLPanel, ToastSample> {
     }
 
-    private static ToastSampleUiBinder ourUiBinder = GWT.create(ToastSampleUiBinder.class);
+    private static SampleUiBinder ourUiBinder = GWT.create(SampleUiBinder.class);
     
-    @UiField PaperButton button1;
-    @UiField PaperButton button2;
-    @UiField PaperButton button3;
-    @UiField PaperToast toast1;
-    @UiField PaperToast toast2;
-    @UiField PaperToast toast3;
+    @UiField
+    PaperButton button1;
+    @UiField
+    PaperButton button2;
+    @UiField
+    PaperToast toast1;
+    @UiField
+    PaperToast toast2;
 
     public ToastSample() {
         initWidget(ourUiBinder.createAndBindUi(this));
-        
+
         button1.addClickHandler(new ClickHandler() {
             @Override
-            public void onClick(ClickEvent event) {
-                toast1.toggle();
+            public void onClick(ClickEvent clickEvent) {
+                toast1.show();
             }
         });
+
         button2.addClickHandler(new ClickHandler() {
             @Override
-            public void onClick(ClickEvent event) {
-                toast2.toggle();
-            }
-        });
-        button3.addClickHandler(new ClickHandler() {
-            @Override
-            public void onClick(ClickEvent event) {
-                toast3.toggle();
+            public void onClick(ClickEvent clickEvent) {
+                toast2.show();
             }
         });
     }

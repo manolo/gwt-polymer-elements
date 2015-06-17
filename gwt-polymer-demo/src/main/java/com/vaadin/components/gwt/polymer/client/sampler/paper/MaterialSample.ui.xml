@@ -1,0 +1,74 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:p='urn:import:com.vaadin.polymer.paper.widget'>
+    
+    <ui:style>
+        .collapse-sample paper-material {
+            display: inline-block;
+            background: white;
+            box-sizing: border-box;
+            margin: 16px;
+            padding: 16px;
+            border-radius: 2px;
+        }
+
+        .collapse-sample .fab {
+            display: inline-block;
+            background: white;
+            box-sizing: border-box;
+            width: 56px;
+            height: 56px;
+            margin: 16px;
+            padding: 16px;
+            border-radius: 50%;
+            text-align: center;
+            cursor: pointer;
+        }
+    </ui:style>
+
+    
+
+    <g:HTMLPanel addStyleNames="{style.collapse-sample}">
+
+        <section>
+            <div>Paper Elevations</div>
+
+            <paper-material elevation="0">
+                elevation = 0
+            </paper-material>
+
+            <paper-material elevation="1">
+                elevation = 1
+            </paper-material>
+
+            <paper-material elevation="2">
+                elevation = 2
+            </paper-material>
+
+            <paper-material elevation="3">
+                elevation = 3
+            </paper-material>
+
+            <paper-material elevation="4">
+                elevation = 4
+            </paper-material>
+
+            <paper-material elevation="5">
+                elevation = 5
+            </paper-material>
+        </section>
+
+        <section>
+            <div>Animated</div>
+
+            <p:PaperMaterial ui:field="material" elevation="0" animated="true">
+                tap
+            </p:PaperMaterial>
+
+            <p:PaperMaterial ui:field="fabMaterial" addStyleNames="{style.fab} layout center-center" elevation="0" animated="true">
+                tap
+            </p:PaperMaterial>
+        </section>
+        
+    </g:HTMLPanel>
+</ui:UiBinder>

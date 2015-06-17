@@ -12,6 +12,6 @@ public class ToggleButtonSample extends Composite {
     private static ToggleButtonSampleUiBinder ourUiBinder = GWT.create(ToggleButtonSampleUiBinder.class);
 
     public ToggleButtonSample() {
-        initWidget(ourUiBinder.createAndBindUi(this));
+        initWidget(ourUiBinder.createAndBindUi(ToggleButtonSample.this));
     }
 }

@@ -6,28 +6,29 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
-import com.vaadin.components.gwt.polymer.client.widget.PaperSlider;
-import com.vaadin.components.gwt.polymer.client.widget.event.CoreChangeEvent;
-import com.vaadin.components.gwt.polymer.client.widget.event.CoreChangeEventHandler;
+import com.vaadin.polymer.paper.widget.PaperSlider;
+import com.vaadin.polymer.value.widget.event.ValueChangeEvent;
+import com.vaadin.polymer.value.widget.event.ValueChangeEventHandler;
 
 public class SliderSample extends Composite {
-    interface SliderSampleUiBinder extends UiBinder<HTMLPanel, SliderSample> {
+    interface SampleUiBinder extends UiBinder<HTMLPanel, SliderSample> {
     }
 
-    private static SliderSampleUiBinder ourUiBinder = GWT.create(SliderSampleUiBinder.class);
+    private static SampleUiBinder ourUiBinder = GWT.create(SampleUiBinder.class);
     
     @UiField
     PaperSlider ratings;
     @UiField
     SpanElement ratingsLabel;
 
+
     public SliderSample() {
         initWidget(ourUiBinder.createAndBindUi(this));
-        
-        ratings.addCoreChangeHandler(new CoreChangeEventHandler() {
+
+        ratings.addValueChangeHandler(new ValueChangeEventHandler() {
             @Override
-            public void onCoreChange(CoreChangeEvent event) {
-                ratingsLabel.setInnerText(String.valueOf(ratings.getValue()));
+            public void onValueChange(ValueChangeEvent event) {
+                ratingsLabel.setInnerText("" + ratings.getValue());
             }
         });
     }

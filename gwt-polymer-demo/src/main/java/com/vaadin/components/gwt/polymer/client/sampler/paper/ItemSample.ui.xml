@@ -1,87 +1,259 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
-             xmlns:p='urn:import:com.vaadin.components.gwt.polymer.client.widget'>
+             xmlns:p='urn:import:com.vaadin.polymer.paper.widget'>
 
-    <ui:style>
-        .container {
-            font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
-            font-size: 14px;
-            margin: 0;
-            padding: 24px;
-            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-            -webkit-touch-callout: none;
-        }
+    
 
-        .container section {
-            padding: 20px 0;
-        }
+    <g:HTMLPanel addStyleNames="item-sample">
+        <style is="custom-style">
 
-        .container section > div {
-            padding: 14px;
-            font-size: 16px;
-        }
+            .item-sample .list {
+                padding-top: 12px;
+                background-color: white;
+                display: inline-block;
+                width: 240px;
+                height: 228px;
+                margin: 12px;
+                @apply(--shadow-elevation-2dp);
+            }
 
-        .container paper-shadow {
-            display: inline-block;
-        }
+            .item-sample .short {
+                padding-top: 12px;
+                height: 216px;
+            }
 
-        .container core-icon {
-            margin-right: 0.5em;
-        }
+            .item-sample h4 {
+            	margin-left: 24px;
+            }
 
-        .fixed-width {
-            max-width: 10.5em;
-        }
-    </ui:style>
+            .item-sample .avatar {
+                display: inline-block;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                overflow: hidden;
+                background: #ccc;
+            }
 
-    <g:HTMLPanel addStyleNames="{style.container}">
+            .item-sample .blue {
+                background-color: var(--paper-light-blue-300);
+            }
+            .item-sample .red {
+                background-color: var(--paper-red-300);
+            }
+            .item-sample .orange {
+                background-color: var(--paper-amber-300);
+            }
+            .item-sample .green {
+                background-color: var(--paper-green-300);
+            }
+        </style>
 
-        <section>
+        <div class="layout wrap inline center-center">
+        <div>
+            <h4>Single line items</h4>
+            <div class="list short">
+                <p:PaperItem>Inbox</p:PaperItem>
+                <p:PaperItem>Starred</p:PaperItem>
+                <p:PaperItem>Sent mail</p:PaperItem>
+                <p:PaperItem>Drafts</p:PaperItem>
+            </div>
+        </div>
 
-            <div>Default</div>
+        <div>
+            <h4>Icon with text</h4>
+            <div class="list short">
+                <p:PaperIconItem>
+                    <iron-icon icon="inbox" item-icon=""></iron-icon> Inbox
+                </p:PaperIconItem>
+                <p:PaperIconItem>
+                    <iron-icon icon="send" item-icon=""></iron-icon> Outbox
+                </p:PaperIconItem>
+                <p:PaperIconItem>
+                    <iron-icon icon="delete" item-icon=""></iron-icon> Trash
+                </p:PaperIconItem>
+                <p:PaperIconItem>
+                    <iron-icon icon="report" item-icon=""></iron-icon> Spam
+                </p:PaperIconItem>
+            </div>
+        </div>
 
-            <p:PaperShadow addStyleNames="{style.fixed-width}">
-                <p:PaperItem>Item</p:PaperItem>
-                <p:PaperItem disabled="">Disabled</p:PaperItem>
-                <p:PaperItem noink=""><a href="http://www.polymer-project.org" layout="" horizontal="" center="">Link</a></p:PaperItem>
-                <p:PaperItem>Long items wrap by default</p:PaperItem>
-            </p:PaperShadow>
+        <div>
+            <h4>Avatar with text</h4>
+            <div class="list short">
+                <paper-icon-item>
+                    <div class="avatar blue" item-icon=""></div> Alphonso Engelking
+                </paper-icon-item>
+                <paper-icon-item>
+                    <div class="avatar red" item-icon=""></div> Andrews Boyd
+                </paper-icon-item>
+                <paper-icon-item>
+                    <div class="avatar orange" item-icon=""></div> Angela Decker
+                </paper-icon-item>
+                <paper-icon-item>
+                    <div class="avatar green" item-icon=""></div> Lorem Ipsum
+                </paper-icon-item>
+            </div>
+        </div>
 
-        </section>
+        <div>
+            <h4>Avatar with text and icon</h4>
+            <div class="list short">
+                <paper-icon-item>
+                    <div class="avatar red" item-icon=""></div>
+                    <div class="flex">Alphonso</div>
+                    <iron-icon icon="communication:messenger"></iron-icon>
+                </paper-icon-item>
+                <paper-icon-item>
+                    <div class="avatar orange" item-icon=""></div>
+                    <div class="flex">Andrews</div>
+                    <iron-icon icon="communication:messenger"></iron-icon>
+                </paper-icon-item>
+                <paper-icon-item>
+                    <div class="avatar green" item-icon=""></div>
+                    <div class="flex">Angela</div>
+                    <iron-icon icon="communication:messenger"></iron-icon>
+                </paper-icon-item>
+                <paper-icon-item>
+                    <div class="avatar blue" item-icon=""></div>
+                    <div class="flex">Lorem</div>
+                    <iron-icon icon="communication:messenger"></iron-icon>
+                </paper-icon-item>
+            </div>
+        </div>
 
-        <section>
+        <div>
+            <h4>Avatar with text and control</h4>
+            <div class="list short">
+                <paper-icon-item>
+                    <div class="avatar orange" item-icon=""></div>
+                    <div class="flex">Alphonso</div>
+                    <paper-checkbox></paper-checkbox>
+                </paper-icon-item>
+                <paper-icon-item>
+                    <div class="avatar green" item-icon=""></div>
+                    <div class="flex">Andrews</div>
+                    <paper-checkbox checked=""></paper-checkbox>
+                </paper-icon-item>
+                <paper-icon-item>
+                    <div class="avatar blue" item-icon=""></div>
+                    <div class="flex">Angela</div>
+                    <paper-checkbox></paper-checkbox>
+                </paper-icon-item>
+                <paper-icon-item>
+                    <div class="avatar red" item-icon=""></div>
+                    <div class="flex">Lorem</div>
+                    <paper-checkbox></paper-checkbox>
+                </paper-icon-item>
+            </div>
+        </div>
 
-            <div>In a core-selector</div>
+        <div>
+            <h4>Control with text and icon</h4>
+            <div class="list short">
+                <paper-icon-item>
+                    <paper-checkbox item-icon=""></paper-checkbox>
+                    <div class="flex">Alphonso</div>
+                    <iron-icon icon="communication:messenger"></iron-icon>
+                </paper-icon-item>
+                <paper-icon-item>
+                    <paper-checkbox checked="" item-icon=""></paper-checkbox>
+                    <div class="flex">Andrews</div>
+                    <iron-icon icon="communication:messenger"></iron-icon>
+                </paper-icon-item>
+                <paper-icon-item>
+                    <paper-checkbox item-icon=""></paper-checkbox>
+                    <div class="flex">Angela</div>
+                    <iron-icon icon="communication:messenger"></iron-icon>
+                </paper-icon-item>
+                <paper-icon-item>
+                    <paper-checkbox item-icon=""></paper-checkbox>
+                    <div class="flex">Lorem</div>
+                    <iron-icon icon="communication:messenger"></iron-icon>
+                </paper-icon-item>
+            </div>
+        </div>
 
-            <p:PaperShadow>
-                <p:CoreSelector selected="1">
-                    <p:PaperItem>Item 1</p:PaperItem>
-                    <p:PaperItem>Item 2</p:PaperItem>
-                    <p:PaperItem>Item 3</p:PaperItem>
-                </p:CoreSelector>
-            </p:PaperShadow>
+        <div>
+            <h4>Two-line items</h4>
+            <div class="list">
+                <paper-item>
+                    <paper-item-body two-line="" class="layout vertical">
+                        <div>Profile Photo</div>
+                        <div secondary="">Change your Google+ profile photo</div>
+                    </paper-item-body>
+                </paper-item>
+                <paper-item>
+                    <paper-item-body two-line="">
+                        <div>Show your status</div>
+                        <div secondary="">Your status is visible to everyone you use with</div>
+                    </paper-item-body>
+                </paper-item>
+                <paper-item>
+                    <paper-item-body two-line="" class="layout vertical">
+                        <div>Settings</div>
+                        <div secondary="">Change your account settings</div>
+                    </paper-item-body>
+                </paper-item>
+            </div>
+        </div>
 
-        </section>
+        <div>
+            <h4>Icon with two-line text</h4>
+            <div class="list">
+                <paper-icon-item>
+                    <div class="avatar green" item-icon=""></div>
+                    <paper-item-body two-line="">
+                        <div>Alphonso Engelking</div>
+                        <div secondary="">Change photo</div>
+                    </paper-item-body>
+                </paper-icon-item>
+                <paper-icon-item>
+                    <iron-icon icon="communication:phone" item-icon=""></iron-icon>
+                    <paper-item-body two-line="">
+                        <div>(650) 555-1234</div>
+                        <div secondary="">Mobile</div>
+                    </paper-item-body>
+                </paper-icon-item>
+                <paper-icon-item>
+                    <iron-icon icon="communication:email" item-icon=""></iron-icon>
+                    <paper-item-body two-line="">
+                        <div>alphonso@example.com</div>
+                        <div secondary="">Personal</div>
+                    </paper-item-body>
+                </paper-icon-item>
+            </div>
+        </div>
 
-        <section>
-
-            <div>Custom Content</div>
-
-            <p:PaperShadow>
-                <p:PaperItem>
-                    <p:CoreIcon icon="content-cut"/>
-                    Cut
-                </p:PaperItem>
-                <p:PaperItem>
-                    <p:CoreIcon icon="content-copy"/>
-                    Copy
-                </p:PaperItem>
-                <p:PaperItem>
-                    <p:CoreIcon icon="content-paste"/>
-                    Paste
-                </p:PaperItem>
-            </p:PaperShadow>
-
-        </section>
+        <div>
+            <h4>Avatar with text and icon</h4>
+            <div class="list">
+                <paper-icon-item>
+                    <div class="avatar blue" item-icon=""></div>
+                    <paper-item-body two-line="">
+                        <div>Photos</div>
+                        <div secondary="">Jan 9, 2014</div>
+                    </paper-item-body>
+                    <iron-icon icon="star"></iron-icon>
+                </paper-icon-item>
+                <paper-icon-item>
+                    <div class="avatar red" item-icon=""></div>
+                    <paper-item-body two-line="">
+                        <div>Recipes</div>
+                        <div secondary="">Jan 17, 2014</div>
+                    </paper-item-body>
+                    <iron-icon icon="star"></iron-icon>
+                </paper-icon-item>
+                <paper-icon-item>
+                    <div class="avatar orange" item-icon=""></div>
+                    <paper-item-body two-line="">
+                        <div>Work</div>
+                        <div secondary="">Jan 28, 2014</div>
+                    </paper-item-body>
+                    <iron-icon icon="star"></iron-icon>
+                </paper-icon-item>
+            </div>
+        </div>
+        </div>
     </g:HTMLPanel>
 </ui:UiBinder>

@@ -1,102 +1,62 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
-             xmlns:p='urn:import:com.vaadin.components.gwt.polymer.client.widget'>
+             xmlns:p='urn:import:com.vaadin.polymer.paper.widget'>
+
     
-    <ui:style>
-        .container {
-            font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
-            margin: 0;
-            padding: 24px;
-        }
 
-        .toolbar {
-            color: #f1f1f1;
-            fill: #f1f1f1;
-        }
+    <g:HTMLPanel addStyleNames="toolbar-sample">
+        <style is="custom-style">
+        
+            .toolbar-sample paper-toolbar + paper-toolbar {
+                margin-top: 20px;
+            }
+        </style>
+        <p:PaperToolbar>
+            <paper-icon-button icon="menu"></paper-icon-button>
+            <span class="title">Toolbar</span>
+            <p:PaperIconButton icon="refresh"></p:PaperIconButton>
+            <p:PaperIconButton icon="add">+</p:PaperIconButton>
+        </p:PaperToolbar>
 
-        .first {
-            background: #4285f4;
-        }
+        <paper-toolbar class="tall">
+            <paper-icon-button icon="menu"></paper-icon-button>
+            <span class="title">Toolbar: tall</span>
+            <paper-icon-button icon="refresh"></paper-icon-button>
+            <paper-icon-button icon="add">+</paper-icon-button>
+        </paper-toolbar>
 
-        .second {
-            background: #3f51b5;
-        }
+        <paper-toolbar class="tall">
+            <paper-icon-button icon="menu" class="bottom"></paper-icon-button>
+            <span class="bottom title">Toolbar: tall with elements pin to the bottom</span>
+            <paper-icon-button icon="refresh" class="bottom"></paper-icon-button>
+            <paper-icon-button icon="add" class="bottom">+</paper-icon-button>
+        </paper-toolbar>
 
-        .third {
-            background: #0f9d58;
-        }
+        <paper-toolbar class="medium-tall">
+            <paper-icon-button icon="menu"></paper-icon-button>
+            <span class="flex"></span>
+            <paper-icon-button icon="refresh"></paper-icon-button>
+            <paper-icon-button icon="add">+</paper-icon-button>
+            <span class="bottom title">Toolbar: medium-tall with label aligns to the bottom</span>
+        </paper-toolbar>
 
-        .fourth {
-            background: #ffeb3b;
-            color: #333;
-            fill: #333;
-        }
+        <paper-toolbar class="tall">
+            <paper-icon-button icon="menu"></paper-icon-button>
+            <div class="flex"></div>
+            <paper-icon-button icon="refresh"></paper-icon-button>
+            <paper-icon-button icon="add">+</paper-icon-button>
+            <div class="middle title">label aligns to the middle</div>
+            <div class="bottom title">some stuffs align to the bottom</div>
+        </paper-toolbar>
 
-        .fifth {
-            background: #ff5722;
-        }
-
-        .sixth {
-            background: #9c27b0;
-        }
-    </ui:style>
-    
-    <g:HTMLPanel addStyleNames="{style.container}">
-        <p:CoreToolbar addStyleNames="{style.toolbar} {style.first}">
-            <paper-icon-button icon="menu"/>
-            <span flex="">Title</span>
-            <paper-icon-button icon="refresh"/>
-            <paper-icon-button icon="more-vert"/>
-        </p:CoreToolbar>
-
-        <br />
-
-        <p:CoreToolbar addStyleNames="{style.toolbar} {style.second}">
-            <paper-icon-button icon="menu"/>
-            <span flex="">Title</span>
-            <paper-icon-button icon="refresh"/>
-            <paper-icon-button icon="more-vert"/>
-        </p:CoreToolbar>
-
-        <br />
-
-        <p:CoreToolbar addStyleNames="{style.toolbar} {style.third} tall">
-            <paper-icon-button icon="menu"/>
-            <span flex="">Title</span>
-            <paper-icon-button icon="refresh"/>
-            <paper-icon-button icon="more-vert"/>
-        </p:CoreToolbar>
-
-        <br />
-
-        <p:CoreToolbar addStyleNames="{style.toolbar} {style.fourth} tall">
-            <paper-icon-button icon="menu" class="bottom"/>
-            <span flex="" class="bottom">Title</span>
-            <paper-icon-button icon="refresh" class="bottom"/>
-            <paper-icon-button icon="more-vert" class="bottom"/>
-        </p:CoreToolbar>
-
-        <br />
-
-        <p:CoreToolbar addStyleNames="{style.toolbar} {style.fifth} medium-tall">
-            <paper-icon-button icon="menu"/>
-            <span flex=""/>
-            <paper-icon-button icon="refresh"/>
-            <paper-icon-button icon="more-vert"/>
-            <span class="bottom indent">Title</span>
-        </p:CoreToolbar>
-
-        <br />
-
-        <p:CoreToolbar addStyleNames="{style.toolbar} {style.sixth} tall">
-            <paper-icon-button icon="menu"/>
-            <div flex=""/>
-            <paper-icon-button icon="refresh"/>
-            <paper-icon-button icon="more-vert"/>
-            <div flex="" class="middle indent">Title</div>
-            <div flex="" class="bottom indent" style="font-size: 18px;">Title2</div>
-        </p:CoreToolbar>
-
-        <p:CoreMediaQuery ui:field="mediaQuery" query="max-width: 800px"/>
+        <paper-toolbar class="tall">
+            <paper-icon-button icon="menu"></paper-icon-button>
+            <div class="flex"></div>
+            <paper-icon-button icon="refresh"></paper-icon-button>
+            <paper-icon-button icon="add">+</paper-icon-button>
+            <div class="middle title">element (e.g. progress) fits at the bottom of the toolbar</div>
+            <div class="bottom flex" style="height: 20px; background-color: #0f9d58;"></div>
+        </paper-toolbar>
+        
     </g:HTMLPanel>
 </ui:UiBinder>

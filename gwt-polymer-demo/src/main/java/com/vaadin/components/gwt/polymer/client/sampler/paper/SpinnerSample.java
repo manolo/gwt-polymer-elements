@@ -8,39 +8,62 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
-import com.vaadin.components.gwt.polymer.client.widget.PaperSpinner;
+import com.vaadin.polymer.paper.element.PaperSpinnerElement;
+import com.vaadin.polymer.paper.widget.PaperSpinner;
 
 public class SpinnerSample extends Composite {
     interface SpinnerSampleUiBinder extends UiBinder<HTMLPanel, SpinnerSample> {
     }
 
     private static SpinnerSampleUiBinder ourUiBinder = GWT.create(SpinnerSampleUiBinder.class);
-    
-    @UiField
-    Button button;
-    @UiField
-    PaperSpinner spinner1;
-    @UiField
-    PaperSpinner spinner2;
-    @UiField
-    PaperSpinner spinner3;
-    @UiField
-    PaperSpinner spinner4;
-    @UiField
-    PaperSpinner spinner5;
+
+    @UiField Button toggleBtn1;
+    @UiField Button toggleBtn2;
+
+    @UiField PaperSpinner toggle1_1;
+    @UiField PaperSpinner toggle1_2;
+    @UiField PaperSpinner toggle1_3;
+    @UiField PaperSpinner toggle1_4;
+
+    @UiField PaperSpinner toggle2_1;
+    @UiField PaperSpinner toggle2_2;
+    @UiField PaperSpinner toggle2_3;
+    @UiField PaperSpinnerElement toggle2_4;
 
     public SpinnerSample() {
-        initWidget(ourUiBinder.createAndBindUi(this));
-        
-        button.addClickHandler(new ClickHandler() {
+        initWidget(ourUiBinder.createAndBindUi(SpinnerSample.this));
+
+        toggleBtn1.addClickHandler(new ClickHandler() {
             @Override
-            public void onClick(ClickEvent event) {
-                spinner1.setActive(!spinner1.isActive());
-                spinner2.setActive(!spinner2.isActive());
-                spinner3.setActive(!spinner3.isActive());
-                spinner4.setActive(!spinner4.isActive());
-                spinner5.setActive(!spinner5.isActive());
+            public void onClick(ClickEvent clickEvent) {
+                toggleAttribute(toggle1_1);
+                toggleAttribute(toggle1_2);
+                toggleAttribute(toggle1_3);
+                toggleAttribute(toggle1_4);
             }
         });
+
+        toggleBtn2.addClickHandler(new ClickHandler() {
+            @Override
+            public void onClick(ClickEvent clickEvent) {
+                toggleAttribute(toggle2_1);
+                toggleAttribute(toggle2_2);
+                toggleAttribute(toggle2_3);
+                toggleAttribute(toggle2_4);
+            }
+        });
+    }
+
+    private void toggleAttribute(PaperSpinner spinner) {
+        toggleAttribute(spinner.getPolymerElement());
+    }
+
+    private void toggleAttribute(PaperSpinnerElement element) {
+        String name = "active";
+        if (element.hasAttribute(name)) {
+            element.removeAttribute(name);
+        } else {
+            element.setAttribute(name, "");
+        }
     }
 }

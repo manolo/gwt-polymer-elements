@@ -1,185 +1,145 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
-             xmlns:g='urn:import:com.google.gwt.user.client.ui'
-             xmlns:p='urn:import:com.vaadin.components.gwt.polymer.client.widget'>
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
 
-    <ui:style>
-        @external .core-narrow, .core-selected;
+    <g:HTMLPanel addStyleNames="tabs-sample">
 
-        .container {
-            font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
-            margin: 0;
-            padding: 24px;
-            color: #333;
+    <style is="custom-style">
+    
+        .tabs-sample :root {
+            --paper-toolbar-background: #00bcd4;
         }
-
-        .container.core-narrow {
-            padding: 8px;
-        }
-
-        .container paper-tabs, .container core-toolbar {
+    
+        .tabs-sample paper-tabs, paper-toolbar {
             background-color: #00bcd4;
             color: #fff;
-            box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.2);
+            box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
         }
-
-        .container core-toolbar paper-tabs {
+    
+        .tabs-sample paper-toolbar paper-tabs {
             box-shadow: none;
         }
-
-        .container paper-tabs[noink][nobar] paper-tab.core-selected {
+    
+        .tabs-sample paper-tabs[noink][no-bar] paper-tab.iron-selected {
             color: #ffff8d;
         }
-
-        .container paper-tabs.transparent-teal {
-            background-color: transparent;
-            color: #00bcd4;
-            box-shadow: none;
+    
+        .tabs-sample paper-tabs[alignBottom] {
+        	box-shadow: 0px -2px 6px rgba(0, 0, 0, 0.15);
         }
-
-        .container paper-tabs.transparent-teal::shadow #selectionBar {
-            background-color: #00bcd4;
-        }
-
-        .container paper-tabs.transparent-teal paper-tab::shadow #ink {
-            color: #00bcd4;
-        }
-
-        .container h3 {
+    
+        .tabs-sample h3 {
             font-size: 16px;
             font-weight: 400;
+            padding-top: 20px;
         }
+    </style>
 
-        .fixed600 {
-            width: 600px;
-        }
-
-        .fixed300 {
-            width: 300px;
-        }
-    </ui:style>
-
-    <g:HTMLPanel addStyleNames="{style.container}">
         <h3>A. No ink effect and no sliding bar</h3>
 
-        <p:PaperTabs selected="0" noink="" nobar="">
-            <p:PaperTab>ITEM ONE</p:PaperTab>
-            <p:PaperTab>ITEM TWO</p:PaperTab>
-            <p:PaperTab>ITEM THREE</p:PaperTab>
-        </p:PaperTabs>
+        <paper-tabs selected="0" noink="" no-bar="">
 
-        <br/>
-        <br/>
+            <paper-tab>ITEM ONE</paper-tab>
+            <paper-tab>ITEM TWO</paper-tab>
+            <paper-tab>ITEM THREE</paper-tab>
+
+        </paper-tabs>
 
         <h3>B. The bottom bar appears to indicate the selected tab, but without sliding effect.</h3>
 
-        <p:PaperTabs selected="0" noink="" noslide="">
-            <p:PaperTab>ITEM ONE</p:PaperTab>
-            <p:PaperTab>ITEM TWO</p:PaperTab>
-            <p:PaperTab>ITEM THREE</p:PaperTab>
-        </p:PaperTabs>
+        <paper-tabs selected="0" noink="" no-slide="">
 
-        <br/>
-        <br/>
+            <paper-tab>ITEM ONE</paper-tab>
+            <paper-tab>ITEM TWO</paper-tab>
+            <paper-tab>ITEM THREE</paper-tab>
+
+        </paper-tabs>
 
         <h3>C. The bar slides to the selected tab</h3>
 
-        <p:PaperTabs selected="0" noink="">
-            <p:PaperTab>ITEM ONE</p:PaperTab>
-            <p:PaperTab>ITEM TWO</p:PaperTab>
-            <p:PaperTab>ITEM THREE</p:PaperTab>
-        </p:PaperTabs>
+        <paper-tabs selected="0" noink="">
 
-        <br/>
-        <br/>
+            <paper-tab>ITEM ONE</paper-tab>
+            <paper-tab>ITEM TWO</paper-tab>
+            <paper-tab>ITEM THREE</paper-tab>
+
+        </paper-tabs>
 
         <h3>D. Inky Tabs</h3>
 
-        <p:PaperTabs selected="0">
-            <p:PaperTab>ITEM ONE</p:PaperTab>
-            <p:PaperTab>ITEM TWO</p:PaperTab>
-            <p:PaperTab>ITEM THREE</p:PaperTab>
-        </p:PaperTabs>
+        <paper-tabs selected="0">
 
-        <br/>
-        <br/>
+            <paper-tab>ITEM ONE</paper-tab>
+            <paper-tab>ITEM TWO</paper-tab>
+            <paper-tab>ITEM THREE</paper-tab>
 
-        <p:PaperTabs selected="0" addStyleNames="{style.transparent-teal}">
-            <p:PaperTab>ITEM ONE</p:PaperTab>
-            <p:PaperTab>ITEM TWO</p:PaperTab>
-            <p:PaperTab>ITEM THREE</p:PaperTab>
-        </p:PaperTabs>
-
-        <br/>
-        <br/>
+        </paper-tabs>
 
         <h3>E. Scrollable Tabs</h3>
 
-        <p:PaperTabs ui:field="scrollableTabs" selected="0" scrollable="">
-            <p:PaperTab>NUMBER ONE ITEM</p:PaperTab>
-            <p:PaperTab>ITEM TWO</p:PaperTab>
-            <p:PaperTab>THE THIRD ITEM</p:PaperTab>
-            <p:PaperTab>THE ITEM FOUR</p:PaperTab>
-            <p:PaperTab>FIFTH</p:PaperTab>
-            <p:PaperTab>THE SIXTH TAB</p:PaperTab>
-            <p:PaperTab>NUMBER SEVEN</p:PaperTab>
-            <p:PaperTab>EIGHT</p:PaperTab>
-            <p:PaperTab>NUMBER NINE</p:PaperTab>
-            <p:PaperTab>THE TENTH</p:PaperTab>
-            <p:PaperTab>THE ITEM ELEVEN</p:PaperTab>
-            <p:PaperTab>TWELFTH ITEM</p:PaperTab>
-        </p:PaperTabs>
+        <paper-tabs id="scrollableTabs" selected="0" scrollable="">
 
-        <br/>
-        <br/>
+            <paper-tab>NUMBER ONE ITEM</paper-tab>
+            <paper-tab>ITEM TWO</paper-tab>
+            <paper-tab>THE THIRD ITEM</paper-tab>
+            <paper-tab>THE ITEM FOUR</paper-tab>
+            <paper-tab>FIFTH</paper-tab>
+            <paper-tab>THE SIXTH TAB</paper-tab>
+            <paper-tab>NUMBER SEVEN</paper-tab>
+            <paper-tab>EIGHT</paper-tab>
+            <paper-tab>NUMBER NINE</paper-tab>
+            <paper-tab>THE TENTH</paper-tab>
+            <paper-tab>THE ITEM ELEVEN</paper-tab>
+            <paper-tab>TWELFTH ITEM</paper-tab>
+
+        </paper-tabs>
 
         <h3>F. Link Tabs</h3>
 
-        <p:PaperTabs selected="0" link="">
-            <p:PaperTab><a href="#item1" horizontal="" center-center="" layout="">ITEM ONE</a></p:PaperTab>
-            <p:PaperTab><a href="#item2" horizontal="" center-center="" layout="">ITEM TWO</a></p:PaperTab>
-            <p:PaperTab><a href="#item3" horizontal="" center-center="" layout="">ITEM THREE</a></p:PaperTab>
-        </p:PaperTabs>
+        <paper-tabs selected="0">
 
-        <br/>
-        <br/>
+            <paper-tab link=""><a href="#item1" class="horizontal center-center layout">ITEM ONE</a></paper-tab>
+            <paper-tab link=""><a href="#item2" class="horizontal center-center layout">ITEM TWO</a></paper-tab>
+            <paper-tab link=""><a href="#item3" class="horizontal center-center layout">ITEM THREE</a></paper-tab>
+
+        </paper-tabs>
 
         <h3>G. Tabs in Toolbar</h3>
 
-        <p:CoreToolbar addStyleNames="medium-tall">
-            <p:PaperIconButton icon="menu"/>
-            <div flex="">Title</div>
-            <p:PaperIconButton icon="search"/>
-            <p:PaperIconButton icon="more-vert"/>
-            <div class="bottom fit" horizontal="" layout="">
-                <p:PaperTabs selected="0" flex="" addStyleNames="{style.fixed600}">
-                    <p:PaperTab>ITEM ONE</p:PaperTab>
-                    <p:PaperTab>ITEM TWO</p:PaperTab>
-                    <p:PaperTab>ITEM THREE</p:PaperTab>
-                </p:PaperTabs>
-            </div>
-        </p:CoreToolbar>
+        <paper-toolbar class="tall">
 
-        <br/>
-        <br/>
+            <paper-tabs selected="0" class="bottom self-end" style="width: 300px;">
 
-        <p:CoreToolbar addStyleNames="tall">
-            <p:PaperTabs selected="0" addStyleNames="bottom {style.fixed300}" selfEnd="">
-                <p:PaperTab>ITEM ONE</p:PaperTab>
-                <p:PaperTab>ITEM TWO</p:PaperTab>
-            </p:PaperTabs>
-            <div class="bottom" flex=""/>
-            <p:PaperIconButton addStyleNames="bottom" icon="search"/>
-        </p:CoreToolbar>
+                <paper-tab>ITEM ONE</paper-tab>
+                <paper-tab>ITEM TWO</paper-tab>
 
-        <br/>
-        <br/>
+            </paper-tabs>
+
+            <div class="bottom flex"></div>
+
+        </paper-toolbar>
 
         <h3>H. Tabs aligned to bottom</h3>
 
-        <p:PaperTabs selected="0" alignBottom="">
-            <p:PaperTab>ITEM ONE</p:PaperTab>
-            <p:PaperTab>ITEM TWO</p:PaperTab>
-            <p:PaperTab>ITEM THREE</p:PaperTab>
-        </p:PaperTabs>
+        <paper-tabs selected="0" alignBottom="">
+
+            <paper-tab>ITEM ONE</paper-tab>
+            <paper-tab>ITEM TWO</paper-tab>
+            <paper-tab>ITEM THREE</paper-tab>
+
+        </paper-tabs>
+
+        <!--<h3>I. Bound Selection</h3>-->
+
+        <!--<template is="dom-bind">-->
+            <!--<h2>Current Tab: <span>[[selected]]</span></h2>-->
+            <!--<paper-tabs selected="{{selected}}">-->
+
+                <!--<paper-tab>ITEM ONE</paper-tab>-->
+                <!--<paper-tab>ITEM TWO</paper-tab>-->
+                <!--<paper-tab>ITEM THREE</paper-tab>-->
+
+            <!--</paper-tabs>-->
+        <!--</template>-->
+        
     </g:HTMLPanel>
 </ui:UiBinder>

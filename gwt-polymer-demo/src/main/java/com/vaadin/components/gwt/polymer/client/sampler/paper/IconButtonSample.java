@@ -6,10 +6,10 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 
 public class IconButtonSample extends Composite {
-    interface IconButtonSampleUiBinder extends UiBinder<HTMLPanel, IconButtonSample> {
+    interface SampleUiBinder extends UiBinder<HTMLPanel, IconButtonSample> {
     }
 
-    private static IconButtonSampleUiBinder ourUiBinder = GWT.create(IconButtonSampleUiBinder.class);
+    private static SampleUiBinder ourUiBinder = GWT.create(SampleUiBinder.class);
 
     public IconButtonSample() {
         initWidget(ourUiBinder.createAndBindUi(this));

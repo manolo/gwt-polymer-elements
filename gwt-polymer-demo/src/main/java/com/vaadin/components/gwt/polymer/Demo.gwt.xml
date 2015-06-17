@@ -2,7 +2,7 @@
     <inherits name="com.google.gwt.user.User"/>
     <inherits name="com.google.gwt.query.Query"/>
 
-    <inherits name="com.vaadin.components.gwt.polymer.PolymerElements"/>
+    <inherits name="com.vaadin.polymer.Elements"/>
 
     <entry-point class="com.vaadin.components.gwt.polymer.client.Demo"/>
     <collapse-all-properties value="true" />
