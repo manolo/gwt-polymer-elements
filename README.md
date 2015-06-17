@@ -2,7 +2,7 @@
 Allows to use polymer elements in GWT projects.
 
 ## Demo
-  http://vaadin.github.io/gwt-polymer/demo.html
+  http://vaadin.github.io/gwt-polymer-elements/demo.html
 
 ## The ready to use Polymer/Paper library for GWT
 
