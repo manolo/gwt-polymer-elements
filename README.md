@@ -24,7 +24,7 @@ creating it.
    </repositories>
    <dependencies>
      <dependency>
-       <groupId>com.vaadin.components</groupId>
+       <groupId>com.vaadin.polymer</groupId>
        <artifactId>gwt-polymer-elements</artifactId>
        <version>1.0-SNAPSHOT</version>
        <scope>provided</scope>
@@ -37,7 +37,7 @@ creating it.
 
 - Add this line to your GWT module file:
  ```xml
-  <inherits name="com.vaadin.components.gwt.polymer.PolymerElements"/>
+  <inherits name="com.vaadin.polymer.Elements"/>
 
  ```
  
@@ -49,21 +49,11 @@ creating it.
 You might want to select the components for your project, in this case you need to
 follow these instructions:
 
- 1.  Preparation: install `node.js`, `npm` and `bower` in your system, and check
- that `npm` and `bower` are in your PATH.
- 1.  Go to the `gwt-polymer-elements` directory
- 1.  Run `npm install`
- 1.  Edit the `bower.json` file and add/remove the components you need for your project.
- 1.  By default, the "dependencies" section of the `bower.json` file includes all paper
-     elements
- 1.  Any time you modify the list of components you have to run `bower install`.
- 1.  Run `gulp gwt-api` in order to create all java files needed for GWT in the
-     `gwt-polymer-elements/src/main/java/` folder.
- 1.  Run `mvn clean install` to install the components library in you local maven repo.
- 1.  You might save the `.jar` generated in the folder `gwt-polymer-elements/target` folder
+ 1.  Run `npm install` to create all java files needed for GWT in the
+     `src/main/java/` folder and to install the components library in you local maven repo.
  1.  To customize the name of the distributable artefact run
      `mvn clean install -Dname=your-library -Drelease=your-version`
- 1.  If you want to run the demo, go to the demo folder `../gwt-polymer-demo`
+ 1.  If you want to run the demo, go to the demo folder `demo`
  1.  Run `mvn gwt:run` to run the demo in SuperDevMode, otherwise run `mvn clean package` to
  obtain the `target/demo.war` application
   - Optionally you can specify the final name and version of your package `mvn clean package -Dname=my_components -Drelease=0.9.0`
@@ -108,7 +98,7 @@ RootPanel.get().add(button);
 ```xml
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
     xmlns:g='urn:import:com.google.gwt.user.client.ui'
-    xmlns:p='urn:import:com.vaadin.components.gwt.polymer.client.widget'>
+    xmlns:p='urn:import:com.vaadin.polymer.paper.widget'>
 
 <ui:style>
   .container paper-button.colored {
