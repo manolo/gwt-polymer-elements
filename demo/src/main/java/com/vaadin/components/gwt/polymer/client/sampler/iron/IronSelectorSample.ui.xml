@@ -3,13 +3,13 @@
         >
     
     <ui:style>
-        @external .iron-selected, .collapse-sample;
+        @external .iron-selected, .selector-sample;
 
-        .collapse-sample iron-selector > * {
+        .selector-sample iron-selector > * {
             padding: 8px;
         }
 
-        .collapse-sample .iron-selected {
+        .selector-sample .iron-selected {
             background-color: #ddd;
         }
     </ui:style>
