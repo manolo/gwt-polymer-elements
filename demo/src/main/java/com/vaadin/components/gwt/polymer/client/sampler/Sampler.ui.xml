@@ -5,7 +5,7 @@
         >
 
     <ui:style type="com.vaadin.components.gwt.polymer.client.sampler.Sampler.Style">
-        @external .iron-selected;
+        @external .iron-selected, .paper-toast-open;
 
         .toolbar {
             background: #4285f4 !important;
@@ -43,6 +43,12 @@
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
+        }
+        paper-header-panel {
+            z-index: auto !important;
+        }
+        .paper-toast-open {
+            z-index: 10;
         }
     </ui:style>
 
