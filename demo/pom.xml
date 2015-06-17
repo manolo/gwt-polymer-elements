@@ -43,7 +43,7 @@
         <!-- this is the dependency to the "jar"-subproject -->
         <dependency>
             <groupId>com.vaadin.polymer</groupId>
-            <artifactId>elements</artifactId>
+            <artifactId>gwt-polymer-elements</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
