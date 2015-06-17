@@ -63,7 +63,7 @@ follow these steps:
  1. If you want to run the demo, go to the demo folder `demo`
  1. Run `mvn gwt:run` to run the demo in SuperDevMode, otherwise run `mvn clean package` to
  build the demo application under `target`
- 1. Host the demo by running for example `$ serve target/gwt-polymer-demo` (requires [serve](https://npmjs.org/packages/serve)
+ 1. Host the demo by running for example `$ serve target/gwt-polymer-demo` (requires [serve](https://npmjs.org/packages/serve))
 
 ## Usage
 
