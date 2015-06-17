@@ -50,16 +50,20 @@ creating it.
 ## Building your own set of components.
 
 You might want to select the components for your project, in this case you need to
-follow these instructions:
+follow these steps:
 
- 1.  Run `npm install` to create all java files needed for GWT in the
+ 1. Clone the repository with `$ git checkout https://github.com/vaadin/gwt-polymer-elements.git`
+ 1. Open the repository `$ cd gwt-polymer-elements`
+ 1. Modify the `--package`, `--artifactId` and `--groupId` arguments in `package.json` to fit your needs
+ 1. Run `npm install` to create all java files needed for GWT in the
      `src/main/java/` folder and to install the components library in you local maven repo.
- 1.  To customize the name of the distributable artefact run
-     `mvn clean install -Dname=your-library -Drelease=your-version`
- 1.  If you want to run the demo, go to the demo folder `demo`
- 1.  Run `mvn gwt:run` to run the demo in SuperDevMode, otherwise run `mvn clean package` to
- obtain the `target/demo.war` application
-  - Optionally you can specify the final name and version of your package `mvn clean package -Dname=my_components -Drelease=0.9.0`
+
+## Running the demo locally
+
+ 1. If you want to run the demo, go to the demo folder `demo`
+ 1. Run `mvn gwt:run` to run the demo in SuperDevMode, otherwise run `mvn clean package` to
+ build the demo application under `target`
+ 1. Host the demo by running for example `$ serve target/gwt-polymer-demo` (requires [serve](https://npmjs.org/packages/serve)
 
 ## Usage
 
