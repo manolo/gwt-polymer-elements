@@ -32,7 +32,7 @@ creating it.
    </dependencies>
   ```
 
-- otherwise you can [download](https://oss.sonatype.org/content/repositories/snapshots/com/vaadin/components/gwt-polymer-elements/1.0-SNAPSHOT/)
+- otherwise you can [download](https://oss.sonatype.org/content/repositories/snapshots/com/vaadin/polymer/gwt-polymer-elements/1.0-SNAPSHOT/)
   the `.jar` archive and put it in your gwt project classpath
 
 - Add this line to your GWT module file:
