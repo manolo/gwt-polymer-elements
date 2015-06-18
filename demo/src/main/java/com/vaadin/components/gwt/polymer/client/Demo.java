@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.user.client.ui.RootPanel;
-import com.vaadin.components.gwt.polymer.client.sampler.iron.IronCollapseSample;
+import com.vaadin.components.gwt.polymer.client.sampler.Sampler;
 import com.vaadin.polymer.Polymer;
 import com.vaadin.polymer.elemental.Function;
 
@@ -36,7 +36,7 @@ public class Demo implements EntryPoint {
                 ), new Function() {
             public Object call(Object arg) {
                 // The app is executed when all imports succeed.
-                RootPanel.get().add(new IronCollapseSample());
+                RootPanel.get().add(new Sampler());
                 return null;
             }
         });

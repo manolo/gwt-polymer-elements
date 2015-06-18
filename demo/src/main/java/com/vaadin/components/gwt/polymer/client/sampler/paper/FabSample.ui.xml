@@ -40,11 +40,11 @@
             <div>
                 <h4>Enabled</h4>
                 <div class="horizontal-section">
-                    <p:PaperFab icon="arrow-forward" title="arrow-forward"></p:PaperFab>
-                    <p:PaperFab icon="create" title="create"></p:PaperFab>
-                    <p:PaperFab icon="favorite" title="heart"></p:PaperFab>
-                    <p:PaperFab mini="true" icon="done" title="done"></p:PaperFab>
-                    <p:PaperFab mini="true" icon="reply" title="reply"></p:PaperFab>
+                    <p:PaperFab icon="arrow-forward" title="arrow-forward" tabindex="0"></p:PaperFab>
+                    <p:PaperFab icon="create" title="create" tabindex="0"></p:PaperFab>
+                    <p:PaperFab icon="favorite" title="heart" tabindex="0"></p:PaperFab>
+                    <p:PaperFab mini="true" icon="done" title="done" tabindex="0"></p:PaperFab>
+                    <p:PaperFab mini="true" icon="reply" title="reply" tabindex="0"></p:PaperFab>
                 </div>
             </div>
 
