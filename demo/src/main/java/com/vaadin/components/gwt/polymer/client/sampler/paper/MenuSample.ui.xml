@@ -1,6 +1,6 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
-        >
+             xmlns:p='urn:import:com.vaadin.polymer.paper.widget'>
     
     <ui:style>
         @external .menu-sample, .horizontal-section;
@@ -16,12 +16,12 @@
             <div>
                 <h4>Standard</h4>
                 <div class="horizontal-section">
-                    <paper-menu class="list">
-                        <paper-item>Inbox</paper-item>
-                        <paper-item>Starred</paper-item>
-                        <paper-item>Sent mail</paper-item>
-                        <paper-item>Drafts</paper-item>
-                    </paper-menu>
+                    <p:PaperMenu addStyleNames="list">
+                        <p:PaperItem>Inbox</p:PaperItem>
+                        <p:PaperItem>Starred</p:PaperItem>
+                        <p:PaperItem>Sent mail</p:PaperItem>
+                        <p:PaperItem>Drafts</p:PaperItem>
+                    </p:PaperMenu>
                 </div>
             </div>
 
