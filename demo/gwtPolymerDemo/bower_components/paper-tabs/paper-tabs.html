@@ -306,7 +306,17 @@ Custom property | Description | Default
 
     listeners: {
       'iron-resize': '_onResize',
+/**
+ * @event iron-select
+ * @param {Object} detail
+ *  @param {Object} detail.item the item element
+ */
       'iron-select': '_onIronSelect',
+/**
+ * @event iron-deselect
+ * @param {Object} detail
+ *  @param {Object} detail.item the item element
+ */
       'iron-deselect': '_onIronDeselect'
     },
 
