@@ -1,6 +1,6 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
-        >
+             xmlns:p='urn:import:com.vaadin.polymer.paper.widget'>
     
     <ui:style>
 
@@ -40,33 +40,33 @@
             <div>
                 <h4>Enabled</h4>
                 <div class="horizontal-section">
-                    <paper-fab icon="arrow-forward" title="arrow-forward" tabindex="0"></paper-fab>
-                    <paper-fab icon="create" title="create" tabindex="0"></paper-fab>
-                    <paper-fab icon="favorite" title="heart" tabindex="0"></paper-fab>
-                    <paper-fab mini="" icon="done" title="done" tabindex="0"></paper-fab>
-                    <paper-fab mini="" icon="reply" title="reply" tabindex="0"></paper-fab>
+                    <p:PaperFab icon="arrow-forward" title="arrow-forward"></p:PaperFab>
+                    <p:PaperFab icon="create" title="create"></p:PaperFab>
+                    <p:PaperFab icon="favorite" title="heart"></p:PaperFab>
+                    <p:PaperFab mini="true" icon="done" title="done"></p:PaperFab>
+                    <p:PaperFab mini="true" icon="reply" title="reply"></p:PaperFab>
                 </div>
             </div>
 
             <div>
                 <h4>Disabled</h4>
                 <div class="horizontal-section">
-                    <paper-fab disabled="" icon="arrow-forward" title="arrow-forward" tabindex="0"></paper-fab>
-                    <paper-fab disabled="" icon="create" title="create" tabindex="0"></paper-fab>
-                    <paper-fab disabled="" icon="favorite" title="heart" tabindex="0"></paper-fab>
-                    <paper-fab disabled="" mini="" icon="done" title="done" tabindex="0"></paper-fab>
-                    <paper-fab disabled="" mini="" icon="reply" title="reply" tabindex="0"></paper-fab>
+                    <p:PaperFab disabled="true" icon="arrow-forward" title="arrow-forward"></p:PaperFab>
+                    <p:PaperFab disabled="true" icon="create" title="create"></p:PaperFab>
+                    <p:PaperFab disabled="true" icon="favorite" title="heart"></p:PaperFab>
+                    <p:PaperFab disabled="true" mini="true" icon="done" title="done"></p:PaperFab>
+                    <p:PaperFab disabled="true" mini="true" icon="reply" title="reply"></p:PaperFab>
                 </div>
             </div>
 
             <div>
                 <h4>Colors</h4>
                 <div class="horizontal-section">
-                    <paper-fab icon="arrow-forward" title="arrow-forward" tabindex="0" class="blue"></paper-fab>
-                    <paper-fab icon="create" title="create" tabindex="0" class="red"></paper-fab>
-                    <paper-fab icon="favorite" title="heart" tabindex="0" class="orange"></paper-fab>
-                    <paper-fab mini="" icon="done" title="done" tabindex="0" class="green"></paper-fab>
-                    <paper-fab mini="" icon="reply" title="reply" tabindex="0" class="blue"></paper-fab>
+                    <p:PaperFab icon="arrow-forward" title="arrow-forward" addStyleNames="blue"></p:PaperFab>
+                    <p:PaperFab icon="create" title="create" addStyleNames="red"></p:PaperFab>
+                    <p:PaperFab icon="favorite" title="heart" addStyleNames="orange"></p:PaperFab>
+                    <p:PaperFab mini="true" icon="done" title="done" addStyleNames="green"></p:PaperFab>
+                    <p:PaperFab mini="true" icon="reply" title="reply" addStyleNames="blue"></p:PaperFab>
                 </div>
             </div>
         </div>
