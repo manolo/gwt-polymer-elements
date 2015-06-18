@@ -39,6 +39,7 @@
 
             .radio-group-sample paper-radio-button {
                 display: block;
+                padding: 12px;
             }
         </style>
 
@@ -48,7 +49,7 @@
                 <div class="horizontal-section">
                     <paper-radio-group selected="c">
                         <paper-radio-button name="o">Oxygen</paper-radio-button>
-                        <paper-radio-button name="c">Carbon</paper-radio-button>
+                        <paper-radio-button name="c" checked="">Carbon</paper-radio-button>
                         <paper-radio-button name="h">Hydrogen</paper-radio-button>
                         <paper-radio-button name="n">Nitrogen</paper-radio-button>
                         <paper-radio-button name="ca">Calcium</paper-radio-button>
@@ -61,7 +62,7 @@
                 <div class="horizontal-section">
                     <paper-radio-group selected="c">
                         <paper-radio-button name="o">Oxygen</paper-radio-button>
-                        <paper-radio-button name="c">Carbon</paper-radio-button>
+                        <paper-radio-button name="c" checked="">Carbon</paper-radio-button>
                         <paper-radio-button name="h" disabled="">Hydrogen</paper-radio-button>
                         <paper-radio-button name="n" disabled="">Nitrogen</paper-radio-button>
                         <paper-radio-button name="ca">Calcium</paper-radio-button>
@@ -74,7 +75,7 @@
                 <div class="horizontal-section">
                     <paper-radio-group selected="c">
                         <paper-radio-button name="o" class="blue">Oxygen</paper-radio-button>
-                        <paper-radio-button name="c" class="red">Carbon</paper-radio-button>
+                        <paper-radio-button name="c" class="red" checked="">Carbon</paper-radio-button>
                         <paper-radio-button name="h" class="orange">Hydrogen</paper-radio-button>
                         <paper-radio-button name="n" class="green">Nitrogen</paper-radio-button>
                         <paper-radio-button name="ca" class="blue">Calcium</paper-radio-button>
@@ -82,6 +83,6 @@
                 </div>
             </div>
         </div>
-        
+
     </g:HTMLPanel>
 </ui:UiBinder>
