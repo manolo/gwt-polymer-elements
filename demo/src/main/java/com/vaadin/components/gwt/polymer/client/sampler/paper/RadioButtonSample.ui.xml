@@ -54,25 +54,25 @@
             <div>
                 <h4>Disabled</h4>
                 <div class="horizontal-section">
-                    <paper-radio-button disabled="">Oxygen</paper-radio-button>
-                    <paper-radio-button disabled="">Carbon</paper-radio-button>
-                    <paper-radio-button checked="" disabled="">Hydrogen</paper-radio-button>
-                    <paper-radio-button checked="" disabled="">Nitrogen</paper-radio-button>
-                    <paper-radio-button checked="" disabled="">Calcium</paper-radio-button>
+                    <p:PaperRadioButton disabled="true">Oxygen</p:PaperRadioButton>
+                    <p:PaperRadioButton disabled="true">Carbon</p:PaperRadioButton>
+                    <p:PaperRadioButton checked="true" disabled="true">Hydrogen</p:PaperRadioButton>
+                    <p:PaperRadioButton checked="true" disabled="true">Nitrogen</p:PaperRadioButton>
+                    <p:PaperRadioButton checked="true" disabled="true">Calcium</p:PaperRadioButton>
                 </div>
             </div>
 
             <div>
                 <h4>Color</h4>
                 <div class="horizontal-section">
-                    <paper-radio-button class="blue" checked="">Oxygen</paper-radio-button>
-                    <paper-radio-button class="red" checked="">Carbon</paper-radio-button>
-                    <paper-radio-button class="orange" checked="">Hydrogen</paper-radio-button>
-                    <paper-radio-button class="green" checked="">Nitrogen</paper-radio-button>
-                    <paper-radio-button class="blue" checked="">Calcium</paper-radio-button>
+                    <p:PaperRadioButton addStyleNames="blue" checked="true">Oxygen</p:PaperRadioButton>
+                    <p:PaperRadioButton addStyleNames="red" checked="true">Carbon</p:PaperRadioButton>
+                    <p:PaperRadioButton addStyleNames="orange" checked="true">Hydrogen</p:PaperRadioButton>
+                    <p:PaperRadioButton addStyleNames="green" checked="true">Nitrogen</p:PaperRadioButton>
+                    <p:PaperRadioButton addStyleNames="blue" checked="true">Calcium</p:PaperRadioButton>
                 </div>
             </div>
         </div>
-        
+
     </g:HTMLPanel>
 </ui:UiBinder>

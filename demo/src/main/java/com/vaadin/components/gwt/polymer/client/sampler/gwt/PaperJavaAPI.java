@@ -1,6 +1,7 @@
 package com.vaadin.components.gwt.polymer.client.sampler.gwt;
 
 import com.google.gwt.dom.client.Element;
+import com.google.gwt.dom.client.Style.FontWeight;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -16,9 +17,9 @@ import com.vaadin.polymer.paper.widget.PaperIconButton;
 public class PaperJavaAPI extends FlowPanel {
 
     public PaperJavaAPI() {
-        this.getElement().getStyle().setPadding(20, Unit.PX);
         Label label = new Label("Buttons created with Paper Java API");
-        label.getElement().getStyle().setFontSize(20, Unit.PX);
+        label.getElement().getStyle().setFontSize(1.5, Unit.EM);
+        label.getElement().getStyle().setFontWeight(FontWeight.BOLD);
         this.add(label);
 
         // GWT Element API
@@ -35,6 +36,7 @@ public class PaperJavaAPI extends FlowPanel {
         // GWT Widget API
         PaperIconButton iconWidget = new PaperIconButton();
         iconWidget.setIcon("language");
+        iconWidget.setSize("50px", "50px");
         iconWidget.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 Window.alert("Hi");

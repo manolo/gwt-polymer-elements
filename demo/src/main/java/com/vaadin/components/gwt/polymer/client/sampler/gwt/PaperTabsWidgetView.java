@@ -3,8 +3,11 @@ package com.vaadin.components.gwt.polymer.client.sampler.gwt;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
+import com.vaadin.polymer.iron.widget.event.IronSelectEvent;
+import com.vaadin.polymer.paper.element.PaperTabElement;
 import com.vaadin.polymer.paper.widget.PaperTab;
 import com.vaadin.polymer.paper.widget.PaperTabs;
 import com.vaadin.polymer.paper.widget.PaperToast;
@@ -29,9 +32,10 @@ public class PaperTabsWidgetView extends Composite {
         tabs.add(tab);
     }
 
-//    @UiHandler("tabs")
-//    void onNameGotPressed(CoreSelectEvent event) {
-//        toast.setText("widget event handler");
-//        toast.show();
-//    }
+    @UiHandler("tabs")
+    void onNameGotPressed(IronSelectEvent event) {
+        PaperTabElement tab = (PaperTabElement) event.getItem();
+        toast.setText("widget event handler:" + tab.getTextContent());
+        toast.show();
+    }
 }

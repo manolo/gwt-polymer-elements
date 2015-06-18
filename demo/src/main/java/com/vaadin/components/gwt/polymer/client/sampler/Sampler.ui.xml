@@ -50,10 +50,13 @@
         .paper-toast-open {
             z-index: 10;
         }
+        .deckpanel {
+            padding: 20px;
+        }
     </ui:style>
 
     <g:HTMLPanel>
-        
+
         <p:PaperDrawerPanel ui:field="drawerPanel">
             <div drawer="">
                 <p:PaperHeaderPanel mode="seamed">
@@ -69,10 +72,10 @@
                         <p:PaperButton ui:field="xmlButton" addStyleNames="{style.buttons}"><i:IronIcon icon="launch"/>.ui.xml</p:PaperButton>
                         <p:PaperButton ui:field="javaButton" addStyleNames="{style.buttons}"><i:IronIcon icon="launch"/>.java</p:PaperButton>
                     </p:PaperToolbar>
-                    <g:DeckPanel ui:field="content" animationEnabled="true" />
+                    <g:DeckPanel ui:field="content" animationEnabled="true" addStyleNames="{style.deckpanel}"/>
                 </p:PaperHeaderPanel>
             </div>
         </p:PaperDrawerPanel>
-        
+
     </g:HTMLPanel>
 </ui:UiBinder>
