@@ -1,4 +1,6 @@
 # gwt-polymer-elements
+
+[![Join the chat at https://gitter.im/vaadin/gwt-polymer-elements](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/vaadin/gwt-polymer-elements?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 Allows to use polymer elements in GWT projects.
 
 ## Demo
