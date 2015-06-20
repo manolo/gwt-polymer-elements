@@ -36,26 +36,22 @@ public class SpinnerSample extends Composite {
         toggleBtn1.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent clickEvent) {
-                toggleAttribute(toggle1_1);
-                toggleAttribute(toggle1_2);
-                toggleAttribute(toggle1_3);
-                toggleAttribute(toggle1_4);
+                toggle1_1.setActive(!toggle1_1.getActive());
+                toggle1_2.setActive(!toggle1_2.getActive());
+                toggle1_3.setActive(!toggle1_3.getActive());
+                toggle1_4.setActive(!toggle1_4.getActive());
             }
         });
 
         toggleBtn2.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent clickEvent) {
-                toggleAttribute(toggle2_1);
-                toggleAttribute(toggle2_2);
-                toggleAttribute(toggle2_3);
+                toggle2_1.setActive(!toggle2_1.getActive());
+                toggle2_2.setActive(!toggle2_2.getActive());
+                toggle2_3.setActive(!toggle2_3.getActive());
                 toggleAttribute(toggle2_4);
             }
         });
-    }
-
-    private void toggleAttribute(PaperSpinner spinner) {
-        toggleAttribute(spinner.getPolymerElement());
     }
 
     private void toggleAttribute(PaperSpinnerElement element) {
