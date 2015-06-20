@@ -8,7 +8,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
-import com.vaadin.polymer.paper.element.PaperInputElement;
+import com.vaadin.polymer.paper.widget.PaperInput;
 
 public class InputSample extends Composite {
     interface SampleUiBinder extends UiBinder<HTMLPanel, InputSample> {
@@ -17,7 +17,7 @@ public class InputSample extends Composite {
     private static SampleUiBinder ourUiBinder = GWT.create(SampleUiBinder.class);
     
     @UiField
-    PaperInputElement inputForValidation;
+    PaperInput inputForValidation;
     @UiField
     Button validateButton;
 
@@ -27,8 +27,7 @@ public class InputSample extends Composite {
         validateButton.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent clickEvent) {
-//                TODO: waiting for behaviours
-//                inputForValidation.validate();
+                inputForValidation.validate();
             }
         });
     }

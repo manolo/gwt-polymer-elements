@@ -44,17 +44,17 @@
 
             <h4>Indeterminate</h4>
             <div class="vertical-section">
-                <paper-progress indeterminate=""></paper-progress><br/>
-                <paper-progress class="blue" indeterminate="" alue="800" min="100" max="1000"></paper-progress><br/>
+                <p:PaperProgress indeterminate="true"/><br/>
+                <p:PaperProgress addStyleNames="blue" indeterminate="true" value="800" min="100" max="1000"/><br/>
             </div>
 
             <h4>Color</h4>
             <div class="vertical-section">
-                <paper-progress value="40" class="blue"></paper-progress><br/>
-                <paper-progress value="800" min="100" max="1000" class="red"></paper-progress><br/>
-                <paper-progress value="40" class="orange"></paper-progress><br/>
-                <paper-progress value="200" max="200" class="green"></paper-progress><br/>
-                <paper-progress value="40" secondary-progress="80" class="blue"></paper-progress><br/>
+                <p:PaperProgress value="40" addStyleNames="blue"/><br/>
+                <p:PaperProgress value="800" min="100" max="1000" addStyleNames="red"/><br/>
+                <p:PaperProgress value="40" addStyleNames="orange"/><br/>
+                <p:PaperProgress value="200" max="200" addStyleNames="green"/><br/>
+                <p:PaperProgress value="40" secondaryProgress="80" addStyleNames="blue"/><br/>
             </div>
         </div>
         

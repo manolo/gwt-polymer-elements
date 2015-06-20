@@ -2,8 +2,6 @@
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
              xmlns:p='urn:import:com.vaadin.polymer.paper.widget'>
 
-    
-
     <g:HTMLPanel addStyleNames="checkbox-sample">
         <style is="custom-style">
             
@@ -54,21 +52,21 @@
             <div>
                 <h4>Disabled</h4>
                 <div class="horizontal-section">
-                    <paper-checkbox disabled="">Oxygen</paper-checkbox>
-                    <paper-checkbox disabled="">Carbon</paper-checkbox>
-                    <paper-checkbox checked="" disabled="">Hydrogen</paper-checkbox>
-                    <paper-checkbox checked="" disabled="">Nitrogen</paper-checkbox>
-                    <paper-checkbox checked="" disabled="">Calcium</paper-checkbox>
+                    <p:PaperCheckbox disabled="true">Oxygen</p:PaperCheckbox>
+                    <p:PaperCheckbox disabled="true">Carbon</p:PaperCheckbox>
+                    <p:PaperCheckbox checked="true" disabled="true">Hydrogen</p:PaperCheckbox>
+                    <p:PaperCheckbox checked="true" disabled="true">Nitrogen</p:PaperCheckbox>
+                    <p:PaperCheckbox checked="true" disabled="true">Calcium</p:PaperCheckbox>
                 </div>
             </div>
             <div>
                 <h4>Color</h4>
                 <div class="horizontal-section">
-                    <paper-checkbox class="blue" checked="">Oxygen</paper-checkbox>
-                    <paper-checkbox class="red" checked="">Carbon</paper-checkbox>
-                    <paper-checkbox class="orange" checked="">Hydrogen</paper-checkbox>
-                    <paper-checkbox class="green" checked="">Nitrogen</paper-checkbox>
-                    <paper-checkbox class="blue" checked="">Calcium</paper-checkbox>
+                    <p:PaperCheckbox addStyleNames="blue" checked="true">Oxygen</p:PaperCheckbox>
+                    <p:PaperCheckbox addStyleNames="red" checked="true">Carbon</p:PaperCheckbox>
+                    <p:PaperCheckbox addStyleNames="orange" checked="true">Hydrogen</p:PaperCheckbox>
+                    <p:PaperCheckbox addStyleNames="green" checked="true">Nitrogen</p:PaperCheckbox>
+                    <p:PaperCheckbox addStyleNames="blue" checked="true">Calcium</p:PaperCheckbox>
                 </div>
             </div>
         </div>
