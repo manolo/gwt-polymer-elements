@@ -33,7 +33,7 @@
                     <p:PaperButton ui:field="flipButton" raised="true">flip drawer</p:PaperButton>
                 </div>
                 <div>
-                    <p:PaperButton attributes="paper-drawer-toggle" raised="true">toggle drawer</p:PaperButton>
+                    <p:PaperButton markerAttributes="paper-drawer-toggle" raised="true">toggle drawer</p:PaperButton>
                 </div>
             </div>
         </p:PaperDrawerPanel>
