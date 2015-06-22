@@ -102,9 +102,9 @@
 
         <p:PaperTabs selected="0">
 
-            <p:PaperTab markerAttributes="link"><a href="#item1" class="horizontal center-center layout">ITEM ONE</a></p:PaperTab>
-            <p:PaperTab markerAttributes="link"><a href="#item2" class="horizontal center-center layout">ITEM TWO</a></p:PaperTab>
-            <p:PaperTab markerAttributes="link"><a href="#item3" class="horizontal center-center layout">ITEM THREE</a></p:PaperTab>
+            <p:PaperTab addAttributes="link"><a href="#item1" class="horizontal center-center layout">ITEM ONE</a></p:PaperTab>
+            <p:PaperTab addAttributes="link"><a href="#item2" class="horizontal center-center layout">ITEM TWO</a></p:PaperTab>
+            <p:PaperTab addAttributes="link"><a href="#item3" class="horizontal center-center layout">ITEM THREE</a></p:PaperTab>
 
         </p:PaperTabs>
 
