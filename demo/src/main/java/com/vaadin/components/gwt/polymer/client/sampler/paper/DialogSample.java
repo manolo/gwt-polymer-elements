@@ -7,8 +7,6 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
-import com.vaadin.polymer.Polymer;
-import com.vaadin.polymer.paper.element.PaperDialogElement;
 import com.vaadin.polymer.paper.widget.PaperButton;
 import com.vaadin.polymer.paper.widget.PaperDialog;
 
@@ -26,17 +24,17 @@ public class DialogSample extends Composite {
     @UiField PaperDialog dialog;
     @UiField PaperDialog scrollingDlg;
     @UiField PaperDialog actionsDlg;
-    @UiField PaperDialogElement modalDlg;
+    @UiField PaperDialog modalDlg;
     
     @UiField PaperButton colorsBtn;
     @UiField PaperButton positionBtn;    
     
-    @UiField PaperDialogElement colorsDlg;
-    @UiField PaperDialogElement positionDlg;
+    @UiField PaperDialog colorsDlg;
+    @UiField PaperDialog positionDlg;
     
     @UiField PaperButton animatedBtn;
     
-    @UiField PaperDialogElement animatedDlg;
+    @UiField PaperDialog animatedDlg;
 
     public DialogSample() {
         initWidget(ourUiBinder.createAndBindUi(DialogSample.this));
@@ -44,21 +42,21 @@ public class DialogSample extends Composite {
         dialogBtn.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {
-                dialog.getPolymerElement().open();
+                dialog.open();
             }
         });
 
         scrollingBtn.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {
-                scrollingDlg.getPolymerElement().open();
+                scrollingDlg.open();
             }
         });
 
         actionsBtn.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {
-                actionsDlg.getPolymerElement().open();
+                actionsDlg.open();
             }
         });
 

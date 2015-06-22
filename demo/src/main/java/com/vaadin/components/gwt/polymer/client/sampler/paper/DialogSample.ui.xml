@@ -56,7 +56,7 @@
 
             <p:PaperDialog ui:field="scrollingDlg">
                 <h2>Scrolling</h2>
-                <paper-dialog-scrollable>
+                <p:PaperDialogScrollable>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
@@ -65,10 +65,10 @@
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                </paper-dialog-scrollable>
+                </p:PaperDialogScrollable>
                 <div class="buttons">
-                    <paper-button dialog-dismiss="">Cancel</paper-button>
-                    <paper-button dialog-confirm="" autofocus="">OK</paper-button>
+                    <p:PaperButton attributes="dialog-dismiss">Cancel</p:PaperButton>
+                    <p:PaperButton attributes="dialog-confirm autofocus">OK</p:PaperButton>
                 </div>
             </p:PaperDialog>
 
@@ -77,17 +77,17 @@
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                 <div class="buttons">
                     <p:PaperButton>More Info...</p:PaperButton>
-                    <paper-button dialog-dismiss="">Decline</paper-button>
-                    <paper-button dialog-confirm="" autofocus="">Accept</paper-button>
+                    <p:PaperButton attributes="dialog-dismiss">Decline</p:PaperButton>
+                    <p:PaperButton attributes="dialog-confirm autofocus">Accept</p:PaperButton>
                 </div>
             </p:PaperDialog>
 
-            <paper-dialog ui:field="modalDlg" modal="">
+            <p:PaperDialog ui:field="modalDlg" modal="true">
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                 <div class="buttons">
-                    <paper-button dialog-confirm="" autofocus="">Tap me to close</paper-button>
+                    <p:PaperButton attributes="dialog-confirm autofocus">Tap me to close</p:PaperButton>
                 </div>
-            </paper-dialog>
+            </p:PaperDialog>
 
         </section>
 
@@ -96,22 +96,22 @@
             <p:PaperButton ui:field="colorsBtn" addStyleNames="emphasised">colors</p:PaperButton>
             <p:PaperButton ui:field="positionBtn" addStyleNames="emphasised">size &amp; position</p:PaperButton>
 
-            <paper-dialog ui:field="colorsDlg" heading="Custom Colors" class="colored">
+            <p:PaperDialog ui:field="colorsDlg" addStyleNames="colored">
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            </paper-dialog>
+            </p:PaperDialog>
 
-            <paper-dialog ui:field="positionDlg" heading="Custom Size &amp; Position" class="size-position">
+            <p:PaperDialog ui:field="positionDlg" addStyleNames="size-position">
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            </paper-dialog>
+            </p:PaperDialog>
         </section>
 
         <section>
             <h4>Transitions</h4>
             <p:PaperButton ui:field="animatedBtn" addStyleNames="emphasised">transitions</p:PaperButton>
-            <paper-dialog ui:field="animatedDlg" with-backdrop="" entry-animation="scale-up-animation" exit-animation="fade-out-animation">
+            <p:PaperDialog ui:field="animatedDlg" withBackdrop="true" entryAnimation="scale-up-animation" exitAnimation="fade-out-animation">
                 <h2>Dialog Title</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            </paper-dialog>
+            </p:PaperDialog>
         </section>
     </g:HTMLPanel>
 </ui:UiBinder>

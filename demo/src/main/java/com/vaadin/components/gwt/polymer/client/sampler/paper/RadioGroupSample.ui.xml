@@ -48,11 +48,11 @@
                 <h4>Enabled</h4>
                 <div class="horizontal-section">
                     <p:PaperRadioGroup selected="c">
-                        <paper-radio-button name="o">Oxygen</paper-radio-button>
-                        <paper-radio-button name="c">Carbon</paper-radio-button>
-                        <paper-radio-button name="h">Hydrogen</paper-radio-button>
-                        <paper-radio-button name="n">Nitrogen</paper-radio-button>
-                        <paper-radio-button name="ca">Calcium</paper-radio-button>
+                        <p:PaperRadioButton name="o">Oxygen</p:PaperRadioButton>
+                        <p:PaperRadioButton name="c">Carbon</p:PaperRadioButton>
+                        <p:PaperRadioButton name="h">Hydrogen</p:PaperRadioButton>
+                        <p:PaperRadioButton name="n">Nitrogen</p:PaperRadioButton>
+                        <p:PaperRadioButton name="ca">Calcium</p:PaperRadioButton>
                     </p:PaperRadioGroup>
                 </div>
             </div>
@@ -60,26 +60,26 @@
             <div>
                 <h4>Disabled</h4>
                 <div class="horizontal-section">
-                    <paper-radio-group selected="c">
-                        <paper-radio-button name="o">Oxygen</paper-radio-button>
-                        <paper-radio-button name="c">Carbon</paper-radio-button>
-                        <paper-radio-button name="h" disabled="">Hydrogen</paper-radio-button>
-                        <paper-radio-button name="n" disabled="">Nitrogen</paper-radio-button>
-                        <paper-radio-button name="ca">Calcium</paper-radio-button>
-                    </paper-radio-group>
+                    <p:PaperRadioGroup selected="c">
+                        <p:PaperRadioButton name="o">Oxygen</p:PaperRadioButton>
+                        <p:PaperRadioButton name="c">Carbon</p:PaperRadioButton>
+                        <p:PaperRadioButton name="h" disabled="true">Hydrogen</p:PaperRadioButton>
+                        <p:PaperRadioButton name="n" disabled="true">Nitrogen</p:PaperRadioButton>
+                        <p:PaperRadioButton name="ca">Calcium</p:PaperRadioButton>
+                    </p:PaperRadioGroup>
                 </div>
             </div>
 
             <div>
                 <h4>Color</h4>
                 <div class="horizontal-section">
-                    <paper-radio-group selected="c">
-                        <paper-radio-button name="o" class="blue">Oxygen</paper-radio-button>
-                        <paper-radio-button name="c" class="red">Carbon</paper-radio-button>
-                        <paper-radio-button name="h" class="orange">Hydrogen</paper-radio-button>
-                        <paper-radio-button name="n" class="green">Nitrogen</paper-radio-button>
-                        <paper-radio-button name="ca" class="blue">Calcium</paper-radio-button>
-                    </paper-radio-group>
+                    <p:PaperRadioGroup selected="c">
+                        <p:PaperRadioButton name="o" addStyleNames="blue">Oxygen</p:PaperRadioButton>
+                        <p:PaperRadioButton name="c" addStyleNames="red">Carbon</p:PaperRadioButton>
+                        <p:PaperRadioButton name="h" addStyleNames="orange">Hydrogen</p:PaperRadioButton>
+                        <p:PaperRadioButton name="n" addStyleNames="green">Nitrogen</p:PaperRadioButton>
+                        <p:PaperRadioButton name="ca" addStyleNames="blue">Calcium</p:PaperRadioButton>
+                    </p:PaperRadioGroup>
                 </div>
             </div>
         </div>

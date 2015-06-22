@@ -33,29 +33,29 @@
         <section>
             <div>Paper Elevations</div>
 
-            <paper-material elevation="0">
+            <p:PaperMaterial elevation="0">
                 elevation = 0
-            </paper-material>
+            </p:PaperMaterial>
 
-            <paper-material elevation="1">
+            <p:PaperMaterial elevation="1">
                 elevation = 1
-            </paper-material>
+            </p:PaperMaterial>
 
-            <paper-material elevation="2">
+            <p:PaperMaterial elevation="2">
                 elevation = 2
-            </paper-material>
+            </p:PaperMaterial>
 
-            <paper-material elevation="3">
+            <p:PaperMaterial elevation="3">
                 elevation = 3
-            </paper-material>
+            </p:PaperMaterial>
 
-            <paper-material elevation="4">
+            <p:PaperMaterial elevation="4">
                 elevation = 4
-            </paper-material>
+            </p:PaperMaterial>
 
-            <paper-material elevation="5">
+            <p:PaperMaterial elevation="5">
                 elevation = 5
-            </paper-material>
+            </p:PaperMaterial>
         </section>
 
         <section>
