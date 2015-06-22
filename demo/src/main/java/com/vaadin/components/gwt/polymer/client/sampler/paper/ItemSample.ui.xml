@@ -65,16 +65,16 @@
             <h4>Icon with text</h4>
             <div class="list short">
                 <p:PaperIconItem>
-                    <i:IronIcon icon="inbox" addAttributes="item-icon"/> Inbox
+                    <i:IronIcon icon="inbox" attributes="item-icon"/> Inbox
                 </p:PaperIconItem>
                 <p:PaperIconItem>
-                    <i:IronIcon icon="send" addAttributes="item-icon"/> Outbox
+                    <i:IronIcon icon="send" attributes="item-icon"/> Outbox
                 </p:PaperIconItem>
                 <p:PaperIconItem>
-                    <i:IronIcon icon="delete" addAttributes="item-icon"/> Trash
+                    <i:IronIcon icon="delete" attributes="item-icon"/> Trash
                 </p:PaperIconItem>
                 <p:PaperIconItem>
-                    <i:IronIcon icon="report" addAttributes="item-icon"/> Spam
+                    <i:IronIcon icon="report" attributes="item-icon"/> Spam
                 </p:PaperIconItem>
             </div>
         </div>
@@ -153,22 +153,22 @@
             <h4>Control with text and icon</h4>
             <div class="list short">
                 <p:PaperIconItem>
-                    <p:PaperCheckbox addAttributes="item-icon"/>
+                    <p:PaperCheckbox attributes="item-icon"/>
                     <div class="flex">Alphonso</div>
                     <i:IronIcon icon="communication:messenger"/>
                 </p:PaperIconItem>
                 <p:PaperIconItem>
-                    <p:PaperCheckbox checked="true" addAttributes="item-icon"/>
+                    <p:PaperCheckbox checked="true" attributes="item-icon"/>
                     <div class="flex">Andrews</div>
                     <i:IronIcon icon="communication:messenger"/>
                 </p:PaperIconItem>
                 <p:PaperIconItem>
-                    <p:PaperCheckbox addAttributes="item-icon"/>
+                    <p:PaperCheckbox attributes="item-icon"/>
                     <div class="flex">Angela</div>
                     <i:IronIcon icon="communication:messenger"/>
                 </p:PaperIconItem>
                 <p:PaperIconItem>
-                    <p:PaperCheckbox addAttributes="item-icon"/>
+                    <p:PaperCheckbox attributes="item-icon"/>
                     <div class="flex">Lorem</div>
                     <i:IronIcon icon="communication:messenger"/>
                 </p:PaperIconItem>
@@ -179,19 +179,19 @@
             <h4>Two-line items</h4>
             <div class="list">
                 <p:PaperItem>
-                    <p:PaperItemBody addAttributes="two-line" addStyleNames="layout vertical">
+                    <p:PaperItemBody attributes="two-line" addStyleNames="layout vertical">
                         <div>Profile Photo</div>
                         <div secondary="">Change your Google+ profile photo</div>
                     </p:PaperItemBody>
                 </p:PaperItem>
                 <p:PaperItem>
-                    <p:PaperItemBody addAttributes="two-line">
+                    <p:PaperItemBody attributes="two-line">
                         <div>Show your status</div>
                         <div secondary="">Your status is visible to everyone you use with</div>
                     </p:PaperItemBody>
                 </p:PaperItem>
                 <p:PaperItem>
-                    <p:PaperItemBody addAttributes="two-line" addStyleNames="layout vertical">
+                    <p:PaperItemBody attributes="two-line" addStyleNames="layout vertical">
                         <div>Settings</div>
                         <div secondary="">Change your account settings</div>
                     </p:PaperItemBody>
@@ -204,21 +204,21 @@
             <div class="list">
                 <p:PaperIconItem>
                     <div class="avatar green" item-icon=""/>
-                    <p:PaperItemBody addAttributes="two-line">
+                    <p:PaperItemBody attributes="two-line">
                         <div>Alphonso Engelking</div>
                         <div secondary="">Change photo</div>
                     </p:PaperItemBody>
                 </p:PaperIconItem>
                 <p:PaperIconItem>
-                    <i:IronIcon icon="communication:phone" addAttributes="item-icon"/>
-                    <p:PaperItemBody addAttributes="two-line">
+                    <i:IronIcon icon="communication:phone" attributes="item-icon"/>
+                    <p:PaperItemBody attributes="two-line">
                         <div>(650) 555-1234</div>
                         <div secondary="">Mobile</div>
                     </p:PaperItemBody>
                 </p:PaperIconItem>
                 <p:PaperIconItem>
-                    <i:IronIcon icon="communication:email" addAttributes="item-icon"/>
-                    <p:PaperItemBody addAttributes="two-line">
+                    <i:IronIcon icon="communication:email" attributes="item-icon"/>
+                    <p:PaperItemBody attributes="two-line">
                         <div>alphonso@example.com</div>
                         <div secondary="">Personal</div>
                     </p:PaperItemBody>
@@ -231,7 +231,7 @@
             <div class="list">
                 <p:PaperIconItem>
                     <div class="avatar blue" item-icon=""/>
-                    <p:PaperItemBody addAttributes="two-line">
+                    <p:PaperItemBody attributes="two-line">
                         <div>Photos</div>
                         <div secondary="">Jan 9, 2014</div>
                     </p:PaperItemBody>
@@ -239,7 +239,7 @@
                 </p:PaperIconItem>
                 <p:PaperIconItem>
                     <div class="avatar red" item-icon=""/>
-                    <p:PaperItemBody addAttributes="two-line">
+                    <p:PaperItemBody attributes="two-line">
                         <div>Recipes</div>
                         <div secondary="">Jan 17, 2014</div>
                     </p:PaperItemBody>
@@ -247,7 +247,7 @@
                 </p:PaperIconItem>
                 <p:PaperIconItem>
                     <div class="avatar orange" item-icon=""/>
-                    <p:PaperItemBody addAttributes="two-line">
+                    <p:PaperItemBody attributes="two-line">
                         <div>Work</div>
                         <div secondary="">Jan 28, 2014</div>
                     </p:PaperItemBody>
