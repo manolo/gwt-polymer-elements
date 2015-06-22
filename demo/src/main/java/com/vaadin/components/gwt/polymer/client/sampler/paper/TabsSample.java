@@ -15,4 +15,23 @@ public class TabsSample extends Composite {
     public TabsSample() {
         initWidget(ourUiBinder.createAndBindUi(this));
     }
+
+    @Override
+    protected void onAttach() {
+        super.onAttach();
+
+        fixTabsSelection();
+    }
+
+    // A temporary workaround to fix the underline tab issue
+    // Not a solution.
+    private native void fixTabsSelection() /*-{
+
+      setTimeout(function(){
+
+        [].forEach.call($doc.querySelectorAll("paper-tabs"), function(tabs) {
+          tabs._onResize();
+        });
+      }, 3000);
+    }-*/;
 }
