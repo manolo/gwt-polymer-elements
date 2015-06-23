@@ -1,5 +1,5 @@
 {
-  "name": "gwt-polymer",
+  "name": "gwt-polymer-elements",
   "version": "0.0.1",
   "description": "",
   "author": "Vaadin Ltd",
@@ -8,9 +8,9 @@
     "gwt-api-generator": "vaadin/gwt-api-generator"
   },
   "scripts": {
-    "postinstall":"node node_modules/gwt-api-generator/bin/gwt-api-generator.js --package=PolymerElements/paper-elements#1.0.1,PolymerElements/iron-elements#1.0.0,PolymerElements/iron-collapse  --artifactId=gwt-polymer-elements --groupId=com.vaadin.polymer --version=1.0.2.0-alpha1-SNAPSHOT --pom && mvn clean install javadoc:jar"
+    "postinstall":"node node_modules/gwt-api-generator/bin/gwt-api-generator.js --package=PolymerElements/paper-elements#1.0.1,PolymerElements/iron-elements#1.0.0  --artifactId=gwt-polymer-elements --groupId=com.vaadin.polymer --version=1.0.2.0-alpha1 --pom && mvn clean install javadoc:jar"
   },
-  "organization" : {
+  "org" : {
     "name" : "Vaadin Ltd",
     "url" : "http://vaadin.com"
   },
