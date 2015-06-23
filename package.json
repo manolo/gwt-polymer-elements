@@ -1,14 +1,15 @@
 {
   "name": "gwt-polymer-elements",
-  "version": "0.0.1",
+  "version": "1.0.2",
+  "release": ".0.alpha2",
   "description": "",
   "author": "Vaadin Ltd",
   "license": "Apache License 2.0",
   "dependencies": {
-    "gwt-api-generator": "vaadin/gwt-api-generator"
+    "gwt-api-generator": "vaadin/gwt-api-generator#mcm_pom"
   },
   "scripts": {
-    "postinstall":"node node_modules/gwt-api-generator/bin/gwt-api-generator.js --package=PolymerElements/paper-elements#1.0.1,PolymerElements/iron-elements#1.0.0  --artifactId=gwt-polymer-elements --groupId=com.vaadin.polymer --version=1.0.2.0-alpha1 --pom && mvn clean install javadoc:jar"
+    "postinstall":"node node_modules/gwt-api-generator/bin/gwt-api-generator.js --package=PolymerElements/paper-elements#1.0.1,PolymerElements/iron-elements#1.0.0  --artifactId=gwt-polymer-elements --groupId=com.vaadin.polymer --pom && mvn clean install javadoc:jar"
   },
   "org" : {
     "name" : "Vaadin Ltd",
