@@ -3,6 +3,7 @@ package com.vaadin.components.gwt.polymer.client.sampler.gwt;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.vaadin.polymer.iron.element.event.IronSelectEvent;
@@ -25,13 +26,20 @@ public class PaperTabsView extends Composite {
 
         initWidget(ourUiBinder.createAndBindUi(this));
 
-        paperTabs.addEventListener(IronSelectEvent.NAME, new IronSelectEvent.Listener() {
+        // wait until paper-toast has been loaded and initialized
+        // TODO: get rid of timer
+        (new Timer() {
             @Override
-            public void handleEvent(IronSelectEvent event) {
-                PaperTabElement tab = (PaperTabElement) event.getDetail().getItem();
-                toast.setText("Tab \"" + tab.getTextContent() + "\" has been selected");
-                toast.show();
+            public void run() {
+                paperTabs.addEventListener(IronSelectEvent.NAME, new IronSelectEvent.Listener() {
+                    @Override
+                    public void handleEvent(IronSelectEvent event) {
+                        PaperTabElement tab = (PaperTabElement) event.getDetail().getItem();
+                        toast.setText("Tab \"" + tab.getTextContent() + "\" has been selected");
+                        toast.show();
+                    }
+                });
             }
-        });
+        }).schedule(2000);
     }
 }

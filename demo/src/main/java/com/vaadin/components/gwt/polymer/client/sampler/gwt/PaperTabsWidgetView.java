@@ -4,6 +4,7 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
+import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.vaadin.polymer.iron.widget.event.IronSelectEvent;
@@ -26,7 +27,14 @@ public class PaperTabsWidgetView extends Composite {
     public PaperTabsWidgetView() {
         initWidget(ourUiBinder.createAndBindUi(this));
 
-        tabs.setSelected("0");
+        // wait until paper-toast has been loaded and initialized
+        // TODO: get rid of timer
+        (new Timer() {
+            @Override
+            public void run() {
+                tabs.setSelected("0");
+            }
+        }).schedule(2000);
 
         PaperTab tab = new PaperTab("dynamically created item");
         tabs.add(tab);
