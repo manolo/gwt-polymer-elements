@@ -46,4 +46,7 @@
       https://oss.sonatype.org/content/repositories/snapshots/
     </sonatypeOssDistMgmtSnapshotsUrl>
   </properties>
+  <modules>
+    <module>./pom.xml</module>
+  </modules>
 </project>
