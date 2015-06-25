@@ -1,6 +1,6 @@
 {
   "name": "gwt-polymer-elements",
-  "version": "0.0.1",
+  "version": "1.0.2",
   "description": "",
   "author": "Vaadin Ltd",
   "license": "Apache License 2.0",
@@ -8,16 +8,19 @@
     "gwt-api-generator": "vaadin/gwt-api-generator"
   },
   "scripts": {
-    "postinstall":"node node_modules/gwt-api-generator/bin/gwt-api-generator.js --package=PolymerElements/paper-elements#1.0.1,PolymerElements/iron-elements#1.0.0  --artifactId=gwt-polymer-elements --groupId=com.vaadin.polymer --version=1.0.2.0-alpha1 --pom && mvn clean install javadoc:jar"
+    "postinstall":"node node_modules/gwt-api-generator/bin/gwt-api-generator.js --package=PolymerElements/paper-elements#1.0.1,PolymerElements/iron-elements#1.0.0  --artifactId=gwt-polymer-elements --groupId=com.vaadin.polymer --pom && mvn clean install javadoc:jar"
   },
-  "org" : {
-    "name" : "Vaadin Ltd",
-    "url" : "http://vaadin.com"
-  },
-  "scm" : {
-    "connection" : "scm:git:git@github.com:vaadin/gwt-polymer-elements.git",
-    "developerConnection" : "scm:git:git@github.com:vaadin/gwt-polymer-elements.git",
-    "url" : "https://github.com/vaadin/gwt-polymer-elements"
+  "pom": {
+    "version" : "1.0.2.0.alpha2",
+    "organization" : {
+      "name" : "Vaadin Ltd",
+      "url" : "http://vaadin.com"
+    },
+    "scm" : {
+      "connection" : "scm:git:git@github.com:vaadin/gwt-polymer-elements.git",
+      "developerConnection" : "scm:git:git@github.com:vaadin/gwt-polymer-elements.git",
+      "url" : "https://github.com/vaadin/gwt-polymer-elements"
+    }
   },
   "keywords": [
     "vaadin",

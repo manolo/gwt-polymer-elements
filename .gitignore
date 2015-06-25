@@ -47,6 +47,7 @@ hs_err_pid*
 # Maven
 src
 target
+pom.xml
 
 # Eclipse
 .settings
