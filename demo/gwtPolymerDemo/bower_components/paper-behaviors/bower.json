@@ -7,7 +7,7 @@
   ],
   "main": [
     "paper-button-behavior.html",
-    "paper-radio-button-behavior.html"
+    "paper-inky-focus-behavior.html"
   ],
   "keywords": [
     "web-components",

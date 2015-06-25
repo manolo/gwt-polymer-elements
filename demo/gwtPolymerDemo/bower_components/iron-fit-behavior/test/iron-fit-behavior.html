@@ -120,7 +120,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <test-fixture id="inline-positioned-xy">
       <template>
-        <test-fit auto-fit-on-attach class="sized-x sized-y" style="position:absolute;right:100px;bottom:100px;">
+        <test-fit auto-fit-on-attach class="sized-x sized-y" style="position:absolute;left:100px;top:100px;">
           Sized (x/y), positioned/positioned
         </test-fit>
       </template>
@@ -170,6 +170,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           var rect = el.getBoundingClientRect();
           assert.equal(rect.top, 100, 'top is unset');
           assert.equal(rect.left, 100, 'left is unset');
+
         });
 
         test('inline positioned element is not re-positioned', function() {
@@ -178,15 +179,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           // need to measure document.body here because mocha sets a min-width on html,body, and
           // the element is positioned wrt to that by css
           var bodyRect = document.body.getBoundingClientRect();
-          assert.equal(rect.top, bodyRect.height - rect.height - 100, 'top is unset');
-          assert.equal(rect.left, bodyRect.width - rect.width - 100, 'left is unset');
+          assert.equal(rect.top, 100, 'top is unset');
+          assert.equal(rect.left, 100, 'left is unset');
+
+          el.refit();
+
+          rect = el.getBoundingClientRect();
+          assert.equal(rect.top, 100, 'top is unset after refit');
+          assert.equal(rect.left, 100, 'left is unset after refit');
+
         });
 
         test('position property is preserved after', function() {
           var el = fixture('absolute');
           assert.equal(getComputedStyle(el).position, 'absolute', 'position:absolute is preserved');
-        })
-
+        });
       });
 
       suite('fit to window', function() {

@@ -46,8 +46,8 @@ Configuration:
       Polymer.NeonSharedElementAnimationBehavior
     ],
 
-    configure: function(config, fromPage, toPage) {
-      var shared = this.findSharedElements(config, fromPage, toPage);
+    configure: function(config) {
+      var shared = this.findSharedElements(config);
       if (!shared) {
         return null;
       }

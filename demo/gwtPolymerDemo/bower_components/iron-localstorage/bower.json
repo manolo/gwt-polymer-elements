@@ -1,12 +1,16 @@
 {
   "name": "iron-localstorage",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Provides access to local storage",
   "keywords": [
     "web-component",
     "polymer",
     "storage"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/PolymerElements/iron-localstorage.git"
+  },
   "main": "iron-localstorage.html",
   "license": "http://polymer.github.io/LICENSE.txt",
   "homepage": "https://github.com/PolymerElements/iron-localstorage/",

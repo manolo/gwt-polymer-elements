@@ -162,6 +162,37 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     });
 
+    suite('focus/blur events', function() {
+      var input;
+
+      setup(function() {
+        input = fixture('basic');
+      });
+
+      test('focus/blur events fired on host element', function(done) {
+        var nFocusEvents = 0;
+        var nBlurEvents = 0;
+        input.addEventListener('focus', function() {
+          nFocusEvents += 1;
+          // setTimeout to wait for potentially more, erroneous events
+          setTimeout(function() {
+            assert.equal(nFocusEvents, 1, 'one focus event fired');
+            input.inputElement.blur();
+          });
+        });
+        input.addEventListener('blur', function() {
+          nBlurEvents += 1;
+          // setTimeout to wait for potentially more, erroneous events
+          setTimeout(function() {
+            assert.equal(nBlurEvents, 1, 'one blur event fired');
+            done();
+          });
+        });
+        input.inputElement.focus();
+      });
+
+    });
+
     suite('validation', function() {
 
       test('invalid attribute updated after calling validate()', function() {

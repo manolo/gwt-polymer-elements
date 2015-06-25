@@ -20,7 +20,7 @@ access important controls by easily moving them back to the view.
 
 __Important:__ The `paper-scroll-header-panel` will not display if its parent does not have a height.
 
-Using [layout attributes](http://www.polymer-project.org/docs/polymer/layout-attrs.html), you can easily make the `paper-scroll-header-panel` fill the screen
+Using [layout classes](https://www.polymer-project.org/1.0/docs/migration.html#layout-attributes) or custom properties, you can easily make the `paper-scroll-header-panel` fill the screen
 
     <body class="fullbleed layout vertical">
       <paper-scroll-header-panel class="flex">
@@ -50,24 +50,24 @@ that represents a header by adding a `paper-header` class to it.
 
 Styling scroll-header-panel:
 
-  To change background for toolbar when it is at its full size:
+To change background for toolbar when it is at its full size:
 
-  paper-scroll-header-panel {
-    --paper-scroll-header-panel-full-header: {
-      background-color: red;
-    };
-  }
+    paper-scroll-header-panel {
+      --paper-scroll-header-panel-full-header: {
+        background-color: red;
+      };
+    }
 
-  To change the background for toolbar when it is condensed:
+To change the background for toolbar when it is condensed:
 
-  paper-scroll-header-panel {
-    --paper-scroll-header-panel-condensed-header: {
-      background-color: #f4b400;
-    };
-  }
+    paper-scroll-header-panel {
+      --paper-scroll-header-panel-condensed-header: {
+        background-color: #f4b400;
+      };
+    }
 
 @group Paper Element
-@element paper-scrollheader-panel
+@element paper-scroll-header-panel
 @demo demo/index.html
 @hero hero.svg
 -->
@@ -87,11 +87,11 @@ Styling scroll-header-panel:
       right: 0;
       bottom: 0;
       left: 0;
-      box-sizing: border-box;
       -moz-box-sizing: border-box;
+      box-sizing: border-box;
       -webkit-overflow-scrolling: touch;
       overflow-x: hidden;
-      overflow-_y: auto;
+      overflow-y: auto;
       -webkit-transform: translateZ(0);
       transform: translateZ(0);
     }
@@ -177,7 +177,7 @@ Styling scroll-header-panel:
     properties: {
 
       /**
-       * If true, the header's height will condense to `_condensedHeaderHeight`
+       * If true, the header's height will condense to `condensedHeaderHeight`
        * as the user scrolls down from the top of the content area.
        */
       condenses: {
@@ -233,7 +233,7 @@ Styling scroll-header-panel:
       /**
        * The height of the header when it is condensed.
        *
-       * By default, `_condensedHeaderHeight` is 1/3 of `headerHeight` unless
+       * By default, `condensedHeaderHeight` is 1/3 of `headerHeight` unless
        * this is specified.
        */
       condensedHeaderHeight: {

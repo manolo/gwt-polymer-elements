@@ -229,7 +229,7 @@ property.
     },
 
     _broadcastBehavior: function(ev) {
-      this.fire('iron-doc-viewer-component-selected', ev.srcElement._templateInstance.item);
+      this.fire('iron-doc-viewer-component-selected', ev.target._templateInstance.item);
     }
   });
 

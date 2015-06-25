@@ -1,7 +1,7 @@
 marked-element
 ==============
 
-Element wrapper for the [marked](http://marked.org/) library.
+Element wrapper for the [marked](https://github.com/chjj/marked) library.
 
 `<marked-element>` accepts Markdown source either via its `markdown` attribute:
 

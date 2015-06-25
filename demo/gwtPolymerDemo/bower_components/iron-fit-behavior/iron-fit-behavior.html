@@ -39,6 +39,7 @@ CSS properties               | Action
        * The element that will receive a `max-height`/`width`. By default it is the same as `this`,
        * but it can be set to a child element. This is useful, for example, for implementing a
        * scrolling region inside the element.
+       * @type {!Element}
        */
       sizingTarget: {
         type: Object,
@@ -63,6 +64,7 @@ CSS properties               | Action
         value: false
       },
 
+      /** @type {?Object} */
       _fitInfo: {
         type: Object
       }
@@ -120,6 +122,10 @@ CSS properties               | Action
       var target = window.getComputedStyle(this);
       var sizer = window.getComputedStyle(this.sizingTarget);
       this._fitInfo = {
+        inlineStyle: {
+          top: this.style.top || '',
+          left: this.style.left || ''
+        },
         positionedBy: {
           vertically: target.top !== 'auto' ? 'top' : (target.bottom !== 'auto' ?
             'bottom' : null),
@@ -147,11 +153,11 @@ CSS properties               | Action
     resetFit: function() {
       if (!this._fitInfo || !this._fitInfo.sizedBy.height) {
         this.sizingTarget.style.maxHeight = '';
-        this.style.top = '';
+        this.style.top = this._fitInfo ? this._fitInfo.inlineStyle.top : '';
       }
       if (!this._fitInfo || !this._fitInfo.sizedBy.width) {
         this.sizingTarget.style.maxWidth = '';
-        this.style.left = '';
+        this.style.left = this._fitInfo ? this._fitInfo.inlineStyle.left : '';
       }
       if (this._fitInfo) {
         this.style.position = this._fitInfo.positionedBy.css;

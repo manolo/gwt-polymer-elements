@@ -61,14 +61,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       height: 40px;
     }
 
-    .field  iron-icon {
+    .field iron-icon {
       color: var(--google-grey-700);
       fill: var(--google-grey-700);
       margin: 0 8px;
     }
     
-    .field  paper-input {
-      height: 40px;
+    .field input {
+      font-size: 20px;
+      outline: 0;
+      border: none;
+      margin-left: 20px;
     }
 
     .content {
@@ -88,7 +91,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       
       <div class="flex center horizontal layout bottom field">
         <iron-icon icon="menu"></iron-icon>
-        <paper-input class="flex"></paper-input>
+        <input class="flex">
         <iron-icon icon="av:mic"></iron-icon>
       </div>
     </paper-toolbar>

@@ -1,6 +1,6 @@
 {
   "name": "iron-iconset",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "license": "http://polymer.github.io/LICENSE.txt",
   "description": "Represents a set of icons",
   "authors": [
@@ -11,6 +11,10 @@
     "polymer",
     "icon"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/PolymerElements/iron-iconset.git"
+  },
   "private": true,
   "dependencies": {
     "iron-meta": "PolymerElements/iron-meta#^1.0.0",

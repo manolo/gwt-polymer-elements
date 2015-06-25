@@ -1,12 +1,19 @@
 {
   "name": "iron-component-page",
   "description": "Turns a raw element definition into beautiful documentation",
+  "authors": [
+    "The Polymer Authors"
+  ],
   "keywords": [
     "web-components",
     "polymer",
     "docs"
   ],
-  "version": "1.0.4",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/PolymerElements/iron-component-page.git"
+  },
+  "version": "1.0.5",
   "private": true,
   "license": "http://polymer.github.io/LICENSE.txt",
   "dependencies": {

@@ -48,16 +48,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       };
     }
 
-    paper-toolbar {
+    paper-toolbar.tall {
       background-color: transparent;
     }
 
-    paper-toolbar .title {
+    paper-toolbar.tall .title {
       font-size: 40px;
       margin-left: 60px;
+
+      -webkit-transform-origin: left center;
+      transform-origin: left center;
+
+      /* Issue #15 */
+      isolation: isolate;
     }
 
-    paper-toolbar iron-icon {
+    paper-toolbar.tall iron-icon {
       margin: 0 8px;
     }
 
@@ -93,13 +99,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <script>
 
     // custom transformation: scale header's title
-    var titleStyle = document.querySelector('.title').style;
+    var title = document.querySelector('.title');
     addEventListener('paper-header-transform', function(e) {
       var d = e.detail;
       var m = d.height - d.condensedHeight;
       var scale = Math.max(0.75, (m - d.y) / (m / 0.25)  + 0.75);
-      titleStyle.transform = titleStyle.webkitTransform =
-          'scale(' + scale + ') translateZ(0)';
+
+      Polymer.Base.transform('scale(' + scale + ') translateZ(0)', title);
     });
 
   </script>

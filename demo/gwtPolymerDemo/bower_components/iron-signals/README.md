@@ -18,7 +18,7 @@ To receive a signal, listen for `iron-signal-<name>` event on a
 `iron-signals` element.
 
 ```html
-<iron-signals on-iron-signal-hello="{{helloSignal}}">
+<iron-signals on-iron-signal-hello="helloSignal">
 ```
 
 You can fire a signal event from anywhere, and all

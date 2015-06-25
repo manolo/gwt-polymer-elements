@@ -1,6 +1,6 @@
 {
   "name": "iron-pages",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "license": "http://polymer.github.io/LICENSE.txt",
   "description": "Organizes a set of pages and shows one at a time",
   "main": "iron-pages.html",
@@ -8,6 +8,10 @@
   "authors": [
     "The Polymer Authors"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/PolymerElements/iron-pages.git"
+  },
   "keywords": [
     "web-components",
     "polymer",
@@ -26,11 +30,11 @@
     "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
   },
   "homepage": "https://github.com/PolymerElements/iron-pages",
-  "_release": "1.0.1",
+  "_release": "1.0.2",
   "_resolution": {
     "type": "version",
-    "tag": "v1.0.1",
-    "commit": "3c9502b5a6a26f9225baca7f367183fd9594cfcb"
+    "tag": "v1.0.2",
+    "commit": "061e9ea95b58880f0f992b081c52a06665b553c9"
   },
   "_source": "git://github.com/PolymerElements/iron-pages.git",
   "_target": "^1.0.0",

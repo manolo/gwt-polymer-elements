@@ -90,6 +90,7 @@ style this element.
         name$="[[name]]"
         placeholder$="[[placeholder]]"
         readonly$="[[readonly]]"
+        list$="[[list]]"
         size$="[[size]]">
 
       <template is="dom-if" if="[[errorMessage]]">
@@ -116,7 +117,7 @@ style this element.
 
     behaviors: [
       Polymer.PaperInputBehavior,
-      Polymer.IronFormElementBehavior
+      Polymer.IronControlState
     ]
 
   })

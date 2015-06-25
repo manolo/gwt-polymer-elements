@@ -14,39 +14,69 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <title>marked-element demo</title>
 
   <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+  <link rel="import" href="../../paper-styles/demo-pages.html">
   <link rel="import" href="../marked-element.html">
+
+  <style is="custom-style">
+
+    .centered {
+      max-width: 550px;
+      padding: 0;
+      overflow: auto;
+    }
+
+    h1 {
+      margin-left: 30px;
+    }
+
+    h3 {
+      color: var(--google-grey-700);
+      margin-left: 30px;
+    }
+
+    marked-element {
+      display: block;
+      background-color: var(--google-grey-100);
+      padding: 10px 30px;
+      margin-bottom: 10px;
+    }
+
+  </style>
 </head>
 
-<body>
+<body unresolved>
 
-  <section>
-    <h3>Inline Text</h3>
-    <marked-element>
-      <script type="text/markdown">
-## Markdown Renderer
+  <div class="vertical-section vertical-section-container centered">
+    <h1>&lt;marked-element&gt;</h1>
 
-Example:
+    <section>
+      <h3>Inline Text</h3>
+      <marked-element>
+        <script type="text/markdown">
+          ## Markdown Renderer
 
-```html
-<div>
-  <core-overlay>
-    <h2>Dialog</h2>
-    <input placeholder="say something..." autofocus>
-    <div>I agree with this wholeheartedly.</div>
-    <button core-overlay-toggle>OK</button>
-  </core-overlay>
-</div>
-```
+          Example:
 
-_Nifty_ features.
-      </script>
-    </marked-element>
-  </section>
+          ```html
+          <paper-toolbar>
+            <paper-icon-button icon="menu"></paper-icon-button>
+            <div class="title">Title</div>
+            <paper-icon-button icon="more"></paper-icon-button>
+          </paper-toolbar>
+          ```
 
-  <section>
-    <h3>Text via Attribute</h3>
-    <marked-element markdown="    <div>div</div>"></marked-element>
-  </section>
+          _Nifty_ features.
+        </script>
+      </marked-element>
+    </section>
+
+    <section>
+      <h3>Text via Attribute</h3>
+      <marked-element markdown="***Bold and italic***"></marked-element>
+    </section>
+
+  </div>
 
 </body>
 </html>
