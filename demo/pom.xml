@@ -82,6 +82,7 @@
                     <disableClassMetadata>true</disableClassMetadata>
                     <enableAssertions>false</enableAssertions>
                     <closureCompiler>true</closureCompiler>
+                    <bindAddress>0.0.0.0</bindAddress>
                 </configuration>
             </plugin>
             <plugin>
