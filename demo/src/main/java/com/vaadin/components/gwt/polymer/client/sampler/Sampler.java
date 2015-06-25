@@ -97,7 +97,7 @@ public class Sampler extends Composite {
                 Window.open(REPO_PATH + currentItem.category + "/" + currentItem.path + ".java", "_blank", "");
             }
         });
-        
+
         menuButton.setBooleanAttribute("paper-drawer-toggle", true);
 
 
@@ -176,13 +176,17 @@ public class Sampler extends Composite {
     }
 
     private void selectItem(String hash) {
-        String tmp[] = hash != null ? hash.split("/") : new String[]{"paper", "CheckboxSample"};
+        String tmp[] = hash != null ? hash.split("/") : null;
         if (tmp == null || tmp.length < 2) {
-            tmp = new String[]{"paper", "CheckboxSample"};
+            tmp = new String[]{"paper", "ButtonSample"};
         }
         for (Item i : items) {
             if (i.category == tmp[0] && i.path == tmp[1]) {
-                i.onClick(null);
+                // First time we select
+                i.ready(o -> {
+                    i.onClick(null);
+                    return o;
+                });
                 return;
             }
         }
