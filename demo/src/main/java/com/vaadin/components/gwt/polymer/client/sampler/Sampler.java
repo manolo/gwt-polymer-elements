@@ -17,7 +17,6 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.DeckPanel;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Widget;
@@ -26,7 +25,26 @@ import com.vaadin.components.gwt.polymer.client.sampler.gwt.PaperTabsView;
 import com.vaadin.components.gwt.polymer.client.sampler.gwt.PaperTabsWidgetView;
 import com.vaadin.components.gwt.polymer.client.sampler.iron.IronCollapseSample;
 import com.vaadin.components.gwt.polymer.client.sampler.iron.IronSelectorSample;
-import com.vaadin.components.gwt.polymer.client.sampler.paper.*;
+import com.vaadin.components.gwt.polymer.client.sampler.paper.ButtonSample;
+import com.vaadin.components.gwt.polymer.client.sampler.paper.CheckboxSample;
+import com.vaadin.components.gwt.polymer.client.sampler.paper.DialogSample;
+import com.vaadin.components.gwt.polymer.client.sampler.paper.FabSample;
+import com.vaadin.components.gwt.polymer.client.sampler.paper.HeaderPanelSample;
+import com.vaadin.components.gwt.polymer.client.sampler.paper.IconButtonSample;
+import com.vaadin.components.gwt.polymer.client.sampler.paper.InputSample;
+import com.vaadin.components.gwt.polymer.client.sampler.paper.ItemSample;
+import com.vaadin.components.gwt.polymer.client.sampler.paper.MaterialSample;
+import com.vaadin.components.gwt.polymer.client.sampler.paper.MenuSample;
+import com.vaadin.components.gwt.polymer.client.sampler.paper.ProgressSample;
+import com.vaadin.components.gwt.polymer.client.sampler.paper.RadioButtonSample;
+import com.vaadin.components.gwt.polymer.client.sampler.paper.RadioGroupSample;
+import com.vaadin.components.gwt.polymer.client.sampler.paper.RippleSample;
+import com.vaadin.components.gwt.polymer.client.sampler.paper.SliderSample;
+import com.vaadin.components.gwt.polymer.client.sampler.paper.SpinnerSample;
+import com.vaadin.components.gwt.polymer.client.sampler.paper.TabsSample;
+import com.vaadin.components.gwt.polymer.client.sampler.paper.ToastSample;
+import com.vaadin.components.gwt.polymer.client.sampler.paper.ToggleButtonSample;
+import com.vaadin.components.gwt.polymer.client.sampler.paper.ToolbarSample;
 import com.vaadin.polymer.iron.widget.IronCollapse;
 import com.vaadin.polymer.iron.widget.IronSelector;
 import com.vaadin.polymer.paper.widget.PaperButton;
@@ -67,7 +85,7 @@ public class Sampler extends Composite {
     @UiField
     FlowPanel listPanel;
     @UiField
-    DeckPanel content;
+    HTMLPanel content;
     @UiField
     SpanElement currentLabel;
     @UiField
@@ -172,7 +190,7 @@ public class Sampler extends Composite {
 
         IronCollapse collapse = collapseMap.get(category);
         IronSelector selector = selectorMap.get(category);
-        items.add(new Item(collapse, selector, category, path, idx, name, hasxml));
+        items.add(new Item(collapse, selector, category, path, idx, sample, name, hasxml));
     }
 
     private void selectItem(String hash) {
@@ -189,6 +207,7 @@ public class Sampler extends Composite {
     }
 
     private class Item extends PaperItem implements ClickHandler {
+        Widget sample;
         String category;
         IronCollapse collapse;
         IronSelector selector;
@@ -198,7 +217,7 @@ public class Sampler extends Composite {
         int sampleIdx;
         boolean uixml;
 
-        public Item(IronCollapse collapse, IronSelector selector, String category, String path, int idx, String name, boolean uixml) {
+        public Item(IronCollapse collapse, IronSelector selector, String category, String path, int idx, Widget sample, String name, boolean uixml) {
             super(name);
             this.collapse = collapse;
             this.selector = selector;
@@ -206,6 +225,7 @@ public class Sampler extends Composite {
             this.path = path;
             this.name = name;
             this.sampleIdx = idx;
+            this.sample = sample;
             this.uixml = uixml;
             selectorIdx = selector.getWidgetCount();
             selector.add(this);
@@ -220,7 +240,8 @@ public class Sampler extends Composite {
             }
             collapse.setOpened(true);
             selector.getPolymerElement().setAttribute("selected", selectorIdx);
-            content.showWidget(sampleIdx);
+            content.clear();
+            content.add(sample);
             currentItem = this;
             History.newItem(category + "/" + path, false);
             currentLabel.setInnerText(name);
