@@ -1,10 +1,11 @@
 package com.vaadin.components.gwt.polymer.client.sampler.gwt;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.user.client.Timer;
+import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.vaadin.polymer.iron.widget.event.IronSelectEvent;
@@ -19,31 +20,34 @@ public class PaperTabsWidgetView extends Composite {
 
     private static PaperTabsWidgetUiBinder ourUiBinder = GWT.create(PaperTabsWidgetUiBinder.class);
 
-    @UiField
-    PaperTabs tabs;
-    @UiField
-    PaperToast toast;
+    @UiField PaperTabs tabs;
+    @UiField PaperToast toast;
+    @UiField Button button1;
+    @UiField Button button2;
 
     public PaperTabsWidgetView() {
         initWidget(ourUiBinder.createAndBindUi(this));
 
-        // wait until paper-toast has been loaded and initialized
-        // TODO: get rid of timer
-        (new Timer() {
-            @Override
-            public void run() {
-                tabs.setSelected("0");
-            }
-        }).schedule(2000);
-
         PaperTab tab = new PaperTab("dynamically created item");
         tabs.add(tab);
+
+        // wait until toast has been loaded and initialized
+        toast.ready((o) -> {
+            tabs.setSelected("0");
+            return null;
+        });
     }
 
     @UiHandler("tabs")
-    void onNameGotPressed(IronSelectEvent event) {
+    void tabSelected(IronSelectEvent event) {
         PaperTabElement tab = (PaperTabElement) event.getItem();
         toast.setText("widget event handler:" + tab.getTextContent());
+        toast.show();
+    }
+
+    @UiHandler({"button1", "button2"})
+    void buttonClicked(ClickEvent event) {
+        toast.setText("widget event handler:" + ((Button)event.getSource()).getElement().getInnerText());
         toast.show();
     }
 }
