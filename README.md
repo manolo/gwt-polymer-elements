@@ -161,18 +161,18 @@ RootPanel.get().add(button);
  ```
      PaperButtonElement button = Polymer.create(PaperButtonElement.TAG);
  ```
- - _Dinamic imports_
+ - _Dinamic imports_ :
   `Polymer` has a couple of methods to do the import dynamically
  ```
      Polymer.importHref("paper-button/paper-button.html");
  ```
- - _Static imports_
+ - _Static imports_ :
   Adding tags to the hosted page head is the traditional way to make webcomponents available if you want them in a mixed application (DOM, JS, or GWT) or if you want to be sure that web components are available from the beginning.
  ```
     <link rel='import' href='application_context/bower_elements/paper-button/paper-button.html'></link>
  ```
  
- ### Asynchronous issues
+### Asynchronous issues
    Polymer 1.0.x does not allow using custom properties before the web component has been initialized.
    gwt-polymer-elements comes with some methods which helps to run callbacks when the component starts ready
    
