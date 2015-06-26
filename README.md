@@ -174,26 +174,34 @@ RootPanel.get().add(button);
  
 ### Asynchronous issues
    Polymer 1.0.x does not allow using custom properties before the web component has been initialized.
-   gwt-polymer-elements comes with some methods which helps to run callbacks when the component starts ready
+   Thus `gwt-polymer-elements` comes with some methods which helps to run callbacks when the component starts ready.
+   If you use widgets, the library would be able to deal with properties set very early, but call to some methods could not work
    
  ```
-   PaperButton button = new PapperButton();
-
-   Polymer.ready(button.getElement(), new Function() {
+   PaperButtonElement button = Polymer.createElement(PaperButtonElement.TAG);
+   Polymer.ready(button, new Function() {
       public Object call(Object args) {
+         // Set button properties here
       }
    })
    
+   PolymerButton button = new PolymerButton();
+   // You could set methods here
+   button.set...
+   
    button.ready(new Function() {
       public Object call(Object args) {
+        // But you have to enclose in a callback calls to element methods
       }
    });
    
    
    Polymer.importHref(Arrays.asList("paper-tabs", "paper-tab-element"), new Function() {
       public Object call(Object args) {
+         // Create your elements here and call their methods
       }
    })
    
  ```
+ 
   
