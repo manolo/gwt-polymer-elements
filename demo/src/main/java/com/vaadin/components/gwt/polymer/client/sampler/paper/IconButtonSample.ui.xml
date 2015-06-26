@@ -1,6 +1,6 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
-        >
+             xmlns:p='urn:import:com.vaadin.polymer.paper.widget'>
     
     <ui:style>
 
@@ -76,48 +76,48 @@
             <div>
                 <h4>Enabled</h4>
                 <div class="horizontal-section">
-                    <paper-icon-button icon="menu" title="menu"></paper-icon-button>
-                    <paper-icon-button icon="favorite" title="heart"></paper-icon-button>
-                    <paper-icon-button icon="arrow-back" title="arrow-back"></paper-icon-button>
-                    <paper-icon-button icon="arrow-forward" title="arrow-forward"></paper-icon-button>
-                    <paper-icon-button icon="clear" title="clear"></paper-icon-button>
-                    <paper-icon-button icon="polymer" title="polymer"></paper-icon-button>
-                    <paper-icon-button src="https://assets-cdn.github.com/images/modules/logos_page/Octocat.png" aria-label="octocat" title="octocat"></paper-icon-button>
+                    <p:PaperIconButton icon="menu" title="menu"></p:PaperIconButton>
+                    <p:PaperIconButton icon="favorite" title="heart"></p:PaperIconButton>
+                    <p:PaperIconButton icon="arrow-back" title="arrow-back"></p:PaperIconButton>
+                    <p:PaperIconButton icon="arrow-forward" title="arrow-forward"></p:PaperIconButton>
+                    <p:PaperIconButton icon="clear" title="clear"></p:PaperIconButton>
+                    <p:PaperIconButton icon="polymer" title="polymer"></p:PaperIconButton>
+                    <p:PaperIconButton src="https://assets-cdn.github.com/images/modules/logos_page/Octocat.png" ariaLabel="octocat" title="octocat"></p:PaperIconButton>
                 </div>
             </div>
 
             <div>
                 <h4>Disabled</h4>
                 <div class="horizontal-section">
-                    <paper-icon-button icon="menu" title="menu" disabled=""></paper-icon-button>
-                    <paper-icon-button icon="favorite" title="heart" disabled=""></paper-icon-button>
-                    <paper-icon-button icon="arrow-back" title="arrow-back" disabled=""></paper-icon-button>
-                    <paper-icon-button icon="arrow-forward" title="arrow-forward" disabled=""></paper-icon-button>
-                    <paper-icon-button icon="clear" title="clear" disabled=""></paper-icon-button>
-                    <paper-icon-button icon="polymer" title="polymer" disabled=""></paper-icon-button>
-                    <paper-icon-button src="https://assets-cdn.github.com/images/modules/logos_page/Octocat.png" aria-label="octocat" title="octocat" disabled=""></paper-icon-button>
+                    <p:PaperIconButton icon="menu" title="menu" disabled="true"></p:PaperIconButton>
+                    <p:PaperIconButton icon="favorite" title="heart" disabled="true"></p:PaperIconButton>
+                    <p:PaperIconButton icon="arrow-back" title="arrow-back" disabled="true"></p:PaperIconButton>
+                    <p:PaperIconButton icon="arrow-forward" title="arrow-forward" disabled="true"></p:PaperIconButton>
+                    <p:PaperIconButton icon="clear" title="clear" disabled="true"></p:PaperIconButton>
+                    <p:PaperIconButton icon="polymer" title="polymer" disabled="true"></p:PaperIconButton>
+                    <p:PaperIconButton src="https://assets-cdn.github.com/images/modules/logos_page/Octocat.png" ariaLabel="octocat" title="octocat" disabled="true"></p:PaperIconButton>
                 </div>
             </div>
 
             <div>
                 <h4>Color</h4>
                 <div class="horizontal-section">
-                    <paper-icon-button icon="menu" title="menu" class="blue"></paper-icon-button>
-                    <paper-icon-button icon="favorite" title="heart" class="red"></paper-icon-button>
-                    <paper-icon-button icon="arrow-back" title="arrow-back" class="orange"></paper-icon-button>
-                    <paper-icon-button icon="arrow-forward" title="arrow-forward" class="green"></paper-icon-button>
-                    <paper-icon-button icon="clear" title="clear" class="blue"></paper-icon-button>
-                    <paper-icon-button icon="polymer" title="polymer" class="red"></paper-icon-button>
-                    <paper-icon-button class="blue" src="https://assets-cdn.github.com/images/modules/logos_page/Octocat.png" aria-label="octocat" title="octocat"></paper-icon-button>
+                    <p:PaperIconButton icon="menu" title="menu" addStyleNames="blue"></p:PaperIconButton>
+                    <p:PaperIconButton icon="favorite" title="heart" addStyleNames="red"></p:PaperIconButton>
+                    <p:PaperIconButton icon="arrow-back" title="arrow-back" addStyleNames="orange"></p:PaperIconButton>
+                    <p:PaperIconButton icon="arrow-forward" title="arrow-forward" addStyleNames="green"></p:PaperIconButton>
+                    <p:PaperIconButton icon="clear" title="clear" addStyleNames="blue"></p:PaperIconButton>
+                    <p:PaperIconButton icon="polymer" title="polymer" addStyleNames="red"></p:PaperIconButton>
+                    <p:PaperIconButton addStyleNames="blue" src="https://assets-cdn.github.com/images/modules/logos_page/Octocat.png" ariaLabel="octocat" title="octocat"></p:PaperIconButton>
                 </div>
             </div>
 
             <div>
                 <h4>Size</h4>
                 <div class="horizontal-section">
-                    <paper-icon-button icon="favorite" title="heart" class="huge"></paper-icon-button>
+                    <p:PaperIconButton icon="favorite" title="heart" addStyleNames="huge"></p:PaperIconButton>
                     <br/><br/><br/>
-                    <paper-icon-button icon="polymer" title="polymer" class="huge"></paper-icon-button>
+                    <p:PaperIconButton icon="polymer" title="polymer" addStyleNames="huge"></p:PaperIconButton>
                 </div>
             </div>
         </div>

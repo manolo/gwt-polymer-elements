@@ -1,5 +1,12 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
-             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:p='urn:import:com.vaadin.polymer.paper.widget'>
+    
+    <ui:style>
+        .fixed-size {
+            width: 300px;
+        }
+    </ui:style>
 
     <g:HTMLPanel addStyleNames="tabs-sample">
 
@@ -36,110 +43,108 @@
 
         <h3>A. No ink effect and no sliding bar</h3>
 
-        <paper-tabs selected="0" noink="" no-bar="">
-
-            <paper-tab>ITEM ONE</paper-tab>
-            <paper-tab>ITEM TWO</paper-tab>
-            <paper-tab>ITEM THREE</paper-tab>
-
-        </paper-tabs>
+        <p:PaperTabs selected="0" noink="true" noBar="true">
+            <p:PaperTab>ITEM ONE</p:PaperTab>
+            <p:PaperTab>ITEM TWO</p:PaperTab>
+            <p:PaperTab>ITEM THREE</p:PaperTab>
+        </p:PaperTabs>
 
         <h3>B. The bottom bar appears to indicate the selected tab, but without sliding effect.</h3>
 
-        <paper-tabs selected="0" noink="" no-slide="">
+        <p:PaperTabs selected="0" noink="true" noSlide="true">
 
-            <paper-tab>ITEM ONE</paper-tab>
-            <paper-tab>ITEM TWO</paper-tab>
-            <paper-tab>ITEM THREE</paper-tab>
+            <p:PaperTab>ITEM ONE</p:PaperTab>
+            <p:PaperTab>ITEM TWO</p:PaperTab>
+            <p:PaperTab>ITEM THREE</p:PaperTab>
 
-        </paper-tabs>
+        </p:PaperTabs>
 
         <h3>C. The bar slides to the selected tab</h3>
 
-        <paper-tabs selected="0" noink="">
+        <p:PaperTabs selected="0" noink="true">
 
-            <paper-tab>ITEM ONE</paper-tab>
-            <paper-tab>ITEM TWO</paper-tab>
-            <paper-tab>ITEM THREE</paper-tab>
+            <p:PaperTab>ITEM ONE</p:PaperTab>
+            <p:PaperTab>ITEM TWO</p:PaperTab>
+            <p:PaperTab>ITEM THREE</p:PaperTab>
 
-        </paper-tabs>
+        </p:PaperTabs>
 
         <h3>D. Inky Tabs</h3>
 
-        <paper-tabs selected="0">
+        <p:PaperTabs selected="0">
 
-            <paper-tab>ITEM ONE</paper-tab>
-            <paper-tab>ITEM TWO</paper-tab>
-            <paper-tab>ITEM THREE</paper-tab>
+            <p:PaperTab>ITEM ONE</p:PaperTab>
+            <p:PaperTab>ITEM TWO</p:PaperTab>
+            <p:PaperTab>ITEM THREE</p:PaperTab>
 
-        </paper-tabs>
+        </p:PaperTabs>
 
         <h3>E. Scrollable Tabs</h3>
 
-        <paper-tabs id="scrollableTabs" selected="0" scrollable="">
+        <p:PaperTabs selected="0" scrollable="true">
 
-            <paper-tab>NUMBER ONE ITEM</paper-tab>
-            <paper-tab>ITEM TWO</paper-tab>
-            <paper-tab>THE THIRD ITEM</paper-tab>
-            <paper-tab>THE ITEM FOUR</paper-tab>
-            <paper-tab>FIFTH</paper-tab>
-            <paper-tab>THE SIXTH TAB</paper-tab>
-            <paper-tab>NUMBER SEVEN</paper-tab>
-            <paper-tab>EIGHT</paper-tab>
-            <paper-tab>NUMBER NINE</paper-tab>
-            <paper-tab>THE TENTH</paper-tab>
-            <paper-tab>THE ITEM ELEVEN</paper-tab>
-            <paper-tab>TWELFTH ITEM</paper-tab>
+            <p:PaperTab>NUMBER ONE ITEM</p:PaperTab>
+            <p:PaperTab>ITEM TWO</p:PaperTab>
+            <p:PaperTab>THE THIRD ITEM</p:PaperTab>
+            <p:PaperTab>THE ITEM FOUR</p:PaperTab>
+            <p:PaperTab>FIFTH</p:PaperTab>
+            <p:PaperTab>THE SIXTH TAB</p:PaperTab>
+            <p:PaperTab>NUMBER SEVEN</p:PaperTab>
+            <p:PaperTab>EIGHT</p:PaperTab>
+            <p:PaperTab>NUMBER NINE</p:PaperTab>
+            <p:PaperTab>THE TENTH</p:PaperTab>
+            <p:PaperTab>THE ITEM ELEVEN</p:PaperTab>
+            <p:PaperTab>TWELFTH ITEM</p:PaperTab>
 
-        </paper-tabs>
+        </p:PaperTabs>
 
         <h3>F. Link Tabs</h3>
 
-        <paper-tabs selected="0">
+        <p:PaperTabs selected="0">
 
-            <paper-tab link=""><a href="#item1" class="horizontal center-center layout">ITEM ONE</a></paper-tab>
-            <paper-tab link=""><a href="#item2" class="horizontal center-center layout">ITEM TWO</a></paper-tab>
-            <paper-tab link=""><a href="#item3" class="horizontal center-center layout">ITEM THREE</a></paper-tab>
+            <p:PaperTab attributes="link"><a href="#item1" class="horizontal center-center layout">ITEM ONE</a></p:PaperTab>
+            <p:PaperTab attributes="link"><a href="#item2" class="horizontal center-center layout">ITEM TWO</a></p:PaperTab>
+            <p:PaperTab attributes="link"><a href="#item3" class="horizontal center-center layout">ITEM THREE</a></p:PaperTab>
 
-        </paper-tabs>
+        </p:PaperTabs>
 
         <h3>G. Tabs in Toolbar</h3>
 
-        <paper-toolbar class="tall">
+        <p:PaperToolbar addStyleNames="tall">
 
-            <paper-tabs selected="0" class="bottom self-end" style="width: 300px;">
+            <p:PaperTabs selected="0" addStyleNames="bottom self-end {style.fixed-size}">
 
-                <paper-tab>ITEM ONE</paper-tab>
-                <paper-tab>ITEM TWO</paper-tab>
+                <p:PaperTab>ITEM ONE</p:PaperTab>
+                <p:PaperTab>ITEM TWO</p:PaperTab>
 
-            </paper-tabs>
+            </p:PaperTabs>
 
             <div class="bottom flex"></div>
 
-        </paper-toolbar>
+        </p:PaperToolbar>
 
         <h3>H. Tabs aligned to bottom</h3>
 
-        <paper-tabs selected="0" alignBottom="">
+        <p:PaperTabs selected="0" alignBottom="true">
 
-            <paper-tab>ITEM ONE</paper-tab>
-            <paper-tab>ITEM TWO</paper-tab>
-            <paper-tab>ITEM THREE</paper-tab>
+            <p:PaperTab>ITEM ONE</p:PaperTab>
+            <p:PaperTab>ITEM TWO</p:PaperTab>
+            <p:PaperTab>ITEM THREE</p:PaperTab>
 
-        </paper-tabs>
+        </p:PaperTabs>
 
-        <!--<h3>I. Bound Selection</h3>-->
+        <h3>I. Bound Selection</h3>
 
-        <!--<template is="dom-bind">-->
-            <!--<h2>Current Tab: <span>[[selected]]</span></h2>-->
-            <!--<paper-tabs selected="{{selected}}">-->
+        <template is="dom-bind">
+            <h2>Current Tab: <span>[[selected]]</span></h2>
+            <paper-tabs selected="{{selected}}">
 
-                <!--<paper-tab>ITEM ONE</paper-tab>-->
-                <!--<paper-tab>ITEM TWO</paper-tab>-->
-                <!--<paper-tab>ITEM THREE</paper-tab>-->
+                <paper-tab>ITEM ONE</paper-tab>
+                <paper-tab>ITEM TWO</paper-tab>
+                <paper-tab>ITEM THREE</paper-tab>
 
-            <!--</paper-tabs>-->
-        <!--</template>-->
+            </paper-tabs>
+        </template>
         
     </g:HTMLPanel>
 </ui:UiBinder>

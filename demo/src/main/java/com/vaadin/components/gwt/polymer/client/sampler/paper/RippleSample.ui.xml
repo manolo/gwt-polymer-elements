@@ -1,7 +1,8 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
-        >
-    
+             xmlns:p='urn:import:com.vaadin.polymer.paper.widget'
+             xmlns:i='urn:import:com.vaadin.polymer.iron.widget'>
+
     <ui:style>
         @external .ripple-sample, .button, .narrow, .grey, .green, .blue, .raised, .icon-button, .red, .fab, .menu, .item, .card, .dialog, .content, .title, .image, .center, .label, .label-blue, .label-red;
 
@@ -226,41 +227,38 @@
 
             <div class="button raised">
                 <div class="center" fit="">SUBMIT</div>
-                <paper-ripple></paper-ripple>
+                <p:PaperRipple/>
             </div>
 
             <div class="button raised grey">
                 <div class="center" fit="">CANCEL</div>
-                <paper-ripple></paper-ripple>
+                <p:PaperRipple/>
             </div>
 
             <div class="button raised blue">
                 <div class="center" fit="">COMPOSE</div>
-                <paper-ripple></paper-ripple>
+                <p:PaperRipple/>
             </div>
 
             <div class="button raised green">
                 <div class="center" fit="">OK</div>
-                <paper-ripple></paper-ripple>
+                <p:PaperRipple/>
             </div>
 
-        </section>
-
-        <section>
 
             <div class="button raised grey narrow">
                 <div class="center" fit="">+1</div>
-                <paper-ripple></paper-ripple>
+                <p:PaperRipple/>
             </div>
 
             <div class="button raised grey narrow label-blue">
                 <div class="center" fit="">+1</div>
-                <paper-ripple></paper-ripple>
+                <p:PaperRipple/>
             </div>
 
             <div class="button raised grey narrow label-red">
                 <div class="center" fit="">+1</div>
-                <paper-ripple></paper-ripple>
+                <p:PaperRipple/>
             </div>
 
         </section>
@@ -268,23 +266,23 @@
         <section>
 
             <div class="icon-button">
-                <iron-icon icon="menu"></iron-icon>
-                <paper-ripple class="circle" recenters=""></paper-ripple>
+                <i:IronIcon icon="menu"/>
+                <p:PaperRipple addStyleNames="circle" recenters="true"/>
             </div>
 
             <div class="icon-button">
-                <iron-icon icon="more-vert"></iron-icon>
-                <paper-ripple class="circle" recenters=""></paper-ripple>
+                <i:IronIcon icon="more-vert"/>
+                <p:PaperRipple addStyleNames="circle" recenters="true"/>
             </div>
 
             <div class="icon-button red">
-                <iron-icon icon="delete"></iron-icon>
-                <paper-ripple class="circle" recenters=""></paper-ripple>
+                <i:IronIcon icon="delete"/>
+                <p:PaperRipple addStyleNames="circle" recenters="true"/>
             </div>
 
             <div class="icon-button blue">
-                <iron-icon icon="account-box"></iron-icon>
-                <paper-ripple class="circle" recenters=""></paper-ripple>
+                <i:IronIcon icon="account-box"/>
+                <p:PaperRipple addStyleNames="circle" recenters="true"/>
             </div>
 
         </section>
@@ -292,18 +290,18 @@
         <section>
 
             <div class="fab red">
-                <iron-icon icon="add"></iron-icon>
-                <paper-ripple class="circle" recenters=""></paper-ripple>
+                <i:IronIcon icon="add"/>
+                <p:PaperRipple addStyleNames="circle" recenters="true"/>
             </div>
 
             <div class="fab blue">
-                <iron-icon icon="mail"></iron-icon>
-                <paper-ripple class="circle" recenters=""></paper-ripple>
+                <i:IronIcon icon="mail"/>
+                <p:PaperRipple addStyleNames="circle" recenters="true"/>
             </div>
 
             <div class="fab green">
-                <iron-icon icon="create"></iron-icon>
-                <paper-ripple class="circle" recenters=""></paper-ripple>
+                <i:IronIcon icon="create"/>
+                <p:PaperRipple addStyleNames="circle" recenters="true"/>
             </div>
 
         </section>
@@ -314,19 +312,19 @@
 
                 <div class="item">
                     <div class="label" fit="">Mark as unread</div>
-                    <paper-ripple></paper-ripple>
+                    <p:PaperRipple/>
                 </div>
                 <div class="item">
                     <div class="label" fit="">Mark as important</div>
-                    <paper-ripple></paper-ripple>
+                    <p:PaperRipple/>
                 </div>
                 <div class="item">
                     <div class="label" fit="">Add to Tasks</div>
-                    <paper-ripple></paper-ripple>
+                    <p:PaperRipple/>
                 </div>
                 <div class="item">
                     <div class="label" fit="">Create event</div>
-                    <paper-ripple></paper-ripple>
+                    <p:PaperRipple/>
                 </div>
 
             </div>
@@ -335,19 +333,19 @@
 
                 <div class="item">
                     <div class="label" fit="">Import</div>
-                    <paper-ripple></paper-ripple>
+                    <p:PaperRipple/>
                 </div>
                 <div class="item">
                     <div class="label" fit="">Export</div>
-                    <paper-ripple></paper-ripple>
+                    <p:PaperRipple/>
                 </div>
                 <div class="item">
                     <div class="label" fit="">Print</div>
-                    <paper-ripple></paper-ripple>
+                    <p:PaperRipple/>
                 </div>
                 <div class="item">
                     <div class="label" fit="">Restore contacts</div>
-                    <paper-ripple></paper-ripple>
+                    <p:PaperRipple/>
                 </div>
 
             </div>
@@ -365,23 +363,23 @@
 
                 <div class="button label-blue">
                     <div class="center" fit="">ACCEPT</div>
-                    <paper-ripple></paper-ripple>
+                    <p:PaperRipple/>
                 </div>
 
                 <div class="button">
                     <div class="center" fit="">DECLINE</div>
-                    <paper-ripple></paper-ripple>
+                    <p:PaperRipple/>
                 </div>
 
             </div>
 
             <div class="card">
-                <paper-ripple recenters=""></paper-ripple>
+                <p:PaperRipple recenters="true"/>
             </div>
 
             <div class="card image">
 
-                <paper-ripple recenters=""></paper-ripple>
+                <p:PaperRipple recenters="true"/>
 
             </div>
 

@@ -2,15 +2,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <artifactId>gwt-polymer-parent</artifactId>
-        <groupId>com.vaadin.components</groupId>
-        <version>1.0-SNAPSHOT</version>
-    </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>gwt-polymer-demo</artifactId>
+    <groupId>com.vaadin.polymer</groupId>
+    <artifactId>gwt-polymer-elements-demo</artifactId>
     <packaging>war</packaging>
+    <version>1.0.2.0-alpha2-SNAPSHOT</version>
+    <properties>
+      <gwtVersion>2.8.0-SNAPSHOT</gwtVersion>
+      <gwtPolymerVersion>${project.version}</gwtPolymerVersion>
+      <maven.compiler.target>1.8</maven.compiler.target>
+      <maven.compiler.source>1.8</maven.compiler.source>
+    </properties>
 
     <repositories>
        <repository>
@@ -36,18 +39,20 @@
             <groupId>com.google.gwt</groupId>
             <artifactId>gwt-user</artifactId>
             <scope>provided</scope>
+            <version>${gwtVersion}</version>
         </dependency>
         <dependency>
             <groupId>com.google.gwt</groupId>
             <artifactId>gwt-codeserver</artifactId>
             <scope>provided</scope>
+            <version>${gwtVersion}</version>
         </dependency>
 
         <!-- this is the dependency to the "jar"-subproject -->
         <dependency>
             <groupId>com.vaadin.polymer</groupId>
             <artifactId>gwt-polymer-elements</artifactId>
-            <version>1.0.2.0-alpha1</version>
+            <version>${gwtPolymerVersion}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -82,6 +87,7 @@
                     <disableClassMetadata>true</disableClassMetadata>
                     <enableAssertions>false</enableAssertions>
                     <closureCompiler>true</closureCompiler>
+                    <bindAddress>0.0.0.0</bindAddress>
                 </configuration>
             </plugin>
             <plugin>

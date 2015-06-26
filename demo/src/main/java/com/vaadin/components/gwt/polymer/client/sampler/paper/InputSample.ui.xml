@@ -1,48 +1,41 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
-        >
+             xmlns:p='urn:import:com.vaadin.polymer.paper.widget'>
     
     <ui:style>
 
     </ui:style>
 
-    <g:HTMLPanel addStyleNames="icon-button-sample">
+    <g:HTMLPanel addStyleNames="input-sample">
 
         <div class="vertical center-justified layout">
             <h4>Text input</h4>
             <div class="vertical-section">
-                <paper-input label="label"></paper-input>
-
-                <paper-input label="password" type="password"></paper-input>
-
-                <paper-input no-label-float="" label="label (no-label-float)"></paper-input>
-
-                <paper-input label="disabled" disabled=""></paper-input>
+                <p:PaperInput label="label"/>
+                <p:PaperInput label="password" type="password"/>
+                <p:PaperInput noLabelFloat="true" label="label (no-label-float)"/>
+                <p:PaperInput label="disabled" disabled="true"/>
             </div>
 
             <h4>Text area</h4>
             <div class="vertical-section">
-                <paper-textarea label="textarea label"></paper-textarea>
+                <p:PaperTextarea label="textarea label"/>
             </div>
 
             <h4>Validation</h4>
             <div class="vertical-section">
-                <paper-input label="only type letters (auto-validate)" auto-validate="" pattern="[a-zA-Z]*" error-message="letters only!"></paper-input>
-
-                <paper-input ui:field="inputForValidation" required="" label="only type letters (no auto validate)" pattern="[a-zA-Z]*" error-message="letters only, required input!"/>
+                <p:PaperInput label="only type letters (auto-validate)" autoValidate="true" pattern="[a-zA-Z]*" errorMessage="letters only!"/>
+                <p:PaperInput ui:field="inputForValidation" required="true" label="only type letters (no auto validate)" pattern="[a-zA-Z]*" errorMessage="letters only, required input!"/>
                 <br/>
                 <g:Button ui:field="validateButton">Validate!</g:Button>
             </div>
 
             <h4>Character counter</h4>
             <div class="vertical-section">
-                <paper-input label="label" char-counter=""></paper-input>
-
-                <paper-input label="at most 10 letters" char-counter="" auto-validate="" pattern="[a-zA-Z]*" maxlength="10" error-message="letters only!"></paper-input>
-
-                <paper-textarea label="textarea" char-counter=""></paper-textarea>
-
-                <paper-textarea label="textarea with maxlength" char-counter="" maxlength="10"></paper-textarea>
+                <p:PaperInput label="label" charCounter="true"/>
+                <p:PaperInput label="at most 10 letters" charCounter="true" autoValidate="true" pattern="[a-zA-Z]*" maxlength="10" errorMessage="letters only!"/>
+                <p:PaperTextarea label="textarea" charCounter="true"/>
+                <p:PaperTextarea label="textarea with maxlength" charCounter="true" maxlength="10"/>
             </div>
         </div>
         

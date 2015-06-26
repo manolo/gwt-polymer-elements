@@ -35,12 +35,12 @@ public class MaterialSample extends Composite {
         public void onClick(ClickEvent event) {
             PaperMaterial source = (PaperMaterial) event.getSource();
             if (!down) {
-                source.setElevation(material.getElevation() + 1);
+                source.setElevation(source.getElevation() + 1);
                 if (source.getElevation() == 5) {
                     down = true;
                 }
             } else {
-                source.setElevation(material.getElevation() - 1);
+                source.setElevation(source.getElevation() - 1);
                 if (source.getElevation() == 0) {
                     down = false;
                 }

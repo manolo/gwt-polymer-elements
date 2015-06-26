@@ -50,7 +50,7 @@
         .paper-toast-open {
             z-index: 10;
         }
-        .deckpanel {
+        .panel {
             padding: 20px;
         }
     </ui:style>
@@ -72,7 +72,7 @@
                         <p:PaperButton ui:field="xmlButton" addStyleNames="{style.buttons}"><i:IronIcon icon="launch"/>.ui.xml</p:PaperButton>
                         <p:PaperButton ui:field="javaButton" addStyleNames="{style.buttons}"><i:IronIcon icon="launch"/>.java</p:PaperButton>
                     </p:PaperToolbar>
-                    <g:DeckPanel ui:field="content" animationEnabled="true" addStyleNames="{style.deckpanel}"/>
+                    <g:HTMLPanel ui:field="content" addStyleNames="{style.panel}"/>
                 </p:PaperHeaderPanel>
             </div>
         </p:PaperDrawerPanel>

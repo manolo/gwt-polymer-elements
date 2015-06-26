@@ -14,19 +14,19 @@
             font-weight: 400;
         }
     </ui:style>
-    
+
     <g:HTMLPanel addStyleNames="{style.view}">
         <h2>Paper Tabs based on gwt-polymer widgets</h2>
 
-        
+
         <p:PaperTabs ui:field="tabs">
-            <g:Button>gwt button 1</g:Button>
-            <g:Button>gwt button 2</g:Button>
+            <g:Button ui:field="button1">gwt button 1</g:Button>
+            <g:Button ui:field="button2">gwt button 2</g:Button>
             <p:PaperTab>ITEM ONE</p:PaperTab>
             <p:PaperTab>ITEM TWO</p:PaperTab>
             <p:PaperTab>ITEM THREE</p:PaperTab>
         </p:PaperTabs>
 
-        <p:PaperToast ui:field="toast" text="Your message."/>
+        <p:PaperToast ui:field="toast" text="Tabs Widget example loaded."/>
     </g:HTMLPanel>
 </ui:UiBinder>

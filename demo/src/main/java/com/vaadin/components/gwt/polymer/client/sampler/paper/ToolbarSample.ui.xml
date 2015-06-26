@@ -12,51 +12,51 @@
             }
         </style>
         <p:PaperToolbar>
-            <paper-icon-button icon="menu"></paper-icon-button>
+            <p:PaperIconButton icon="menu"/>
             <span class="title">Toolbar</span>
-            <p:PaperIconButton icon="refresh"></p:PaperIconButton>
+            <p:PaperIconButton icon="refresh"/>
             <p:PaperIconButton icon="add">+</p:PaperIconButton>
         </p:PaperToolbar>
 
-        <paper-toolbar class="tall">
-            <paper-icon-button icon="menu"></paper-icon-button>
+        <p:PaperToolbar addStyleNames="tall">
+            <p:PaperIconButton icon="menu"/>
             <span class="title">Toolbar: tall</span>
-            <paper-icon-button icon="refresh"></paper-icon-button>
-            <paper-icon-button icon="add">+</paper-icon-button>
-        </paper-toolbar>
+            <p:PaperIconButton icon="refresh"/>
+            <p:PaperIconButton icon="add">+</p:PaperIconButton>
+        </p:PaperToolbar>
 
-        <paper-toolbar class="tall">
-            <paper-icon-button icon="menu" class="bottom"></paper-icon-button>
+        <p:PaperToolbar addStyleNames="tall">
+            <p:PaperIconButton icon="menu" addStyleNames="bottom"/>
             <span class="bottom title">Toolbar: tall with elements pin to the bottom</span>
-            <paper-icon-button icon="refresh" class="bottom"></paper-icon-button>
-            <paper-icon-button icon="add" class="bottom">+</paper-icon-button>
-        </paper-toolbar>
+            <p:PaperIconButton icon="refresh" addStyleNames="bottom"/>
+            <p:PaperIconButton icon="add" addStyleNames="bottom">+</p:PaperIconButton>
+        </p:PaperToolbar>
 
-        <paper-toolbar class="medium-tall">
-            <paper-icon-button icon="menu"></paper-icon-button>
-            <span class="flex"></span>
-            <paper-icon-button icon="refresh"></paper-icon-button>
-            <paper-icon-button icon="add">+</paper-icon-button>
+        <p:PaperToolbar addStyleNames="medium-tall">
+            <p:PaperIconButton icon="menu"/>
+            <span class="flex"/>
+            <p:PaperIconButton icon="refresh"/>
+            <p:PaperIconButton icon="add">+</p:PaperIconButton>
             <span class="bottom title">Toolbar: medium-tall with label aligns to the bottom</span>
-        </paper-toolbar>
+        </p:PaperToolbar>
 
-        <paper-toolbar class="tall">
-            <paper-icon-button icon="menu"></paper-icon-button>
-            <div class="flex"></div>
-            <paper-icon-button icon="refresh"></paper-icon-button>
-            <paper-icon-button icon="add">+</paper-icon-button>
+        <p:PaperToolbar addStyleNames="tall">
+            <p:PaperIconButton icon="menu"/>
+            <div class="flex"/>
+            <p:PaperIconButton icon="refresh"/>
+            <p:PaperIconButton icon="add">+</p:PaperIconButton>
             <div class="middle title">label aligns to the middle</div>
             <div class="bottom title">some stuffs align to the bottom</div>
-        </paper-toolbar>
+        </p:PaperToolbar>
 
-        <paper-toolbar class="tall">
-            <paper-icon-button icon="menu"></paper-icon-button>
-            <div class="flex"></div>
-            <paper-icon-button icon="refresh"></paper-icon-button>
-            <paper-icon-button icon="add">+</paper-icon-button>
+        <p:PaperToolbar addStyleNames="tall">
+            <p:PaperIconButton icon="menu"/>
+            <div class="flex"/>
+            <p:PaperIconButton icon="refresh"/>
+            <p:PaperIconButton icon="add">+</p:PaperIconButton>
             <div class="middle title">element (e.g. progress) fits at the bottom of the toolbar</div>
-            <div class="bottom flex" style="height: 20px; background-color: #0f9d58;"></div>
-        </paper-toolbar>
+            <div class="bottom flex" style="height: 20px; background-color: #0f9d58;"/>
+        </p:PaperToolbar>
         
     </g:HTMLPanel>
 </ui:UiBinder>

@@ -91,9 +91,9 @@
                 <div class="horizontal-section">
                     <p:PaperButton>button</p:PaperButton>
                     <p:PaperButton addStyleNames="colorful">colorful</p:PaperButton>
-                    <p:PaperButton disabled="">disabled</p:PaperButton>
-                    <p:PaperButton noink="">noink</p:PaperButton>
-                    <p:PaperButton addStyleNames="colorful custom"><i:IronIcon icon="check"/>ok</p:PaperButton>
+                    <p:PaperButton disabled="true">disabled</p:PaperButton>
+                    <p:PaperButton noink="true">noink</p:PaperButton>
+                    <p:PaperButton noink="false" addStyleNames="colorful custom"><i:IronIcon icon="check"/>ok</p:PaperButton>
                     <p:PaperButton addStyleNames="custom"><i:IronIcon icon="clear"/>cancel</p:PaperButton>
                 </div>
             </div>
@@ -102,35 +102,35 @@
                 <h4>Raised</h4>
                 <div class="horizontal-section">
                     <p:PaperButton raised="true">button</p:PaperButton>
-                    <paper-button tabindex="0" raised="" class="colorful">colorful</paper-button>
-                    <paper-button tabindex="0" raised="" disabled="">disabled</paper-button>
-                    <paper-button tabindex="0" raised="" noink="">noink</paper-button>
-                    <paper-button tabindex="0" raised="" class="colorful custom"><iron-icon icon="check"></iron-icon>ok</paper-button>
-                    <paper-button tabindex="0" raised="" class="custom"><iron-icon icon="clear"></iron-icon>cancel</paper-button>
+                    <p:PaperButton tabindex="0" raised="true" addStyleNames="colorful">colorful</p:PaperButton>
+                    <p:PaperButton tabindex="0" raised="true" disabled="true">disabled</p:PaperButton>
+                    <p:PaperButton tabindex="0" raised="true" noink="true">noink</p:PaperButton>
+                    <p:PaperButton tabindex="0" raised="true" addStyleNames="colorful custom"><i:IronIcon icon="check"/>ok</p:PaperButton>
+                    <p:PaperButton tabindex="0" raised="true" addStyleNames="custom"><i:IronIcon icon="clear"/>cancel</p:PaperButton>
                 </div>
             </div>
 
             <div>
                 <h4>Toggleable</h4>
                 <div class="horizontal-section">
-                    <paper-button tabindex="0" toggles="">button</paper-button>
-                    <paper-button tabindex="0" toggles="" raised="" noink="">noink</paper-button>
-                    <paper-button tabindex="0" toggles="" active="" class="colorful">colorful</paper-button>
-                    <paper-button tabindex="0" toggles="" raised="" active="" class="colorful">colorful</paper-button>
-                    <paper-button tabindex="0" toggles="" class="colorful custom"><iron-icon icon="check"></iron-icon>ok</paper-button>
-                    <paper-button tabindex="0" toggles="" class="custom"><iron-icon icon="clear"></iron-icon>cancel</paper-button>
+                    <p:PaperButton tabindex="0" toggles="true">button</p:PaperButton>
+                    <p:PaperButton tabindex="0" toggles="true" raised="true" noink="true">noink</p:PaperButton>
+                    <p:PaperButton tabindex="0" toggles="true" active="true" addStyleNames="colorful">colorful</p:PaperButton>
+                    <p:PaperButton tabindex="0" toggles="true" raised="true" active="true" addStyleNames="colorful">colorful</p:PaperButton>
+                    <p:PaperButton tabindex="0" toggles="true" addStyleNames="colorful custom"><i:IronIcon icon="check"/>ok</p:PaperButton>
+                    <p:PaperButton tabindex="0" toggles="true" addStyleNames="custom"><i:IronIcon icon="clear"/>cancel</p:PaperButton>
                 </div>
             </div>
 
             <div>
                 <h4>Color</h4>
                 <div class="horizontal-section">
-                    <paper-button tabindex="0" class="blue ripple">button</paper-button>
-                    <paper-button tabindex="0" class="red ripple">noink</paper-button>
-                    <paper-button tabindex="0" class="orange ripple">colorful</paper-button>
-                    <paper-button tabindex="0" class="green ripple">colorful</paper-button>
-                    <paper-button tabindex="0" class="red ripple"><iron-icon icon="check"></iron-icon>ok</paper-button>
-                    <paper-button tabindex="0" class="blue ripple"><iron-icon icon="clear"></iron-icon>cancel</paper-button>
+                    <p:PaperButton tabindex="0" addStyleNames="blue ripple">button</p:PaperButton>
+                    <p:PaperButton tabindex="0" addStyleNames="red ripple">noink</p:PaperButton>
+                    <p:PaperButton tabindex="0" addStyleNames="orange ripple">colorful</p:PaperButton>
+                    <p:PaperButton tabindex="0" addStyleNames="green ripple">colorful</p:PaperButton>
+                    <p:PaperButton tabindex="0" addStyleNames="red ripple"><i:IronIcon icon="check"/>ok</p:PaperButton>
+                    <p:PaperButton tabindex="0" addStyleNames="blue ripple"><i:IronIcon icon="clear"/>cancel</p:PaperButton>
                 </div>
             </div>
         </div>
