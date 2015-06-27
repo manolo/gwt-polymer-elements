@@ -83,7 +83,7 @@ Although it's not necessary, you might want to compile the `gwt-polymer-elements
 
 ## Usage
 
- - Consuming Polymer components in Java using the Element API
+ - Consuming Polymer components in Java using the *Element API*
 ```java
   // Create a new instance of PaperButton
   PaperButtonElement button = Polymer.create(PaperButtonElement.TAG);
@@ -103,7 +103,7 @@ Although it's not necessary, you might want to compile the `gwt-polymer-elements
   // Append to the document
   myContainerElement.appendChild(button);
 ```
- - Consuming Polymer components in Java using classic Widgets
+ - Consuming Polymer components in Java using classic *Widget API*
 
 ```java
 PaperButton button = new PaperButton();
@@ -117,7 +117,7 @@ button.addClickHandler(new ClickHandler() {
 RootPanel.get().add(button);
 ```
 
- - Consuming Polymer components in UiBinder
+ - Consuming Polymer components in *UiBinder*
 ```xml
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
     xmlns:g='urn:import:com.google.gwt.user.client.ui'
@@ -139,6 +139,30 @@ RootPanel.get().add(button);
 </g:HTMLPanel>
 
 ```
+ - *Styling* your aplication.
+Polymer uses Shadow DOM styling rules for providing scoped styling of the element’s local DOM using some extra syntax which is not understable by the GWT GSS parser.
+
+Polymer takes care of parsing any `<style>` block you might have in your host page, but if you want to specify some styling rules using polymer specific syntax in UiBinder, you have to add then to the `html` code.
+
+```xml
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+    xmlns:g='urn:import:com.google.gwt.user.client.ui'
+    xmlns:p='urn:import:com.vaadin.polymer.paper.widget'>
+
+<g:HTMLPanel>
+  <style is="custom-style">
+     paper-toolbar paper-icon-button {
+        --paper-icon-button-ink-color: var(--paper-indigo-500);     
+     }
+  </style>
+  <p:PaperToolbar>
+     <p:PaperIconButton icon="menu"/>
+     <span class="title">Toolbar</span>
+  </p:PaperToolbar>
+</g:HTMLPanel>
+```
+
+For more information about polymer styling syntax visit their [documentation](https://www.polymer-project.org/1.0/docs/devguide/styling.html)
 
 ## Notes
 ### Using Polyfills
