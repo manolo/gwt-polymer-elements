@@ -141,9 +141,9 @@ RootPanel.get().add(button);
 ```
  - **Styling** your aplication.
 
-  Polymer uses Shadow DOM styling rules for providing scoped styling of the element’s local DOM using some extra syntax which is not understable by the GWT GSS parser.
+  Polymer uses Shadow DOM styling rules for providing scoped styling of the element’s local DOM. It supports  some extra syntax which is not understable by the GWT GSS parser.
 
-  Polymer takes care of parsing any `<style>` block you might have in your host page, but if you want to specify some styling rules using polymer specific syntax in UiBinder, you have to add then to the `html` code.
+  Polymer takes care of its syntax parsing any `<style>` block you might have in your host page, but if you want to specify some styling rules in UiBinder, you have to add your style blocks to any panel.
 
   ```xml
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
