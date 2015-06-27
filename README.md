@@ -209,8 +209,8 @@ RootPanel.get().add(button);
 
 ### Element vs Widget API
  
- `gwt-polymer-elements` provide java classes to handle web components using both ways. In future releases of GWT it will be recomended to use `Element`s directly instead of `Widget`s. But right elements is more complex since GWT lacks of a complete elemental API for all browsers relying on `JsInterop`.
- We provide a very basic implementation of elemental interfaces needed for our implementation, if you miss some method, open a ticket. This elemental implementation would be replaced by Elemental-2.0 when it was available.
+ `gwt-polymer-elements` provide java classes to handle web components using both ways. In future releases of GWT it will be recomended to use `Element`s directly instead of `Widget`s. But right now elements usage is more complex since GWT lacks of a complete elemental API for all browsers relying on `JsInterop`.
+ We provide a very basic implementation of elemental interfaces limited to those needed for our implementation, if you miss some method, please open a ticket. This elemental implementation will be replaced by Elemental-2.0 when it was available.
  
- In summary, we can say that for classic and production GWT projects it would be easier to use the Widget API among UIBinders. But if you want to get rid of all widget hierarchy we would recomend start using the element API mixing it with some DOM manipulation library like `gwtquery`.
+ In summary, we can say that for classic and production GWT projects it would be easier to use the Widget API together with UIBinders, since the API would not have important changes. But if you want to get rid of all widget hierarchy we recomend to start using the element API mixing it with some DOM manipulation library like `gwtquery`.
   
