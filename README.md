@@ -206,8 +206,8 @@ RootPanel.get().add(button);
    })
    
  ```
- 
- ### Element vs Widget API
+
+### Element vs Widget API
  
  `gwt-polymer-elements` provide java classes to handle web components using both ways. In future releases of GWT it will be recomended to use `Element`s directly instead of `Widget`s. But right elements is more complex since GWT lacks of a complete elemental API for all browsers relying on `JsInterop`.
  We provide a very basic implementation of elemental interfaces needed for our implementation, if you miss some method, open a ticket. This elemental implementation would be replaced by Elemental-2.0 when it was available.
