@@ -7,17 +7,29 @@ Allows to use Polymer [paper-elements](https://elements.polymer-project.org/brow
 The library has been generated using Vaadin [gwt-api-generator](https://github.com/vaadin/gwt-api-generator) an utility able to inspect polymer webcomponents and emit GWT java code.
 
 ## Demo
- Visit our [show case](http://vaadin.github.io/gwt-polymer-elements/demo/) to see how components look like, and to take a look to the example code to use each component.
+ Visit our [show case](http://vaadin.github.io/gwt-polymer-elements/demo/) to see how components look like, and to take a look to the example code using each component.
   
 ## Javadocs
- When we parse the original components to generate the Java API, we copy all the existing JS documentation so as it's available in the [javadoc](http://vaadin.github.io/gwt-polymer-elements/api/). Note that sometimes descriptions would refer to JS, but we consider that it's better to maintain the info.
+ When we parse the original components code to generate the Java API, we copy all the existing JS documentation so as it's available in the [javadoc](http://vaadin.github.io/gwt-polymer-elements/api/). Note that sometimes descriptions would refer to JS, but we consider that it's better to maintain the info.
 
 ## Using the GWT Polymer/Paper library
 
 The `.jar` file includes all the java code and web components of
 Polymer Iron and Paper collections, so as you don't have to deal with the process of downloading and deploying all js wrapped libraries and components.
 
- - If your project uses maven, configure it to use the Sonatype snapshot repository and add the dependency:
+ - If your project uses maven add the dependency:
+
+  ```xml
+   <dependencies>
+     <dependency>
+       <groupId>com.vaadin.polymer</groupId>
+       <artifactId>gwt-polymer-elements</artifactId>
+       <version>1.0.2.0.alpha2</version>
+       <scope>provided</scope>
+     </dependency>
+   </dependencies>
+  ```
+- Optional: if you wanted to play with `SNAPSHOT` versions you need to add the Sonatype snapshot repo:
 
   ```xml
    <repositories>
@@ -27,16 +39,7 @@ Polymer Iron and Paper collections, so as you don't have to deal with the proces
        <snapshots><enabled>true</enabled></snapshots>
        <releases><enabled>false</enabled></releases>
      </repository>
-    ...
    </repositories>
-   <dependencies>
-     <dependency>
-       <groupId>com.vaadin.polymer</groupId>
-       <artifactId>gwt-polymer-elements</artifactId>
-       <version>1.0.2.0.alpha2-SNAPSHOT</version>
-       <scope>provided</scope>
-     </dependency>
-   </dependencies>
   ```
 
 - otherwise you can [download](https://oss.sonatype.org/content/repositories/snapshots/com/vaadin/polymer/gwt-polymer-elements/)
@@ -65,7 +68,7 @@ Polymer Iron and Paper collections, so as you don't have to deal with the proces
 
 ## Building the project
 
-You might want to compile the `gwt-polymer-elements` library by yourself. 
+Although it's not necessary, you might want to compile the `gwt-polymer-elements` library by yourself. 
 
  1. Clone the repository with `$ git checkout https://github.com/vaadin/gwt-polymer-elements.git`
  1. Change to the project folder `$ cd gwt-polymer-elements`
@@ -204,4 +207,10 @@ RootPanel.get().add(button);
    
  ```
  
+ ### Element vs Widget API
+ 
+ `gwt-polymer-elements` provide java classes to handle web components using both ways. In future releases of GWT it will be recomended to use `Element`s directly instead of `Widget`s. But right elements is more complex since GWT lacks of a complete elemental API for all browsers relying on `JsInterop`.
+ We provide a very basic implementation of elemental interfaces needed for our implementation, if you miss some method, open a ticket. This elemental implementation would be replaced by Elemental-2.0 when it was available.
+ 
+ In summary, we can say that for classic and production GWT projects it would be easier to use the Widget API among UIBinders. But if you want to get rid of all widget hierarchy we would recomend start using the element API mixing it with some DOM manipulation library like `gwtquery`.
   
