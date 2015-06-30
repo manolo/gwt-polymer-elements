@@ -24,12 +24,12 @@ Polymer Iron and Paper collections, so as you don't have to deal with the proces
      <dependency>
        <groupId>com.vaadin.polymer</groupId>
        <artifactId>gwt-polymer-elements</artifactId>
-       <version>1.0.2.0.alpha2</version>
+       <version>1.0.2.0.alpha2-SNAPSHOT</version>
        <scope>provided</scope>
      </dependency>
    </dependencies>
   ```
-- Optional: if you wanted to play with `SNAPSHOT` versions you need to add the Sonatype snapshot repo:
+- In order to use `SNAPSHOT` versions you need to add the Sonatype snapshot repo:
 
   ```xml
    <repositories>
