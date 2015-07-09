@@ -14,5 +14,35 @@
   </head>
 
   <body>
+    <style>
+      body {
+        padding: 24px;
+        margin: 0px;
+      }
+      #loading {
+         width: 100%;
+         text-align: center;
+         font-family: arial;
+         font-size: 24px !important;
+         color: #4285f4;
+      }
+      paper-drawer-panel {
+        -webkit-transition: all 1s;
+        transition: all 1s;
+        opacity: 0;
+      }
+    </style>
+    <div id="loading">Loading ...</div>
+    <div id="content"></div>
+    <script>
+      var id = setInterval(function() {
+        var d = document.querySelector("paper-drawer-panel")
+        if (d && d.constructor !== HTMLElement && d.constructor !== HTMLUnknownElement) {
+          clearInterval(id);
+          d.style.opacity = 1;
+        }
+      }, 100);
+    </script>
   </body>
+
 </html>
