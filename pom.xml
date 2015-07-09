@@ -9,7 +9,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.vaadin.polymer</groupId>
   <version>1.0.2.0-alpha2-SNAPSHOT</version>
-  <artifactId>gwt-polymer-elements</artifactId>
+  <artifactId>vaadin-gwt-polymer-elements</artifactId>
   <name>gwt-polymer-elements</name>
   <description>gwt-polymer-elements</description>
  

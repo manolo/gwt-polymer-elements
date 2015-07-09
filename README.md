@@ -23,7 +23,7 @@ Polymer Iron and Paper collections, so as you don't have to deal with the proces
    <dependencies>
      <dependency>
        <groupId>com.vaadin.polymer</groupId>
-       <artifactId>gwt-polymer-elements</artifactId>
+       <artifactId>vaadin-gwt-polymer-elements</artifactId>
        <version>1.0.2.0.alpha2-SNAPSHOT</version>
        <scope>provided</scope>
      </dependency>
@@ -42,7 +42,7 @@ Polymer Iron and Paper collections, so as you don't have to deal with the proces
    </repositories>
   ```
 
-- otherwise you can [download](https://oss.sonatype.org/content/repositories/snapshots/com/vaadin/polymer/gwt-polymer-elements/)
+- otherwise you can [download](https://oss.sonatype.org/content/repositories/snapshots/com/vaadin/polymer/vaadin-gwt-polymer-elements/)
   the `.jar` archive and put it in your gwt project classpath
 
 - Add this line to your GWT module file:
