@@ -1,7 +1,7 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
              xmlns:p='urn:import:com.vaadin.polymer.paper.widget'>
-    
+
     <ui:style>
         @external .menu-sample, .horizontal-section;
 
@@ -12,7 +12,7 @@
 
     <g:HTMLPanel addStyleNames="menu-sample">
 
-        <div class="horizontal center-justified layout">
+        <div class="horizontal-section-container center-justified layout">
             <div>
                 <h4>Standard</h4>
                 <div class="horizontal-section">
@@ -49,6 +49,6 @@
                 </div>
             </div>
         </div>
-        
+
     </g:HTMLPanel>
 </ui:UiBinder>

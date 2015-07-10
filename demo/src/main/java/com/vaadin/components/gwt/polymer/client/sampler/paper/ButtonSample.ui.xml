@@ -4,7 +4,7 @@
              xmlns:i='urn:import:com.vaadin.polymer.iron.widget'
         >
 
-    
+
 
     <g:HTMLPanel addStyleNames="button-sample">
 
@@ -12,37 +12,37 @@
             .button-sample .horizontal-section {
                 min-width: 130px;
             }
-            
+
             .button-sample paper-button {
                 display: block;
                 margin-bottom: 24px;
             }
-            
+
             .button-sample paper-button.colorful {
                 color: #4285f4;
             }
-            
+
             .button-sample paper-button[raised].colorful {
                 background: #4285f4;
                 color: #fff;
             }
-            
+
             .button-sample paper-button[toggles] {
                 transition: background-color 0.3s;
             }
-            
+
             .button-sample paper-button[toggles][active] {
                 background-color: rgba(0, 0, 0, 0.25);
             }
-            
+
             .button-sample paper-button[toggles][active].colorful {
                 background-color: rgba(66, 133, 244, 0.25);
             }
-            
+
             .button-sample paper-button[toggles][active][raised].colorful {
                 background-color: rgba(66, 133, 244, 0.75);
             }
-            
+
             .button-sample paper-button.blue {
                 color: var(--paper-light-blue-500);
                 --paper-button-flat-focus-color: var(--paper-light-blue-50);
@@ -71,21 +71,21 @@
             .button-sample paper-button.orange:hover {
                 background: var(--paper-orange-50);
             }
-            
+
             .button-sample paper-button.hover:hover {
                 background: #eee;
             }
-            
+
             .button-sample paper-button.ripple::shadow paper-ripple {
                 color: var(--paper-pink-a200);
             }
-            
+
             .button-sample paper-button.ripple paper-ripple {
                 color: var(--paper-pink-a200);
             }
         </style>
 
-        <div class="horizontal center-justified layout">
+        <div class="horizontal-section-container  center-justified layout">
             <div>
                 <h4>Flat</h4>
                 <div class="horizontal-section">

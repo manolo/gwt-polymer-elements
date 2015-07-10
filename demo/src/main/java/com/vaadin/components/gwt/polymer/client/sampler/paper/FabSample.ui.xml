@@ -1,42 +1,42 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
              xmlns:p='urn:import:com.vaadin.polymer.paper.widget'>
-    
+
     <ui:style>
 
     </ui:style>
 
     <g:HTMLPanel addStyleNames="fab-sample">
         <style is="custom-style">
-        
+
             .fab-sample .horizontal-section {
                 min-width: 200px;
             }
-        
+
             .fab-sample paper-fab {
                 display: block;
                 margin-bottom:24px;
                 margin-left: auto;
                 margin-right: auto;
             }
-        
+
             .fab-sample paper-fab.blue {
                 --paper-fab-background: var(--paper-light-blue-500);
             }
-        
+
             .fab-sample paper-fab.red {
                 --paper-fab-background: var(--paper-red-500);
             }
-        
+
             .fab-sample paper-fab.green {
                 --paper-fab-background: var(--paper-green-500);
             }
-        
+
             .fab-sample paper-fab.orange {
                 --paper-fab-background: var(--paper-orange-500);
             }
         </style>
-        <div class="horizontal center-justified layout">
+        <div class="horizontal-section-container center-justified layout">
             <div>
                 <h4>Enabled</h4>
                 <div class="horizontal-section">
@@ -70,6 +70,6 @@
                 </div>
             </div>
         </div>
-        
+
     </g:HTMLPanel>
 </ui:UiBinder>

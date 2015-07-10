@@ -43,7 +43,7 @@
                 --paper-spinner-layer-4-color: var(--paper-green-500);
             }
         </style>
-        <div class="horizontal center-justified layout">
+        <div class="horizontal-section-container center-justified layout">
             <div>
                 <h4>Default</h4>
                 <div class="horizontal-section">

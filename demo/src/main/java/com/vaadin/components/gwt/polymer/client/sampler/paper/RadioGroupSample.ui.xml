@@ -43,7 +43,7 @@
             }
         </style>
 
-        <div class="horizontal center-justified layout">
+        <div class="horizontal-section-container center-justified layout">
             <div>
                 <h4>Enabled</h4>
                 <div class="horizontal-section">

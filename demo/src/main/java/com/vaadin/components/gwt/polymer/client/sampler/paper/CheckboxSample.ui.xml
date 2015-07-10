@@ -4,33 +4,33 @@
 
     <g:HTMLPanel addStyleNames="checkbox-sample">
         <style is="custom-style">
-            
+
             .checkbox-sample paper-checkbox {
                 display: block;
                 margin-bottom: 40px;
             }
-            
+
             .checkbox-sample paper-checkbox.blue {
                 --paper-checkbox-checked-color: var(--paper-light-blue-500);
                 --paper-checkbox-checked-ink-color: var(--paper-light-blue-500);
                 --paper-checkbox-unchecked-color: var(--paper-light-blue-900);
                 --paper-checkbox-unchecked-ink-color: var(--paper-light-blue-900);
             }
-            
+
             .checkbox-sample paper-checkbox.red {
                 --paper-checkbox-checked-color: var(--paper-red-500);
                 --paper-checkbox-checked-ink-color: var(--paper-red-500);
                 --paper-checkbox-unchecked-color: var(--paper-red-900);
                 --paper-checkbox-unchecked-ink-color: var(--paper-red-900);
             }
-            
+
             .checkbox-sample paper-checkbox.green {
                 --paper-checkbox-checked-color: var(--paper-green-500);
                 --paper-checkbox-checked-ink-color: var(--paper-green-500);
                 --paper-checkbox-unchecked-color: var(--paper-green-900);
                 --paper-checkbox-unchecked-ink-color: var(--paper-green-900);
             }
-            
+
             .checkbox-sample paper-checkbox.orange {
                 --paper-checkbox-checked-color: var(--paper-orange-500);
                 --paper-checkbox-checked-ink-color: var(--paper-orange-500);
@@ -38,7 +38,7 @@
                 --paper-checkbox-unchecked-ink-color: var(--paper-orange-900);
             }
         </style>
-        <div class="horizontal center-justified layout">
+        <div class="horizontal-section-container center-justified layout">
             <div>
                 <h4>Enabled</h4>
                 <div class="horizontal-section">

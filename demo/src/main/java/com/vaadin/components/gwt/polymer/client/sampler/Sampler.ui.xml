@@ -20,10 +20,10 @@
             font-size: large;
             color: #f1f1f1;
         }
-
         .item {
-            padding-left: 20px;
+            padding-left: 50px;
             font-size: 15px;
+            min-height: 37px !important;
         }
         .list {
             background-color: #F5F4F4;
@@ -43,6 +43,9 @@
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
+            font-size: 140%;
+            color: #DDD7D7;
+            margin-left: 10px;
         }
         paper-header-panel {
             z-index: auto !important;
@@ -53,22 +56,48 @@
         .panel {
             padding: 20px;
         }
+        paper-item {
+            cursor: pointer;
+        }
+        .title {
+           font-size: 135%;
+           text-align: center;
+           padding: 5px;
+        }
     </ui:style>
 
     <g:HTMLPanel>
+       <style is='custom-style'>
+        .iconpolymer {
+           margin-right: 10px;
+           --paper-fab-background: var(--paper-purple-500);
+        }
+        .icongwt {
+           margin-right: 10px;
+           --paper-fab-background: var(--paper-red-500);
+        }
+        .iconvaadin {
+           margin-right: 10px;
+           --paper-fab-background: var(--paper-light-blue-500);
+        }
+       </style>
 
         <p:PaperDrawerPanel ui:field="drawerPanel">
             <div drawer="">
                 <p:PaperHeaderPanel mode="seamed">
-                    <p:PaperToolbar addStyleNames="{style.toolbar}"><span class="title">GWT-Polymer</span></p:PaperToolbar>
+                    <p:PaperToolbar addStyleNames="{style.toolbar} ">
+                    <p:PaperFab ui:field="logo1" src="img/vaadin.png" attributes="mini" addStyleNames="iconvaadin"></p:PaperFab>
+                    <p:PaperFab ui:field="logo2" src="img/gwt.png" attributes="mini" addStyleNames="icongwt"></p:PaperFab>
+                    <p:PaperFab ui:field="logo3" icon="polymer" attributes="mini" addStyleNames="iconpolymer"></p:PaperFab>
+                    </p:PaperToolbar>
                     <g:FlowPanel ui:field="listPanel" addStyleNames="{style.list}"/>
                 </p:PaperHeaderPanel>
             </div>
             <div main="">
                 <p:PaperHeaderPanel mode="seamed">
                     <p:PaperToolbar addStyleNames="{style.toolbar}">
-                        <p:PaperIconButton ui:field="menuButton" icon="menu"/>
-                        <span ui:field="currentLabel" class="flex {style.current}"></span>
+                        <p:PaperIconButton icon="menu" attributes="paper-drawer-toggle" />
+                        <span class="">Example: </span><span ui:field="currentLabel" class="flex {style.current}"></span>
                         <p:PaperButton ui:field="xmlButton" addStyleNames="{style.buttons}"><i:IronIcon icon="launch"/>.ui.xml</p:PaperButton>
                         <p:PaperButton ui:field="javaButton" addStyleNames="{style.buttons}"><i:IronIcon icon="launch"/>.java</p:PaperButton>
                     </p:PaperToolbar>
@@ -76,6 +105,33 @@
                 </p:PaperHeaderPanel>
             </div>
         </p:PaperDrawerPanel>
+
+        <p:PaperDialog ui:field="about" modal="true" >
+            <h2>About GWT-Polymer-Elements</h2>
+             <p>
+               GWT-Polymer-Elements is an Apache licensed library developed in Vaadin labs.
+             </p>
+             <p>
+               It allows to use Polymer-Iron and Polymer-Paper elements in GWT projects.
+             </p>
+             <p>
+               The library has been generated using Vaadin gwt-api-generator, an utility able to inspect polymer webcomponents and emit GWT java code.
+             </p>
+             <p>
+               Thus the project does not maintain any java code apart from the demo. It is actually a couple of scripts able to download components, generate java wrappers, and eventually compile and deploy generated .jar to maven repos.
+             </p>
+             <p>
+               The main goal is to reuse reaady to use components using modern technics like JsInterop and doc parsers instead of the classic tedious way of manually inspecting external JS APIs and write dozens of java classes by hand. 
+             </p>
+             <p>
+               Web components is a technology is based on new standards, hence it's a technology thought for the future. We are perfectly aware about performance problems in browsers not already implementing those standards, but it shouldn't be a problem in the near future.
+               
+               We think that it is worth to start sooner experimenting and learning web components and contribute with the growing community around these new tencencies. 
+             </p>
+            <div class="buttons">
+                <p:PaperButton attributes="dialog-dismiss ">OK</p:PaperButton>
+            </div>
+        </p:PaperDialog>
 
     </g:HTMLPanel>
 </ui:UiBinder>

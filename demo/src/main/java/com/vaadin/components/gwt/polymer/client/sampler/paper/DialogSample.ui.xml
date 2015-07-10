@@ -23,17 +23,21 @@
 
     <g:HTMLPanel addStyleNames="dialog-sample">
         <style is="custom-style">
-        
-            paper-button.emphasised {
+
+            .dialog-sample paper-button {
+               margin-top: 12px;
+            }
+
+            .dialog-sample paper-button.emphasised {
                 background-color: var(--google-grey-300);
                 padding: 5px;
             }
-            
-            paper-button.emphasised:hover {
+
+            .dialog-sample paper-button.emphasised:hover {
                 background-color: var(--paper-light-blue-200);
                 padding: 5px;
             }
-            
+
             .dialog-sample paper-dialog.colored {
                 border: 2px solid;
                 border-color: var(--paper-green-500);

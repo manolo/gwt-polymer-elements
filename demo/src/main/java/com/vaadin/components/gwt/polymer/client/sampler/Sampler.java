@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.dom.client.SpanElement;
@@ -14,6 +15,7 @@ import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.resources.client.CssResource;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
@@ -46,11 +48,13 @@ import com.vaadin.components.gwt.polymer.client.sampler.paper.ToastSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.ToggleButtonSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.ToolbarSample;
 import com.vaadin.polymer.Polymer;
+import com.vaadin.polymer.PolymerWidget;
+import com.vaadin.polymer.elemental.Function;
 import com.vaadin.polymer.iron.widget.IronCollapse;
 import com.vaadin.polymer.iron.widget.IronSelector;
 import com.vaadin.polymer.paper.widget.PaperButton;
+import com.vaadin.polymer.paper.widget.PaperDialog;
 import com.vaadin.polymer.paper.widget.PaperDrawerPanel;
-import com.vaadin.polymer.paper.widget.PaperIconButton;
 import com.vaadin.polymer.paper.widget.PaperItem;
 
 public class Sampler extends Composite {
@@ -72,52 +76,21 @@ public class Sampler extends Composite {
     private static SamplerUiBinder ourUiBinder = GWT.create(SamplerUiBinder.class);
 
     private Map<String, IronSelector> selectorMap = new HashMap<>();
-    private Map<String, IronCollapse> collapseMap = new HashMap<>();
+    private TreeMap<String, IronCollapse> collapseMap = new TreeMap<>();
     private List<Item> items = new ArrayList<>();
     private Item currentItem;
 
-    @UiField
-    Style style;
+    @UiField Style style;
 
-    @UiField
-    PaperDrawerPanel drawerPanel;
-    @UiField
-    PaperIconButton menuButton;
-    @UiField
-    FlowPanel listPanel;
-    @UiField
-    HTMLPanel content;
-    @UiField
-    SpanElement currentLabel;
-    @UiField
-    PaperButton xmlButton;
-    @UiField PaperButton javaButton;
+    @UiField PaperDrawerPanel drawerPanel;
+    @UiField FlowPanel listPanel;
+    @UiField HTMLPanel content;
+    @UiField SpanElement currentLabel;
+    @UiField PaperDialog about;
+    @UiField PaperButton xmlButton;
 
     public Sampler() {
         initWidget(ourUiBinder.createAndBindUi(this));
-
-        menuButton.addClickHandler(new ClickHandler() {
-            @Override
-            public void onClick(ClickEvent event) {
-                drawerPanel.togglePanel();
-            }
-        });
-
-        xmlButton.addClickHandler(new ClickHandler() {
-            @Override
-            public void onClick(ClickEvent event) {
-                Window.open(REPO_PATH + currentItem.category + "/" + currentItem.path + ".ui.xml", "_blank", "");
-            }
-        });
-
-        javaButton.addClickHandler(new ClickHandler() {
-            @Override
-            public void onClick(ClickEvent event) {
-                Window.open(REPO_PATH + currentItem.category + "/" + currentItem.path + ".java", "_blank", "");
-            }
-        });
-
-        menuButton.setBooleanAttribute("paper-drawer-toggle", true);
 
 
         addCategory("iron", "Iron Elements");
@@ -130,9 +103,9 @@ public class Sampler extends Composite {
         addSample("Dialog", new DialogSample(), "paper", "DialogSample");
         // not suitable for current showcase. In original showcase it works inside iframe
 //        addSample("DrawerPanel", new DrawerPanelSample(), "paper", "DrawerPanelSample");
-        addSample("Fab", new FabSample(), "paper", "FabSample");
-        addSample("HeaderPanel", new HeaderPanelSample(), "paper", "HeaderPanelSample");
-        addSample("IconButton", new IconButtonSample(), "paper", "IconButtonSample");
+        addSample("Floating Button", new FabSample(), "paper", "FabSample");
+        addSample("Header Panel", new HeaderPanelSample(), "paper", "HeaderPanelSample");
+        addSample("Icon Button", new IconButtonSample(), "paper", "IconButtonSample");
         addSample("Item", new ItemSample(), "paper", "ItemSample");
         addSample("Input", new InputSample(), "paper", "InputSample");
         addSample("Material", new MaterialSample(), "paper", "MaterialSample");
@@ -153,24 +126,44 @@ public class Sampler extends Composite {
         addSample("Widget UiBinder", new PaperTabsWidgetView(), "gwt", "PaperTabsWidgetView");
         addSample("Java API", new PaperJavaAPI(), "gwt", "PaperJavaAPI", false);
 
-        selectItem(Window.Location.getHash().replace("#", ""));
         History.addValueChangeHandler(new ValueChangeHandler<String>() {
             public void onValueChange(ValueChangeEvent<String> event) {
                 selectItem(event.getValue());
             }
         });
 
-        Polymer.endLoading(this.getElement(), javaButton.getElement());
+        PolymerWidget last = collapseMap.lastEntry().getValue();
+        Polymer.endLoading(this.getElement(), last.getElement());
+        last.ready(new Function() {
+            public Object call(Object arg) {
+                selectItem(Window.Location.getHash().replace("#", ""));
+                return null;
+            }
+        });
+    }
+
+    @UiHandler("xmlButton")
+    protected void onXmlButton(ClickEvent e) {
+        Window.open(REPO_PATH + currentItem.category + "/" + currentItem.path + ".ui.xml", "_blank", "");
+    }
+    @UiHandler("javaButton")
+    protected void onJavaButton(ClickEvent e) {
+        Window.open(REPO_PATH + currentItem.category + "/" + currentItem.path + ".java", "_blank", "");
+    }
+
+    @UiHandler({"logo1", "logo2", "logo3"})
+    protected void onLogo(ClickEvent e) {
+        about.toggle();
     }
 
     private void addCategory(String path, String name) {
-        PaperItem item = new PaperItem(name);
+        PaperItem item = new PaperItem("<iron-icon icon='expand-more'></iron-icon>" + name);
         item.addStyleName(style.category());
-        final IronCollapse collapse = new IronCollapse("");
 
+        final IronCollapse collapse = new IronCollapse("");
         item.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
-                collapse.toggle();
+                setOpened(collapse, !collapse.getOpened());
             }
         });
 
@@ -213,6 +206,12 @@ public class Sampler extends Composite {
         }
     }
 
+    private void setOpened(IronCollapse collapse, boolean opened) {
+        for (IronCollapse c : collapseMap.values()) {
+            c.setOpened(c == collapse && opened);
+        }
+    }
+
     private class Item extends PaperItem implements ClickHandler {
         Widget sample;
         String category;
@@ -221,7 +220,6 @@ public class Sampler extends Composite {
         String path;
         String name;
         int selectorIdx;
-        int sampleIdx;
         boolean uixml;
 
         public Item(IronCollapse collapse, IronSelector selector, String category, String path, int idx, Widget sample, String name, boolean uixml) {
@@ -231,7 +229,6 @@ public class Sampler extends Composite {
             this.category = category;
             this.path = path;
             this.name = name;
-            this.sampleIdx = idx;
             this.sample = sample;
             this.uixml = uixml;
             selectorIdx = selector.getWidgetCount();
@@ -245,7 +242,6 @@ public class Sampler extends Composite {
             for (IronSelector s : selectorMap.values()) {
                 s.setSelected("-1");
             }
-            collapse.setOpened(true);
             selector.getPolymerElement().setAttribute("selected", selectorIdx);
             content.clear();
             content.add(sample);
@@ -256,6 +252,7 @@ public class Sampler extends Composite {
             if (drawerPanel.getNarrow()) {
                 drawerPanel.closeDrawer();
             }
+            setOpened(collapse, true);
         }
     }
 }
