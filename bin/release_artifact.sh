@@ -46,8 +46,8 @@ git push origin master -f
 
 # Change versions in 
 [ -z "$newVersion" ] && exit 3
-perl -pi -e 's,'$currentVersion','$newVersion',g' package.json readme/pom.xml 
+perl -pi -e 's,'$currentVersion','$newVersion',g' package.json demo/pom.xml 
 perl -pi -e 's,version>.*</version,version>'$currentVersion'</version,g' README.md
 
-git commit -m 'Update version for next iteration' package.json readme/pom.xml README.md
+git commit -m 'Update version for next iteration' package.json demo/pom.xml README.md
 git push origin master
