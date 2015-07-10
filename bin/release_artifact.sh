@@ -4,6 +4,15 @@
 # because the plugin updates scm, and expects pom.xml and src folder
 # in master.
 #
+# @usage:
+#   $ git checkout scripts
+#   $ sh bin/release_artifact.sh
+#
+# You need right access to gwt-polymer-elements project in github
+# and a valid user in Sonatype to stage vaadin.com artifacts
+#
+# @author: Manolo Carrasco <manolo@vaadin.com>
+#
 
 # exit in case of failure
 set -x -e

@@ -1,4 +1,13 @@
 #!/bin/sh
+# Script to deploy demos to gh-pages branch.
+#
+# @usage:
+#   $ git checkout scripts
+#   $ sh bin/deploy_demo.sh
+#
+# You need right access to gwt-polymer-elements project in github
+#
+# @author: Manolo Carrasco <manolo@vaadin.com>
 #
 
 # exit in case of failure
@@ -32,12 +41,10 @@ git checkout gh-pages
 # Create an index
 cp demo/demo.html demo/index.html
 
-exit
-
-# Commit changes
+# Commit changes to gh-pages
 git add demo/gwt* 
 git commit -m 'Update demo' demo
 git push origin gh-pages
 
-# Return to original branch
-git checkout scripts
+# Return to master branch
+git checkout master
