@@ -87,13 +87,14 @@ To change the background for toolbar when it is condensed:
       right: 0;
       bottom: 0;
       left: 0;
+
       -moz-box-sizing: border-box;
       box-sizing: border-box;
+
       -webkit-overflow-scrolling: touch;
+
       overflow-x: hidden;
       overflow-y: auto;
-      -webkit-transform: translateZ(0);
-      transform: translateZ(0);
     }
 
     #headerContainer {
@@ -182,8 +183,7 @@ To change the background for toolbar when it is condensed:
        */
       condenses: {
         type: Boolean,
-        value: false,
-        observer: '_condensesChanged'
+        value: false
       },
 
       /**
@@ -251,24 +251,39 @@ To change the background for toolbar when it is condensed:
         value: false
       },
 
-      _headerMargin: {
-        type: Number
+      /**
+       * The state of the header. The initial value is `HEADER_STATE_EXPANDED`.
+       * Depending on the configuration and the `scrollTop` value,
+       * the header state could change to
+       * `HEADER_STATE_HIDDEN`, `HEADER_STATE_CONDESED` and `HEADER_STATE_INTERPOLATED`
+       */
+      headerState: {
+        type: Number,
+        readOnly: true,
+        value: 0
       },
 
       _prevScrollTop: {
-        type: Number
+        type: Number,
+        value: 0
       },
 
       _y: {
-        type: Number
-      }
+        type: Number,
+        value: 0
+      },
 
+      _defaultCondsensedHeaderHeight: {
+        type: Number,
+        value: 0
+      }
     },
 
     observers: [
-      '_setup(_headerMargin, headerHeight, fixed)',
+      '_setup(headerHeight, condensedHeaderHeight, fixed)',
+      '_condensedHeaderHeightChanged(condensedHeaderHeight)',
       '_headerHeightChanged(headerHeight, condensedHeaderHeight)',
-      '_condensedHeaderHeightChanged(headerHeight, condensedHeaderHeight)'
+      '_condensesChanged(condenses)',
     ],
 
     listeners: {
@@ -284,6 +299,39 @@ To change the background for toolbar when it is condensed:
     detached: function() {
       this.scroller.removeEventListener('scroll', this._scrollHandler);
     },
+
+    /**
+     * The header's initial state
+     *
+     * @property HEADER_STATE_EXPANDED
+     * @type Number
+     */
+    HEADER_STATE_EXPANDED: 0,
+
+    /**
+     * The header's state when it's hidden.
+     *
+     * @property HEADER_STATE_HIDDEN
+     * @type Number
+     */
+    HEADER_STATE_HIDDEN: 1,
+
+    /**
+     * The header's state when it's condensed.
+     *
+     * @property HEADER_STATE_CONDENSED
+     * @type Number
+     */
+    HEADER_STATE_CONDESED: 2,
+
+    /**
+     * The header's state when its progress is somewhere between
+     * the `hidden` and `condensed` state.
+     *
+     * @property HEADER_STATE_INTERPOLATED
+     * @type Number
+     */
+    HEADER_STATE_INTERPOLATED: 3,
 
     /**
      * Returns the header element.
@@ -315,6 +363,14 @@ To change the background for toolbar when it is condensed:
       return this.$.mainContainer;
     },
 
+    get _headerMaxDelta() {
+      return this.keepCondensedHeader ? this._headerMargin : this.headerHeight;
+    },
+
+    get _headerMargin() {
+      return this.headerHeight - this.condensedHeaderHeight;
+    },
+
     /**
      * Invoke this to tell `paper-scroll-header-panel` to re-measure the header's
      * height.
@@ -328,16 +384,20 @@ To change the background for toolbar when it is condensed:
       }
     },
 
-    _headerHeightChanged: function() {
-      if (!this.condensedHeaderHeight) {
-        // assume condensedHeaderHeight is 1/3 of the headerHeight
-        this.condensedHeaderHeight = this.headerHeight * 1 / 3;
+    _headerHeightChanged: function(headerHeight) {
+      if (this._defaultCondsensedHeaderHeight !== null) {
+        this._defaultCondsensedHeaderHeight = headerHeight * 1/3;
+        this.condensedHeaderHeight = this._defaultCondsensedHeaderHeight;
       }
     },
 
-    _condensedHeaderHeightChanged: function() {
-      if (this.headerHeight) {
-        this._headerMargin = this.headerHeight - this.condensedHeaderHeight;
+    _condensedHeaderHeightChanged: function(condensedHeaderHeight) {
+      if (condensedHeaderHeight) {
+        // a user custom value
+        if (this._defaultCondsensedHeaderHeight != condensedHeaderHeight) {
+          // disable the default value
+          this._defaultCondsensedHeaderHeight = null;
+        }
       }
     },
 
@@ -352,58 +412,67 @@ To change the background for toolbar when it is condensed:
 
     _setup: function() {
       var s = this.scroller.style;
-      s.paddingTop = this.fixed ? '' : this.headerHeight + 'px';
 
+      s.paddingTop = this.fixed ? '' : this.headerHeight + 'px';
       s.top = this.fixed ? this.headerHeight + 'px' : '';
 
       if (this.fixed) {
+        this._setHeaderState(this.HEADER_STATE_EXPANDED);
         this._transformHeader(null);
       } else {
-        this._scroll();
+        switch (this.headerState) {
+          case this.HEADER_STATE_HIDDEN:
+            this._transformHeader(this._headerMaxDelta);
+            break;
+          case this.HEADER_STATE_CONDESED:
+            this._transformHeader(this._headerMargin);
+            break;
+        }
       }
     },
 
     _transformHeader: function(y) {
-      var s = this.$.headerContainer.style;
-      this._translateY(s, -y);
+      this._translateY(this.$.headerContainer, -y);
 
       if (this.condenses) {
         this._condenseHeader(y);
       }
 
-      this.fire('paper-header-transform', {y: y, height: this.headerHeight,
-          condensedHeight: this.condensedHeaderHeight});
+      this.fire('paper-header-transform',
+        { y: y,
+          height: this.headerHeight,
+          condensedHeight: this.condensedHeaderHeight
+        }
+      );
     },
 
     _condenseHeader: function(y) {
       var reset = (y === null);
 
       // adjust top bar in paper-header so the top bar stays at the top
-      if (!this.scrollAwayTopbar && this.header.$ && this.header.$.topBar) {
-        this._translateY(this.header.$.topBar.style,
+      if (!this.scrollAwayTopbar && this.header && this.header.$ && this.header.$.topBar) {
+        this._translateY(this.header.$.topBar,
             reset ? null : Math.min(y, this._headerMargin));
       }
       // transition header bg
-      var hbg = this.$.headerBg.style;
       if (!this.noDissolve) {
-        hbg.opacity = reset ? '' : (this._headerMargin - y) / this._headerMargin;
+        this.$.headerBg.style.opacity = reset ? '' :
+            ( (this._headerMargin - y) / this._headerMargin);
       }
       // adjust header bg so it stays at the center
-      this._translateY(hbg, reset ? null : y / 2);
+      this._translateY(this.$.headerBg, reset ? null : y / 2);
       // transition condensed header bg
       if (!this.noDissolve) {
-        var chbg = this.$.condensedHeaderBg.style;
-        chbg = this.$.condensedHeaderBg.style;
-        chbg.opacity = reset ? '' : y / this._headerMargin;
+        this.$.condensedHeaderBg.style.opacity = reset ? '' :
+            (y / this._headerMargin);
 
         // adjust condensed header bg so it stays at the center
-        this._translateY(chbg, reset ? null : y / 2);
+        this._translateY(this.$.condensedHeaderBg, reset ? null : y / 2);
       }
     },
 
-    _translateY: function(s, y) {
-      var t = (y === null) ? '' : 'translate3d(0, ' + y + 'px, 0)';
-      setTransform(s, t);
+    _translateY: function(node, y) {
+      this.transform((y === null) ? '' : 'translate3d(0, ' + y + 'px, 0)', node);
     },
 
     /** @param {Event=} event */
@@ -412,17 +481,28 @@ To change the background for toolbar when it is condensed:
         return;
       }
 
-      var sTop = this.scroller.scrollTop;
-
       this._y = this._y || 0;
       this._prevScrollTop = this._prevScrollTop || 0;
 
-      var y = Math.min(this.keepCondensedHeader ?
-          this._headerMargin : this.headerHeight, Math.max(0,
-          (this.noReveal ? sTop : this._y + sTop - this._prevScrollTop)));
+      var sTop = this.scroller.scrollTop;
 
-      if (this.condenses && this._prevScrollTop >= sTop && sTop > this._headerMargin) {
+      var deltaScrollTop = sTop - this._prevScrollTop;
+      var y = Math.max(0, (this.noReveal) ? sTop : this._y + deltaScrollTop);
+
+      if (y > this._headerMaxDelta) {
+        y = this._headerMaxDelta;
+        this._setHeaderState(this.HEADER_STATE_HIDDEN);
+
+      } else if (this.condenses && this._prevScrollTop >= sTop && sTop > this._headerMargin) {
         y = Math.max(y, this._headerMargin);
+        this._setHeaderState(this.HEADER_STATE_CONDESED);
+
+      } else if (y === 0) {
+        this._setHeaderState(this.HEADER_STATE_EXPANDED);
+
+      } else {
+        this._setHeaderState(this.HEADER_STATE_INTERPOLATED);
+
       }
 
       if (!event || !this.fixed && y !== this._y) {
@@ -438,17 +518,6 @@ To change the background for toolbar when it is condensed:
     }
 
   });
-
-  //determine proper transform mechanizm
-  if (document.documentElement.style.transform !== undefined) {
-    var setTransform = function(style, string) {
-      style.transform = string;
-    }
-  } else {
-    var setTransform = function(style, string) {
-      style.webkitTransform = string;
-    }
-  }
 
 })();
 

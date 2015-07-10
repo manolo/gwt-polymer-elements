@@ -91,6 +91,26 @@ CSS properties               | Action
       return fitHeight;
     },
 
+    get _fitLeft() {
+      var fitLeft;
+      if (this.fitInto === window) {
+        fitLeft = 0;
+      } else {
+        fitLeft = this.fitInto.getBoundingClientRect().left;
+      }
+      return fitLeft;
+    },
+
+    get _fitTop() {
+      var fitTop;
+      if (this.fitInto === window) {
+        fitTop = 0;
+      } else {
+        fitTop = this.fitInto.getBoundingClientRect().top;
+      }
+      return fitTop;
+    },
+
     attached: function() {
       if (this.autoFitOnAttach) {
         if (window.getComputedStyle(this).display === 'none') {
@@ -220,12 +240,12 @@ CSS properties               | Action
         this.style.position = 'fixed';
       }
       if (!this._fitInfo.positionedBy.vertically) {
-        var top = (this._fitHeight - this.offsetHeight) / 2;
+        var top = (this._fitHeight - this.offsetHeight) / 2 + this._fitTop;
         top -= this._fitInfo.margin.top;
         this.style.top = top + 'px';
       }
       if (!this._fitInfo.positionedBy.horizontally) {
-        var left = (this._fitWidth - this.offsetWidth) / 2;
+        var left = (this._fitWidth - this.offsetWidth) / 2 + this._fitLeft;
         left -= this._fitInfo.margin.left;
         this.style.left = left + 'px';
       }

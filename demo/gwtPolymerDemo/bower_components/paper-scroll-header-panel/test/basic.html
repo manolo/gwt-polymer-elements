@@ -39,7 +39,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <script>
 
-    suite('<paper-scroll-header-panel>', function() {
+    suite('basic features', function() {
       var scrollHeaderPanel, toolbar, content;
 
       setup(function() {
@@ -59,7 +59,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         assert.equal(scrollHeaderPanel.keepCondensedHeader, false);
         assert.equal(scrollHeaderPanel.keepCondensedHeader, false);
         assert.equal(scrollHeaderPanel.headerHeight, toolbar.offsetHeight);
-        assert.equal(scrollHeaderPanel.condensedHeaderHeight, toolbar.offsetHeight * 1 / 3);
+        assert.equal(scrollHeaderPanel.condensedHeaderHeight, toolbar.offsetHeight * 1/3);
       });
 
       test('condensation', function(done) {
@@ -103,6 +103,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         flush(function() {
           scrollHeaderPanel.scroller.scrollTop = 300;
         });
+      });
+
+      test('custom `condensedHeaderHeight`', function(done) {
+        var CUSTOM_HEIGHT = 100;
+        scrollHeaderPanel.condensedHeaderHeight = CUSTOM_HEIGHT;
+        scrollHeaderPanel.headerHeight = CUSTOM_HEIGHT;
+
+        assert.equal(scrollHeaderPanel.condensedHeaderHeight, CUSTOM_HEIGHT);
+        assert.equal(scrollHeaderPanel.headerHeight, CUSTOM_HEIGHT);
+
+
+        done();
+
       });
     });
 

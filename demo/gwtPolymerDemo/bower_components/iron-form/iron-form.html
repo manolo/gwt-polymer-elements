@@ -48,7 +48,7 @@ call the form's `submit` method.
     is: 'iron-form',
 
     extends: 'form',
-    
+
     properties: {
       /**
        * Content type to use when sending data.
@@ -56,6 +56,18 @@ call the form's `submit` method.
       contentType: {
         type: String,
         value: "application/x-www-form-urlencoded"
+      },
+
+      /**
+       * By default, the form will display the browser's native validation
+       * UI (i.e. popup bubbles and invalid styles on invalid fields). You can
+       * manually disable this; however, if you do, note that you will have to
+       * manually style invalid *native* HTML fields yourself, as you are
+       * explicitly preventing the native form from doing so.
+       */
+      disableNativeValidationUi: {
+        type: Boolean,
+        value: false
       }
     },
     /**
@@ -83,6 +95,7 @@ call the form's `submit` method.
      */
     listeners: {
       'iron-form-element-register': '_registerElement',
+      'iron-form-element-unregister': '_unregisterElement',
       'submit': '_onSubmit'
     },
 
@@ -101,10 +114,11 @@ call the form's `submit` method.
      */
     submit: function() {
       if (!this.noValidate && !this._validate()) {
-
         // In order to trigger the native browser invalid-form UI, we need
         // to do perform a fake form submit.
-        this._doFakeSubmitForValidation();
+        if (!this.disableNativeValidationUi) {
+          this._doFakeSubmitForValidation();
+        }
         this.fire('iron-form-invalid');
         return;
       }
@@ -114,7 +128,7 @@ call the form's `submit` method.
       this._requestBot.url = this.action;
       this._requestBot.method = this.method;
       this._requestBot.contentType = this.contentType;
-      
+
       if (this.method.toUpperCase() == 'POST') {
         this._requestBot.body = JSON.stringify(json);
       } else {
@@ -160,7 +174,7 @@ call the form's `submit` method.
 
       // Go through all of the registered custom components.
       for (var el, i = 0; el = this._customElements[i], i < this._customElements.length; i++) {
-        if (el.name) {
+        if (this._useValue(el)) {
           addSerializedElement(el);
         }
       }
@@ -172,7 +186,7 @@ call the form's `submit` method.
         // `<input is="fancy-input">`) will appear in both lists. Since they
         // were already added as a custom element, they don't need
         // to be re-added.
-        if (!el.name || !this._useValue(el) ||
+        if (!this._useValue(el) ||
             (el.hasAttribute('is') && json[el.name])) {
           continue;
         }
@@ -194,15 +208,28 @@ call the form's `submit` method.
       this._customElements.push(e.target);
     },
 
+    _unregisterElement: function(e) {
+      var target = e.detail.target;
+      if (target) {
+        var index = this._customElements.indexOf(target);
+        if (index > -1) {
+          this._customElements.splice(index, 1);
+        }
+      }
+    },
+
     _validate: function() {
       var valid = true;
 
       // Validate all the custom elements.
       var validatable;
       for (var el, i = 0; el = this._customElements[i], i < this._customElements.length; i++) {
-        if (el.required) {
+        if (el.required && this._useValue(el)) {
           validatable = /** @type {{validate: (function() : boolean)}} */ (el);
-          valid = validatable.validate() && valid;
+          // TODO(notwaldorf): IronValidatableBehavior can return undefined if
+          // a validator is not set. It probably shouldn't, but in the meantime
+          // deal with that scenario.
+          valid = !!validatable.validate() && valid;
         }
       }
 
@@ -210,7 +237,7 @@ call the form's `submit` method.
       for (var el, i = 0; el = this.elements[i], i < this.elements.length; i++) {
         // Custom elements that extend a native element will also appear in
         // this list, but they've already been validated.
-        if (!el.hasAttribute('is') && el.willValidate && el.checkValidity) {
+        if (!el.hasAttribute('is') && el.willValidate && el.checkValidity && el.name) {
           valid = el.checkValidity() && valid;
         }
       }
@@ -219,12 +246,21 @@ call the form's `submit` method.
     },
 
     _useValue: function(el) {
-      // Checkboxes and radio buttons should only use their value if they're checked.
-      if (el.type !== 'checkbox' && el.type !== 'radio') {
-        return true;
-      } else {
+      // Skip disabled elements or elements that don't have a `name` attribute.
+      if (el.disabled || !el.name) {
+        return false;
+      }
+
+      // Checkboxes and radio buttons should only use their value if they're
+      // checked. Custom paper-checkbox and paper-radio-button elements
+      // don't have a type, but they have the correct role set.
+      if (el.type == 'checkbox' ||
+          el.type == 'radio' ||
+          el.getAttribute('role') == 'checkbox' ||
+          el.getAttribute('role') == 'radio') {
         return el.checked;
       }
+      return true;
     },
 
     _doFakeSubmitForValidation: function() {

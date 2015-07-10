@@ -14,9 +14,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   /**
    * `Polymer.NeonAnimationRunnerBehavior` adds a method to run animations.
-   * @polymerBehavior
+   *
+   * @polymerBehavior Polymer.NeonAnimationRunnerBehavior
    */
-  Polymer.NeonAnimationRunnerBehavior = [Polymer.NeonAnimatableBehavior, {
+  Polymer.NeonAnimationRunnerBehaviorImpl = {
 
     properties: {
 
@@ -108,6 +109,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this._player.cancel();
       }
     }
+  };
 
-  }];
+  /** @polymerBehavior Polymer.NeonAnimationRunnerBehavior */
+  Polymer.NeonAnimationRunnerBehavior = [
+    Polymer.NeonAnimatableBehavior,
+    Polymer.NeonAnimationRunnerBehaviorImpl
+  ];
 </script>

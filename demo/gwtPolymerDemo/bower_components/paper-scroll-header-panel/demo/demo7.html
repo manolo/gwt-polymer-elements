@@ -58,9 +58,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       -webkit-transform-origin: left center;
       transform-origin: left center;
-
-      /* Issue #15 */
-      isolation: isolate;
     }
 
     .content {
@@ -70,7 +67,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </style>
 
 </head>
-<body>
+<body unresolved>
 
   <paper-scroll-header-panel condenses>
 
@@ -100,9 +97,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     // toggle fixed header based on screen size
     var panel = document.querySelector('paper-scroll-header-panel');
     var mquery = document.querySelector('#mquery');
+
     mquery.addEventListener('query-matches-changed', function() {
       panel.fixed = mquery.queryMatches;
     });
+
+    panel.fixed = mquery.queryMatches;
 
     // custom transformation: scale header's title
     var title = document.querySelector('.title');

@@ -139,7 +139,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <test-fixture id="constrain-target">
       <template>
-        <div class="constrain" style="position: fixed; top: 0; left: 0; width: 50vw; height: 50vh; border: 1px solid black;">
+        <div class="constrain" style="position: fixed; top: 20px; left: 100px; width: 50vw; height: 50vh; border: 1px solid black;">
           <test-fit auto-fit-on-attach class="el">
             <div>
               Auto center/center to parent element
@@ -329,6 +329,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           var crect = constrain.getBoundingClientRect();
           assert.isTrue(rect.height <= crect.height, 'width is less than or equal to fitInto width');
           assert.isTrue(rect.height <= crect.height, 'height is less than or equal to fitInto height');
+        });
+
+        test('element centers in another element', function() {
+          var constrain = fixture('constrain-target');
+          var el = Polymer.dom(constrain).querySelector('.el')
+          makeScrolling(el);
+          el.fitInto = constrain;
+          el.refit();
+          var rect = el.getBoundingClientRect();
+          var crect = constrain.getBoundingClientRect();
+          assert.closeTo(rect.left - crect.left - (crect.right - rect.right), 0, 5, 'centered horizontally in fitInto');
+          assert.closeTo(rect.top - crect.top - (crect.bottom - rect.bottom), 0, 5, 'centered vertically in fitInto');
         });
 
       });

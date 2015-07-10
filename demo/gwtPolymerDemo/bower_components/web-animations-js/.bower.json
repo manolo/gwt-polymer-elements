@@ -36,6 +36,6 @@
     "commit": "7215de49976c233fb7abe2c19ee31a1009acc655"
   },
   "_source": "git://github.com/web-animations/web-animations-js.git",
-  "_target": "^2.0.0",
+  "_target": "2.1.0",
   "_originalSource": "web-animations/web-animations-js"
 }
