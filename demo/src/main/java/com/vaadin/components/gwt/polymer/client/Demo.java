@@ -11,6 +11,8 @@ import com.vaadin.polymer.elemental.Function;
 public class Demo implements EntryPoint {
 
     public void onModuleLoad() {
+        Polymer.startLoading();
+
         // Although gwt-polymer-elements takes care of dynamic loading of components
         // if they are created using Polymer.createElement or Polymer Widgets,
         // there are certain features which must be loaded previously to start

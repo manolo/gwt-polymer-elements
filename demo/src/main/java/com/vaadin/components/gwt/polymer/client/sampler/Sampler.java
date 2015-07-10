@@ -45,6 +45,7 @@ import com.vaadin.components.gwt.polymer.client.sampler.paper.TabsSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.ToastSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.ToggleButtonSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.ToolbarSample;
+import com.vaadin.polymer.Polymer;
 import com.vaadin.polymer.iron.widget.IronCollapse;
 import com.vaadin.polymer.iron.widget.IronSelector;
 import com.vaadin.polymer.paper.widget.PaperButton;
@@ -158,6 +159,8 @@ public class Sampler extends Composite {
                 selectItem(event.getValue());
             }
         });
+
+        Polymer.endLoading(this.getElement(), javaButton.getElement());
     }
 
     private void addCategory(String path, String name) {
