@@ -36,7 +36,6 @@ public class PaperJavaAPI extends FlowPanel {
         // GWT Widget API
         PaperIconButton iconWidget = new PaperIconButton();
         iconWidget.setIcon("language");
-        iconWidget.setSize("50px", "50px");
         iconWidget.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
                 Window.alert("Hi");

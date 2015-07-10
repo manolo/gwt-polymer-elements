@@ -48,7 +48,6 @@ import com.vaadin.components.gwt.polymer.client.sampler.paper.ToastSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.ToggleButtonSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.ToolbarSample;
 import com.vaadin.polymer.Polymer;
-import com.vaadin.polymer.PolymerWidget;
 import com.vaadin.polymer.elemental.Function;
 import com.vaadin.polymer.iron.widget.IronCollapse;
 import com.vaadin.polymer.iron.widget.IronSelector;
@@ -92,17 +91,12 @@ public class Sampler extends Composite {
     public Sampler() {
         initWidget(ourUiBinder.createAndBindUi(this));
 
-
-        addCategory("iron", "Iron Elements");
-        addSample("Collapse", new IronCollapseSample(), "iron", "IronCollapseSample");
-        addSample("Selector", new IronSelectorSample(), "iron", "IronSelectorSample");
-
         addCategory("paper", "Paper Elements");
         addSample("Button", new ButtonSample(), "paper", "ButtonSample");
         addSample("CheckBox", new CheckboxSample(), "paper", "CheckboxSample");
         addSample("Dialog", new DialogSample(), "paper", "DialogSample");
         // not suitable for current showcase. In original showcase it works inside iframe
-//        addSample("DrawerPanel", new DrawerPanelSample(), "paper", "DrawerPanelSample");
+        // addSample("DrawerPanel", new DrawerPanelSample(), "paper", "DrawerPanelSample");
         addSample("Floating Button", new FabSample(), "paper", "FabSample");
         addSample("Header Panel", new HeaderPanelSample(), "paper", "HeaderPanelSample");
         addSample("Icon Button", new IconButtonSample(), "paper", "IconButtonSample");
@@ -121,7 +115,11 @@ public class Sampler extends Composite {
         addSample("Toggle Button", new ToggleButtonSample(), "paper", "ToggleButtonSample");
         addSample("Toolbar", new ToolbarSample(), "paper", "ToolbarSample");
 
-        addCategory("gwt", "Other");
+        addCategory("iron", "Iron Elements");
+        addSample("Collapse", new IronCollapseSample(), "iron", "IronCollapseSample");
+        addSample("Selector", new IronSelectorSample(), "iron", "IronSelectorSample");
+
+        addCategory("gwt", "GWT Integration");
         addSample("Element UiBinder", new PaperTabsView(), "gwt", "PaperTabsView");
         addSample("Widget UiBinder", new PaperTabsWidgetView(), "gwt", "PaperTabsWidgetView");
         addSample("Java API", new PaperJavaAPI(), "gwt", "PaperJavaAPI", false);
@@ -132,9 +130,8 @@ public class Sampler extends Composite {
             }
         });
 
-        PolymerWidget last = collapseMap.lastEntry().getValue();
-        Polymer.endLoading(this.getElement(), last.getElement());
-        last.ready(new Function() {
+        Polymer.endLoading(this.getElement(),
+                collapseMap.lastEntry().getValue().getElement(), new Function() {
             public Object call(Object arg) {
                 selectItem(Window.Location.getHash().replace("#", ""));
                 return null;
@@ -153,11 +150,16 @@ public class Sampler extends Composite {
 
     @UiHandler({"logo1", "logo2", "logo3"})
     protected void onLogo(ClickEvent e) {
-        about.toggle();
+        Window.open(((Widget)e.getSource()).getElement().getAttribute("url"), "_blank", "");
+        closeMenu();
+    }
+    @UiHandler("help")
+    protected void onHelp(ClickEvent e) {
+        about.open();
     }
 
     private void addCategory(String path, String name) {
-        PaperItem item = new PaperItem("<iron-icon icon='expand-more'></iron-icon>" + name);
+        PaperItem item = new PaperItem("<iron-icon icon='expand-more'></iron-icon>" + name + "<paper-ripple></paper-ripple>");
         item.addStyleName(style.category());
 
         final IronCollapse collapse = new IronCollapse("");
@@ -223,7 +225,7 @@ public class Sampler extends Composite {
         boolean uixml;
 
         public Item(IronCollapse collapse, IronSelector selector, String category, String path, int idx, Widget sample, String name, boolean uixml) {
-            super(name);
+            super(name + "<paper-ripple></paper-ripple>");
             this.collapse = collapse;
             this.selector = selector;
             this.category = category;
@@ -249,10 +251,14 @@ public class Sampler extends Composite {
             History.newItem(category + "/" + path, false);
             currentLabel.setInnerText(name);
             xmlButton.setVisible(uixml);
-            if (drawerPanel.getNarrow()) {
-                drawerPanel.closeDrawer();
-            }
             setOpened(collapse, true);
+            closeMenu();
+        }
+    }
+
+    private void closeMenu() {
+        if (drawerPanel.getNarrow()) {
+            drawerPanel.closeDrawer();
         }
     }
 }

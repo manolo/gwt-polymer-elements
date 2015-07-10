@@ -51,7 +51,7 @@
                     <p:PaperSpinner active="true" ui:field="toggle1_2"/>
                     <p:PaperSpinner active="true" ui:field="toggle1_3"/>
                     <p:PaperSpinner active="true" ui:field="toggle1_4"/>
-                    <g:Button ui:field="toggleBtn1">Toggle</g:Button>
+                    <p:PaperButton ui:field="toggleBtn1" raised="true">Toggle</p:PaperButton>
                 </div>
             </div>
 
@@ -62,7 +62,7 @@
                     <p:PaperSpinner active="true" ui:field="toggle2_2" addStyleNames="red"/>
                     <p:PaperSpinner active="true" ui:field="toggle2_3" addStyleNames="orange"/>
                     <paper-spinner ui:field="toggle2_4" active="" class="green"/>
-                    <g:Button ui:field="toggleBtn2">Toggle</g:Button>
+                    <p:PaperButton ui:field="toggleBtn2" raised="true">Toggle</p:PaperButton>
                 </div>
             </div>
         </div>
