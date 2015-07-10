@@ -8,14 +8,14 @@
 # exit in case of failure
 set -x -e
 
+# Verify that we dont have anything to commit and change to master
+git diff --quiet || exit 2
+git checkout master
+
 # Compute version and artifact id
 currentVersion=`cat package.json | grep version | tail -1 | sed -e 's,.*: *"\(.*\)".*,\1,'`
 artifactId=`cat package.json | grep postinstall | sed -e 's,.*artifactId=\([^ ]*\) .*,\1,'`
 [ -z "$currentVersion" -o -z "$artifactId" ] && exit 1
-
-# Verify that we dont have anything to commit and change to master
-git diff --quiet || exit 2
-git checkout master
 
 # Save current commit id to restore later
 currentId=`git log --format="%H" -n 1`
