@@ -29,12 +29,14 @@ public class Demo implements EntryPoint {
         // Styles for paper examples
         Polymer.importHref("paper-styles/demo-pages.html");
 
-        // Icon sets must be loaded before using any component depending on them
-        // Iron comes with the collections:
-        // communication, device, editor, hardware, image, iron, maps, notifications, social.
+        // - Iconsets must be loaded before using any component depending on them
+        //   Iron comes with the collections:
+        //   communication, device, editor, hardware, image, iron, maps, notifications, social.
+        // - Animation must be loaded at the beginning as wll
         Polymer.importHref(Arrays.asList(
                 "iron-icons/iron-icons.html",
-                "iron-icons/communication-icons.html"
+                "iron-icons/communication-icons.html",
+                "neon-animation/neon-animations.html"
                 ), new Function() {
             public Object call(Object arg) {
                 // The app is executed when all imports succeed.
