@@ -197,7 +197,7 @@ RootPanel.get().add(button);
  - **Static imports** :
   Adding tags to the hosted page head is the traditional way to make webcomponents available if you want them in a mixed application (DOM, JS, or GWT) or if you want to be sure that web components are available from the beginning.
  ```
-    <link rel='import' href='application_context/bower_elements/paper-button/paper-button.html'></link>
+    <link rel='import' href='application_context/bower_components/paper-button/paper-button.html'></link>
  ```
  
 ### Asynchronous issues
