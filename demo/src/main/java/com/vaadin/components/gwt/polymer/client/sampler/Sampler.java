@@ -183,12 +183,14 @@ public class Sampler extends Composite {
     }
 
     private void addSample(final String name, final Widget sample, String category, String path, boolean hasxml) {
-        final int idx = content.getWidgetCount();
-        content.add(sample);
-
+        // FIXME(manolo) for some reason icon sample only works when
+        // it has been attached previously, or we go directly to it (hashfragment)
+        if (sample instanceof IconButtonSample || sample instanceof FabSample) {
+          content.add(sample);
+        }
         IronCollapse collapse = collapseMap.get(category);
         IronSelector selector = selectorMap.get(category);
-        items.add(new Item(collapse, selector, category, path, idx, sample, name, hasxml));
+        items.add(new Item(collapse, selector, category, path, sample, name, hasxml));
     }
 
     private void selectItem(String hash) {
@@ -224,7 +226,7 @@ public class Sampler extends Composite {
         int selectorIdx;
         boolean uixml;
 
-        public Item(IronCollapse collapse, IronSelector selector, String category, String path, int idx, Widget sample, String name, boolean uixml) {
+        public Item(IronCollapse collapse, IronSelector selector, String category, String path, Widget sample, String name, boolean uixml) {
             super(name + "<paper-ripple></paper-ripple>");
             this.collapse = collapse;
             this.selector = selector;
