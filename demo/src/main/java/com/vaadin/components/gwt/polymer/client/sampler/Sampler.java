@@ -185,7 +185,11 @@ public class Sampler extends Composite {
     private void addSample(final String name, final Widget sample, String category, String path, boolean hasxml) {
         // FIXME(manolo) for some reason icon sample only works when
         // it has been attached previously, or we go directly to it (hashfragment)
-        if (sample instanceof IconButtonSample || sample instanceof FabSample) {
+        if (sample instanceof IconButtonSample  ||
+            sample instanceof FabSample ||
+            sample instanceof ToolbarSample ||
+            sample instanceof PaperJavaAPI
+                ) {
           content.add(sample);
         }
         IronCollapse collapse = collapseMap.get(category);
