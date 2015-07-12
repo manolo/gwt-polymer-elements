@@ -23,14 +23,14 @@
     "web-component-tester": "*"
   },
   "private": true,
-  "homepage": "https://github.com/polymer/polymer",
+  "homepage": "https://github.com/Polymer/polymer",
   "_release": "1.0.6",
   "_resolution": {
     "type": "version",
     "tag": "v1.0.6",
     "commit": "953fcba374812690c279abdacbfaf61e3e3aa347"
   },
-  "_source": "git://github.com/polymer/polymer.git",
+  "_source": "git://github.com/Polymer/polymer.git",
   "_target": "^1.0.0",
-  "_originalSource": "polymer/polymer"
+  "_originalSource": "Polymer/polymer"
 }
