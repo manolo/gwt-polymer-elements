@@ -231,7 +231,7 @@ public class Sampler extends Composite {
         boolean uixml;
 
         public Item(IronCollapse collapse, IronSelector selector, String category, String path, Widget sample, String name, boolean uixml) {
-            super(name + "<paper-ripple></paper-ripple>");
+            super(name);
             this.collapse = collapse;
             this.selector = selector;
             this.category = category;
