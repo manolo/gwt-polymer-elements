@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+  <parent>
+    <groupId>org.sonatype.oss</groupId>
+    <artifactId>oss-parent</artifactId>
+    <version>4</version>
+  </parent>
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.vaadin.polymer</groupId>
+  <version>1.0.2.0-alpha3-SNAPSHOT</version>
+  <artifactId>vaadin-gwt-polymer-elements</artifactId>
+  <name>gwt-polymer-elements</name>
+  <description>vaadin-gwt-polymer-elements</description>
+ 
+  <licenses>
+    <license>
+      <name>Apache License 2.0</name>
+    </license>
+  </licenses>
+ 
+ 
+  <organization>
+    <name>Vaadin Ltd</name>
+    <url>http://vaadin.com</url>
+  </organization>
+  <url>http://vaadin.com</url>
+ 
+ 
+  <scm>
+    <connection>scm:git:git@github.com:vaadin/gwt-polymer-elements.git</connection>
+    <developerConnection>scm:git:git@github.com:vaadin/gwt-polymer-elements.git</developerConnection>
+    <url>https://github.com/vaadin/gwt-polymer-elements</url>
+  </scm>
+ 
+  <developers>
+    <developer>
+      <id>Vaadin Ltd</id>
+      <name>Vaadin Ltd</name>
+    </developer>
+  </developers>
+
+
+  <properties>
+    <maven.compiler.source>1.7</maven.compiler.source>
+    <maven.compiler.target>1.7</maven.compiler.target>
+    <additionalparam>-Xdoclint:none</additionalparam>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <distributionManagement>
+    <snapshotRepository>
+      <id>sonatype-nexus-snapshots</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+      <uniqueVersion>false</uniqueVersion>
+    </snapshotRepository>
+  </distributionManagement>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.google.gwt</groupId>
+      <artifactId>gwt-user</artifactId>
+      <version>2.7.0</version>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <resources>
+      <resource>
+        <directory>src/main/java</directory>
+      </resource>
+      <resource>
+        <directory>src/main/resources</directory>
+      </resource>
+    </resources>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <executions>
+            <execution>
+                <id>attach-sources</id>
+                <goals>
+                    <goal>jar-no-fork</goal>
+                </goals>
+            </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <executions>
+            <execution>
+                <id>attach-javadocs</id>
+                <goals>
+                    <goal>jar</goal>
+                </goals>
+            </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
