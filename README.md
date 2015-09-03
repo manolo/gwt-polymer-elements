@@ -213,7 +213,7 @@ In summary, for classic and production GWT projects it would be easier to use th
  ```
      PaperButtonElement button = Polymer.create(PaperButtonElement.TAG);
  ```
- - **Dinamic imports** :
+ - **Dynamic imports** :
   `Polymer` has a couple of methods to do the import dynamically
  ```
      Polymer.importHref("paper-button/paper-button.html");
