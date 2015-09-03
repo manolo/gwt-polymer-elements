@@ -8,9 +8,9 @@
 - **Polymer-Elements**: is a collection of widgets built in Polymer. The collection is divided in sections: _Iron, Paper, Gold, Neon, Platinum,_ etc.
 -  **GWT-Polymer-Elements**: is a Java wrapper enabling Polymer Elements to be used in GWT projects. Right now it includes wrappers for [Paper](https://elements.polymer-project.org/browse?package=paper-elements) and [Iron](https://elements.polymer-project.org/browse?package=iron-elements) collections, but more might be added in the future.
 
- The library has been generated using the Vaadin [gwt-api-generator](https://github.com/vaadin/gwt-api-generator), an utility able to inspect polymer webcomponents and emit GWT java code.
+ The library has been generated using the Vaadin [gwt-api-generator](https://github.com/vaadin/gwt-api-generator), an utility able to inspect polymer webcomponents and emit GWT Java code.
 
- Because Polymer diferentiates between collections, gwt-polymer-elements classes are prefixed with the same prefixes (_Iron, Paper_), in order to easily refer to the original web component, and to easily find the documentation related with it.
+ Because Polymer differentiates between collections, gwt-polymer-elements classes are prefixed with the same prefixes (_Iron, Paper_), in order to easily refer to the original web component, and to easily find the documentation related with it.
 
 ## Demo
  Visit our [show case](http://vaadin.github.io/gwt-polymer-elements/demo/) to see how components look like, and to take a look to the example code using each component.
