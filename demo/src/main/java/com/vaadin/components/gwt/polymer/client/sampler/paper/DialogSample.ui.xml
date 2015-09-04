@@ -23,7 +23,6 @@
 
     <g:HTMLPanel addStyleNames="dialog-sample">
         <style is="custom-style">
-
             .dialog-sample paper-button {
                margin-top: 12px;
             }

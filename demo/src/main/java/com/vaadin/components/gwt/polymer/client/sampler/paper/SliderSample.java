@@ -15,11 +15,9 @@ public class SliderSample extends Composite {
     }
 
     private static SampleUiBinder ourUiBinder = GWT.create(SampleUiBinder.class);
-    
-    @UiField
-    PaperSlider ratings;
-    @UiField
-    SpanElement ratingsLabel;
+
+    @UiField PaperSlider ratings;
+    @UiField SpanElement ratingsLabel;
 
 
     public SliderSample() {

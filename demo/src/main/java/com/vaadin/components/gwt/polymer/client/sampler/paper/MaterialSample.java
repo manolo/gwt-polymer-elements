@@ -14,12 +14,9 @@ public class MaterialSample extends Composite {
     }
 
     private static SampleUiBinder ourUiBinder = GWT.create(SampleUiBinder.class);
-    
-    @UiField
-    PaperMaterial material;
-    @UiField
-    PaperMaterial fabMaterial;
 
+    @UiField PaperMaterial material;
+    @UiField PaperMaterial fabMaterial;
 
     public MaterialSample() {
         initWidget(ourUiBinder.createAndBindUi(this));

@@ -2,11 +2,8 @@
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
              xmlns:p='urn:import:com.vaadin.polymer.paper.widget'>
 
-    
-
     <g:HTMLPanel addStyleNames="drawer-panel-sample">
         <style is="custom-style">
-
             .drawer-panel-sample #paperDrawerPanel [main] {
                 background-color: var(--google-grey-100);
             }

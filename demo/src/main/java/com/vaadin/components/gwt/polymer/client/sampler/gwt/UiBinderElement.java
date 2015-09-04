@@ -3,29 +3,25 @@ package com.vaadin.components.gwt.polymer.client.sampler.gwt;
 import java.util.Arrays;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.dom.client.DivElement;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.HTMLPanel;
+import com.google.gwt.user.client.ui.Widget;
 import com.vaadin.polymer.Polymer;
 import com.vaadin.polymer.iron.element.event.IronSelectEvent;
 import com.vaadin.polymer.paper.element.PaperTabElement;
 import com.vaadin.polymer.paper.element.PaperTabsElement;
 import com.vaadin.polymer.paper.element.PaperToastElement;
 
-public class UiBinderElement extends Composite {
-    interface PaperTabsViewUiBinder extends UiBinder<HTMLPanel, UiBinderElement> {
-    }
-
+public class UiBinderElement extends Widget {
+    interface PaperTabsViewUiBinder extends UiBinder<DivElement, UiBinderElement> {}
     private static PaperTabsViewUiBinder ourUiBinder = GWT.create(PaperTabsViewUiBinder.class);
 
-    @UiField
-    PaperTabsElement paperTabs;
-    @UiField
-    PaperToastElement toast;
+    @UiField PaperTabsElement paperTabs;
+    @UiField PaperToastElement toast;
 
     public UiBinderElement() {
-        initWidget(ourUiBinder.createAndBindUi(this));
+        setElement(ourUiBinder.createAndBindUi(this));
 
         // Since we are using pure elements in UiBinder, they are created via
         // DOM.createElement instead of Polymer.createElement, so we need to

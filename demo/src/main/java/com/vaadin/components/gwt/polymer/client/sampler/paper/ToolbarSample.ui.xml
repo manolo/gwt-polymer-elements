@@ -2,11 +2,8 @@
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
              xmlns:p='urn:import:com.vaadin.polymer.paper.widget'>
 
-    
-
     <g:HTMLPanel addStyleNames="toolbar-sample">
         <style is="custom-style">
-        
             .toolbar-sample paper-toolbar + paper-toolbar {
                 margin-top: 20px;
             }
@@ -57,6 +54,5 @@
             <div class="middle title">element (e.g. progress) fits at the bottom of the toolbar</div>
             <div class="bottom flex" style="height: 20px; background-color: #0f9d58;"/>
         </p:PaperToolbar>
-        
     </g:HTMLPanel>
 </ui:UiBinder>

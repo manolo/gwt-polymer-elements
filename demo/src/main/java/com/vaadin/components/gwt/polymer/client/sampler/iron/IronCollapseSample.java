@@ -16,18 +16,12 @@ public class IronCollapseSample extends Composite {
 
     private static SampleUiBinder ourUiBinder = GWT.create(SampleUiBinder.class);
 
-    @UiField
-    Button heading1;
-    @UiField
-    IronCollapse collapse1;
-    @UiField
-    Button heading2;
-    @UiField
-    IronCollapse collapse2;
-    @UiField
-    Button heading3;
-    @UiField
-    IronCollapse collapse3;
+    @UiField Button heading1;
+    @UiField IronCollapse collapse1;
+    @UiField Button heading2;
+    @UiField IronCollapse collapse2;
+    @UiField Button heading3;
+    @UiField IronCollapse collapse3;
 
     public IronCollapseSample() {
         initWidget(ourUiBinder.createAndBindUi(this));

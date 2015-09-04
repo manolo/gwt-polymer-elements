@@ -26,8 +26,6 @@
         }
     </ui:style>
 
-    
-
     <g:HTMLPanel addStyleNames="{style.collapse-sample}">
 
         <section>

@@ -4,7 +4,6 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
-import com.vaadin.polymer.Polymer;
 
 public class ToolbarSample extends Composite {
     interface SampleUiBinder extends UiBinder<HTMLPanel, ToolbarSample> {

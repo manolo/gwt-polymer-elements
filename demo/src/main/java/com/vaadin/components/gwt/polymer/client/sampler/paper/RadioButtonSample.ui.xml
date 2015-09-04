@@ -3,7 +3,6 @@
              xmlns:p='urn:import:com.vaadin.polymer.paper.widget'>
 
     <g:HTMLPanel addStyleNames="radio-button-sample">
-
         <style is="custom-style">
             .radio-button-sample paper-radio-button {
                 display: block;
@@ -73,6 +72,5 @@
                 </div>
             </div>
         </div>
-
     </g:HTMLPanel>
 </ui:UiBinder>

@@ -8,11 +8,9 @@
         .slider-sample {
             padding: 40px;
         }
-
         .slider-sample paper-slider {
             width: 100%;
         }
-
         .ratings-label {
             padding-left: 12px;
             color: #a0a0a0;
@@ -20,7 +18,6 @@
     </ui:style>
 
     <g:HTMLPanel addStyleNames="slider-sample">
-
         <style is="custom-style">
             .slider-sample paper-slider.blue {
                 --paper-slider-knob-color: var(--paper-light-blue-500);
@@ -83,6 +80,5 @@
                 <p:PaperSlider ui:field="ratings" pin="true" snaps="true" max="10" step="1" value="5" addStyleNames="orange"/>
             </div>
         </div>
-        
     </g:HTMLPanel>
 </ui:UiBinder>

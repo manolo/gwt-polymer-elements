@@ -7,7 +7,6 @@
 
 
     <g:HTMLPanel addStyleNames="button-sample">
-
         <style is="custom-style">
             .button-sample .horizontal-section {
                 min-width: 130px;

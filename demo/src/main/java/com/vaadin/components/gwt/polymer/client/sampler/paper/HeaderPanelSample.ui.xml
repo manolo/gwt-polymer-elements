@@ -2,11 +2,8 @@
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
              xmlns:p='urn:import:com.vaadin.polymer.paper.widget'>
 
-    
-
     <g:HTMLPanel addStyleNames="header-panel-sample">
         <style is="custom-style">
-
             .header-panel-sample {
                 padding: 40px;
             }
