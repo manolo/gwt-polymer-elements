@@ -14,8 +14,8 @@ import com.vaadin.polymer.paper.widget.PaperTab;
 import com.vaadin.polymer.paper.widget.PaperTabs;
 import com.vaadin.polymer.paper.widget.PaperToast;
 
-public class PaperTabsWidgetView extends Composite {
-    interface PaperTabsWidgetUiBinder extends UiBinder<HTMLPanel, PaperTabsWidgetView> {
+public class UiBinderWidget extends Composite {
+    interface PaperTabsWidgetUiBinder extends UiBinder<HTMLPanel, UiBinderWidget> {
     }
 
     private static PaperTabsWidgetUiBinder ourUiBinder = GWT.create(PaperTabsWidgetUiBinder.class);
@@ -25,7 +25,7 @@ public class PaperTabsWidgetView extends Composite {
     @UiField Button button1;
     @UiField Button button2;
 
-    public PaperTabsWidgetView() {
+    public UiBinderWidget() {
         initWidget(ourUiBinder.createAndBindUi(this));
 
         PaperTab tab = new PaperTab("dynamically created item");
