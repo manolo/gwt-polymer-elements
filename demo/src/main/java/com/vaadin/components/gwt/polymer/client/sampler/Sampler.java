@@ -31,6 +31,7 @@ import com.vaadin.components.gwt.polymer.client.sampler.gwt.JavaApiElement;
 import com.vaadin.components.gwt.polymer.client.sampler.gwt.JavaApiWidget;
 import com.vaadin.components.gwt.polymer.client.sampler.gwt.UiBinderElement;
 import com.vaadin.components.gwt.polymer.client.sampler.gwt.UiBinderWidget;
+import com.vaadin.components.gwt.polymer.client.sampler.highlight.JsHighlight;
 import com.vaadin.components.gwt.polymer.client.sampler.iron.IronCollapseSample;
 import com.vaadin.components.gwt.polymer.client.sampler.iron.IronSelectorSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.ButtonSample;
@@ -99,9 +100,10 @@ public class Sampler extends Composite {
     @UiField HeadingElement sourceTitle;
     @UiField PreElement sourceContent;
 
-
     public Sampler() {
         initWidget(ourUiBinder.createAndBindUi(this));
+
+        JsHighlight.INSTANCE.initialize();
 
         addCategory("gwt", "GWT Integration");
         addSample("Widget Java API", new JavaApiWidget(), "gwt", "JavaApiWidget", false);
@@ -162,8 +164,10 @@ public class Sampler extends Composite {
                 Properties p = GQ.create().parse(arguments(0));
                 String c = atob(p.get("content"));
                 sourceTitle.setInnerHTML(file);
+                sourceContent.removeAttribute("class");
                 sourceContent.setInnerText(c);
                 source.open();
+                JsHighlight.INSTANCE.highlightBlock(sourceContent);
           }
         });
     }
