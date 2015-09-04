@@ -17,10 +17,8 @@ public class ProgressSample extends Composite {
 
     private static SampleUiBinder ourUiBinder = GWT.create(SampleUiBinder.class);
 
-    @UiField
-    PaperButton startButton;
-    @UiField
-    PaperProgress progress;
+    @UiField PaperButton startButton;
+    @UiField PaperProgress progress;
 
     public ProgressSample() {
         initWidget(ourUiBinder.createAndBindUi(this));

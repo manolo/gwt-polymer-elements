@@ -7,7 +7,6 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
-import com.vaadin.polymer.Polymer;
 import com.vaadin.polymer.paper.element.PaperDrawerPanelElement;
 import com.vaadin.polymer.paper.widget.PaperButton;
 import com.vaadin.polymer.paper.widget.PaperDrawerPanel;
@@ -17,7 +16,7 @@ public class DrawerPanelSample extends Composite {
     }
 
     private static SampleUiBinder ourUiBinder = GWT.create(SampleUiBinder.class);
-    
+
     @UiField PaperDrawerPanel panel;
     @UiField PaperButton flipButton;
 

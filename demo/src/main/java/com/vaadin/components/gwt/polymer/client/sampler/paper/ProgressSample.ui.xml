@@ -2,10 +2,6 @@
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
              xmlns:p='urn:import:com.vaadin.polymer.paper.widget'>
     
-    <ui:style>
-
-    </ui:style>
-
     <g:HTMLPanel addStyleNames="progress-sample">
         <style is="custom-style">
             .progress-sample paper-progress {

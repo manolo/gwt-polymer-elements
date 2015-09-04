@@ -15,15 +15,13 @@ public class InputSample extends Composite {
     }
 
     private static SampleUiBinder ourUiBinder = GWT.create(SampleUiBinder.class);
-    
-    @UiField
-    PaperInput inputForValidation;
-    @UiField
-    Button validateButton;
+
+    @UiField PaperInput inputForValidation;
+    @UiField Button validateButton;
 
     public InputSample() {
         initWidget(ourUiBinder.createAndBindUi(this));
-        
+
         validateButton.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent clickEvent) {

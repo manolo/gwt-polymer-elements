@@ -4,7 +4,6 @@
 
     <g:HTMLPanel addStyleNames="checkbox-sample">
         <style is="custom-style">
-
             .checkbox-sample paper-checkbox {
                 display: block;
                 margin-bottom: 40px;

@@ -12,16 +12,12 @@
             -webkit-tap-highlight-color: rgba(0,0,0,0);
             -webkit-touch-callout: none;
         }
-
         .ripple-sample section {
             padding: 30px 25px;
         }
-
         .ripple-sample section > * {
             margin: 10px
         }
-
-        /* Button */
         .ripple-sample .button {
             display: inline-block;
             position: relative;
@@ -33,83 +29,64 @@
             background-color: #fff;
             color: #646464;
         }
-
         .ripple-sample .button > paper-ripple {
             border-radius: 2px;
             overflow: hidden;
         }
-
         .ripple-sample .button.narrow {
             width: 60px;
         }
-
         .ripple-sample .button.grey {
             background-color: #eee;
         }
-
         .ripple-sample .button.blue {
             background-color: #4285f4;
             color: #fff;
         }
-
         .ripple-sample .button.green {
             background-color: #0f9d58;
             color: #fff;
         }
-
         .ripple-sample .button.raised {
             transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
             transition-delay: 0.2s;
             box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
         }
-
         .ripple-sample .button.raised:active {
             box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2);
             transition-delay: 0s;
         }
-
-
-        /* Icon Button */
         .ripple-sample .icon-button {
             position: relative;
             display: inline-block;
             width: 56px;
             height: 56px;
         }
-
         .ripple-sample .icon-button > iron-icon {
             margin: 16px;
             transition: -webkit-transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
             transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
         .ripple-sample .icon-button:hover > iron-icon {
             -webkit-transform: scale(1.2);
             transform: scale(1.2);
         }
-
         .ripple-sample .icon-button > paper-ripple {
             overflow: hidden;
             color: #646464;
         }
-
         .ripple-sample .icon-button.red > iron-icon::shadow path {
             fill: #db4437;
         }
-
         .ripple-sample .icon-button.red > paper-ripple {
             color: #db4437;
         }
-
         .ripple-sample .icon-button.blue > iron-icon::shadow path {
             fill: #4285f4;
         }
-
         .ripple-sample .icon-button.blue > paper-ripple {
             color: #4285f4;
         }
-
-        /* FAB */
         .ripple-sample .fab {
             position: relative;
             display: inline-block;
@@ -122,40 +99,31 @@
             transition-delay: 0.2s;
             box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
         }
-
         .ripple-sample .fab.red {
             background-color: #d23f31;
         }
-
         .ripple-sample .fab.blue {
             background-color: #4285f4;
         }
-
         .ripple-sample .fab.green {
             background-color: #0f9d58;
         }
-
         .ripple-sample .fab:active {
             box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2);
             transition-delay: 0s;
         }
-
         .ripple-sample .fab > iron-icon {
             margin: 16px;
         }
-
         .ripple-sample .fab > iron-icon::shadow path {
             fill: #fff;
         }
-
-        /* Menu */
         .ripple-sample .menu {
             display: inline-block;
             width: 180px;
             background-color: #fff;
             box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2);
         }
-
         .ripple-sample .item {
             position: relative;
             height: 48px;
@@ -163,12 +131,9 @@
             color: #646464;
             font-size: 0.9em;
         }
-
         .ripple-sample .menu.blue > .item {
             color: #4285f4;
         }
-
-        /* Card, Dialog */
         .ripple-sample .card, .dialog {
             position: relative;
             display: inline-block;
@@ -178,53 +143,41 @@
             background-color: #fff;
             box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24);
         }
-
         .ripple-sample .dialog {
             box-sizing: border-box;
             padding: 16px;
         }
-
         .ripple-sample .dialog > .content {
             height: 170px;
             font-size: 0.9em;
         }
-
         .ripple-sample .dialog > .content > .title {
             font-size: 1.3em;
         }
-
         .ripple-sample .dialog > .button {
             width: 90px;
             float: right;
         }
-
         .ripple-sample .card.image {
             background: url(http://lorempixel.com/300/240/nature/);
             color: #fff;
         }
-
-        /* Misc */
         .ripple-sample .center {
             text-align: center;
         }
-
         .ripple-sample .label {
             padding: 0 16px;
         }
-
         .ripple-sample .label-blue {
             color: #4285f4;
         }
-
         .ripple-sample .label-red {
             color: #d23f31;
         }
     </ui:style>
 
     <g:HTMLPanel addStyleNames="ripple-sample">
-
         <section>
-
             <div class="button raised">
                 <div class="center" fit="">SUBMIT</div>
                 <p:PaperRipple/>
@@ -260,11 +213,9 @@
                 <div class="center" fit="">+1</div>
                 <p:PaperRipple/>
             </div>
-
         </section>
 
         <section>
-
             <div class="icon-button">
                 <i:IronIcon icon="menu"/>
                 <p:PaperRipple addStyleNames="circle" recenters="true"/>
@@ -284,11 +235,9 @@
                 <i:IronIcon icon="account-box"/>
                 <p:PaperRipple addStyleNames="circle" recenters="true"/>
             </div>
-
         </section>
 
         <section>
-
             <div class="fab red">
                 <i:IronIcon icon="add"/>
                 <p:PaperRipple addStyleNames="circle" recenters="true"/>
@@ -303,11 +252,9 @@
                 <i:IronIcon icon="create"/>
                 <p:PaperRipple addStyleNames="circle" recenters="true"/>
             </div>
-
         </section>
 
         <section>
-
             <div class="menu">
 
                 <div class="item">
@@ -326,11 +273,9 @@
                     <div class="label" fit="">Create event</div>
                     <p:PaperRipple/>
                 </div>
-
             </div>
 
             <div class="menu blue">
-
                 <div class="item">
                     <div class="label" fit="">Import</div>
                     <p:PaperRipple/>
@@ -347,15 +292,12 @@
                     <div class="label" fit="">Restore contacts</div>
                     <p:PaperRipple/>
                 </div>
-
             </div>
 
         </section>
 
         <section>
-
             <div class="dialog">
-
                 <div class="content">
                     <div class="title">Permission</div><br/>
                     <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</div>
@@ -370,7 +312,6 @@
                     <div class="center" fit="">DECLINE</div>
                     <p:PaperRipple/>
                 </div>
-
             </div>
 
             <div class="card">
@@ -378,12 +319,8 @@
             </div>
 
             <div class="card image">
-
                 <p:PaperRipple recenters="true"/>
-
             </div>
-
         </section>
-
     </g:HTMLPanel>
 </ui:UiBinder>

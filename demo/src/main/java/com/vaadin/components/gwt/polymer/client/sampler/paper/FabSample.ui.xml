@@ -2,13 +2,8 @@
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
              xmlns:p='urn:import:com.vaadin.polymer.paper.widget'>
 
-    <ui:style>
-
-    </ui:style>
-
     <g:HTMLPanel addStyleNames="fab-sample">
         <style is="custom-style">
-
             .fab-sample .horizontal-section {
                 min-width: 200px;
             }

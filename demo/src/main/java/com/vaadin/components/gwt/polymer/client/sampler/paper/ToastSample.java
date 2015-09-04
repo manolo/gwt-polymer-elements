@@ -15,15 +15,11 @@ public class ToastSample extends Composite {
     }
 
     private static SampleUiBinder ourUiBinder = GWT.create(SampleUiBinder.class);
-    
-    @UiField
-    PaperButton button1;
-    @UiField
-    PaperButton button2;
-    @UiField
-    PaperToast toast1;
-    @UiField
-    PaperToast toast2;
+
+    @UiField PaperButton button1;
+    @UiField PaperButton button2;
+    @UiField PaperToast toast1;
+    @UiField PaperToast toast2;
 
     public ToastSample() {
         initWidget(ourUiBinder.createAndBindUi(this));

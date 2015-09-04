@@ -26,10 +26,7 @@
         }
     </ui:style>
 
-    
-
     <g:HTMLPanel addStyleNames="collapse-sample">
-
         <g:Button ui:field="heading1" addStyleNames="{style.heading}">Collapse #1</g:Button>
         <i:IronCollapse ui:field="collapse1">
             <div class="{style.content}">
@@ -50,6 +47,5 @@
                 </i:IronCollapse>
             </div>
         </i:IronCollapse>
-        
     </g:HTMLPanel>
 </ui:UiBinder>

@@ -15,9 +15,7 @@
     </ui:style>
 
     <g:HTMLPanel addStyleNames="selector-sample">
-
         <h3>Basic</h3>
-
         <i:IronSelector selected="0">
             <div>Item 0</div>
             <div>Item 1</div>
@@ -27,7 +25,6 @@
         </i:IronSelector>
 
         <h3>Multi-select</h3>
-
         <i:IronSelector multi="true" selectedValues="[0,2]">
             <div>Item 0</div>
             <div>Item 1</div>
@@ -37,12 +34,10 @@
         </i:IronSelector>
 
         <h3>Example</h3>
-
         <i:IronSelector selected="foo" attrForSelected="name">
             <div name="foo">Foo</div>
             <div name="bar">Bar</div>
             <div name="zot">Zot</div>
         </i:IronSelector>
-        
     </g:HTMLPanel>
 </ui:UiBinder>

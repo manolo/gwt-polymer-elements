@@ -3,7 +3,6 @@
              xmlns:p='urn:import:com.vaadin.polymer.paper.widget'>
 
     <g:HTMLPanel addStyleNames="toggle-button-sample">
-
         <style is="custom-style">
             .toggle-button-sample .line {
                 margin-bottom: 40px;
@@ -12,7 +11,6 @@
             .toggle-button-sample .line span {
                 margin-left: 24px;
             }
-
             .toggle-button-sample paper-toggle-button.blue {
                 --paper-toggle-button-checked-bar-color:  var(--paper-light-blue-500);
                 --paper-toggle-button-checked-button-color:  var(--paper-light-blue-500);
@@ -21,7 +19,6 @@
                 --paper-toggle-button-unchecked-button-color:  var(--paper-light-blue-900);
                 --paper-toggle-button-unchecked-ink-color: var(--paper-light-blue-900);
             }
-
             .toggle-button-sample paper-toggle-button.red {
                 --paper-toggle-button-checked-bar-color:  var(--paper-red-500);
                 --paper-toggle-button-checked-button-color:  var(--paper-red-500);
@@ -30,7 +27,6 @@
                 --paper-toggle-button-unchecked-button-color:  var(--paper-red-900);
                 --paper-toggle-button-unchecked-ink-color: var(--paper-red-900);
             }
-
             .toggle-button-sample paper-toggle-button.green {
                 --paper-toggle-button-checked-bar-color:  var(--paper-green-500);
                 --paper-toggle-button-checked-button-color:  var(--paper-green-500);
@@ -39,7 +35,6 @@
                 --paper-toggle-button-unchecked-button-color:  var(--paper-green-900);
                 --paper-toggle-button-unchecked-ink-color: var(--paper-green-900);
             }
-
             .toggle-button-sample paper-toggle-button.orange {
                 --paper-toggle-button-checked-bar-color:  var(--paper-orange-500);
                 --paper-toggle-button-checked-button-color:  var(--paper-orange-500);

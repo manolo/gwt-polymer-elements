@@ -11,7 +11,6 @@
     </ui:style>
 
     <g:HTMLPanel addStyleNames="menu-sample">
-
         <div class="horizontal-section-container center-justified layout">
             <div>
                 <h4>Standard</h4>
@@ -49,6 +48,5 @@
                 </div>
             </div>
         </div>
-
     </g:HTMLPanel>
 </ui:UiBinder>

@@ -2,12 +2,7 @@
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
              xmlns:p='urn:import:com.vaadin.polymer.paper.widget'>
     
-    <ui:style>
-
-    </ui:style>
-
     <g:HTMLPanel addStyleNames="input-sample">
-
         <div class="vertical center-justified layout">
             <h4>Text input</h4>
             <div class="vertical-section">
@@ -38,6 +33,5 @@
                 <p:PaperTextarea label="textarea with maxlength" charCounter="true" maxlength="10"/>
             </div>
         </div>
-        
     </g:HTMLPanel>
 </ui:UiBinder>

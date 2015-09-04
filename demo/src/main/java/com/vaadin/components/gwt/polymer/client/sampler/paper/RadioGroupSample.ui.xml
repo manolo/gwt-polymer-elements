@@ -3,7 +3,6 @@
              xmlns:p='urn:import:com.vaadin.polymer.paper.widget'>
 
     <g:HTMLPanel addStyleNames="radio-group-sample">
-
         <style is="custom-style">
             .radio-group-sample .horizontal-section {
                 min-width: 200px;
@@ -83,6 +82,5 @@
                 </div>
             </div>
         </div>
-
     </g:HTMLPanel>
 </ui:UiBinder>
