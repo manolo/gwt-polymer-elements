@@ -13,8 +13,8 @@ import com.vaadin.polymer.paper.element.PaperTabElement;
 import com.vaadin.polymer.paper.element.PaperTabsElement;
 import com.vaadin.polymer.paper.element.PaperToastElement;
 
-public class PaperTabsView extends Composite {
-    interface PaperTabsViewUiBinder extends UiBinder<HTMLPanel, PaperTabsView> {
+public class UiBinderElement extends Composite {
+    interface PaperTabsViewUiBinder extends UiBinder<HTMLPanel, UiBinderElement> {
     }
 
     private static PaperTabsViewUiBinder ourUiBinder = GWT.create(PaperTabsViewUiBinder.class);
@@ -24,7 +24,7 @@ public class PaperTabsView extends Composite {
     @UiField
     PaperToastElement toast;
 
-    public PaperTabsView() {
+    public UiBinderElement() {
         initWidget(ourUiBinder.createAndBindUi(this));
 
         // Since we are using pure elements in UiBinder, they are created via
