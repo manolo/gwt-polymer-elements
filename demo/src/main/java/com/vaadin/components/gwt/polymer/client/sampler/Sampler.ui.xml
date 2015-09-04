@@ -73,8 +73,11 @@
            text-align: center;
            padding: 5px;
         }
-        .source-content {
-           font-size: 90%;
+        .source pre {
+           font-size: 12px;
+           line-height: 13px;
+           background-color: #CDE5E3;
+           padding: 10px;
         }
         .source-buttons {
            background-color: #CDE5E3;
@@ -159,10 +162,12 @@
             </div>
         </p:PaperDialog>
 
-        <p:PaperDialog ui:field="source" modal="true">
+        <p:PaperDialog ui:field="source" modal="true" addStyleNames="{style.source}">
             <h2 ui:field="sourceTitle">Source</h2>
             <p:PaperDialogScrollable>
-               <pre ui:field="sourceContent" class="source-content"></pre>
+               <paper-material elevation="3">
+                 <pre ui:field="sourceContent"></pre>
+               </paper-material>
             </p:PaperDialogScrollable>
             <div class="buttons">
                 <p:PaperButton attributes="dialog-dismiss"  raised="true">OK</p:PaperButton>
