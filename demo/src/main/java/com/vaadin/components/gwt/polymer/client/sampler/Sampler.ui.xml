@@ -51,8 +51,8 @@
             text-overflow: ellipsis;
             white-space: nowrap;
             font-size: 150%;
-            color: #DDD7D7;
             margin-left: 20px;
+            margin-right: 15px;
         }
         paper-header-panel {
             z-index: auto !important;
@@ -73,6 +73,18 @@
            text-align: center;
            padding: 5px;
         }
+        .source-content {
+           font-size: 90%;
+        }
+        .source-buttons {
+           background-color: #CDE5E3;
+           height: 35px;
+           padding: 7px 0px 7px 30px;
+        }
+        .source-buttons iron-icon {
+           margin-bottom: 10px;
+        }
+
     </ui:style>
 
     <g:HTMLPanel>
@@ -103,11 +115,15 @@
                 <p:PaperHeaderPanel mode="seamed">
                     <p:PaperToolbar addStyleNames="{style.toolbar}">
                         <p:PaperIconButton icon="menu" attributes="paper-drawer-toggle" />
-                        <span ui:field="currentLabel" class="flex {style.current}"></span>
-                        <p:PaperButton ui:field="xmlButton" addStyleNames="{style.buttons}"><i:IronIcon icon="launch"/>.ui.xml</p:PaperButton>
-                        <p:PaperButton ui:field="javaButton" addStyleNames="{style.buttons}"><i:IronIcon icon="launch"/>.java</p:PaperButton>
-                        <p:PaperIconButton ui:field="help" icon="help"/>
+                        <span ui:field="currentLabel" class="{style.current}"></span>
+                        <span class="flex"></span>
+                        <p:PaperButton ui:field="help" addStyleNames="{style.buttons}"><i:IronIcon icon="help"/>About</p:PaperButton>
                     </p:PaperToolbar>
+                    <div class="{style.source-buttons}">
+                        <span>SOURCE</span>
+                        <p:PaperButton ui:field="javaButton" addStyleNames="{style.buttons}"><i:IronIcon icon="launch"/>.java</p:PaperButton>
+                        <p:PaperButton ui:field="xmlButton" addStyleNames="{style.buttons}"><i:IronIcon icon="launch"/>.ui.xml</p:PaperButton>
+                    </div>
                     <g:HTMLPanel ui:field="content" addStyleNames="{style.panel}"/>
                 </p:PaperHeaderPanel>
             </div>
@@ -137,6 +153,16 @@
              <p>
                Anyway, we believe that it is worth to start experimenting and learning web components sooner, and contributing with the growing community around these new trends.
              </p>
+            <div class="buttons">
+                <p:PaperButton attributes="dialog-dismiss"  raised="true">OK</p:PaperButton>
+            </div>
+        </p:PaperDialog>
+
+        <p:PaperDialog ui:field="source" modal="true">
+            <h2 ui:field="sourceTitle">Source</h2>
+            <p:PaperDialogScrollable>
+               <pre ui:field="sourceContent" class="source-content"></pre>
+            </p:PaperDialogScrollable>
             <div class="buttons">
                 <p:PaperButton attributes="dialog-dismiss"  raised="true">OK</p:PaperButton>
             </div>

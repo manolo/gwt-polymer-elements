@@ -7,11 +7,16 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import com.google.gwt.core.shared.GWT;
+import com.google.gwt.dom.client.HeadingElement;
+import com.google.gwt.dom.client.PreElement;
 import com.google.gwt.dom.client.SpanElement;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
+import com.google.gwt.query.client.GQ;
+import com.google.gwt.query.client.Properties;
+import com.google.gwt.query.client.plugins.ajax.Ajax;
 import com.google.gwt.resources.client.CssResource;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -22,9 +27,10 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Widget;
-import com.vaadin.components.gwt.polymer.client.sampler.gwt.PaperJavaAPI;
-import com.vaadin.components.gwt.polymer.client.sampler.gwt.PaperTabsView;
-import com.vaadin.components.gwt.polymer.client.sampler.gwt.PaperTabsWidgetView;
+import com.vaadin.components.gwt.polymer.client.sampler.gwt.JavaApiElement;
+import com.vaadin.components.gwt.polymer.client.sampler.gwt.JavaApiWidget;
+import com.vaadin.components.gwt.polymer.client.sampler.gwt.UiBinderElement;
+import com.vaadin.components.gwt.polymer.client.sampler.gwt.UiBinderWidget;
 import com.vaadin.components.gwt.polymer.client.sampler.iron.IronCollapseSample;
 import com.vaadin.components.gwt.polymer.client.sampler.iron.IronSelectorSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.ButtonSample;
@@ -59,6 +65,7 @@ import com.vaadin.polymer.paper.widget.PaperItem;
 public class Sampler extends Composite {
 
     public static final String REPO_PATH = "https://github.com/vaadin/gwt-polymer-elements/blob/master/demo/src/main/java/com/vaadin/components/gwt/polymer/client/sampler/";
+    public static final String API_PATH = "https://api.github.com/repos/vaadin/gwt-polymer-elements/contents/demo/src/main/java/com/vaadin/components/gwt/polymer/client/sampler/";
 
     interface SamplerUiBinder extends UiBinder<HTMLPanel, Sampler> {
     }
@@ -88,8 +95,19 @@ public class Sampler extends Composite {
     @UiField PaperDialog about;
     @UiField PaperButton xmlButton;
 
+    @UiField PaperDialog source;
+    @UiField HeadingElement sourceTitle;
+    @UiField PreElement sourceContent;
+
+
     public Sampler() {
         initWidget(ourUiBinder.createAndBindUi(this));
+
+        addCategory("gwt", "GWT Integration");
+        addSample("Widget Java API", new JavaApiWidget(), "gwt", "JavaApiWidget", false);
+        addSample("Element Java API", new JavaApiElement(), "gwt", "JavaApiElement", false);
+        addSample("UiBinder Widgets", new UiBinderWidget(), "gwt", "UiBinderWidget");
+        addSample("UiBinder Elements", new UiBinderElement(), "gwt", "UiBinderElement");
 
         addCategory("paper", "Paper Elements");
         addSample("Button", new ButtonSample(), "paper", "ButtonSample");
@@ -119,11 +137,6 @@ public class Sampler extends Composite {
         addSample("Collapse", new IronCollapseSample(), "iron", "IronCollapseSample");
         addSample("Selector", new IronSelectorSample(), "iron", "IronSelectorSample");
 
-        addCategory("gwt", "GWT Integration");
-        addSample("Element UiBinder", new PaperTabsView(), "gwt", "PaperTabsView");
-        addSample("Widget UiBinder", new PaperTabsWidgetView(), "gwt", "PaperTabsWidgetView");
-        addSample("Java API", new PaperJavaAPI(), "gwt", "PaperJavaAPI", false);
-
         History.addValueChangeHandler(new ValueChangeHandler<String>() {
             public void onValueChange(ValueChangeEvent<String> event) {
                 selectItem(event.getValue());
@@ -139,13 +152,29 @@ public class Sampler extends Composite {
         });
     }
 
+    private void showSource(String category, String file) {
+        Ajax.get(API_PATH + category + "/" + file)
+          .done(new com.google.gwt.query.client.Function() {
+            native String atob(String b64) /*-{
+              return "" + $wnd.atob(b64);
+            }-*/;
+            public void f() {
+                Properties p = GQ.create().parse(arguments(0));
+                String c = atob(p.get("content"));
+                sourceTitle.setInnerHTML(file);
+                sourceContent.setInnerText(c);
+                source.open();
+          }
+        });
+    }
+
     @UiHandler("xmlButton")
     protected void onXmlButton(ClickEvent e) {
-        Window.open(REPO_PATH + currentItem.category + "/" + currentItem.path + ".ui.xml", "_blank", "");
+        showSource(currentItem.category, currentItem.path + ".ui.xml");
     }
     @UiHandler("javaButton")
     protected void onJavaButton(ClickEvent e) {
-        Window.open(REPO_PATH + currentItem.category + "/" + currentItem.path + ".java", "_blank", "");
+        showSource(currentItem.category, currentItem.path + ".java");
     }
 
     @UiHandler({"logo1", "logo2", "logo3"})
@@ -195,7 +224,7 @@ public class Sampler extends Composite {
     private void selectItem(String hash) {
         String tmp[] = hash != null ? hash.split("/") : null;
         if (tmp == null || tmp.length < 2) {
-            tmp = new String[]{"paper", "ButtonSample"};
+            tmp = new String[]{"gwt", "JavaApiWidget"};
         }
         for (Item i : items) {
             if (i.category == tmp[0] && i.path == tmp[1]) {
