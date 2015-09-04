@@ -1,4 +1,4 @@
-0682D83F8BD9AB9DA6D165662B5D89EC.cache.js
+2D191114F247135DBACE37439191D315.cache.js
 ClientBundle.enableInlining true
 animation transition
 audioElementSupport maybe
@@ -12,6 +12,7 @@ dragEventSupport maybe
 gwt.enableDebugId false
 gwt.forceBidi false
 gwt.logging.enabled FALSE
+gwt.logging.simpleConsoleHandler ENABLED
 gwt.suppressNonStaticFinalFieldWarnings false
 history.noDoubleEncoding false
 locale default
@@ -22,7 +23,7 @@ user.agent gecko1_8
 videoElementSupport maybe
 webApiUsage modern
 
-0682D83F8BD9AB9DA6D165662B5D89EC.cache.js
+2D191114F247135DBACE37439191D315.cache.js
 ClientBundle.enableInlining true
 animation transition
 audioElementSupport maybe
@@ -36,6 +37,7 @@ dragEventSupport maybe
 gwt.enableDebugId false
 gwt.forceBidi false
 gwt.logging.enabled FALSE
+gwt.logging.simpleConsoleHandler ENABLED
 gwt.suppressNonStaticFinalFieldWarnings false
 history.noDoubleEncoding false
 locale default
@@ -46,7 +48,7 @@ user.agent ie10
 videoElementSupport maybe
 webApiUsage modern
 
-0682D83F8BD9AB9DA6D165662B5D89EC.cache.js
+2D191114F247135DBACE37439191D315.cache.js
 ClientBundle.enableInlining true
 animation js
 audioElementSupport no
@@ -60,6 +62,7 @@ dragEventSupport no
 gwt.enableDebugId false
 gwt.forceBidi false
 gwt.logging.enabled FALSE
+gwt.logging.simpleConsoleHandler ENABLED
 gwt.suppressNonStaticFinalFieldWarnings false
 history.noDoubleEncoding false
 locale default
@@ -70,7 +73,7 @@ user.agent ie8
 videoElementSupport no
 webApiUsage modern
 
-0682D83F8BD9AB9DA6D165662B5D89EC.cache.js
+2D191114F247135DBACE37439191D315.cache.js
 ClientBundle.enableInlining true
 animation js
 audioElementSupport maybe
@@ -84,6 +87,7 @@ dragEventSupport maybe
 gwt.enableDebugId false
 gwt.forceBidi false
 gwt.logging.enabled FALSE
+gwt.logging.simpleConsoleHandler ENABLED
 gwt.suppressNonStaticFinalFieldWarnings false
 history.noDoubleEncoding false
 locale default
@@ -94,7 +98,7 @@ user.agent ie9
 videoElementSupport maybe
 webApiUsage modern
 
-0682D83F8BD9AB9DA6D165662B5D89EC.cache.js
+2D191114F247135DBACE37439191D315.cache.js
 ClientBundle.enableInlining true
 animation transition
 audioElementSupport maybe
@@ -108,6 +112,7 @@ dragEventSupport maybe
 gwt.enableDebugId false
 gwt.forceBidi false
 gwt.logging.enabled FALSE
+gwt.logging.simpleConsoleHandler ENABLED
 gwt.suppressNonStaticFinalFieldWarnings false
 history.noDoubleEncoding false
 locale default

@@ -10,7 +10,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>paper-radio-button basic tests</title>
+  <title>paper-checkbox basic tests</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
   <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
@@ -46,31 +46,29 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       test('check checkbox via click', function() {
         c1.addEventListener('click', function() {
-          assert.isTrue(c1.getAttribute('aria-checked'));
+          assert.isTrue(c1.getAttribute('aria-checked') == 'true');
           assert.isTrue(c1.checked);
-          done();
         });
-        MockInteractions.down(c1);
+        MockInteractions.tap(c1);
       });
 
       test('toggle checkbox via click', function() {
         c1.checked = true;
         c1.addEventListener('click', function() {
-          assert.isFalse(c1.getAttribute('aria-checked'));
+          assert.isFalse(c1.getAttribute('aria-checked') != 'false');
           assert.isFalse(c1.checked);
-          done();
         });
-        MockInteractions.down(c1);
+        MockInteractions.tap(c1);
       });
 
       test('disabled checkbox cannot be clicked', function() {
         c1.disabled = true;
+        c1.checked = true;
         c1.addEventListener('click', function() {
-          assert.isTrue(c1.getAttribute('aria-checked'));
+          assert.isTrue(c1.getAttribute('aria-checked') == 'true');
           assert.isTrue(c1.checked);
-          done();
         });
-        MockInteractions.down(c1);
+        MockInteractions.tap(c1);
       });
     });
 

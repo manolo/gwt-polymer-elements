@@ -67,12 +67,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         });
       });
 
-      test('HEADER_STATE_CONDESED', function(done) {
+      test('HEADER_STATE_CONDENSED', function(done) {
         scrollHeaderPanel._prevScrollTop = toolbar.offsetHeight * 10;
         scrollHeaderPanel.scroller.scrollTop = toolbar.offsetHeight * 5;
 
-        flush(function() {         
-            assert.equal(scrollHeaderPanel.headerState, scrollHeaderPanel.HEADER_STATE_CONDESED);
+        flush(function() {
+            assert.equal(scrollHeaderPanel.headerState, scrollHeaderPanel.HEADER_STATE_CONDENSED);
             done();
         });
       });
