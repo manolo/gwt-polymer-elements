@@ -29,16 +29,6 @@ public class IronListSample extends Composite {
     public IronListSample() {
         initWidget(ourUiBinder.createAndBindUi(this));
 
-        ajax.addResponseHandler(new ResponseEventHandler() {
-            @Override
-            public void onResponse(ResponseEvent event) {
-                log(ajax.getLastResponse());
-                list.setItems((JsArray) ajax.getLastResponse());
-            }
-        });
+        ajax.addResponseHandler(event -> list.setItems((JsArray) ajax.getLastResponse()));
     }
-
-    private native void log(Object o) /*-{
-        $wnd.console.log(o);
-    }-*/;
 }
