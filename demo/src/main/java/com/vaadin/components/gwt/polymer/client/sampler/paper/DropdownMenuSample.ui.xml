@@ -3,12 +3,7 @@
              xmlns:i='urn:import:com.vaadin.polymer.iron.widget'
              xmlns:p='urn:import:com.vaadin.polymer.paper.widget'>
 
-    <ui:style>
-
-    </ui:style>
-
     <g:HTMLPanel addStyleNames="dropdown-menu-sample">
-
         <div class="horizontal-section-container">
             <div>
                 <h4>Basic Menu</h4>
@@ -74,6 +69,5 @@
                 </div>
             </div>
         </div>
-
     </g:HTMLPanel>
 </ui:UiBinder>

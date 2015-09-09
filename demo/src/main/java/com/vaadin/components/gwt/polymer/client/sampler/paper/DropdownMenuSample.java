@@ -1,14 +1,10 @@
 package com.vaadin.components.gwt.polymer.client.sampler.paper;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
-import com.vaadin.polymer.iron.widget.IronCollapse;
 import com.vaadin.polymer.paper.widget.PaperItem;
 import com.vaadin.polymer.paper.widget.PaperMenu;
 import com.vaadin.polymer.paper.widget.PaperTab;
@@ -19,10 +15,10 @@ public class DropdownMenuSample extends Composite {
     }
 
     private static SampleUiBinder ourUiBinder = GWT.create(SampleUiBinder.class);
-    
+
     private static String[] letters = { "alpha", "beta", "gamma", "delta",
             "epsilon" };
-        
+
     private static String[] dinosaurs = { "allosaurus", "brontosaurus",
             "carcharodontosaurus", "diplodocus", "ekrixinatosaurus",
             "fukuiraptor", "gallimimus", "hadrosaurus", "iguanodon",
@@ -32,18 +28,12 @@ public class DropdownMenuSample extends Composite {
             "vulcanodon", "wannanosaurus", "xenoceratops", "yandusaurus",
             "zephyrosaurus" };
 
-    @UiField
-    PaperMenu menu1;
-    @UiField
-    PaperMenu menu2;
-    @UiField
-    PaperMenu menu3;
-    @UiField
-    PaperTabs tabs1;
-    @UiField
-    PaperMenu menu4;
-    @UiField
-    PaperMenu menu5;
+    @UiField PaperMenu menu1;
+    @UiField PaperMenu menu2;
+    @UiField PaperMenu menu3;
+    @UiField PaperTabs tabs1;
+    @UiField PaperMenu menu4;
+    @UiField PaperMenu menu5;
 
     public DropdownMenuSample() {
         initWidget(ourUiBinder.createAndBindUi(this));
