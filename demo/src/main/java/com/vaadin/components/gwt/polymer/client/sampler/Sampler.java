@@ -37,6 +37,7 @@ import com.vaadin.components.gwt.polymer.client.sampler.iron.IronSelectorSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.ButtonSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.CheckboxSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.DialogSample;
+import com.vaadin.components.gwt.polymer.client.sampler.paper.DropdownMenuSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.FabSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.HeaderPanelSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.IconButtonSample;
@@ -115,6 +116,7 @@ public class Sampler extends Composite {
         addSample("Button", new ButtonSample(), "paper", "ButtonSample");
         addSample("CheckBox", new CheckboxSample(), "paper", "CheckboxSample");
         addSample("Dialog", new DialogSample(), "paper", "DialogSample");
+        addSample("DropdownMenu", new DropdownMenuSample(), "paper", "DropdownMenuSample");
         // not suitable for current showcase. In original showcase it works inside iframe
         // addSample("DrawerPanel", new DrawerPanelSample(), "paper", "DrawerPanelSample");
         addSample("Floating Button", new FabSample(), "paper", "FabSample");
