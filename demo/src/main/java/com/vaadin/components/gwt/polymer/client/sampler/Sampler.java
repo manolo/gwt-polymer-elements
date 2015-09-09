@@ -34,6 +34,7 @@ import com.vaadin.components.gwt.polymer.client.sampler.gwt.UiBinderWidget;
 import com.vaadin.components.gwt.polymer.client.sampler.highlight.JsHighlight;
 import com.vaadin.components.gwt.polymer.client.sampler.iron.IronCollapseSample;
 import com.vaadin.components.gwt.polymer.client.sampler.iron.IronImageSample;
+import com.vaadin.components.gwt.polymer.client.sampler.iron.IronListSample;
 import com.vaadin.components.gwt.polymer.client.sampler.iron.IronSelectorSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.ButtonSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.CheckboxSample;
@@ -139,6 +140,7 @@ public class Sampler extends Composite {
         addCategory("iron", "Iron Elements");
         addSample("Collapse", new IronCollapseSample(), "iron", "IronCollapseSample");
         addSample("Image", new IronImageSample(), "iron", "IronImageSample");
+        addSample("List", new IronListSample(), "iron", "IronListSample");
         addSample("Selector", new IronSelectorSample(), "iron", "IronSelectorSample");
 
         History.addValueChangeHandler(new ValueChangeHandler<String>() {
