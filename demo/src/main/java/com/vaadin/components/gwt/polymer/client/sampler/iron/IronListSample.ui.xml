@@ -7,29 +7,21 @@
 
     </ui:style>
 
-    <g:HTMLPanel>
+    <g:HTMLPanel addStyleNames="iron-list-sample">
         <style is="custom-style">
-            paper-scroll-header-panel {
+            .iron-list-sample paper-scroll-header-panel {
                 @apply(--layout-fit);
                 @apply(--layout-vertical);
                 @apply(--paper-font-common-base);
+                margin-top: 50px;
             }
 
-            paper-toolbar.tall .title {
-                font-size: 40px;
-                margin-left: 60px;
-
-                -webkit-transform-origin: left center;
-                transform-origin: left center;
-                overflow: visible;
-            }
-
-            iron-list {
+            .iron-list-sample iron-list {
                 background-color: var(--paper-grey-200, #eee);
                 padding-bottom: 16px;
             }
 
-            .item {
+            .iron-list-sample .item {
                 @apply(--layout-horizontal);
 
                 margin: 16px 16px 0 16px;
@@ -40,7 +32,7 @@
                 border: 1px solid #ddd;
             }
 
-            .avatar {
+            .iron-list-sample .avatar {
                 height: 40px;
                 width: 40px;
                 border-radius: 20px;
@@ -48,55 +40,46 @@
                 background-color: #DDD;
             }
 
-            .pad {
+            .iron-list-sample .pad {
                 padding: 0 16px;
                 @apply(--layout-flex);
                 @apply(--layout-vertical);
             }
 
-            .primary {
+            .iron-list-sample .primary {
                 font-size: 16px;
                 font-weight: bold;
             }
 
-            .secondary {
+            .iron-list-sample .secondary {
                 font-size: 14px;
             }
 
-            .dim {
+            .iron-list-sample .dim {
                 color: gray;
             }
 
         </style>
 
-        <!--<template is="dom-bind">-->
-            <i:IronAjax ui:field="ajax" url="gwtPolymerDemo/contacts.json" auto="true"/>
+        <i:IronAjax ui:field="ajax" url="gwtPolymerDemo/contacts.json" auto="true"/>
 
-            <p:PaperScrollHeaderPanel addStyleNames="fit" condenses="false" keepCondensedHeader="false">
-                <p:PaperToolbar>
-                    <p:PaperIconButton icon="arrow-back"/>
-                    <div class="flex"/>
-                    <p:PaperIconButton icon="search"/>
-                    <p:PaperIconButton icon="more-vert"/>
-                    <div class="bottom title">iron-list</div>
-                </p:PaperToolbar>
-                <i:IronList ui:field="list" as="item">
-                    <template>
-                        <div>
-                            <div class="item">
-                                <img class="avatar" src="[[item.image]]"/>
-                                <div class="pad">
-                                    <div class="primary">[[item.name]]</div>
-                                    <div class="secondary">[[item.shortText]]</div>
-                                    <div class="secondary dim">[[item.longText]]</div>
-                                </div>
-                                <!--<i:IronIcon icon="star"/>-->
+        <p:PaperScrollHeaderPanel addStyleNames="fit">
+            <i:IronList ui:field="list" as="item">
+                <template>
+                    <div>
+                        <div class="item">
+                            <img class="avatar" src="[[item.image]]"/>
+                            <div class="pad">
+                                <div class="primary">[[item.name]]</div>
+                                <div class="secondary">[[item.shortText]]</div>
+                                <div class="secondary dim">[[item.longText]]</div>
                             </div>
+                            <iron-icon icon="star"/>
                         </div>
-                    </template>
-                </i:IronList>
-            </p:PaperScrollHeaderPanel>
-        <!--</template>-->
+                    </div>
+                </template>
+            </i:IronList>
+        </p:PaperScrollHeaderPanel>
 
     </g:HTMLPanel>
 </ui:UiBinder>
