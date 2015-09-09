@@ -36,6 +36,7 @@ public class Demo implements EntryPoint {
         Polymer.importHref(Arrays.asList(
                 "iron-icons/iron-icons.html",
                 "iron-icons/communication-icons.html",
+                "iron-flex-layout/iron-flex-layout.html",
                 "neon-animation/neon-animations.html"
                 ), new Function() {
             public Object call(Object arg) {
