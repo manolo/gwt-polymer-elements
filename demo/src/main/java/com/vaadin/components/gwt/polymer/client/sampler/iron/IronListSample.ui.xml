@@ -3,10 +3,6 @@
              xmlns:i='urn:import:com.vaadin.polymer.iron.widget'
              xmlns:p='urn:import:com.vaadin.polymer.paper.widget'>
 
-    <ui:style>
-
-    </ui:style>
-
     <g:HTMLPanel addStyleNames="iron-list-sample">
         <style is="custom-style">
             .iron-list-sample paper-scroll-header-panel {
@@ -15,23 +11,18 @@
                 @apply(--paper-font-common-base);
                 margin-top: 50px;
             }
-
             .iron-list-sample iron-list {
                 background-color: var(--paper-grey-200, #eee);
                 padding-bottom: 16px;
             }
-
             .iron-list-sample .item {
                 @apply(--layout-horizontal);
-
                 margin: 16px 16px 0 16px;
                 padding: 20px;
-
                 border-radius: 8px;
                 background-color: white;
                 border: 1px solid #ddd;
             }
-
             .iron-list-sample .avatar {
                 height: 40px;
                 width: 40px;
@@ -39,47 +30,43 @@
                 box-sizing: border-box;
                 background-color: #DDD;
             }
-
             .iron-list-sample .pad {
                 padding: 0 16px;
                 @apply(--layout-flex);
                 @apply(--layout-vertical);
             }
-
             .iron-list-sample .primary {
                 font-size: 16px;
                 font-weight: bold;
             }
-
             .iron-list-sample .secondary {
                 font-size: 14px;
             }
-
             .iron-list-sample .dim {
                 color: gray;
             }
-
+            iron-list {
+               top: 50px !important;
+            }
         </style>
 
         <i:IronAjax ui:field="ajax" url="gwtPolymerDemo/contacts.json" auto="true"/>
 
-        <p:PaperScrollHeaderPanel addStyleNames="fit">
-            <i:IronList ui:field="list" as="item">
-                <template>
-                    <div>
-                        <div class="item">
-                            <img class="avatar" src="[[item.image]]"/>
-                            <div class="pad">
-                                <div class="primary">[[item.name]]</div>
-                                <div class="secondary">[[item.shortText]]</div>
-                                <div class="secondary dim">[[item.longText]]</div>
-                            </div>
-                            <iron-icon icon="star"/>
+        <i:IronList ui:field="list" as="item" addStyleNames="fit">
+            <template>
+                <div>
+                    <div class="item">
+                        <img class="avatar" src="[[item.image]]"/>
+                        <div class="pad">
+                            <div class="primary">[[item.name]]</div>
+                            <div class="secondary">[[item.shortText]]</div>
+                            <div class="secondary dim">[[item.longText]]</div>
                         </div>
+                        <iron-icon icon="star"/>
                     </div>
-                </template>
-            </i:IronList>
-        </p:PaperScrollHeaderPanel>
+                </div>
+            </template>
+        </i:IronList>
 
     </g:HTMLPanel>
 </ui:UiBinder>
