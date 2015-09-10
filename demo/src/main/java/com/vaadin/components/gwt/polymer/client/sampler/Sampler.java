@@ -57,6 +57,7 @@ import com.vaadin.components.gwt.polymer.client.sampler.paper.TabsSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.ToastSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.ToggleButtonSample;
 import com.vaadin.components.gwt.polymer.client.sampler.paper.ToolbarSample;
+import com.vaadin.components.gwt.polymer.client.sampler.paper.TooltipSample;
 import com.vaadin.polymer.Polymer;
 import com.vaadin.polymer.elemental.Function;
 import com.vaadin.polymer.iron.widget.IronCollapse;
@@ -138,6 +139,7 @@ public class Sampler extends Composite {
         addSample("Toast", new ToastSample(), "paper", "ToastSample");
         addSample("Toggle Button", new ToggleButtonSample(), "paper", "ToggleButtonSample");
         addSample("Toolbar", new ToolbarSample(), "paper", "ToolbarSample");
+        addSample("Tooltip", new TooltipSample(), "paper", "TooltipSample");
 
         addCategory("iron", "Iron Elements");
         addSample("Collapse", new IronCollapseSample(), "iron", "IronCollapseSample");
