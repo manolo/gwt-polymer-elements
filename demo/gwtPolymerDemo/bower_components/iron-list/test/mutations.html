@@ -19,107 +19,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <script src="../../test-fixture/test-fixture-mocha.js"></script>
 
   <link rel="import" href="../../test-fixture/test-fixture.html">
-  <link rel="import" href="../iron-list.html">
+  <link rel="import" href="helpers.html">
+  <link rel="import" href="x-list.html">
 </head>
 <body>
 
   <test-fixture id="trivialList">
     <template>
-      <template is="dom-bind">
-        <style>
-          :host {
-            @apply(--layout-fit);
-            @apply(--layout-vertical);
-
-            display: block;
-          }
-
-          iron-list {
-            height: 300px;
-          }
-
-          .item:nth-child(odd) {
-            height: 100px;
-            background-color: green;
-            color: white;
-          }
-
-          .item:nth-child(even) {
-            height: 100px;
-            background-color: red;
-            color: white;
-          }
-        </style>
-        <iron-list items="[[data]]" as="item">
-          <template>
-            <div class="item">[[item.index]]</div>
-          </template>
-        </iron-list>
-      </template>
+      <x-list></x-list>
     </template>
   </test-fixture>
 
   <script>
-    function findElementInList(container, selector) {
-      var i = 0;
-      var children = container._children;
-      var ms = Polymer.DomApi.matchesSelector;
-      for (; i < children.length; i++) {
-        if (children[i].nodeType === Node.ELEMENT_NODE && ms.call(children[i], selector)) {
-          return children[i];
-        }
-      }
-      return null;
-    }
-
-    function buildItem(index) {
-      return {
-        index: index
-      };
-    }
-
-    function buildDataSet(size) {
-      var data = [];
-      while (data.length < size) {
-        data.push(buildItem(data.length));
-      }
-      return data;
-    }
-
-    function simulateScroll(config, fn) {
-      var list = config.list;
-      var target = config.target;
-      var delay = config.delay || 1;
-      var contribution = config.contribution || 100;
-
-      function scroll(dir, prevVal) {
-        list.scrollTop = list.scrollTop + dir;
-        if (list.scrollTop !== target && prevVal !== list.scrollTop) {
-          setTimeout(scroll.bind(null, dir, list.scrollTop), delay);
-        } else {
-          setTimeout(fn.bind(null, list.scrollTop), 100);
-        }
-      }
-
-      if (list.scrollTop < target) {
-        scroll(Math.abs(contribution), -1);
-      } else if (list.scrollTop > target) {
-        scroll(-Math.abs(contribution), -1);
-      }
-    }
-
-    function getFirstItemFromList(list) {
-      var listRect = list.getBoundingClientRect();
-      return document.elementFromPoint(listRect.left + 1, listRect.top + 1);
-    }
 
     suite('mutations to items', function() {
-      var list, ajax, container;
+      var list, container;
 
       setup(function() {
         container = fixture('trivialList');
-        ajax = findElementInList(container, 'iron-ajax');
-        list = findElementInList(container, 'iron-list');
+        list = container.list;
       });
 
       test('update physical item', function(done) {
@@ -145,6 +63,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         function scrollBackUp() {
           simulateScroll({
             list: list,
+            contribution: 100,
             target: 0
           }, function() {
             flush(function() {
@@ -159,6 +78,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           // scroll down
           simulateScroll({
             list: list,
+            contribution: 100,
             target: setSize*rowHeight
           }, function() {
             list.set('items.0.index', phrase);

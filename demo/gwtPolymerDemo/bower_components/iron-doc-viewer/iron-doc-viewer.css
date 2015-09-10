@@ -52,6 +52,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   overflow-x: auto;
   padding: 12px 24px;
   font-size: 15px;
+  word-wrap: break-word;
 }
 
 #summary marked-element::shadow #content table {
@@ -148,4 +149,3 @@ iron-doc-property[configuration] {
   padding: 16px 24px;
   cursor: pointer;
 }
-

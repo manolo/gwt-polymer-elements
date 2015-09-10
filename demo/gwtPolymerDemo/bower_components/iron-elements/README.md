@@ -6,7 +6,7 @@ Basic building blocks for creating an application. Most of the `iron` elements w
 
 ### Elements in progress
 
-* `iron-list` - the upgraded version of a virtualized infinite list, previously named `core-list`. ETA: Couple weeks.
+_No `iron-elements` are currently in progress. [`iron-list`](https://github.com/polymerelements/iron-list) was the most recent to be released._
 
 ### Elements planned
 _Elements we're planning on building soon but haven't started yet_

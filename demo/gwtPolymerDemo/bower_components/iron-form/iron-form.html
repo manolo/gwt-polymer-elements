@@ -68,6 +68,14 @@ call the form's `submit` method.
       disableNativeValidationUi: {
         type: Boolean,
         value: false
+      },
+
+      /**
+      * Set the withCredentials flag when sending data.
+      */
+      withCredentials: {
+        type: Boolean,
+        value: false
       }
     },
     /**
@@ -113,7 +121,7 @@ call the form's `submit` method.
      * Called to submit the form.
      */
     submit: function() {
-      if (!this.noValidate && !this._validate()) {
+      if (!this.noValidate && !this.validate()) {
         // In order to trigger the native browser invalid-form UI, we need
         // to do perform a fake form submit.
         if (!this.disableNativeValidationUi) {
@@ -128,9 +136,10 @@ call the form's `submit` method.
       this._requestBot.url = this.action;
       this._requestBot.method = this.method;
       this._requestBot.contentType = this.contentType;
+      this._requestBot.withCredentials = this.withCredentials;
 
       if (this.method.toUpperCase() == 'POST') {
-        this._requestBot.body = JSON.stringify(json);
+        this._requestBot.body = json;
       } else {
         this._requestBot.params = json;
       }
@@ -155,6 +164,8 @@ call the form's `submit` method.
      * custom components and native elements of the form. If there are elements
      * with duplicate names, then their values will get aggregated into an
      * array of values.
+     * 
+     * @return {!Object}
      */
     serialize: function() {
       var json = {};
@@ -205,6 +216,7 @@ call the form's `submit` method.
     },
 
     _registerElement: function(e) {
+      e.target._parentForm = this;
       this._customElements.push(e.target);
     },
 
@@ -218,18 +230,21 @@ call the form's `submit` method.
       }
     },
 
-    _validate: function() {
+    /**
+     * Validates all the required elements (custom and native) in the form.
+     * @return {boolean} True if all the elements are valid.
+     */
+    validate: function() {
       var valid = true;
 
       // Validate all the custom elements.
       var validatable;
       for (var el, i = 0; el = this._customElements[i], i < this._customElements.length; i++) {
-        if (el.required && this._useValue(el)) {
+        if (el.required && !el.disabled) {
           validatable = /** @type {{validate: (function() : boolean)}} */ (el);
-          // TODO(notwaldorf): IronValidatableBehavior can return undefined if
-          // a validator is not set. It probably shouldn't, but in the meantime
-          // deal with that scenario.
-          valid = !!validatable.validate() && valid;
+          // Some elements may not have correctly defined a validate method.
+          if (validatable.validate)
+            valid = !!validatable.validate() && valid;
         }
       }
 

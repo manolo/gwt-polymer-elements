@@ -36,6 +36,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </template>
   </test-fixture>
 
+  <test-fixture id="AriaLabel">
+    <template>
+      <paper-checkbox id="check3" aria-label="Batman">Robin</paper-checkbox>
+    </template>
+  </test-fixture>
+
   <script>
     suite('defaults', function() {
       var c1;
@@ -44,31 +50,61 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         c1 = fixture('NoLabel');
       });
 
-      test('check checkbox via click', function() {
+      test('check checkbox via click', function(done) {
         c1.addEventListener('click', function() {
           assert.isTrue(c1.getAttribute('aria-checked') == 'true');
           assert.isTrue(c1.checked);
+          done();
         });
         MockInteractions.tap(c1);
       });
 
-      test('toggle checkbox via click', function() {
+      test('toggle checkbox via click', function(done) {
         c1.checked = true;
         c1.addEventListener('click', function() {
           assert.isFalse(c1.getAttribute('aria-checked') != 'false');
           assert.isFalse(c1.checked);
+          done();
         });
         MockInteractions.tap(c1);
       });
 
-      test('disabled checkbox cannot be clicked', function() {
+      test('disabled checkbox cannot be clicked', function(done) {
         c1.disabled = true;
         c1.checked = true;
-        c1.addEventListener('click', function() {
+        MockInteractions.tap(c1);
+        setTimeout(function() {
           assert.isTrue(c1.getAttribute('aria-checked') == 'true');
           assert.isTrue(c1.checked);
-        });
-        MockInteractions.tap(c1);
+          done();
+        }, 1);
+      });
+
+      test('checkbox can be validated', function() {
+        c1.required = true;
+        assert.isFalse(c1.validate());
+
+        c1.checked = true;
+        assert.isTrue(c1.validate());
+      });
+
+      test('disabled checkbox is always valid', function() {
+        c1.disabled = true;
+        c1.required = true;
+        assert.isTrue(c1.validate());
+
+        c1.checked = true;
+        assert.isTrue(c1.validate());
+      });
+
+      test('checkbox label can be updated', function() {
+        Polymer.dom(c1).textContent = 'Batman';
+        c1.updateAriaLabel();
+        assert.isTrue(c1.getAttribute('aria-label') == 'Batman');
+
+        Polymer.dom(c1).textContent = 'Robin';
+        c1.updateAriaLabel();
+        assert.isTrue(c1.getAttribute('aria-label') == 'Robin');
       });
     });
 
@@ -93,6 +129,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       test('checkbox with a label sets an aria label', function() {
         assert.isTrue(c2.getAttribute('aria-label') == "Batman");
       });
+
+      test('checkbox respects the user set aria-label', function() {
+        var c = fixture('AriaLabel');
+        assert.isTrue(c.getAttribute('aria-label') == "Batman");
+      });
+
+      a11ySuite('NoLabel');
+      a11ySuite('WithLabel');
+      a11ySuite('AriaLabel');
     });
   </script>
 </body>

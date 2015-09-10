@@ -78,22 +78,6 @@ is resolved. Local storage will be blown away.
   Polymer({
     is: 'iron-localstorage',
 
-    /**
-     * Fired when value loads from localStorage.
-     *
-     * @event iron-localstorage-load
-     * @param {{externalChange:boolean}} detail -
-     *     externalChange: true if change occured in different window.
-     */
-
-    /**
-     * Fired when loaded value does not exist.
-     * Event handler can be used to initialize default value.
-     *
-     * @event iron-localstorage-load-empty
-     * @param {{externalChange:boolean}} detail -
-     *     externalChange: true if change occured in different window.
-     */
     properties: {
       /**
        * localStorage item key
@@ -240,6 +224,22 @@ is resolved. Local storage will be blown away.
       }
     }
 
+    /**
+     * Fired when value loads from localStorage.
+     *
+     * @event iron-localstorage-load
+     * @param {{externalChange:boolean}} detail -
+     *     externalChange: true if change occured in different window.
+     */
+
+    /**
+     * Fired when loaded value does not exist.
+     * Event handler can be used to initialize default value.
+     *
+     * @event iron-localstorage-load-empty
+     * @param {{externalChange:boolean}} detail -
+     *     externalChange: true if change occured in different window.
+     */
   });
 
 </script>

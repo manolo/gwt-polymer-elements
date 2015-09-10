@@ -69,6 +69,18 @@ bound from the model object provided to the template scope):
       </iron-list>
     </template>
 
+### Resizing
+
+`iron-list` lays out the items when it recives a notification via the `resize` event.
+This event is fired by any element that implements `IronResizableBehavior`.
+
+By default, elements such as `iron-pages`, `paper-tabs` or `paper-dialog` will trigger
+this event automatically. If you hide the list manually (e.g. you use `display: none`)
+you might want to implement `IronResizableBehavior` or fire this event manually right
+after the list became visible again. e.g.
+
+    document.querySelector('iron-list').fire('resize');
+
 
 @group Iron Element
 @element iron-list
@@ -80,7 +92,6 @@ bound from the model object provided to the template scope):
 
     :host {
       display: block;
-      will-change: transform;
     }
 
     :host(.has-scroller) {
@@ -96,13 +107,20 @@ bound from the model object provided to the template scope):
       box-sizing: border-box;
       position: absolute;
       top: 0;
+      will-change: transform;
     }
 
   </style>
   <template>
+
+    <array-selector id="selector" items="{{items}}"
+        selected="{{selectedItems}}" selected-item="{{selectedItem}}">
+    </array-selector>
+
     <div id="items">
       <content></content>
     </div>
+
   </template>
 </dom-module>
 
@@ -113,6 +131,7 @@ bound from the model object provided to the template scope):
   var IOS = navigator.userAgent.match(/iP(?:hone|ad;(?: U;)? CPU) OS (\d+)/);
   var IOS_TOUCH_SCROLLING = IOS && IOS[1] >= 8;
   var DEFAULT_PHYSICAL_COUNT = 20;
+  var MAX_PHYSICAL_COUNT = 500;
 
   Polymer({
 
@@ -145,12 +164,61 @@ bound from the model object provided to the template scope):
       indexAs: {
         type: String,
         value: 'index'
-      }
+      },
 
+      /**
+       * The name of the variable to add to the binding scope to indicate
+       * if the row is selected.
+       */
+      selectedAs: {
+        type: String,
+        value: 'selected'
+      },
+
+      /**
+       * When true, tapping a row will select the item, placing its data model
+       * in the set of selected items retrievable via the selection property.
+       *
+       * Note that tapping focusable elements within the list item will not
+       * result in selection, since they are presumed to have their * own action.
+       */
+      selectionEnabled: {
+        type: Boolean,
+        value: false
+      },
+
+      /**
+       * When `multiSelection` is false, this is the currently selected item, or `null`
+       * if no item is selected.
+       */
+      selectedItem: {
+        type: Object,
+        notify: true
+      },
+
+      /**
+       * When `multiSelection` is true, this is an array that contains the selected items.
+       */
+      selectedItems: {
+        type: Object,
+        notify: true
+      },
+
+      /**
+       * When `true`, multiple items may be selected at once (in this case,
+       * `selected` is an array of currently selected items).  When `false`,
+       * only one item may be selected at a time.
+       */
+      multiSelection: {
+        type: Boolean,
+        value: false
+      }
     },
 
     observers: [
-      '_itemsChanged(items.*)'
+      '_itemsChanged(items.*)',
+      '_selectionEnabledChanged(selectionEnabled)',
+      '_multiSelectionChanged(multiSelection)'
     ],
 
     behaviors: [
@@ -186,7 +254,7 @@ bound from the model object provided to the template scope):
     /**
      * The number of tiles in the DOM.
      */
-    _physicalCount: DEFAULT_PHYSICAL_COUNT,
+    _physicalCount: 0,
 
     /**
      * The k-th tile that is at the top of the scrolling list.
@@ -232,7 +300,7 @@ bound from the model object provided to the template scope):
     /**
      * A map between an item key and its physical item index
      */
-    _physicalIndexForKey: {},
+    _physicalIndexForKey: null,
 
     /**
      * The average scroll size
@@ -265,43 +333,86 @@ bound from the model object provided to the template scope):
      */
     _collection: null,
 
+    /**
+     * True if the current item list was rendered for the first time
+     * after attached.
+     */
+    _itemsRendered: false,
+
+    /**
+     * The bottom of the physical content.
+     */
     get _physicalBottom() {
       return this._physicalTop + this._physicalSize;
     },
 
-    get _scrollBottom() {
-      return this._scrollPosition + this._viewportSize - this._scrollerPaddingTop;
-    },
-
+    /**
+     * The n-th item rendered in the last physical item.
+     */
     get _virtualEnd() {
       return this._virtualStartVal + this._physicalCount - 1;
     },
 
+    /**
+     * The lowest n-th value for an item such that it can be rendered in `_physicalStart`.
+     */
+    _minVirtualStart: 0,
+
+    /**
+     * The largest n-th value for an item such that it can be rendered in `_physicalStart`.
+     */
     get _maxVirtualStart() {
       return this._virtualCount < this._physicalCount ?
           this._virtualCount : this._virtualCount - this._physicalCount;
     },
 
+    /**
+     * The height of the physical content that isn't on the screen.
+     */
     get _hiddenContentSize() {
       return this._physicalSize - this._viewportSize;
     },
 
-    get _minVirtualStart() {
-      return 0;
-    },
-
+    /**
+     * The maximum scroll top value.
+     */
     get _maxScrollTop() {
       return this._scrollSize - this._viewportSize;
     },
 
+    /**
+     * Sets the n-th item rendered in `_physicalStart`
+     */
     set _virtualStart(val) {
+      // clamp the value so that _minVirtualStart <= val <= _maxVirtualStart
       this._virtualStartVal = Math.min(this._maxVirtualStart, Math.max(this._minVirtualStart, val));
       this._physicalStart = this._virtualStartVal % this._physicalCount;
       this._physicalEnd = (this._physicalStart + this._physicalCount - 1) % this._physicalCount;
     },
 
+    /**
+     * Gets the n-th item rendered in `_physicalStart`
+     */
     get _virtualStart() {
       return this._virtualStartVal;
+    },
+
+    /**
+     * An optimal physical size such that we will have enough physical items
+     * to fill up the viewport and recycle when the user scrolls.
+     *
+     * This default value assumes that we will at least have the equivalent
+     * to a viewport of physical items above and below the user's viewport.
+     */
+    get _optPhysicalSize() {
+      return this._viewportSize * 3;
+    },
+
+   /**
+    * True if the current list is visible.
+    */
+    get _isVisible() {
+      return this._scroller && Boolean(this._scroller.offsetWidth || this._scroller.offsetHeight);
     },
 
     /**
@@ -312,7 +423,7 @@ bound from the model object provided to the template scope):
     get firstVisibleIndex() {
       var physicalOffset;
 
-      if (this._firstVisibleIndexVal === null || 1) {
+      if (this._firstVisibleIndexVal === null) {
         physicalOffset = this._physicalTop;
 
         this._firstVisibleIndexVal = this._iterateItems(
@@ -328,6 +439,19 @@ bound from the model object provided to the template scope):
       return this._firstVisibleIndexVal;
     },
 
+    ready: function() {
+      if (IOS_TOUCH_SCROLLING) {
+        this._scrollListener = function() {
+          requestAnimationFrame(this._scrollHandler.bind(this));
+        }.bind(this);
+      } else {
+        this._scrollListener = this._scrollHandler.bind(this);
+      }
+    },
+
+    /**
+     * When the element has been attached to the DOM tree.
+     */
     attached: function() {
       // delegate to the parent's scroller
       // e.g. paper-scroll-header-panel
@@ -335,7 +459,6 @@ bound from the model object provided to the template scope):
 
       if (el.parentNode && el.parentNode.scroller) {
         this._scroller = el.parentNode.scroller;
-        this.updateViewportBoundaries();
       } else {
         this._scroller = this;
         this.classList.add('has-scroller');
@@ -343,12 +466,21 @@ bound from the model object provided to the template scope):
 
       if (IOS_TOUCH_SCROLLING) {
         this._scroller.style.webkitOverflowScrolling = 'touch';
+      }
 
-        this._scroller.addEventListener('scroll', function() {
-          requestAnimationFrame(this._scrollHandler.bind(this));
-        }.bind(this));
-      } else {
-        this._scroller.addEventListener('scroll', this._scrollHandler.bind(this));
+      this._scroller.addEventListener('scroll', this._scrollListener);
+
+      this.updateViewportBoundaries();
+      this._render();
+    },
+
+    /**
+     * When the element has been removed from the DOM tree.
+     */
+    detached: function() {
+      this._itemsRendered = false;
+      if (this._scroller) {
+        this._scroller.removeEventListener('scroll', this._scrollListener);
       }
     },
 
@@ -394,7 +526,7 @@ bound from the model object provided to the template scope):
       this._firstVisibleIndexVal = null;
 
       // random access
-      if (this._scrollBottom > this._physicalBottom || scrollTop < this._physicalTop) {
+      if (Math.abs(delta) > this._physicalSize) {
         this._physicalTop += delta;
         direction = SCROLL_DIRECTION_NONE;
         recycledTiles =  Math.round(delta / this._physicalAverage);
@@ -470,9 +602,12 @@ bound from the model object provided to the template scope):
       }
     },
 
-    _update: function(recycledTileSet, movingUp) {
+    /**
+     * Update the list of items, starting from the `_virtualStartVal` item.
+     */
+    _update: function(itemSet, movingUp) {
       // update models
-      this._assignModels(recycledTileSet);
+      this._assignModels(itemSet);
 
       // measure heights
       // TODO(blasten) pass `recycledTileSet`
@@ -485,32 +620,121 @@ bound from the model object provided to the template scope):
         }
       }
 
-     // update the position of the items
+      // update the position of the items
       this._positionItems();
 
       // set the scroller size
       this._updateScrollerSize();
+
+      // increase the pool of physical items if needed
+      if (itemSet = this._increasePoolIfNeeded()) {
+        // set models to the new items
+        this.async(this._update.bind(this, itemSet));
+      }
     },
 
-    _refreshAll: function() {
-      // polymer/issues/2039
-      CustomElements.takeRecords();
-      this._update();
+    /**
+     * Creates a pool of DOM elements and attaches them to the local dom.
+     */
+    _createPool: function(size) {
+      var physicalItems = new Array(size);
+
+      this._ensureTemplatized();
+
+      for (var i = 0; i < size; i++) {
+        var inst = this.stamp(null);
+
+        // First element child is item; Safari doesn't support children[0]
+        // on a doc fragment
+        physicalItems[i] = inst.root.querySelector('*');
+        Polymer.dom(this).appendChild(inst.root);
+      }
+
+      return physicalItems;
     },
 
+    /**
+     * Increases the pool size. That is, the physical items in the DOM.
+     * This function will allocate additional physical items
+     * (limited by `MAX_PHYSICAL_COUNT`) if the content size is shorter than
+     * `_optPhysicalSize`
+     *
+     * @return Array
+     */
+    _increasePoolIfNeeded: function() {
+      if (this._physicalSize >= this._optPhysicalSize || this._physicalAverage === 0) {
+        return null;
+      }
+
+      // the estimated number of physical items that we will need to reach
+      // the cap established by `_optPhysicalSize`.
+      var missingItems = Math.round(
+          (this._optPhysicalSize - this._physicalSize) * 1.2 / this._physicalAverage
+        );
+
+      // limit the size
+      var nextPhysicalCount = Math.min(
+          this._physicalCount + missingItems,
+          this._virtualCount,
+          MAX_PHYSICAL_COUNT
+        );
+
+      var prevPhysicalCount = this._physicalCount;
+      var delta = nextPhysicalCount - prevPhysicalCount;
+
+      if (delta <= 0) {
+        return null;
+      }
+
+      var newPhysicalItems = this._createPool(delta);
+      var emptyArray = new Array(delta);
+
+      [].push.apply(this._physicalItems, newPhysicalItems);
+      [].push.apply(this._physicalSizes, emptyArray);
+
+      this._physicalCount = prevPhysicalCount + delta;
+
+      // fill the array with the new item pos
+      while (delta > 0) {
+        emptyArray[--delta] = prevPhysicalCount + delta;
+      }
+
+      return emptyArray;
+    },
+
+    /**
+     * Render a new list of items. This method does exactly the same as `update`,
+     * but it also ensures that only one `update` cycle is created.
+     */
+    _render: function() {
+      var requiresUpdate = this._virtualCount > 0 || this._physicalCount > 0;
+
+      if (this.isAttached && !this._itemsRendered && this._isVisible && requiresUpdate)  {
+        this._update();
+        this._itemsRendered = true;
+      }
+    },
+
+    /**
+     * Templetizes the user template.
+     */
     _ensureTemplatized: function() {
       if (!this.ctor) {
         // Template instance props that should be excluded from forwarding
-        this._instanceProps = {
-          __key__: true
-        };
-        this._instanceProps[this.as] = true;
-        this._instanceProps[this.indexAs] = true;
+        var props = {};
+
+        props.__key__ = true;
+        props[this.as] = true;
+        props[this.indexAs] = true;
+        props[this.selectedAs] = true;
+
+        this._instanceProps = props;
         this._userTemplate = Polymer.dom(this).querySelector('template');
+
         if (this._userTemplate) {
           this.templatize(this._userTemplate);
         } else {
-          console.warn('x-list requires a template to be provided in light-dom');
+          console.warn('iron-list requires a template to be provided in light-dom');
         }
       }
     },
@@ -584,36 +808,36 @@ bound from the model object provided to the template scope):
 
     _itemsChanged: function(change) {
       if (change.path === 'items') {
+        // render the new set
+        this._itemsRendered = false;
+
         // update the whole set
         this._virtualStartVal = 0;
         this._physicalTop = 0;
         this._virtualCount = this.items ? this.items.length : 0;
+        this._collection = this.items ? Polymer.Collection.get(this.items) : null;
+        this._physicalIndexForKey = {};
 
-        this._collection = Polymer.Collection.get(this.items);
-        this._physicalItems = this._physicalItems || new Array(this._physicalCount);
-        this._physicalSizes = this._physicalSizes || new Array(this._physicalCount);
+        // scroll to the top
+        this._resetScrollPosition(0);
 
-        this._ensureTemplatized();
-
-        for (var i = 0; i < this._physicalCount; i++) {
-          if (!this._physicalItems[i]) {
-            var inst = this.stamp(this.items[i]);
-
-            // First element child is item; Safari doesn't support children[0]
-            // on a doc fragment
-            this._physicalItems[i] = inst.root.querySelector('*');
-            Polymer.dom(this).appendChild(inst.root);
-          }
+        // create the initial physical items
+        if (!this._physicalItems) {
+          this._physicalCount = Math.max(1, Math.min(DEFAULT_PHYSICAL_COUNT, this._virtualCount));
+          this._physicalItems = this._createPool(this._physicalCount);
+          this._physicalSizes = new Array(this._physicalCount);
         }
 
-        this.debounce('refresh', this._refreshAll);
+        this.debounce('refresh', this._render);
 
       } else if (change.path === 'items.splices') {
+        // render the new set
+        this._itemsRendered = false;
 
         this._adjustVirtualIndex(change.value.indexSplices);
         this._virtualCount = this.items ? this.items.length : 0;
 
-        this.debounce('refresh', this._refreshAll);
+        this.debounce('refresh', this._render);
 
       } else {
         // update a single item
@@ -622,9 +846,15 @@ bound from the model object provided to the template scope):
     },
 
     _adjustVirtualIndex: function(splices) {
-      for (var i = 0; i < splices.length; i++) {
-        var splice = splices[i];
-        var idx = splice.index;
+      var i, splice, idx;
+
+      for (i = 0; i < splices.length; i++) {
+        splice = splices[i];
+
+        // deselect removed items
+        splice.removed.forEach(this.$.selector.deselect, this.$.selector);
+
+        idx = splice.index;
         // We only need to care about changes happening above the current position
         if (idx >= this._virtualStartVal) {
           break;
@@ -683,6 +913,7 @@ bound from the model object provided to the template scope):
         if (item) {
           inst[this.as] = item;
           inst.__key__ = this._collection.getKey(item);
+          inst[this.selectedAs] = this.$.selector.isSelected(item);
           inst[this.indexAs] = vidx;
           el.removeAttribute('hidden');
           this._physicalIndexForKey[inst.__key__] = pidx;
@@ -698,6 +929,10 @@ bound from the model object provided to the template scope):
       var total = 0;
       var prevAvgCount = this._physicalAverageCount;
       var prevPhysicalAvg = this._physicalAverage;
+
+      // Make sure we distributed all the physical items
+      // so we can measure them
+      Polymer.dom.flush();
 
       for (var i = 0; i < this._physicalCount; i++) {
         this._physicalSizes[i] = this._physicalItems[i].offsetHeight;
@@ -743,8 +978,10 @@ bound from the model object provided to the template scope):
     },
 
     _resetScrollPosition: function(pos) {
-      this._scroller.scrollTop = pos;
-      this._scrollPosition = this._scroller.scrollTop;
+      if (this._scroller) {
+        this._scroller.scrollTop = pos;
+        this._scrollPosition = this._scroller.scrollTop;
+      }
     },
 
     _updateScrollerSize: function() {
@@ -759,12 +996,14 @@ bound from the model object provided to the template scope):
      * of the physical items in the DOM tree.
      *
      * @method scrollToIndex
+     * @param {number} idx The index of the item
      */
     scrollToIndex: function(idx) {
       if (typeof idx !== 'number') {
         return;
       }
 
+      var itemSet;
       var firstVisible = this.firstVisibleIndex;
 
       idx = Math.min(Math.max(idx, 0), this._virtualCount-1);
@@ -803,23 +1042,167 @@ bound from the model object provided to the template scope):
       // set the new scroll position
       this._resetScrollPosition(this._physicalTop + targetOffsetTop + 1);
 
+      // increase the pool of physical items if needed
+      if (itemSet = this._increasePoolIfNeeded()) {
+        // set models to the new items
+        this.async(this._update.bind(this, itemSet));
+      }
+
       // clear cached visible index
       this._firstVisibleIndexVal = null;
     },
 
+    /**
+     * Reset the physical average and the average count.
+     */
     _resetAverage: function() {
       this._physicalAverage = 0;
       this._physicalAverageCount = 0;
     },
 
+    /**
+     * A handler for the `resize` event triggered by `IronResizableBehavior`
+     * when the element is resized.
+     */
     _resizeHandler: function() {
-      if (this._physicalItems) {
-        this.debounce('resize', function() {
+      this.debounce('resize', function() {
+        this._render();
+        if (this._itemsRendered && this._physicalItems && this._isVisible) {
           this._resetAverage();
           this.updateViewportBoundaries();
           this.scrollToIndex(this.firstVisibleIndex);
-        });
+        }
+      });
+    },
+
+    _getModelFromItem: function(item) {
+      var key = this._collection.getKey(item);
+      var pidx = this._physicalIndexForKey[key];
+
+      if (pidx !== undefined) {
+        return this._physicalItems[pidx]._templateInstance;
       }
+      return null;
+    },
+
+    /**
+     * Select the list item at the given index.
+     *
+     * @method selectItem
+     * @param {(Object|number)} item the item object or its index
+     */
+    selectItem: function(item) {
+      if (typeof item === 'number') {
+        item = this.items[item];
+        if (!item) {
+          throw new RangeError('<item> not found');
+        }
+      } else {
+        if (this._collection.getKey(item) === undefined) {
+          throw new TypeError('<item> should be a valid item');
+        }
+      }
+
+      var model = this._getModelFromItem(item);
+
+      if (!this.multiSelection && this.selectedItem) {
+        this.deselectItem(this.selectedItem);
+      }
+      if (model) {
+        model[this.selectedAs] = true;
+      }
+      this.$.selector.select(item);
+    },
+
+    /**
+     * Deselects the given item list if it is already selected.
+     *
+     * @method deselect
+     * @param {(Object|number)} item the item object or its index
+     */
+    deselectItem: function(item) {
+      if (typeof item === 'number') {
+        item = this.items[item];
+        if (!item) {
+          throw new RangeError('<item> not found');
+        }
+      } else {
+        if (this._collection.getKey(item) === undefined) {
+          throw new TypeError('<item> should be a valid item');
+        }
+      }
+
+      var model = this._getModelFromItem(item);
+
+      if (model) {
+        model[this.selectedAs] = false;
+      }
+      this.$.selector.deselect(item);
+    },
+
+    /**
+     * Select or deselect a given item depending on whether the item
+     * has already been selected.
+     *
+     * @method toggleSelectionForItem
+     * @param {(Object|number)} item the item object or its index
+     */
+    toggleSelectionForItem: function(item) {
+      var item = typeof item === 'number' ? this.items[item] : item;
+      if (this.$.selector.isSelected(item)) {
+        this.deselectItem(item);
+      } else {
+        this.selectItem(item);
+      }
+    },
+
+    /**
+     * Clears the current selection state of the list.
+     *
+     * @method clearSelection
+     */
+    clearSelection: function() {
+      function unselect(item) {
+        var model = this._getModelFromItem(item);
+        if (model) {
+          model[this.selectedAs] = false;
+        }
+      }
+
+      if (Array.isArray(this.selectedItems)) {
+        this.selectedItems.forEach(unselect, this);
+      } else if (this.selectedItem) {
+        unselect.call(this, this.selectedItem);
+      }
+     
+      this.$.selector.clearSelection();    
+    },
+
+    /**
+     * Add an event listener to `tap` if `selectionEnabled` is true,
+     * it will remove the listener otherwise.
+     */
+    _selectionEnabledChanged: function(selectionEnabled) {
+      if (selectionEnabled) {
+        this.listen(this, 'tap', '_selectionHandler');
+      } else {
+        this.unlisten(this, 'tap', '_selectionHandler');
+      }
+    },
+
+    /**
+     * Select an item from an event object.
+     */
+    _selectionHandler: function(e) {
+      var model = this.modelForElement(e.target);
+      if (model) {
+        this.toggleSelectionForItem(model[this.as]);
+      }
+    },
+
+    _multiSelectionChanged: function(multiSelection) {
+      this.clearSelection();
+      this.$.selector.multi = multiSelection;
     }
   });
 

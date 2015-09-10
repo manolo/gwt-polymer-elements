@@ -32,9 +32,11 @@ You can trigger a request explicitly by calling `generateRequest` on the
 element.
 
 @demo demo/index.html
+@hero hero.svg
 -->
 
 <script>
+  'use strict';
 
   Polymer({
 
@@ -98,8 +100,7 @@ element.
        *         auto
        *         url="http://somesite.com"
        *         headers='{"X-Requested-With": "XMLHttpRequest"}'
-       *         handle-as="json"
-       *         last-response-changed="{{handleResponse}}"></iron-ajax>
+       *         handle-as="json"></iron-ajax>
        *
        * Note: setting a `Content-Type` header here will override the value
        * specified by the `contentType` property of this element.
@@ -118,21 +119,31 @@ element.
        */
       contentType: {
         type: String,
-        value: 'application/x-www-form-urlencoded'
+        value: null
       },
 
       /**
-       * Optional raw body content to send when method === "POST".
+       * Body content to send with the request, typically used with "POST"
+       * requests.
        *
-       * Example:
+       * If body is a string it will be sent unmodified.
        *
-       *     <iron-ajax method="POST" auto url="http://somesite.com"
-       *         body='{"foo":1, "bar":2}'>
-       *     </iron-ajax>
+       * If Content-Type is set to a value listed below, then
+       * the body will be encoded accordingly.
+       *
+       *    * `content-type="application/json"`
+       *      * body is encoded like `{"foo":"bar baz","x":1}`
+       *    * `content-type="application/x-www-form-urlencoded"`
+       *      * body is encoded like `foo=bar+baz&x=1`
+       *
+       * Otherwise the body will be passed to the browser unmodified, and it
+       * will handle any encoding (e.g. for FormData, Blob, ArrayBuffer).
+       *
+       * @type (ArrayBuffer|ArrayBufferView|Blob|Document|FormData|null|string|undefined|Object)
        */
       body: {
-        type: String,
-        value: ''
+        type: Object,
+        value: null
       },
 
       /**
@@ -146,7 +157,7 @@ element.
 
       /**
        * Specifies what data to store in the `response` property, and
-       * to deliver as `event.response` in `response` events.
+       * to deliver as `event.detail.response` in `response` events.
        *
        * One of:
        *
@@ -317,9 +328,14 @@ element.
      * @return {Object}
      */
     get requestHeaders() {
-      var headers = {
-        'Content-Type': this.contentType
-      };
+      var headers = {};
+      var contentType = this.contentType;
+      if (contentType == null && (typeof this.body === 'string')) {
+        contentType = 'application/x-www-form-urlencoded';
+      }
+      if (contentType) {
+        headers['Content-Type'] = contentType;
+      }
       var header;
 
       if (this.headers instanceof Object) {
@@ -339,7 +355,7 @@ element.
      *   url: string,
      *   method: (string|undefined),
      *   async: (boolean|undefined),
-     *   body: (ArrayBuffer|ArrayBufferView|Blob|Document|FormData|null|string|undefined),
+     *   body: (ArrayBuffer|ArrayBufferView|Blob|Document|FormData|null|string|undefined|Object),
      *   headers: (Object|undefined),
      *   handleAs: (string|undefined),
      *   withCredentials: (boolean|undefined)}}

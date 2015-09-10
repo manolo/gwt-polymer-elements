@@ -84,6 +84,9 @@
   }
 
   function tap(node) {
+    // Respect nodes that are disabled in the UI.
+    if (window.getComputedStyle(node)['pointer-events'] === 'none')
+      return;
     var xy = middleOfNode(node);
     down(node, xy);
     up(node, xy);
@@ -91,11 +94,15 @@
   }
 
   function focus(target) {
-    Polymer.Base.fire.call(target, 'focus');
+    Polymer.Base.fire.call(target, 'focus', {}, {
+      bubbles: false
+    });
   }
 
   function blur(target) {
-    Polymer.Base.fire.call(target, 'blur');
+    Polymer.Base.fire.call(target, 'blur', {}, {
+      bubbles: false
+    });
   }
 
   function downAndUp(target, callback) {

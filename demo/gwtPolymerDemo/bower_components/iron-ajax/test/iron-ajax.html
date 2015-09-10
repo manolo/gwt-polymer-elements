@@ -50,6 +50,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                  debounce-duration="150"></iron-ajax>
     </template>
   </test-fixture>
+  <!-- note(rictic):
+       This makes us dependent on a third-party server, but we need to be able
+       to check what headers the browser actually sends on the wire.
+       If necessary we can spin up our own httpbin server, as the code is open
+       source.
+    -->
+  <test-fixture id="RealPost">
+    <template>
+      <iron-ajax method="POST" url="http://httpbin.org/post"></iron-ajax>
+    </template>
+  </test-fixture>
   <script>
     suite('<iron-ajax>', function () {
       var responseHeaders = {
@@ -59,6 +70,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       var ajax;
       var request;
       var server;
+
+      // A stand-in for Promise.all, as promise-polyfill doesn't polyfill it.
+      function promiseAll(promises) {
+        promises = promises.slice(); // defensive copy
+        return new Promise(function(resolve, reject) {
+          var successes = 0;
+          var onSuccess = function() {
+            successes++;
+            if (successes >= promises.length) {
+              resolve();
+            };
+          };
+          for (var i = 0; i < promises.length; i++) {
+            promises[i].then(onSuccess, reject);
+          }
+        });
+      }
 
       function timePasses(ms) {
         return new Promise(function(resolve) {
@@ -140,14 +168,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
           expect(options.headers).to.be.ok;
           expect(options.headers['custom-header']).to.be.an('string');
-          expect(options.headers.hasOwnProperty('custom-header')).to.be.equal(true);
+          expect(options.headers.hasOwnProperty('custom-header')).to.be.equal(
+              true);
         });
 
         test('non-objects in headers are not applied', function() {
           ajax.headers = 'invalid';
           var options = ajax.toRequestOptions();
 
-          expect(Object.keys(options.headers).length).to.be.equal(1);
+          expect(Object.keys(options.headers).length).to.be.equal(0);
         });
       });
 
@@ -173,18 +202,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           expect(ajax.generateRequest()).to.be.instanceOf(IronRequest);
         });
 
-        test('reflects the loading state in the `loading` property', function(done) {
+        test('reflects the loading state in the `loading` property', function() {
           var request = ajax.generateRequest();
 
           expect(ajax.loading).to.be.equal(true);
 
           server.respond();
 
-          timePasses(1).then(function() {
+          return request.completes.then(function() {
+            return timePasses(1);
+          }).then(function() {
             expect(ajax.loading).to.be.equal(false);
-            done();
-          }).catch(function(e) {
-            done(e);
           });
         });
       });
@@ -204,13 +232,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           expect(requests).to.deep.eql(ajax.activeRequests);
         });
 
-        test('empties `activeRequests` when requests are completed', function(done) {
+        test('empties `activeRequests` when requests are completed', function() {
           server.respond();
-          timePasses(1).then(function() {
+          promiseAll(requests).then(function() {
             expect(ajax.activeRequests.length).to.be.equal(0);
-            done();
-          }).catch(function(e) {
-            done(e);
           });
         });
       });
@@ -324,6 +349,75 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           expect(server.requests[0]).to.be.ok;
           expect(server.requests[0].requestBody).to.be.equal(requestBody);
         });
+
+        test('if `contentType` is set to form encode, the body is encoded',function() {
+          ajax.body = {foo: 'bar\nbip', 'biz bo': 'baz blar'};
+          ajax.contentType = 'application/x-www-form-urlencoded';
+          ajax.generateRequest();
+
+          expect(server.requests[0]).to.be.ok;
+          expect(server.requests[0].requestBody).to.be.equal(
+              'foo=bar%0D%0Abip&biz+bo=baz+blar');
+        });
+
+        test('if `contentType` is json, the body is json encoded', function() {
+          var requestObj = {foo: 'bar', baz: [1,2,3]}
+          ajax.body = requestObj;
+          ajax.contentType = 'application/json';
+          ajax.generateRequest();
+
+          expect(server.requests[0]).to.be.ok;
+          expect(server.requests[0].requestBody).to.be.equal(
+              JSON.stringify(requestObj));
+        });
+
+        suite('the examples in the documentation work', function() {
+          test('json content, body attribute is an object', function() {
+            ajax.setAttribute('body', '{"foo": "bar baz", "x": 1}');
+            ajax.contentType = 'application/json';
+            ajax.generateRequest();
+
+            expect(server.requests[0]).to.be.ok;
+            expect(server.requests[0].requestBody).to.be.equal(
+                '{"foo":"bar baz","x":1}');
+          });
+
+          test('form content, body attribute is an object', function() {
+            ajax.setAttribute('body', '{"foo": "bar baz", "x": 1}');
+            ajax.contentType = 'application/x-www-form-urlencoded';
+            ajax.generateRequest();
+
+            expect(server.requests[0]).to.be.ok;
+            expect(server.requests[0].requestBody).to.be.equal(
+                'foo=bar+baz&x=1');
+          });
+        });
+
+        suite('and `contentType` is explicitly set to form encode', function() {
+          test('we encode a custom object', function() {
+            function Foo(bar) { this.bar = bar };
+            var requestObj = new Foo('baz');
+            ajax.body = requestObj;
+            ajax.contentType = 'application/x-www-form-urlencoded';
+            ajax.generateRequest();
+
+            expect(server.requests[0]).to.be.ok;
+            expect(server.requests[0].requestBody).to.be.equal('bar=baz');
+          });
+        })
+
+        suite('and `contentType` isn\'t set', function() {
+          test('we don\'t try to encode an ArrayBuffer', function() {
+            var requestObj = new ArrayBuffer()
+            ajax.body = requestObj;
+            ajax.generateRequest();
+
+            expect(server.requests[0]).to.be.ok;
+            // We give the browser the ArrayBuffer directly, without trying
+            // to encode it.
+            expect(server.requests[0].requestBody).to.be.equal(requestObj);
+          });
+        })
       });
 
       suite('when debouncing requests', function() {
@@ -460,6 +554,68 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       });
 
+      suite('when making a POST over the wire', function() {
+        test('FormData is handled correctly', function() {
+          server.restore();
+          var requestBody = new FormData();
+          requestBody.append('a', 'foo');
+          requestBody.append('b', 'bar');
+
+          var ajax = fixture('RealPost');
+          ajax.body = requestBody;
+          return ajax.generateRequest().completes.then(function() {
+            expect(ajax.lastResponse.headers['Content-Type']).to.match(
+                /^multipart\/form-data; boundary=.*$/);
+
+            expect(ajax.lastResponse.form.a).to.be.equal('foo');
+            expect(ajax.lastResponse.form.b).to.be.equal('bar');
+          });
+        });
+
+        test('json is handled correctly', function() {
+          server.restore();
+          var ajax = fixture('RealPost');
+          ajax.body = JSON.stringify({a: 'foo', b: 'bar'});
+          ajax.contentType = 'application/json';
+          return ajax.generateRequest().completes.then(function() {
+            expect(ajax.lastResponse.headers['Content-Type']).to.match(
+                /^application\/json(;.*)?$/);
+            expect(ajax.lastResponse.json.a).to.be.equal('foo');
+            expect(ajax.lastResponse.json.b).to.be.equal('bar');
+          });
+        });
+
+        test('urlencoded data is handled correctly', function() {
+          server.restore();
+          var ajax = fixture('RealPost');
+          ajax.body = 'a=foo&b=bar';
+          return ajax.generateRequest().completes.then(function() {
+            expect(ajax.lastResponse.headers['Content-Type']).to.match(
+                /^application\/x-www-form-urlencoded(;.*)?$/);
+
+            expect(ajax.lastResponse.form.a).to.be.equal('foo');
+            expect(ajax.lastResponse.form.b).to.be.equal('bar');
+          });
+        });
+
+        test('xml is handled correctly', function() {
+          server.restore();
+          var ajax = fixture('RealPost');
+
+          var xmlDoc = document.implementation.createDocument(
+              null, "foo", null);
+          var node = xmlDoc.createElement("bar");
+          node.setAttribute("name" , "baz");
+          xmlDoc.documentElement.appendChild(node);
+          ajax.body = xmlDoc;
+          return ajax.generateRequest().completes.then(function() {
+            expect(ajax.lastResponse.headers['Content-Type']).to.match(
+                /^application\/xml(;.*)?$/);
+            expect(ajax.lastResponse.data).to.match(
+                /<foo\s*><bar\s+name="baz"\s*\/><\/foo\s*>/);
+          });
+        });
+      });
     });
   </script>
 

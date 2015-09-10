@@ -63,6 +63,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </template>
         </template>
       </template>
+
       <hr>
       <template is="dom-bind">
         <h3>Bad loader</h3>
@@ -83,7 +84,37 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </template>
         </template>
       </template>
+
+      <hr>
+      <template is="dom-bind" id="delayedLoader">
+        <h3>Delayed libraryUrl loader</h3>
+        <iron-jsonp-library
+          library-url="{{libraryUrl}}"
+          library-loaded="{{loaded}}"
+          library-error-message="{{errorMessage}}">
+        </iron-jsonp-library>
+        <template is="dom-if" if="{{loaded}}">
+          <p><code>{{libraryUrl}}</code> has been loaded</p>
+        </template>
+        <template is="dom-if" if="{{!loaded}}">
+          <template is="dom-if" if="{{errorMessage}}">
+            <p class="failure">{{errorMessage}}</p>
+          </template>
+           <template is="dom-if" if="{{!errorMessage}}">
+            <p class="loading">Loading...<code>{{libraryUrl}}</code></p>
+          </template>
+        </template>
+      </template>
+
     </div>
 
+    <script>
+      // kick off delayed loader by setting libraryUrl
+      window.setTimeout(function() {
+        var t = document.querySelector('#delayedLoader');
+        t.libraryUrl = 'https://apis.google.com/js/drive-realtime.js?onload=%%callback%%';
+      },
+      1000);
+    </script>
   </body>
 </html>

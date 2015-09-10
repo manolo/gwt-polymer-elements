@@ -168,6 +168,41 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           expect(request.succeeded).to.be.equal(false);
         });
       });
+
+      suite('status codes', function() {
+        test('status and statusText is set after a ambiguous request', function() {
+          request.send({
+            url: '/responds_to_get_with_0'
+          });
+
+          server.respond();
+          
+          expect(request.status).to.be.equal(0);
+          expect(request.statusText).to.be.equal('');
+        });
+
+        test('status and statusText is set after a request that succeeded', function() {
+          request.send({
+            url: '/responds_to_get_with_json'
+          });
+
+          server.respond();
+
+          expect(request.status).to.be.equal(200);
+          expect(request.statusText).to.be.equal('OK');
+        });
+
+        test('status and statusText is set after a request that failed', function() {
+          request.send({
+            url: '/responds_to_get_with_500'
+          });
+
+          server.respond();
+
+          expect(request.status).to.be.equal(500);
+          expect(request.statusText).to.be.equal('Internal Server Error');
+        });
+      });
     });
   </script>
 

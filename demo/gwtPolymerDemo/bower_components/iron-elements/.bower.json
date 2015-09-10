@@ -1,6 +1,6 @@
 {
   "name": "iron-elements",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A set of visual and non-visual utility elements. Includes elements for working with layout, user input, selection, and scaffolding apps",
   "keywords": [
     "web-components",
@@ -23,6 +23,7 @@
     "iron-collapse": "PolymerElements/iron-collapse#^1.0.0",
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
     "iron-doc-viewer": "PolymerElements/iron-doc-viewer#^1.0.0",
+    "iron-dropdown": "PolymerElements/iron-dropdown#^1.0.0",
     "iron-fit-behavior": "PolymerElements/iron-fit-behavior#^1.0.0",
     "iron-flex-layout": "PolymerElements/iron-flex-layout#^1.0.0",
     "iron-form": "PolymerElements/iron-form#^1.0.0",
@@ -61,14 +62,14 @@
     "test",
     "tests"
   ],
-  "_release": "1.0.2",
+  "_release": "1.0.3",
   "_resolution": {
     "type": "version",
-    "tag": "v1.0.2",
-    "commit": "63d565ea42faa4e80b266dad1f879c6ff5bf4600"
+    "tag": "v1.0.3",
+    "commit": "c41a656aeba027b315d1f64c9253948b6204331f"
   },
   "_source": "git://github.com/PolymerElements/iron-elements.git",
-  "_target": "~1.0.2",
+  "_target": "~1.0.3",
   "_originalSource": "PolymerElements/iron-elements",
   "_direct": true
 }

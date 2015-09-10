@@ -18,6 +18,8 @@ iron-request can be used to perform XMLHttpRequests.
     this.$.xhr.send({url: url, params: params});
 -->
 <script>
+  'use strict'
+
   Polymer({
     is: 'iron-request',
 
@@ -55,6 +57,32 @@ iron-request can be used to perform XMLHttpRequests.
         value: function() {
          return null;
         }
+      },
+
+      /**
+       * A reference to the status code, if the `xhr` has completely resolved.
+       *
+       * @attribute status
+       * @default 0
+       */
+      status: {
+        type: Number,
+        notify: true,
+        readOnly: true,
+        value: 0
+      },
+
+      /**
+       * A reference to the status text, if the `xhr` has completely resolved.
+       *
+       * @attribute statusText
+       * @default ""
+       */
+      statusText: {
+        type: String,
+        notify: true,
+        readOnly: true,
+        value: ''
       },
 
       /**
@@ -133,7 +161,7 @@ iron-request can be used to perform XMLHttpRequests.
      *   url: string,
      *   method: (string|undefined),
      *   async: (boolean|undefined),
-     *   body: (ArrayBuffer|ArrayBufferView|Blob|Document|FormData|null|string|undefined),
+     *   body: (ArrayBuffer|ArrayBufferView|Blob|Document|FormData|null|string|undefined|Object),
      *   headers: (Object|undefined),
      *   handleAs: (string|undefined),
      *   withCredentials: (boolean|undefined)}} options -
@@ -156,6 +184,7 @@ iron-request can be used to perform XMLHttpRequests.
 
       xhr.addEventListener('readystatechange', function () {
         if (xhr.readyState === 4 && !this.aborted) {
+          this._updateStatus();
 
           if (!this.succeeded) {
             this.rejectCompletes(new Error('The request failed with status code: ' + this.xhr.status));
@@ -176,10 +205,12 @@ iron-request can be used to perform XMLHttpRequests.
       }.bind(this))
 
       xhr.addEventListener('error', function (error) {
+        this._updateStatus();
         this.rejectCompletes(error);
       }.bind(this));
 
       xhr.addEventListener('abort', function () {
+        this._updateStatus();
         this.rejectCompletes(new Error('Request aborted.'));
       }.bind(this));
 
@@ -198,12 +229,23 @@ iron-request can be used to perform XMLHttpRequests.
         }, this);
       }
 
+      var contentType;
+      if (options.headers) {
+        contentType = options.headers['Content-Type'];
+      }
+      var body = this._encodeBodyObject(options.body, contentType);
+
       // In IE, `xhr.responseType` is an empty string when the response
       // returns. Hence, caching it as `xhr._responseType`.
       xhr.responseType = xhr._responseType = (options.handleAs || 'text');
       xhr.withCredentials = !!options.withCredentials;
 
-      xhr.send(options.body);
+
+
+      xhr.send(
+        /** @type {ArrayBuffer|ArrayBufferView|Blob|Document|FormData|
+                   null|string|undefined} */
+        (body));
 
       return this.completes;
     },
@@ -233,7 +275,7 @@ iron-request can be used to perform XMLHttpRequests.
               // If accessing `xhr.responseText` throws, responseType `json`
               // is supported and the result is rightly `undefined`.
               try {
-                xhr.responseText;
+                /** @suppress {suspiciousCode} */ xhr.responseText;
               } catch (e) {
                 return xhr.response;
               }
@@ -266,6 +308,65 @@ iron-request can be used to perform XMLHttpRequests.
     abort: function () {
       this._setAborted(true);
       this.xhr.abort();
+    },
+
+    /**
+     * @param {*} body The given body of the request to try and encode.
+     * @param {?string} contentType The given content type, to infer an encoding
+     *     from.
+     * @return {*} Either the encoded body as a string, if successful,
+     *     or the unaltered body object if no encoding could be inferred.
+     */
+    _encodeBodyObject: function(body, contentType) {
+      if (typeof body == 'string') {
+        return body;  // Already encoded.
+      }
+      var bodyObj = /** @type {Object} */ (body);
+      switch(contentType) {
+        case('application/json'):
+          return JSON.stringify(bodyObj);
+        case('application/x-www-form-urlencoded'):
+          return this._wwwFormUrlEncode(bodyObj);
+      }
+      return body;
+    },
+
+    /**
+     * @param {Object} object The object to encode as x-www-form-urlencoded.
+     * @return {string} .
+     */
+    _wwwFormUrlEncode: function(object) {
+      if (!object) {
+        return '';
+      }
+      var pieces = [];
+      Object.keys(object).forEach(function(key) {
+        // TODO(rictic): handle array values here, in a consistent way with
+        //   iron-ajax params.
+        pieces.push(
+            this._wwwFormUrlEncodePiece(key) + '=' +
+            this._wwwFormUrlEncodePiece(object[key]));
+      }, this);
+      return pieces.join('&');
+    },
+
+    /**
+     * @param {*} str A key or value to encode as x-www-form-urlencoded.
+     * @return {string} .
+     */
+    _wwwFormUrlEncodePiece: function(str) {
+      // Spec says to normalize newlines to \r\n and replace %20 spaces with +.
+      // jQuery does this as well, so this is likely to be widely compatible.
+      return encodeURIComponent(str.toString().replace(/\r?\n/g, '\r\n'))
+          .replace(/%20/g, '+');
+    },
+
+    /**
+     * Updates the status code and status text.
+     */
+    _updateStatus: function() {
+      this._setStatus(this.xhr.status);
+      this._setStatusText((this.xhr.statusText === undefined) ? '' : this.xhr.statusText);
     }
   });
 </script>

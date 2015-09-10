@@ -91,6 +91,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </template>
   </test-fixture>
 
+  <test-fixture id="FormWithRequiredElements">
+    <template>
+      <form is="iron-form" action="/responds_with_json" method="post">
+        <simple-element required></simple-element>
+        <input required>
+      </form>
+    </template>
+  </test-fixture>
+
   <script>
   suite('registration', function() {
     var f;
@@ -115,6 +124,58 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         assert.equal(f.elements.length, 1);
         done();
       }, 200);
+    });
+  });
+
+  suite('validation', function() {
+    test('elements are validated if they don\'t have a name', function() {
+      var f = fixture('FormWithRequiredElements');
+      assert.equal(f._customElements.length, 1);
+      assert.equal(f.elements.length, 1);
+
+      var simpleElement = f._customElements[0];
+      var input = f.elements[0];
+
+      assert.isFalse(f.validate());
+      assert.isTrue(simpleElement.invalid);
+      assert.isFalse(input.validity.valid);
+
+      simpleElement.value = 'batman';
+      input.value = 'robin';
+
+      assert.isTrue(f.validate());
+      assert.isFalse(simpleElement.invalid);
+      assert.isTrue(input.validity.valid);
+
+      // Since the elements don't have names, they don't get serialized.
+      var json = f.serialize();
+      assert.equal(Object.keys(json).length, 0);
+    });
+
+    test('elements are validated if they have a name', function() {
+      var f = fixture('FormWithRequiredElements');
+      assert.equal(f._customElements.length, 1);
+      assert.equal(f.elements.length, 1);
+
+      var simpleElement = f._customElements[0];
+      var input = f.elements[0];
+      simpleElement.name = 'zig';
+      input.name = 'zag';
+
+      assert.isFalse(f.validate());
+      assert.isTrue(simpleElement.invalid);
+      assert.isFalse(input.validity.valid);
+
+      simpleElement.value = 'batman';
+      input.value = 'robin';
+
+      assert.isTrue(f.validate());
+      assert.isFalse(simpleElement.invalid);
+      assert.isTrue(input.validity.valid);
+
+      // The elements have names, so they're serialized.
+      var json = f.serialize();
+      assert.equal(Object.keys(json).length, 2);
     });
   });
 

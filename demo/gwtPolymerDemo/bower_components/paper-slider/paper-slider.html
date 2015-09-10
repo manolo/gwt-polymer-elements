@@ -49,6 +49,9 @@ Custom property | Description | Default
 `--paper-slider-font-color` | The pin's text color | `#fff`
 `--paper-slider-disabled-active-color` | The disabled progress bar color | `--google-grey-500`
 `--paper-slider-disabled-secondary-color` | The disabled secondary progress bar color | `--google-grey-300`
+`--paper-slider-knob-start-color` | The fill color of the knob at the far left | `transparent`
+`--paper-slider-knob-start-border-color` | The border color of the knob at the far left | `#c8c8c8`
+`--paper-slider-pin-start-color` | The color of the pin at the far left | `#c8c8c8`
 
 @group Paper Elements
 @element paper-slider
@@ -66,6 +69,7 @@ Custom property | Description | Default
 
       <div class="bar-container">
         <paper-progress
+          class$="[[_getProgressClass(transiting)]]"
           id="sliderBar"
           aria-hidden="true"
           min="[[min]]"
@@ -93,7 +97,12 @@ Custom property | Description | Default
         on-up="_resetKnob"
         on-track="_onTrack"
         on-transitionend="_knobTransitionEnd">
-          <paper-ripple id="ink" class="circle" center hidden$="[[!receivedFocusFromKeyboard]]"></paper-ripple>
+          <paper-ripple
+            center
+            id="ink"
+            class="circle"
+            hidden$="[[!receivedFocusFromKeyboard]]">
+          </paper-ripple>
           <div id="sliderKnobInner" value$="[[immediateValue]]"></div>
       </div>
     </div>
@@ -103,7 +112,9 @@ Custom property | Description | Default
         id="input"
         class="slider-input"
         disabled$="[[disabled]]"
-        on-change="_inputChange">
+        on-change="_inputChange"
+        value="[[_fixForInput(immediateValue)]]"
+        >
       </paper-input>
     </template>
   </template>
@@ -116,9 +127,8 @@ Custom property | Description | Default
     is: 'paper-slider',
 
     behaviors: [
-      Polymer.IronA11yKeysBehavior,
-      Polymer.PaperInkyFocusBehavior,
       Polymer.IronFormElementBehavior,
+      Polymer.PaperInkyFocusBehavior,
       Polymer.IronRangeBehavior
     ],
 
@@ -234,9 +244,9 @@ Custom property | Description | Default
 
     ready: function() {
       // issue polymer/polymer#1305
+
       this.async(function() {
         this._updateKnob(this.value);
-        this._updateInputValue();
       }, 1);
     },
 
@@ -279,17 +289,15 @@ Custom property | Description | Default
       } else {
         this.value = this.immediateValue;
       }
-      this._updateInputValue();
     },
 
     _secondaryProgressChanged: function() {
       this.secondaryProgress = this._clampValue(this.secondaryProgress);
     },
 
-    _updateInputValue: function() {
-      if (this.editable) {
-        this.$$('#input').value = this.immediateValue.toString();
-      }
+    _fixForInput: function(immediateValue) {
+      // paper-input/issues/114
+      return this.immediateValue.toString();
     },
 
     _expandKnob: function() {
@@ -318,6 +326,7 @@ Custom property | Description | Default
     },
 
     _onTrack: function(event) {
+      event.stopPropagation();
       switch (event.detail.state) {
         case 'start':
           this._trackStart(event);
@@ -375,7 +384,7 @@ Custom property | Description | Default
       this._expandKnob();
 
       // cancel selection
-      event.detail.sourceEvent.preventDefault();
+      event.preventDefault();
 
       // set the focus manually because we will called prevent default
       this.focus();
@@ -406,7 +415,7 @@ Custom property | Description | Default
       });
 
       // cancel selection
-      event.detail.sourceEvent.preventDefault();
+      event.preventDefault();
     },
 
     _knobTransitionEnd: function(event) {
@@ -424,6 +433,13 @@ Custom property | Description | Default
       }
     },
 
+    _mergeClasses: function(classes) {
+      return Object.keys(classes).filter(
+        function(className) {
+          return classes[className];
+        }).join(' ');
+    },
+
     _getClassNames: function() {
       var classes = {};
 
@@ -436,10 +452,13 @@ Custom property | Description | Default
       classes.transiting = this.transiting;
       classes.editable = this.editable;
 
-      return Object.keys(classes).filter(
-        function(className) {
-          return classes[className];
-        }).join(' ');
+      return this._mergeClasses(classes);
+    },
+
+    _getProgressClass: function() {
+      return this._mergeClasses({
+        transiting: this.transiting
+      });
     },
 
     _incrementKey: function(event) {

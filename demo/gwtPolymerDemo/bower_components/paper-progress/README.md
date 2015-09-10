@@ -56,3 +56,15 @@ paper-progress {
   --paper-progress-transition-transition-delay: 0s;
 }
 ```
+
+The following mixins are available for styling:
+
+Custom property                             | Description                            | Default
+--------------------------------------------|----------------------------------------|----------
+--paper-progress-container-color            | Mixin applied to container             | --google-grey-300
+--paper-progress-height                     | The height of the progress bar         | 4px
+--paper-progress-transition-duration        | Duration of the transition             | 0.008s
+--paper-progress-transition-timing-function | The timing function for the transition | ease
+--paper-progress-transition-delay           | delay for the transition               | 0s
+--paper-progress-active-color               | The color of the active bar            | --google-green-500
+--paper-progress-secondary-color            | The color of the secondary bar         | --google-green-100

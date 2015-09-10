@@ -59,7 +59,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         assert.equal(scrollHeaderPanel.keepCondensedHeader, false);
         assert.equal(scrollHeaderPanel.keepCondensedHeader, false);
         assert.equal(scrollHeaderPanel.headerHeight, toolbar.offsetHeight);
-        assert.equal(scrollHeaderPanel.condensedHeaderHeight, toolbar.offsetHeight * 1/3);
+        assert.equal(scrollHeaderPanel.condensedHeaderHeight, Math.round(toolbar.offsetHeight * 1/3));
       });
 
       test('condensation', function(done) {
