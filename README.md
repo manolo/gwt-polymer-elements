@@ -36,7 +36,7 @@ Polymer Iron and Paper collections, so as you don't have to deal with the proces
      <dependency>
        <groupId>com.vaadin.polymer</groupId>
        <artifactId>vaadin-gwt-polymer-elements</artifactId>
-       <version>1.0.2.0-alpha3</version>
+       <version>1.1.3.0-alpha1</version>
        <scope>provided</scope>
      </dependency>
    </dependencies>
@@ -81,23 +81,6 @@ Polymer Iron and Paper collections, so as you don't have to deal with the proces
       <script src="myapp/myapp.nocache.js"></script>
     </head>
     ```
-
-###
-
-## Building the project
-
-Although it's not necessary, you might want to compile the `gwt-polymer-elements` library by yourself.
-
- 1. Clone the repository with `$ git checkout https://github.com/vaadin/gwt-polymer-elements.git`
- 1. Change to the project folder `$ cd gwt-polymer-elements`
- 1. Run `$ npm install` to download all components to the `src/main/resources` folder, to create all java files needed for GWT in the `src/main/java/` folder and to compile and install the components library in you local maven repo.
-
-## Running the demo locally
-
- 1. If you want to run the demo, go to the demo folder `$ cd demo`
- 1. Run `$ mvn gwt:run` to run the demo in SuperDevMode, otherwise run `$ mvn clean package` to
- build the demo application under `target` directory.
- 1. Host the demo by running for example `$ serve target/gwt-polymer-demo` (requires [serve](https://npmjs.org/packages/serve)) or deploying the generated `target/gwt-polymer-demo.war` to your favourite servlet container.
 
 ## Consuming Web Components in GWT
 
@@ -255,3 +238,20 @@ In summary, for classic and production GWT projects it would be easier to use th
    })
 
  ```
+
+## Contributors
+
+## Building the project
+
+To compile the `vaadin-gwt-polymer-elements` library by yourself.
+
+ 1. Clone the repository with `$ git checkout https://github.com/vaadin/gwt-polymer-elements.git`
+ 1. Change to the project folder `$ cd gwt-polymer-elements`
+ 1. Run `$ npm install` to download all components to the `src/main/resources` folder, to create all java files needed for GWT in the `src/main/java/` folder and to compile and install the components library in you local maven repo.
+
+## Running the demo locally
+
+ 1. To run and debug the demo, go to the demo folder `$ cd demo`
+ 1. Run `$ mvn gwt:run` to run the demo in SuperDevMode, otherwise run `$ mvn clean package` to
+ build the demo application under `target` directory.
+ 1. Host the demo either: by running for example `$ serve target/gwt-polymer-demo` (requires [serve](https://npmjs.org/packages/serve)) or deploying the generated `target/gwt-polymer-demo.war` to your favourite servlet container.
