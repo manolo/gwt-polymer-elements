@@ -31,6 +31,10 @@ npm install
 ( cd demo/target/gwt-polymer-demo/ && \
   tar cf /tmp/demo.tar demo.* gwt* img )
 
+# Save apidocs
+( cd demo/target/apidocs/ && \
+  tar cf /tmp/api.tar * )
+
 # Switch to gh-pages and update demo compiled app
 git checkout gh-pages
 
@@ -38,13 +42,18 @@ git checkout gh-pages
   rm -rf gwt* && \
   tar xf /tmp/demo.tar )
 
+( cd api && \
+  rm * && \
+  tar xf /tmp/api.tar )
+
 # Create an index
 cp demo/demo.html demo/index.html
 
 # Commit changes to gh-pages
 git add demo/gwt* 
-git commit -m 'Update demo' demo
-git push origin gh-pages
+git add api/* 
+#git commit -m 'Update demo' demo
+#git push origin gh-pages
 
 # Return to master branch
 git checkout master
