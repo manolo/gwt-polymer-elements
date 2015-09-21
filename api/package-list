@@ -46,6 +46,8 @@ com.vaadin.polymer.request.element.event
 com.vaadin.polymer.request.widget.event
 com.vaadin.polymer.response.element.event
 com.vaadin.polymer.response.widget.event
+com.vaadin.polymer.reverse.element
+com.vaadin.polymer.reverse.widget
 com.vaadin.polymer.ripple.element
 com.vaadin.polymer.ripple.widget
 com.vaadin.polymer.scale.element
