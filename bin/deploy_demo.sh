@@ -20,7 +20,7 @@ git checkout master
 [ ! -f demo/pom.xml ] && exit 2
 
 # Run script to generate pom and java stuff
-rm -rf pom.xml src node_modules pom.xml.releaseBackup release.properties target
+rm -rf pom.xml src node_modules pom.xml.releaseBackup release.properties target demo/target
 npm install
 
 # Compile demo using compiled library
@@ -32,7 +32,7 @@ npm install
   tar cf /tmp/demo.tar demo.* gwt* img )
 
 # Save apidocs
-( cd demo/target/apidocs/ && \
+( cd target/apidocs/ && \
   tar cf /tmp/api.tar * )
 
 # Switch to gh-pages and update demo compiled app
