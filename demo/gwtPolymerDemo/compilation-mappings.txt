@@ -1,8 +1,14 @@
-B0A3BDB700257820BE8C97417E3E46A4.cache.js
+4B6E95161C028CBAEB3E81F8B52730DF.cache.js
 ClientBundle.enableInlining true
 animation transition
 audioElementSupport maybe
 canvasElementSupport maybe
+checks.api ENABLED
+checks.bounds ENABLED
+checks.checkLevel NORMAL
+checks.critical ENABLED
+checks.jsni DISABLED
+checks.type ENABLED
 compiler.emulatedStack false
 compiler.predeclare.cross.fragment.references false
 compiler.stackMode native
@@ -23,11 +29,17 @@ user.agent gecko1_8
 videoElementSupport maybe
 webApiUsage modern
 
-B0A3BDB700257820BE8C97417E3E46A4.cache.js
+4B6E95161C028CBAEB3E81F8B52730DF.cache.js
 ClientBundle.enableInlining true
 animation transition
 audioElementSupport maybe
 canvasElementSupport maybe
+checks.api ENABLED
+checks.bounds ENABLED
+checks.checkLevel NORMAL
+checks.critical ENABLED
+checks.jsni DISABLED
+checks.type ENABLED
 compiler.emulatedStack false
 compiler.predeclare.cross.fragment.references false
 compiler.stackMode native
@@ -48,11 +60,17 @@ user.agent ie10
 videoElementSupport maybe
 webApiUsage modern
 
-B0A3BDB700257820BE8C97417E3E46A4.cache.js
+4B6E95161C028CBAEB3E81F8B52730DF.cache.js
 ClientBundle.enableInlining true
 animation js
 audioElementSupport no
 canvasElementSupport no
+checks.api ENABLED
+checks.bounds ENABLED
+checks.checkLevel NORMAL
+checks.critical ENABLED
+checks.jsni DISABLED
+checks.type ENABLED
 compiler.emulatedStack false
 compiler.predeclare.cross.fragment.references false
 compiler.stackMode native
@@ -73,11 +91,17 @@ user.agent ie8
 videoElementSupport no
 webApiUsage modern
 
-B0A3BDB700257820BE8C97417E3E46A4.cache.js
+4B6E95161C028CBAEB3E81F8B52730DF.cache.js
 ClientBundle.enableInlining true
 animation js
 audioElementSupport maybe
 canvasElementSupport maybe
+checks.api ENABLED
+checks.bounds ENABLED
+checks.checkLevel NORMAL
+checks.critical ENABLED
+checks.jsni DISABLED
+checks.type ENABLED
 compiler.emulatedStack false
 compiler.predeclare.cross.fragment.references false
 compiler.stackMode native
@@ -98,11 +122,17 @@ user.agent ie9
 videoElementSupport maybe
 webApiUsage modern
 
-B0A3BDB700257820BE8C97417E3E46A4.cache.js
+4B6E95161C028CBAEB3E81F8B52730DF.cache.js
 ClientBundle.enableInlining true
 animation transition
 audioElementSupport maybe
 canvasElementSupport maybe
+checks.api ENABLED
+checks.bounds ENABLED
+checks.checkLevel NORMAL
+checks.critical ENABLED
+checks.jsni DISABLED
+checks.type ENABLED
 compiler.emulatedStack false
 compiler.predeclare.cross.fragment.references false
 compiler.stackMode native

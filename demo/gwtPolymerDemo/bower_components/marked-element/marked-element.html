@@ -151,11 +151,11 @@ as you would a regular DOM element:
     render: function() {
       if (!this._attached) return;
       if (!this.markdown) {
-        this._outputElement.innerHTML = '';
+        Polymer.dom(this._outputElement).innerHTML = '';
         return;
       }
 
-      this._outputElement.innerHTML = marked(this.markdown, {
+      Polymer.dom(this._outputElement).innerHTML = marked(this.markdown, {
         highlight: this._highlight.bind(this),
       });
     },
