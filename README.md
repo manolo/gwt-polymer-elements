@@ -155,7 +155,7 @@ In summary, for classic and production GWT projects it would be easier to use th
 
   ```
 
-## **Styling** your aplication.
+## **Styling** your application.
 
   Polymer uses Shadow DOM styling rules for providing scoped styling of the element’s local DOM. It supports  some extra syntax which is not understable by the GWT GSS parser.
 
