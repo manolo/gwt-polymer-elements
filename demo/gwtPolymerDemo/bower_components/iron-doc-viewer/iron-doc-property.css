@@ -60,6 +60,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   flex: 1;
 }
 
+@media (max-width: 500px) {
+  #details {
+    margin-left: 0;
+  }
+}
+
 /* Metadata */
 
 #meta {
@@ -104,7 +110,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 #params marked-element {
   display: inline-block;
 }
-#params marked-element::shadow #content p {
+#params .markdown-html p {
   margin: 0;
 }
 
@@ -114,15 +120,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   display: block;
 }
 
-#desc::shadow #content > :first-child {
+#desc .markdown-html > :first-child {
   margin-top: 0;
 }
 
-#desc::shadow #content > :last-child {
+#desc .markdown-html > :last-child {
   margin-bottom: 0;
 }
 
-#desc::shadow #content #content code {
+#desc .markdown-html code {
   @apply(--paper-font-code1);
 }
 

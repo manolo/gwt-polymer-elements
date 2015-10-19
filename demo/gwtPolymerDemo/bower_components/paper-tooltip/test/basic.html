@@ -51,7 +51,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <template>
       <div>
         <div id="target"></div>
-        <paper-tooltip for="target">Tooltip text</paper-tooltip>
+        <paper-tooltip for="target" animation-delay="0">Tooltip text</paper-tooltip>
       </div>
     </template>
   </test-fixture>
@@ -306,7 +306,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         var actualTooltip = Polymer.dom(tooltip.root).querySelector('#tooltip');
         assert.isTrue(isHidden(actualTooltip));
-        MockInteractions.focus(target);
+        // Simulate but don't actually run the entry animation.
+        tooltip.toggleClass('hidden', false, actualTooltip);
+        tooltip._showing = true;
         assert.isFalse(isHidden(actualTooltip));
 
         tooltip.addEventListener('neon-animation-finish', function() {
@@ -346,7 +348,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       setup(function() {
         f = fixture('custom');
         target = f.$.button;
-        tooltip = f.$.tooltip;
+        tooltip = f.$.buttonTooltip;
       });
 
       test('tooltip is shown when target is focused', function() {
@@ -391,6 +393,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         assert.isTrue(tooltip.getAttribute('role') == 'tooltip');
       });
+
+      a11ySuite('basic');
+      a11ySuite('fitted');
+      a11ySuite('no-text');
+      a11ySuite('dynamic');
+      a11ySuite('custom');
     });
   </script>
 </body>

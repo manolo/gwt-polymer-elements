@@ -35,7 +35,8 @@ var components = {
 		"meta": {
 			"path": "components/prism-{id}",
 			"noCSS": true,
-			"examplesPath": "examples/prism-{id}"
+			"examplesPath": "examples/prism-{id}",
+			"addCheckAll": true
 		},
 		"markup": {
 			"title": "Markup",
@@ -55,8 +56,12 @@ var components = {
 			"require": "clike"
 		},
 
-		// ---
 
+
+		"abap": {
+			"title": "ABAP",
+			"owner": "dellagustin"
+		},
 		"actionscript": {
 			"title": "ActionScript",
 			"require": "javascript",
@@ -65,6 +70,10 @@ var components = {
 		"apacheconf": {
 			"title": "Apache Configuration",
 			"owner": "GuiTeK"
+		},
+		"apl": {
+			"title": "APL",
+			"owner": "ngn"
 		},
 		"applescript": {
 			"title": "AppleScript",
@@ -75,14 +84,30 @@ var components = {
 			"require": "markup",
 			"owner": "nauzilus"
 		},
+		"autoit": {
+			"title": "AutoIt",
+			"owner": "Golmote"
+		},
 		"autohotkey": {
 			"title": "AutoHotkey",
 			"owner": "aviaryan"
 		},
 		"bash": {
 			"title": "Bash",
-			"require": "clike",
 			"owner": "zeitgeist87"
+		},
+		"basic": {
+			"title": "BASIC",
+			"owner": "Golmote"
+		},
+		"batch": {
+			"title": "Batch",
+			"owner": "Golmote"
+		},
+		"bison": {
+			"title": "Bison",
+			"require": "c",
+			"owner": "Golmote"
 		},
 		"brainfuck": {
 			"title": "Brainfuck",
@@ -108,19 +133,41 @@ var components = {
 			"require": "javascript",
 			"owner": "R-osey"
 		},
+		"crystal": {
+			"title": "Crystal",
+			"require": "ruby",
+			"owner": "MakeNowJust"
+		},
 		"css-extras": {
 			"title": "CSS Extras",
 			"require": "css",
 			"owner": "milesj"
+		},
+		"d": {
+			"title": "D",
+			"require": "clike",
+			"owner": "Golmote"
 		},
 		"dart": {
 			"title": "Dart",
 			"require": "clike",
 			"owner": "Golmote"
 		},
+		"diff": {
+			"title": "Diff",
+			"owner": "uranusjr"
+		},
+		"docker": {
+			"title": "Docker",
+			"owner": "JustinBeckwith"
+		},
 		"eiffel": {
 			"title": "Eiffel",
 			"owner": "Conaclos"
+		},
+		"elixir": {
+			"title": "Elixir",
+			"owner": "Golmote"
 		},
 		"erlang": {
 			"title": "Erlang",
@@ -142,6 +189,11 @@ var components = {
 		"git": {
 			"title": "Git",
 			"owner": "lgiraudel"
+		},
+		"glsl": {
+			"title": "GLSL",
+			"require": "clike",
+			"owner": "Golmote"
 		},
 		"go": {
 			"title": "Go",
@@ -171,9 +223,17 @@ var components = {
 			"title": "HTTP",
 			"owner": "danielgtaylor"
 		},
+		"inform7": {
+			"title": "Inform 7",
+			"owner": "Golmote"
+		},
 		"ini": {
 			"title": "Ini",
 			"owner": "aviaryan"
+		},
+		"j": {
+			"title": "J",
+			"owner": "Golmote"
 		},
 		"jade": {
 			"title": "Jade",
@@ -219,9 +279,30 @@ var components = {
 			"title": "MATLAB",
 			"owner": "Golmote"
 		},
+		"mel": {
+			"title": "MEL",
+			"owner": "Golmote"
+		},
+		"mizar": {
+			"title": "Mizar",
+			"owner": "Golmote"
+		},
+		"monkey": {
+			"title": "Monkey",
+			"owner": "Golmote"
+		},
 		"nasm": {
 			"title": "NASM",
 			"owner": "rbmj"
+		},
+		"nginx": {
+			"title": "nginx",
+			"owner": "westonganger",
+			"require": "clike"
+		},
+		"nim": {
+			"title": "Nim",
+			"owner": "Golmote"
 		},
 		"nsis": {
 			"title": "NSIS",
@@ -231,6 +312,10 @@ var components = {
 			"title": "Objective-C",
 			"require": "c",
 			"owner": "uranusjr"
+		},
+		"ocaml": {
+			"title": "OCaml",
+			"owner": "Golmote"
 		},
 		"pascal": {
 			"title": "Pascal",
@@ -254,9 +339,31 @@ var components = {
 			"title": "PowerShell",
 			"owner": "nauzilus"
 		},
+		"processing": {
+			"title": "Processing",
+			"require": "clike",
+			"owner": "Golmote"
+		},
+		"prolog": {
+			"title": "Prolog",
+			"owner": "Golmote"
+		},
+		"pure": {
+			"title": "Pure",
+			"owner": "Golmote"
+		},
 		"python": {
 			"title": "Python",
 			"owner": "multipetros"
+		},
+		"q": {
+			"title": "Q",
+			"owner": "Golmote"
+		},
+		"qore": {
+			"title": "Qore",
+			"require": "clike",
+			"owner": "temnroegg"
 		},
 		"r": {
 			"title": "R",
@@ -290,6 +397,7 @@ var components = {
 		},
 		"sass": {
 			"title": "Sass (Sass)",
+			"require": "css",
 			"owner": "Golmote"
 		},
 		"scss": {
@@ -328,6 +436,15 @@ var components = {
 			"require": "clike",
 			"owner": "chrischares"
 		},
+		"tcl": {
+			"title": "Tcl",
+			"owner": "PeterChaplin"
+		},
+		"textile": {
+			"title": "Textile",
+			"require": "markup",
+			"owner": "Golmote"
+		},
 		"twig": {
 			"title": "Twig",
 			"require": "markup",
@@ -338,9 +455,17 @@ var components = {
 			"require": "javascript",
 			"owner": "vkbansal"
 		},
+		"verilog": {
+			"title": "Verilog",
+			"owner": "a-rey"
+		},
 		"vhdl": {
 			"title": "VHDL",
 			"owner": "a-rey"
+		},
+		"vim": {
+			"title": "vim",
+			"owner": "westonganger"
 		},
 		"wiki": {
 			"title": "Wiki markup",
@@ -373,9 +498,48 @@ var components = {
 			"title": "Show Language",
 			"owner": "nauzilus"
 		},
+		"jsonp-highlight": {
+			"title": "JSONP Highlight",
+			"noCSS": true,
+			"owner": "nauzilus"
+		},
 		"highlight-keywords": {
 			"title": "Highlight Keywords",
 			"owner": "vkbansal",
+			"noCSS": true
+		},
+		"remove-initial-line-feed": {
+			"title": "Remove initial line feed",
+			"owner": "Golmote",
+			"noCSS": true
+		},
+		"previewer-base": {
+			"title": "Previewer: Base",
+			"owner": "Golmote"
+		},
+		"previewer-color": {
+			"title": "Previewer: Color",
+			"require": "previewer-base",
+			"owner": "Golmote"
+		},
+		"previewer-gradient": {
+			"title": "Previewer: Gradient",
+			"require": "previewer-base",
+			"owner": "Golmote"
+		},
+		"previewer-easing": {
+			"title": "Previewer: Easing",
+			"require": "previewer-base",
+			"owner": "Golmote"
+		},
+		"autoloader": {
+			"title": "Autoloader",
+			"owner": "Golmote",
+			"noCSS": true
+		},
+		"keep-markup": {
+			"title": "Keep Markup",
+			"owner": "Golmote",
 			"noCSS": true
 		}
 	}

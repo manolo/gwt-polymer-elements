@@ -38,15 +38,21 @@ Give it a hydrolysis `PropertyDescriptor` (via `descriptor`), and watch it go!
             <li hidden$="{{!item.type}}">
               <span class="name">{{item.name}}</span>
               <span class="type">{{item.type}}</span>
-              <marked-element markdown="{{item.desc}}"></marked-element>
+              <marked-element markdown="{{item.desc}}">
+                <div class="markdown-html"></div>
+              </marked-element>
             </li>
           </template>
           <li class="return" hidden$="{{!descriptor.return}}">Returns
             <span class="type">{{descriptor.return.type}}</span>
-            <marked-element markdown="{{descriptor.return.desc}}"></marked-element>
+            <marked-element markdown="{{descriptor.return.desc}}">
+              <div class="markdown-html"></div>
+            </marked-element>
           </li>
         </ol>
-        <marked-element id="desc" markdown="{{descriptor.desc}}" hidden$="{{!descriptor.desc}}"></marked-element>
+        <marked-element id="desc" markdown="{{descriptor.desc}}" hidden$="{{!descriptor.desc}}">
+          <div class="markdown-html"></div>
+        </marked-element>
       </div>
     </div>
   </template>

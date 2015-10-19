@@ -15,24 +15,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../paper-badge.html">
 
 <dom-module id="test-button">
-  <style>
-    :host {
-      display: inline-block;
-      position: relative;
-    }
-
-    paper-icon-button {
-      padding: 0;
-      margin: 0;
-    }
-
-    paper-badge {
-      --paper-badge-background: var(--paper-light-blue-300);
-    }
-  </style>
   <template>
-      <paper-icon-button id="button" icon="menu" alt="menu"></paper-icon-button>
-      <paper-badge for="button" label="♠︎"></paper-badge>
+    <style>
+      :host {
+        display: inline-block;
+        position: relative;
+      }
+
+      paper-icon-button {
+        padding: 0;
+        margin: 0;
+      }
+
+      paper-badge {
+        --paper-badge-background: var(--paper-light-blue-300);
+      }
+    </style>
+
+    <paper-icon-button id="button" icon="menu" alt="menu"></paper-icon-button>
+    <paper-badge for="button" label="♠︎"></paper-badge>
   </template>
 
   <script>

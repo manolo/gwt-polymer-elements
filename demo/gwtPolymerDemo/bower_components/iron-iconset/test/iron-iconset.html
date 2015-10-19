@@ -22,6 +22,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <link rel="import" href="../iron-iconset.html">
   <link rel="import" href="../../iron-meta/iron-meta.html">
+  <link rel="import" href="../../promise-polyfill/promise-polyfill.html">
   <link rel="import" href="../../test-fixture/test-fixture.html">
 
 </head>
@@ -63,8 +64,17 @@ suite('<iron-iconset>', function () {
   suite('basic behavior', function () {
     var iconset;
     var meta;
+    var loadedPromise;
 
     setup(function () {
+      loadedPromise = new Promise(function(resolve) {
+        window.addEventListener('iron-iconset-added', function(ev) {
+          if (ev && ev.detail === iconset) {
+            resolve();
+          }
+        });
+      });
+
       var elements = fixture('TrivialIconset');
 
       iconset = elements[0];
@@ -73,6 +83,10 @@ suite('<iron-iconset>', function () {
 
     test('it can be accessed via iron-meta', function () {
       expect(meta.byKey('foo')).to.be.equal(iconset);
+    });
+
+    test('it fires an iron-iconset-added event on the window', function() {
+      return loadedPromise;
     });
   });
 

@@ -58,7 +58,7 @@ documentation page including demos (if available).
               No documentation found.
             </div>
           </div>
-          <iframe id="demo" src="[[_frameSrc(view, base)]]"></iframe>
+          <div id="demo"></div>
         </iron-selector>
       </div>
     </paper-header-panel>
@@ -135,8 +135,8 @@ documentation page including demos (if available).
        */
       active: {
         type: String,
-        observer: '_activeChanged',
-        notify: true
+        notify: true,
+        value: ''
       },
 
       /**
@@ -161,17 +161,21 @@ documentation page including demos (if available).
       /** The Hydrolysis element descriptors that have been loaded. */
       docElements: {
         type:     Array,
-        observer: '_descriptorsChanged',
         notify: true,
-        readOnly: true
+        readOnly: true,
+        value: function() {
+          return [];
+        }
       },
 
       /** The Hydrolysis behavior descriptors that have been loaded. */
       docBehaviors: {
         type:     Array,
-        observer: '_descriptorsChanged',
         notify: true,
-        readOnly: true
+        readOnly: true,
+        value: function() {
+          return [];
+        }
       },
 
       /**
@@ -246,6 +250,11 @@ documentation page including demos (if available).
       _srcUrl: String,
     },
 
+    observers: [
+      '_updateFrameSrc(view, base)',
+      '_activeChanged(active, _analyzer)'
+    ],
+
     ready: function() {
       var elements = this._loadJson();
       if (elements) {
@@ -312,25 +321,41 @@ documentation page including demos (if available).
       if (!this._hydroLoading) this.$.analyzer.analyze();
     },
 
-    _frameSrc: function(view) {
+    _updateFrameSrc: function(view) {
       if (!view || view.indexOf("demo:") !== 0) return "about:blank";
+
       var src = view.split(':')[1];
-      return new URL(src, this.base).toString();
+      var demoSrc = new URL(src, this.base).toString();
+
+      // If you use history.pushState with iframe.src = url, you will create 2 history entries,
+      // but setting the `src` attribute imperatively will not.
+
+      if (this._iframe) {
+        Polymer.dom(this.$.demo).removeChild(this._iframe);
+      }
+
+      this._iframe = document.createElement('iframe');
+      this._iframe.src = demoSrc;
+      Polymer.dom(this.$.demo).appendChild(this._iframe);
     },
 
-    _descriptorsChanged: function() {
-      if (this._findDescriptor(this.active)) {
-        this._activeChanged();
-        return;
+    _getDefaultActive: function() {
+      function findMatch(el) {
+        return el && el.contentHref && el.contentHref.indexOf(mainFile) > 0;
       }
 
-      if (this.docElements && this.docElements[0]) {
-        this.active = this.docElements[0].is;
-      } else if (this.docBehaviors && this.docBehaviors[0]) {
-        this.active = this.docBehaviors[0].is;
-      } else {
-        this.active = null;
+      var url = this._srcUrl || this.base;
+      var mainFile = url.replace(_baseUrl(this.base), '');
+      var matchedPage = this.docElements.find(findMatch) || this.docBehaviors.find(findMatch);
+
+      if (matchedPage) {
+        return matchedPage.is;
+      } else if (this.docElements.length > 0) {
+        return this.docElements[0].is;
+      } else if (this.docBehaviors.length > 0) {
+        return this.docBehaviors[0].is;
       }
+      return null;
     },
 
     _findDescriptor: function(name) {
@@ -347,11 +372,15 @@ documentation page including demos (if available).
       return null;
     },
 
-    _activeChanged: function() {
-      this.async(function() { this.$.active.value = this.active; });
-      if (this._analyzer && this._analyzer.elementsByTagName) {
+    _activeChanged: function(active, analyzer) {
+      if (active === '') {
+        this.active = this._getDefaultActive();
+        return;
+      }
+      this.async(function() { this.$.active.value = active; });
+      if (analyzer && analyzer.elementsByTagName) {
         this.$.headerPanel.scroller.scrollTop = 0;
-        this._activeDescriptor = this._findDescriptor(this.active);
+        this._activeDescriptor = this._findDescriptor(active);
         if (this._activeDescriptor) {
           var hasDemo;
           var demos = this._activeDescriptor.demos;
@@ -385,13 +414,19 @@ documentation page including demos (if available).
     _loadingChanged: function() {
       this.toggleClass('loaded', !this._loading);
     },
+
     _detectLoading: function() {
       this._loading = this.docSrc ? this._ajaxLoading : this._hydroLoading;
     },
 
     _analyzerChanged: function() {
-      this._setDocElements(this._analyzer ? this._analyzer.elements : []);
-      this._setDocBehaviors(this._analyzer ? this._analyzer.behaviors : []);
+      var analyzer = this._analyzer;
+      this._setDocElements(analyzer && analyzer.elements ? analyzer.elements : []);
+      this._setDocBehaviors(analyzer && analyzer.behaviors ? analyzer.behaviors : []);
+
+      if (!this._findDescriptor(this.active)) {
+        this.active = this._getDefaultActive();
+      }
     },
     _detectAnalyzer: function() {
       this._analyzer = this.docSrc ? this._ajaxDesc : this._hydroDesc;

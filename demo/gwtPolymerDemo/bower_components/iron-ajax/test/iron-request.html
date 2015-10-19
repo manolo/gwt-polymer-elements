@@ -11,7 +11,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <head>
   <title>iron-request</title>
 
-  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <script src="../../webcomponentsjs/webcomponents.js"></script>
   <script src="../../web-component-tester/browser.js"></script>
   <script src="../../test-fixture/test-fixture-mocha.js"></script>
 
@@ -86,50 +86,64 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           expect(request.xhr.async).to.be.eql(true);
         });
 
-        test('can be aborted', function (done) {
+        test('can be aborted', function () {
           request.send(successfulRequestOptions);
 
           request.abort();
 
           server.respond();
 
-          request.completes.then(function () {
-            done(new Error('Request did not abort appropriately!'));
+          return request.completes.then(function () {
+            throw new Error('Request did not abort appropriately!');
           }).catch(function (e) {
             expect(request.response).to.not.be.ok;
-            done();
           });
         });
 
-        test('default responseType is text', function (done) {
-
+        test('default responseType is text', function () {
           request.send(successfulRequestOptions);
           server.respond();
 
-          request.completes.then(function() {
+          return request.completes.then(function() {
             expect(request.response).to.be.an('string')
-            done();
-          }).catch(function(e) {
-            done(new Error('Response was not a Object'));
           });
-
         });
 
-        test('responseType can be configured via handleAs option', function (done) {
+        test('default responseType of text is not applied, when async is false', function () {
+          var options = Object.create(successfulRequestOptions);
+          options.async = false;
 
+          request.send(options);
+          server.respond();
+
+          return request.completes.then(function() {
+            expect(request.xhr.responseType).to.be.empty;
+          });
+        });
+
+        test('responseType can be configured via handleAs option', function () {
           var options = Object.create(successfulRequestOptions);
           options.handleAs = 'json';
 
           request.send(options);
           server.respond();
 
-          request.completes.then(function() {
+          return request.completes.then(function() {
             expect(request.response).to.be.an('object');
-            done();
-          }).catch(function(e) {
-            done(new Error('Response was not type Object'));
           });
+        });
 
+        test('responseType cannot be configured via handleAs option, when async is false', function () {
+          var options = Object.create(successfulRequestOptions);
+          options.handleAs = 'json';
+          options.async = false;
+
+          request.send(options);
+          server.respond();
+
+          return request.completes.then(function() {
+            expect(request.response).to.be.a('string');
+          });
         });
 
       });
@@ -176,7 +190,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           });
 
           server.respond();
-          
+
           expect(request.status).to.be.equal(0);
           expect(request.statusText).to.be.equal('');
         });

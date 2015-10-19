@@ -79,7 +79,8 @@ paper-toolbar a:hover, paper-toolbar a:hover iron-icon, paper-toolbar a.iron-sel
   color: var(--paper-grey-400);
 }
 
-#demo {
+#demo,
+#demo iframe {
   border: 0;
   background: transparent;
   width: 100%;

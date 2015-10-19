@@ -1,6 +1,6 @@
 {
   "name": "iron-elements",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A set of visual and non-visual utility elements. Includes elements for working with layout, user input, selection, and scaffolding apps",
   "keywords": [
     "web-components",
@@ -20,6 +20,7 @@
     "iron-ajax": "PolymerElements/iron-ajax#^1.0.0",
     "iron-autogrow-textarea": "PolymerElements/iron-autogrow-textarea#^1.0.0",
     "iron-behaviors": "PolymerElements/iron-behaviors#^1.0.0",
+    "iron-checked-element-behavior" : "PolymerElements/iron-checked-element-behavior#^1.0.0",
     "iron-collapse": "PolymerElements/iron-collapse#^1.0.0",
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
     "iron-doc-viewer": "PolymerElements/iron-doc-viewer#^1.0.0",

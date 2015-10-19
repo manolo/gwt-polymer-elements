@@ -13,7 +13,7 @@
     "type": "git",
     "url": "git://github.com/PolymerElements/iron-component-page.git"
   },
-  "version": "1.0.5",
+  "version": "1.0.6",
   "private": true,
   "license": "http://polymer.github.io/LICENSE.txt",
   "dependencies": {
@@ -22,7 +22,7 @@
     "iron-flex-layout": "PolymerElements/iron-flex-layout#^1.0.0",
     "paper-toolbar": "PolymerElements/paper-toolbar#^1.0.0",
     "iron-ajax": "PolymerElements/iron-ajax#^1.0.0",
-    "hydrolysis": "Polymer/hydrolysis#^1.11",
+    "hydrolysis": "Polymer/hydrolysis#^1.18",
     "paper-header-panel": "PolymerElements/paper-header-panel#^1.0.0",
     "iron-icons": "PolymerElements/iron-icons#^1.0.0",
     "iron-selector": "PolymerElements/iron-selector#^1.0.0",

@@ -12,7 +12,7 @@ Example:
       <paper-badge label="3"></paper-badge>
     </div>
     <div>
-      <paper-button id="btn">Status</button>
+      <paper-button id="btn">Status</paper-button>
       <paper-badge for="btn" label="♥︎"></paper-badge>
     </div>
     

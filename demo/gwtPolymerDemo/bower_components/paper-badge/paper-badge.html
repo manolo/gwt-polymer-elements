@@ -9,8 +9,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../iron-resizable-behavior/iron-resizable-behavior.html">
 <link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../iron-resizable-behavior/iron-resizable-behavior.html">
 <link rel="import" href="../paper-styles/default-theme.html">
 
 <!--
@@ -27,8 +27,8 @@ Example:
     </div>
 
     <div>
-      <paper-button id="btn">Status</button>
-      <paper-badge for="btn" label="♥︎">b/paper-badge>
+      <paper-button id="btn">Status</paper-button>
+      <paper-badge for="btn" label="♥︎"></paper-badge>
     </div>
 
 ### Styling
@@ -52,37 +52,44 @@ Custom property | Description | Default
 -->
 
 <dom-module id="paper-badge">
-  <style>
-    :host {
-      display: block;
-      position: absolute;
-      outline: none;
-    }
-
-    #badge {
-      @apply(--paper-font-common-base);
-      font-weight: 600;
-      font-size: 12px;
-      border-radius: 50%;
-      margin-left: var(--paper-badge-margin-left, 0px);
-      margin-bottom: var(--paper-badge-margin-bottom, 0px);
-      width: var(--paper-badge-width, 22px);
-      height: var(--paper-badge-height, 22px);
-      background-color: var(--paper-badge-background, --accent-color);
-      opacity: var(--paper-badge-opacity, 1.0);
-      color: var(--paper-badge-text-color, white);
-      @apply(--layout);
-      @apply(--layout-center-center);
-
-      @apply(--paper-badge);
-    }
-  </style>
   <template>
+    <style>
+      :host {
+        display: block;
+        position: absolute;
+        outline: none;
+      }
+
+      #badge {
+        @apply(--paper-font-common-base);
+        font-weight: 600;
+        font-size: 12px;
+        border-radius: 50%;
+        margin-left: var(--paper-badge-margin-left, 0px);
+        margin-bottom: var(--paper-badge-margin-bottom, 0px);
+        width: var(--paper-badge-width, 22px);
+        height: var(--paper-badge-height, 22px);
+        background-color: var(--paper-badge-background, --accent-color);
+        opacity: var(--paper-badge-opacity, 1.0);
+        color: var(--paper-badge-text-color, white);
+        @apply(--layout);
+        @apply(--layout-center-center);
+
+        @apply(--paper-badge);
+      }
+    </style>
+
     <div id="badge">{{label}}</div>
   </template>
+
   <script>
     Polymer({
       is: 'paper-badge',
+
+      hostAttributes: {
+        tabindex: '0',
+        role: 'status'
+      },
 
       behaviors: [
         Polymer.IronResizableBehavior
@@ -107,7 +114,8 @@ Custom property | Description | Default
          * should have very few characters.
          */
         label: {
-          type: String
+          type: String,
+          observer: '_labelChanged'
         }
       },
 
@@ -122,6 +130,10 @@ Custom property | Description | Default
           return;
         }
         this._updateTarget();
+      },
+
+      _labelChanged: function() {
+        this.setAttribute('aria-label', this.label);
       },
 
       _updateTarget: function() {

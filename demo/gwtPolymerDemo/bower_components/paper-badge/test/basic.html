@@ -54,6 +54,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </template>
   </test-fixture>
 
+  <test-fixture id="nested">
+    <template>
+      <div>
+        <div id="target">
+          <paper-badge label="1"></paper-badge>
+        </div>
+      </div>
+    </template>
+  </test-fixture>
+
   <test-fixture id="custom">
     <template>
       <test-button></test-button>
@@ -67,6 +77,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         var badge = f.querySelector('paper-badge');
         var actualbadge = Polymer.dom(badge.root).querySelector('#badge');
         assert.equal(actualbadge.textContent, "1");
+
+        expect(badge.target.getAttribute('id')).to.be.equal('target');
 
         badge.updatePosition();
 
@@ -97,11 +109,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         var badge = f.querySelector('paper-badge');
         badge.updatePosition();
 
+        expect(badge.target.getAttribute('id')).to.not.be.equal('target');
+
         Polymer.Base.async(function() {
           var contentRect = badge.getBoundingClientRect();
           expect(contentRect.left).to.not.be.equal(100 - 11);
 
           badge.for = 'target';
+          expect(badge.target.getAttribute('id')).to.be.equal('target');
+
           badge.updatePosition();
 
           Polymer.Base.async(function() {
@@ -124,6 +140,36 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             done();
           });
+        });
+      });
+
+    test('badge is positioned correctly when nested in a target element', function(done) {
+        var f = fixture('nested');
+        var badge = f.querySelector('paper-badge');
+
+        expect(badge.target.getAttribute('id')).to.be.equal('target');
+
+        badge.updatePosition();
+
+        Polymer.Base.async(function() {
+          var divRect = f.querySelector('#target').getBoundingClientRect();
+          expect(divRect.width).to.be.equal(100);
+          expect(divRect.height).to.be.equal(20);
+
+          var contentRect = badge.getBoundingClientRect();
+          expect(contentRect.width).to.be.equal(22);
+          expect(contentRect.height).to.be.equal(22);
+
+          // The target div is 100 x 20, and the badge is centered on the
+          // top right corner.
+          expect(contentRect.left).to.be.equal(100 - 11);
+          expect(contentRect.top).to.be.equal(0 - 11);
+
+          // Also check the math, just in case.
+          expect(contentRect.left).to.be.equal(divRect.width - 11);
+          expect(contentRect.top).to.be.equal(divRect.top - 11);
+
+          done();
         });
       });
 

@@ -11,7 +11,7 @@ _No `iron-elements` are currently in progress. [`iron-list`](https://github.com/
 ### Elements planned
 _Elements we're planning on building soon but haven't started yet_
 
-* `iron-label` - still looking for the right way to bring what used to be `core-label` into the 1.0 world. 
+* `iron-label` - still looking for the right way to bring what used to be `core-label` into the 1.0 world.
 
 ### Elements not planned, notably
 _Elements we're not planning on building as part of this product line, but that one might be wondering about_
@@ -30,5 +30,5 @@ A number of elements existed as `core` elements that are not in this product lin
 * `core-scroll-header-panel` - This had UI opinion, so it's been moved to [`paper-scroll-header-panel`](https://github.com/polymerelements/paper-scroll-header-panel).
 * `core-splitter` - This element was relatively trivial, so we've put it off for now.
 * `core-style` - This element is not useful with Polymer's new styling system. Check out the latest docs for more.
-* `core-tooltip` - This will become `paper-tooltip`.
-* `core-menu` - This had UI opinion, and will become `paper-dropdown-menu`.
+* `core-tooltip` - This has become `paper-tooltip`.
+* `core-menu` - This had UI opinion, and has become `paper-dropdown-menu`.
