@@ -1,0 +1,180 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:p='urn:import:com.vaadin.polymer.paper.widget'
+             xmlns:i='urn:import:com.vaadin.polymer.iron.widget'
+        >
+
+    <ui:style type="com.vaadin.polymer.demo.client.sampler.Sampler.Style">
+        @external .iron-selected, .paper-toast-open;
+
+        .toolbar {
+            background: #00796B !important;
+        }
+        .toolbar > div {
+           justify-content: center;
+        }
+        .toolbar paper-fab {
+           margin: 5px;
+        }
+
+        [drawer] {
+            background-color: #ffffff !important;
+        }
+
+        .category {
+            background: #009688;
+            font-size: large;
+            color: #f1f1f1;
+        }
+        .item {
+            padding-left: 50px;
+            font-size: 15px;
+            min-height: 37px !important;
+            color: #009688;
+        }
+        .list {
+            background-color: #F5F4F4;
+        }
+        .list .iron-selected {
+            background-color: #CDE5E3;
+        }
+        .list paper-item {
+            border-top: solid 1px rgba(245, 245, 245, 0.6);
+
+        }
+        .buttons paper-material {
+            font-size: 13 !important;
+            margin: 0px;
+            text-transform: none !important;
+        }
+        .current {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            font-size: 150%;
+            margin-left: 20px;
+            margin-right: 15px;
+        }
+        paper-header-panel {
+            z-index: auto !important;
+        }
+        .paper-toast-open {
+            z-index: 10;
+        }
+        .panel {
+            padding: 20px;
+        }
+        paper-item {
+            cursor: pointer;
+            oveflow: hidden;
+            position: relative;
+        }
+        .title {
+           font-size: 135%;
+           text-align: center;
+           padding: 5px;
+        }
+        .source pre {
+           font-size: 12px;
+           line-height: 13px;
+           background-color: #CDE5E3;
+           padding: 10px;
+        }
+        .source-buttons {
+           background-color: #CDE5E3;
+           height: 35px;
+           padding: 7px 0px 7px 30px;
+           color: #009688;
+        }
+        .source-buttons iron-icon {
+           margin: 0px 0px 4px 4px;
+           width: 14px;
+        }
+
+    </ui:style>
+
+    <g:HTMLPanel>
+       <style is='custom-style'>
+        .iconpolymer {
+           --paper-fab-background: var(--paper-purple-500);
+        }
+        .icongwt {
+           --paper-fab-background: var(--paper-red-500);
+        }
+        .iconvaadin {
+           --paper-fab-background: var(--paper-light-blue-500);
+        }
+       </style>
+
+        <p:PaperDrawerPanel ui:field="drawerPanel">
+            <div drawer="">
+                <p:PaperHeaderPanel mode="seamed">
+                    <p:PaperToolbar addStyleNames="{style.toolbar} ">
+                    <p:PaperFab ui:field="logo3" icon="polymer" attributes="mini url:http://polymer-project.org" addStyleNames="iconpolymer"></p:PaperFab>
+                    <p:PaperFab ui:field="logo2" src="img/gwt.png" attributes="mini url:http://gwtproject.org" addStyleNames="icongwt"></p:PaperFab>
+                    <p:PaperFab ui:field="logo1" src="img/vaadin.png" attributes="mini url:http://vaadin.com" addStyleNames="iconvaadin"></p:PaperFab>
+                    </p:PaperToolbar>
+                    <g:FlowPanel ui:field="listPanel" addStyleNames="{style.list}"/>
+                </p:PaperHeaderPanel>
+            </div>
+            <div main="">
+                <p:PaperHeaderPanel mode="seamed">
+                    <p:PaperToolbar addStyleNames="{style.toolbar}">
+                        <p:PaperIconButton icon="menu" attributes="paper-drawer-toggle" />
+                        <span ui:field="currentLabel" class="{style.current}"></span>
+                        <span class="flex"></span>
+                        <p:PaperButton ui:field="help" addStyleNames="{style.buttons}"><i:IronIcon icon="help"/>About</p:PaperButton>
+                    </p:PaperToolbar>
+                    <div class="{style.source-buttons}">
+                        <spam>VIEW SOURCE: </spam>
+                        <p:PaperButton ui:field="javaButton" addStyleNames="{style.buttons}">.java<i:IronIcon icon="launch"/></p:PaperButton>
+                        <p:PaperButton ui:field="xmlButton" addStyleNames="{style.buttons}">.ui.xml<i:IronIcon icon="launch"/></p:PaperButton>
+                    </div>
+                    <g:HTMLPanel ui:field="content" addStyleNames="{style.panel}"/>
+                </p:PaperHeaderPanel>
+            </div>
+        </p:PaperDrawerPanel>
+
+        <p:PaperDialog ui:field="about" modal="true" >
+            <h2>About GWT-Polymer-Elements</h2>
+             <p>
+               GWT-Polymer-Elements is a library developed in Vaadin Labs. It allows to use Polymer Elements in GWT projects.
+             </p>
+             <p>
+               The source code of the library has been enterely generated with Vaadin gwt-api-generator, an utility able to inspect polymer webcomponents and emit GWT java files.
+             </p>
+             <p>
+               Since GWT, Gwt-Api-Generator and Gwt-Polymer-Elements are Apache Licensed, and Polymer Elements is BSD Licensed, you have a full open-source stack to develop modern Ajax applications in Java.
+             </p>
+             <p>
+               The project does not maintain any java code (except the demo) and it is actually a 'node' script able to download components, generate java wrappers, and eventually compile and upload generated .jar to maven repos.
+             </p>
+             <p>
+               The main goal of the library is to reuse in GWT external components utilising modern techniques like 'JsInterop' and 'Hydrolysis', instead of the tedious classic way: learn 3rd party JS APIs and write dozens of java classes by hand.
+             </p>
+             <p>
+               Web components is a technology based on new standards, hence it is thought in the present for the future.
+               We are aware about performance issues in browsers not already implementing them, but browser vendors would finally solve it.
+             </p>
+             <p>
+               Anyway, we believe that it is worth to start experimenting and learning web components sooner, and contributing with the growing community around these new trends.
+             </p>
+            <div class="buttons">
+                <p:PaperButton attributes="dialog-dismiss"  raised="true">OK</p:PaperButton>
+            </div>
+        </p:PaperDialog>
+
+        <p:PaperDialog ui:field="source" modal="true" addStyleNames="{style.source}">
+            <h2 ui:field="sourceTitle">Source</h2>
+            <p:PaperDialogScrollable>
+               <paper-material elevation="3">
+                 <pre ui:field="sourceContent"></pre>
+               </paper-material>
+            </p:PaperDialogScrollable>
+            <div class="buttons">
+                <p:PaperButton attributes="dialog-dismiss"  raised="true">OK</p:PaperButton>
+            </div>
+        </p:PaperDialog>
+
+    </g:HTMLPanel>
+</ui:UiBinder>
