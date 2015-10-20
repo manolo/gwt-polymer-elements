@@ -68,8 +68,8 @@ import com.vaadin.polymer.paper.widget.PaperItem;
 
 public class Sampler extends Composite {
 
-    public static final String REPO_PATH = "https://github.com/vaadin/gwt-polymer-elements/blob/master/demo/src/main/java/com/vaadin/elements/gwt/polymer/client/sampler/";
-    public static final String API_PATH = "https://api.github.com/repos/vaadin/gwt-polymer-elements/contents/demo/src/main/java/com/vaadin/elements/gwt/polymer/client/sampler/";
+    public static final String REPO_PATH = "https://github.com/vaadin/gwt-polymer-elements/blob/master/demo/src/main/java/com/vaadin/polymer/demo/client/sampler/";
+    public static final String API_PATH = "https://api.github.com/repos/vaadin/gwt-polymer-elements/contents/demo/src/main/java/com/vaadin/polymer/demo/client/sampler/";
 
     interface SamplerUiBinder extends UiBinder<HTMLPanel, Sampler> {
     }
