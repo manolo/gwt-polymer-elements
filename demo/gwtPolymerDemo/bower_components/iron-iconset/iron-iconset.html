@@ -59,6 +59,9 @@ Then a themed icon can be applied like this:
 
 <script>
 
+  /**
+   * @implements {Polymer.Iconset}
+   */
   Polymer({
 
     is: 'iron-iconset',
@@ -67,10 +70,6 @@ Then a themed icon can be applied like this:
 
       /**
        * The URL of the iconset image.
-       *
-       * @attribute src
-       * @type string
-       * @default ''
        */
       src: {
         type: String,
@@ -79,10 +78,6 @@ Then a themed icon can be applied like this:
 
       /**
        * The name of the iconset.
-       *
-       * @attribute name
-       * @type string
-       * @default 'no-name'
        */
       name: {
         type: String,
@@ -106,10 +101,6 @@ Then a themed icon can be applied like this:
        * A space separated list of names corresponding to icons in the iconset
        * image file. This list must be ordered the same as the icon images
        * in the image file.
-       *
-       * @attribute icons
-       * @type string
-       * @default ''
        */
       icons: {
         type: String
@@ -117,10 +108,6 @@ Then a themed icon can be applied like this:
 
       /**
        * The size of an individual icon. Note that icons must be square.
-       *
-       * @attribute size
-       * @type number
-       * @default 24
        */
       size: {
         type: Number,
@@ -131,10 +118,6 @@ Then a themed icon can be applied like this:
        * The horizontal offset of the icon images in the inconset src image.
        * This is typically used if the image resource contains additional images
        * beside those intended for the iconset.
-       *
-       * @attribute offset-x
-       * @type number
-       * @default 0
        */
       _offsetX: {
         type: Number,
@@ -145,10 +128,6 @@ Then a themed icon can be applied like this:
        * The vertical offset of the icon images in the inconset src image.
        * This is typically used if the image resource contains additional images
        * beside those intended for the iconset.
-       *
-       * @attribute offset-y
-       * @type number
-       * @default 0
        */
       _offsetY: {
         type: Number,
@@ -180,11 +159,10 @@ Then a themed icon can be applied like this:
      * method does not size the element, and it's usually necessary to set
      * the element's height and width so that the background image is visible.
      *
-     * @method applyIcon
      * @param {Element} element The element to which the icon is applied.
-     * @param {String|Number} icon The name or index of the icon to apply.
-     * @param {String} theme (optional) The name or index of the icon to apply.
-     * @param {Number} scale (optional, defaults to 1) Icon scaling factor.
+     * @param {string|number} icon The name or index of the icon to apply.
+     * @param {string=} theme (optional) The name or index of the icon to apply.
+     * @param {number=} scale (optional, defaults to 1) Icon scaling factor.
      */
     applyIcon: function(element, icon, theme, scale) {
       this._validateIconMap();
@@ -289,13 +267,13 @@ Then a themed icon can be applied like this:
      * for example, to manually position a css backgroundImage to the proper
      * offset. It's more common to use the `applyIcon` method.
      *
-     * @method getThemedOffset
-     * @param {String|Number} identifier The name of the icon or the index of
+     * @param {string|number} identifier The name of the icon or the index of
      * the icon within in the icon image.
-     * @param {String} theme The name of the theme.
-     * @returns {Object} An object specifying the offset of the given icon
-     * within the icon resource file; `offsetX` is the horizontal offset and
-     * `offsetY` is the vertical offset. Both values are in pixel units.
+     * @param {string=} theme The name of the theme.
+     * @returns {?{offsetX: number, offsetY: number}} An object specifying the
+     *     offset of the given icon within the icon resource file; `offsetX` is
+     *     the horizontal offset and `offsetY` is the vertical offset. Both
+     *     values are in pixel units.
      */
     _getThemedOffset: function(identifier, theme) {
       var iconOffset = this._getIconOffset(identifier);

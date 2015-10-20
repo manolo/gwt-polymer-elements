@@ -76,6 +76,19 @@ call the form's `submit` method.
       withCredentials: {
         type: Boolean,
         value: false
+      },
+
+      /**
+      * HTTP request headers to send
+      *
+      * Note: setting a `Content-Type` header here will override the value
+      * specified by the `contentType` property of this element.
+      */
+      headers: {
+        type: Object,
+        value: function() {
+          return {};
+        }
       }
     },
     /**
@@ -137,6 +150,7 @@ call the form's `submit` method.
       this._requestBot.method = this.method;
       this._requestBot.contentType = this.contentType;
       this._requestBot.withCredentials = this.withCredentials;
+      this._requestBot.headers = this.headers;
 
       if (this.method.toUpperCase() == 'POST') {
         this._requestBot.body = json;
@@ -208,7 +222,7 @@ call the form's `submit` method.
     },
 
     _handleFormResponse: function (event) {
-      this.fire('iron-form-response', event.detail.response);
+      this.fire('iron-form-response', event.detail);
     },
 
     _handleFormError: function (event) {

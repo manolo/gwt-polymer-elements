@@ -44,7 +44,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     // Overidden from Polymer.IronValidatableBehavior. Will set the `invalid`
     // attribute automatically, which should be used for styling.
     _getValidity: function() {
-      return this.value != '';
+      return !!this.value;
     }
 
   });

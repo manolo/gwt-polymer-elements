@@ -310,7 +310,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       form.addEventListener('iron-form-response', function(event) {
         expect(submitted).to.be.equal(true);
 
-        var response = event.detail;
+        var response = event.detail.response;
         expect(response).to.be.ok;
         expect(response).to.be.an('object');
         expect(response.success).to.be.equal(true);
@@ -331,7 +331,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       form.addEventListener('iron-form-response', function(event) {
         expect(submitted).to.be.equal(true);
-        var response = event.detail;
+        var response = event.detail.response;
         expect(response).to.be.ok;
         expect(response).to.be.an('object');
         expect(response.success).to.be.equal(true);
