@@ -103,47 +103,83 @@ public class Sampler extends Composite {
     @UiField HeadingElement sourceTitle;
     @UiField PreElement sourceContent;
 
+
+    private Widget createWidget(String name) {
+        switch (name) {
+        case "JavaApiWidget": return new JavaApiWidget();
+        case "JavaApiElement": return new JavaApiElement();
+        case "UiBinderWidget": return new UiBinderWidget();
+        case "UiBinderElement": return new UiBinderElement();
+        case "ButtonSample": return new ButtonSample();
+        case "CheckboxSample": return new CheckboxSample();
+        case "DialogSample": return new DialogSample();
+        case "DropdownMenuSample": return new DropdownMenuSample();
+        case "FabSample": return new FabSample();
+        case "HeaderPanelSample": return new HeaderPanelSample();
+        case "IconButtonSample": return new IconButtonSample();
+        case "ItemSample": return new ItemSample();
+        case "InputSample": return new InputSample();
+        case "MaterialSample": return new MaterialSample();
+        case "MenuSample": return new MenuSample();
+        case "ProgressSample": return new ProgressSample();
+        case "RadioButtonSample": return new RadioButtonSample();
+        case "RadioGroupSample": return new RadioGroupSample();
+        case "RippleSample": return new RippleSample();
+        case "SpinnerSample": return new SpinnerSample();
+        case "SliderSample": return new SliderSample();
+        case "TabsSample": return new TabsSample();
+        case "ToastSample": return new ToastSample();
+        case "ToggleButtonSample": return new ToggleButtonSample();
+        case "ToolbarSample": return new ToolbarSample();
+        case "IronCollapseSample": return new IronCollapseSample();
+        case "IronImageSample": return new IronImageSample();
+        case "IronListSample": return new IronListSample();
+        case "IronSelectorSample": return new IronSelectorSample();
+        }
+        return null;
+    }
+
     public Sampler() {
         initWidget(ourUiBinder.createAndBindUi(this));
 
         JsHighlight.INSTANCE.initialize();
 
         addCategory("gwt", "GWT Integration");
-        addSample("Widget Java API", new JavaApiWidget(), "gwt", "JavaApiWidget", false);
-        addSample("Element Java API", new JavaApiElement(), "gwt", "JavaApiElement", false);
-        addSample("UiBinder Widgets", new UiBinderWidget(), "gwt", "UiBinderWidget");
-        addSample("UiBinder Elements", new UiBinderElement(), "gwt", "UiBinderElement");
+        addSample("Widget Java API", "gwt", "JavaApiWidget", false);
+        addSample("Element Java API", "gwt", "JavaApiElement", false);
+        addSample("UiBinder Widgets", "gwt", "UiBinderWidget");
+        addSample("UiBinder Elements", "gwt", "UiBinderElement");
 
         addCategory("paper", "Paper Elements");
-        addSample("Button", new ButtonSample(), "paper", "ButtonSample");
-        addSample("CheckBox", new CheckboxSample(), "paper", "CheckboxSample");
-        addSample("Dialog", new DialogSample(), "paper", "DialogSample");
-        addSample("DropdownMenu", new DropdownMenuSample(), "paper", "DropdownMenuSample");
+        addSample("Button", "paper", "ButtonSample");
+        addSample("CheckBox", "paper", "CheckboxSample");
+        addSample("Dialog", "paper", "DialogSample");
+        addSample("DropdownMenu", "paper", "DropdownMenuSample");
         // not suitable for current showcase. In original showcase it works inside iframe
-        // addSample("DrawerPanel", new DrawerPanelSample(), "paper", "DrawerPanelSample");
-        addSample("Floating Button", new FabSample(), "paper", "FabSample");
-        addSample("Header Panel", new HeaderPanelSample(), "paper", "HeaderPanelSample");
-        addSample("Icon Button", new IconButtonSample(), "paper", "IconButtonSample");
-        addSample("Item", new ItemSample(), "paper", "ItemSample");
-        addSample("Input", new InputSample(), "paper", "InputSample");
-        addSample("Material", new MaterialSample(), "paper", "MaterialSample");
-        addSample("Menu", new MenuSample(), "paper", "MenuSample");
-        addSample("Progress", new ProgressSample(), "paper", "ProgressSample");
-        addSample("Radio Button", new RadioButtonSample(), "paper", "RadioButtonSample");
-        addSample("Radio Group", new RadioGroupSample(), "paper", "RadioGroupSample");
-        addSample("Ripple", new RippleSample(), "paper", "RippleSample");
-        addSample("Spinner", new SpinnerSample(), "paper", "SpinnerSample");
-        addSample("Slider", new SliderSample(), "paper", "SliderSample");
-        addSample("Tabs", new TabsSample(), "paper", "TabsSample");
-        addSample("Toast", new ToastSample(), "paper", "ToastSample");
-        addSample("Toggle Button", new ToggleButtonSample(), "paper", "ToggleButtonSample");
-        addSample("Toolbar", new ToolbarSample(), "paper", "ToolbarSample");
+        // addSample("DrawerPanel", "paper", "DrawerPanelSample");
+        addSample("Floating Button", "paper", "FabSample");
+        addSample("Header Panel", "paper", "HeaderPanelSample");
+        addSample("Icon Button", "paper", "IconButtonSample");
+        addSample("Item", "paper", "ItemSample");
+        addSample("Input", "paper", "InputSample");
+        addSample("Material", "paper", "MaterialSample");
+        addSample("Menu", "paper", "MenuSample");
+        addSample("Progress", "paper", "ProgressSample");
+        addSample("Radio Button", "paper", "RadioButtonSample");
+        addSample("Radio Group", "paper", "RadioGroupSample");
+        addSample("Ripple", "paper", "RippleSample");
+        addSample("Spinner", "paper", "SpinnerSample");
+        addSample("Slider", "paper", "SliderSample");
+        addSample("Tabs", "paper", "TabsSample");
+        addSample("Toast", "paper", "ToastSample");
+        addSample("Toggle Button", "paper", "ToggleButtonSample");
+        addSample("Toolbar", "paper", "ToolbarSample");
 
         addCategory("iron", "Iron Elements");
-        addSample("Collapse", new IronCollapseSample(), "iron", "IronCollapseSample");
-        addSample("Image", new IronImageSample(), "iron", "IronImageSample");
-        addSample("List", new IronListSample(), "iron", "IronListSample");
-        addSample("Selector", new IronSelectorSample(), "iron", "IronSelectorSample");
+        addSample("Collapse", "iron", "IronCollapseSample");
+        addSample("Image", "iron", "IronImageSample");
+        addSample("List", "iron", "IronListSample");
+        addSample("Selector", "iron", "IronSelectorSample");
 
         History.addValueChangeHandler(new ValueChangeHandler<String>() {
             public void onValueChange(ValueChangeEvent<String> event) {
@@ -217,18 +253,18 @@ public class Sampler extends Composite {
         listPanel.add(collapse);
     }
 
-    private void addSample(final String name, final Widget sample, String category, String path) {
-        addSample(name, sample, category, path, true);
+    private void addSample(final String name, String category, String path) {
+        addSample(name, category, path, true);
     }
 
-    private void addSample(final String name, final Widget sample, String category, String path, boolean hasxml) {
+    private void addSample(final String name, String category, String path, boolean hasxml) {
         // FIXME(manolo) for some reason certain examples only work well when they
         // have been attached previously, or we go directly to it (hashfragment)
         // IconButtonSample FabSample ToolbarSample PaperJavaAPI Tabs
-        content.add(sample);
+//        content.add(sample);
         IronCollapse collapse = collapseMap.get(category);
         IronSelector selector = selectorMap.get(category);
-        items.add(new Item(collapse, selector, category, path, sample, name, hasxml));
+        items.add(new Item(collapse, selector, category, path, name, hasxml));
     }
 
     private void selectItem(String hash) {
@@ -255,7 +291,6 @@ public class Sampler extends Composite {
     }
 
     private class Item extends PaperItem implements ClickHandler {
-        Widget sample;
         String category;
         IronCollapse collapse;
         IronSelector selector;
@@ -264,14 +299,13 @@ public class Sampler extends Composite {
         int selectorIdx;
         boolean uixml;
 
-        public Item(IronCollapse collapse, IronSelector selector, String category, String path, Widget sample, String name, boolean uixml) {
+        public Item(IronCollapse collapse, IronSelector selector, String category, String path, String name, boolean uixml) {
             super(name);
             this.collapse = collapse;
             this.selector = selector;
             this.category = category;
             this.path = path;
             this.name = name;
-            this.sample = sample;
             this.uixml = uixml;
             selectorIdx = selector.getWidgetCount();
             selector.add(this);
@@ -280,13 +314,21 @@ public class Sampler extends Composite {
             addClickHandler(this);
         }
 
+        Widget w;
+        Widget getWidget() {
+            if (w == null) {
+                w = createWidget(path);
+            }
+            return w;
+        }
+
         public void onClick(ClickEvent event) {
             for (IronSelector s : selectorMap.values()) {
                 s.setSelected("-1");
             }
             selector.getPolymerElement().setAttribute("selected", selectorIdx);
             content.clear();
-            content.add(sample);
+            content.add(getWidget());
             currentItem = this;
             History.newItem(category + "/" + path, false);
             currentLabel.setInnerText(name);
