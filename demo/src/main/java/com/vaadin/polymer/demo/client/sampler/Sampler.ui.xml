@@ -104,6 +104,11 @@
         .iconvaadin {
            --paper-fab-background: var(--paper-light-blue-500);
         }
+        /* Fix for https://github.com/PolymerElements/paper-menu/issues/31 */
+        paper-item iron-icon,
+        paper-item span {
+            pointer-events: none;
+        }
        </style>
 
         <p:PaperDrawerPanel ui:field="drawerPanel">
