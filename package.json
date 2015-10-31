@@ -11,7 +11,7 @@
     "postinstall":"node node_modules/gwt-api-generator/bin/gwt-api-generator.js --package=PolymerElements/paper-elements,PolymerElements/iron-elements  --artifactId=vaadin-gwt-polymer-elements --groupId=com.vaadin.polymer --pom && mvn clean install javadoc:jar"
   },
   "pom": {
-    "version" : "1.1.3.0-alpha1",
+    "version" : "1.1.3.0-alpha2",
     "organization" : {
       "name" : "Vaadin Ltd",
       "url" : "http://vaadin.com"
