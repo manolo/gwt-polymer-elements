@@ -234,7 +234,7 @@ public class Sampler extends Composite {
     }
 
     private void addCategory(String path, String name) {
-        PaperItem item = new PaperItem("<iron-icon icon='expand-more'></iron-icon>" + name + "<paper-ripple></paper-ripple>");
+        PaperItem item = new PaperItem("<iron-icon icon='expand-more'></iron-icon><span>" + name + "</span><paper-ripple></paper-ripple>");
         item.addStyleName(style.category());
 
         final IronCollapse collapse = new IronCollapse("");
@@ -300,7 +300,7 @@ public class Sampler extends Composite {
         boolean uixml;
 
         public Item(IronCollapse collapse, IronSelector selector, String category, String path, String name, boolean uixml) {
-            super(name);
+            super("<span>" + name + "</span>");
             this.collapse = collapse;
             this.selector = selector;
             this.category = category;
