@@ -221,6 +221,7 @@ iron-request can be used to perform XMLHttpRequests.
         this.rejectCompletes(new Error('Request aborted.'));
       }.bind(this));
 
+
       // Called after all of the above.
       xhr.addEventListener('loadend', function () {
         this._updateStatus();
@@ -241,20 +242,34 @@ iron-request can be used to perform XMLHttpRequests.
         options.async !== false
       );
 
-      if (options.headers) {
-        Object.keys(options.headers).forEach(function (requestHeader) {
-          xhr.setRequestHeader(
-            requestHeader,
-            options.headers[requestHeader]
-          );
-        }, this);
+      var acceptType = {
+        'json': 'application/json',
+        'text': 'text/plain',
+        'html': 'text/html',
+        'xml': 'application/xml',
+        'arraybuffer': 'application/octet-stream'
+      }[options.handleAs];
+      var headers = options.headers || Object.create(null);
+      var newHeaders = Object.create(null);
+      for (var key in headers) {
+        newHeaders[key.toLowerCase()] = headers[key];
       }
+      headers = newHeaders;
 
-      var contentType;
-      if (options.headers) {
-        contentType = options.headers['Content-Type'];
+      if (acceptType && !headers['accept']) {
+        headers['accept'] = acceptType;
       }
-      var body = this._encodeBodyObject(options.body, contentType);
+      Object.keys(headers).forEach(function (requestHeader) {
+        if (/[A-Z]/.test(requestHeader)) {
+          console.error('Headers must be lower case, got', requestHeader);
+        }
+        xhr.setRequestHeader(
+          requestHeader,
+          headers[requestHeader]
+        );
+      }, this);
+
+      var body = this._encodeBodyObject(options.body, headers['content-type']);
 
       // In IE, `xhr.responseType` is an empty string when the response
       // returns. Hence, caching it as `xhr._responseType`.
