@@ -90,13 +90,13 @@
             <div>
                 <h4>Anchored to custom elements</h4>
                 <div class="horizontal-section">
-                    <paper-icon-button id="m" icon="menu" alt="menu"/>
-                    <paper-icon-button id="heart" icon="favorite" alt="heart"/>
-                    <paper-icon-button id="back" icon="arrow-back" alt="go back"/>
-                    <paper-icon-button id="fwd" icon="arrow-forward" alt="go forward"/>
+                    <p:PaperIconButton id="m" icon="menu" alt="menu"/>
+                    <p:PaperIconButton id="heart" icon="favorite" alt="heart"/>
+                    <p:PaperIconButton id="back" icon="arrow-back" alt="go back"/>
+                    <p:PaperIconButton id="fwd" icon="arrow-forward" alt="go forward"/>
 
                     <!-- paper-icon-buttons have an inherent padding that will push the tooltip down. offset undoes it -->
-                    <p:PaperTooltip for="m" offset="0">hot dogs</p:PaperTooltip>
+                    <p:PaperTooltip attributes="for:m" offset="0">hot dogs</p:PaperTooltip>
                     <p:PaperTooltip for="heart" offset="0">&lt;3 &lt;3 &lt;3 </p:PaperTooltip>
                     <p:PaperTooltip for="back" offset="0">halp I am trapped in a tooltip</p:PaperTooltip>
                     <p:PaperTooltip for="fwd" offset="0">back to the future</p:PaperTooltip>
@@ -110,19 +110,19 @@
                     <div id="green" class="avatar green" tabindex="0"/>
                     <div id="orange" class="avatar orange" tabindex="0"/>
 
-                    <p:PaperTooltip for="red" addStyleNames="custom" position="left">
+                    <p:PaperTooltip attributes="for:red" addStyleNames="custom" position="left">
                         <img src="http://i.imgur.com/OuUe8Da.jpg"/>
                         Rich-text tooltips are doable but against the Material Design spec.
                     </p:PaperTooltip>
-                    <p:PaperTooltip for="blue" addStyleNames="custom" position="right">
+                    <p:PaperTooltip attributes="for:blue" addStyleNames="custom" position="right">
                         <img src="http://i.imgur.com/OuUe8Da.jpg"/>
                         Rich-text tooltips are doable but against the Material Design spec.
                     </p:PaperTooltip>
-                    <p:PaperTooltip for="green" addStyleNames="custom" position="top">
+                    <p:PaperTooltip attributes="for:green" addStyleNames="custom" position="top">
                         <img src="http://i.imgur.com/OuUe8Da.jpg"/>
                         Rich-text tooltips are doable but against the Material Design spec.
                     </p:PaperTooltip>
-                    <p:PaperTooltip for="orange" addStyleNames="custom" position="bottom">
+                    <p:PaperTooltip attributes="for:orange"  addStyleNames="custom" position="bottom">
                         <img src="http://i.imgur.com/OuUe8Da.jpg"/>
                         Rich-text tooltips are doable but against the Material Design spec.
                     </p:PaperTooltip>
