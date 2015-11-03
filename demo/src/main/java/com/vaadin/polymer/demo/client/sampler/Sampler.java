@@ -200,7 +200,12 @@ public class Sampler extends Composite {
         Ajax.get(API_PATH + category + "/" + file)
           .done(new com.google.gwt.query.client.Function() {
             native String atob(String b64) /*-{
-              return "" + $wnd.atob(b64);
+               try {
+                    // Safari fails if b64 fragment has new-lines
+                    return '' + $wnd.atob(b64.replace(/\n/g, ''));
+                } catch(e) {
+                    return '' + e;
+                }
             }-*/;
             public void f() {
                 Properties p = GQ.create().parse(arguments(0));
