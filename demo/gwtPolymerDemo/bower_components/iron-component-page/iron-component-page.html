@@ -26,9 +26,9 @@ documentation page including demos (if available).
   <link rel="import" type="css" href="iron-component-page.css">
   <template>
     <hydrolysis-analyzer id="analyzer" src="[[_srcUrl]]" transitive="[[transitive]]" clean analyzer="{{_hydroDesc}}" loading="{{_hydroLoading}}"></hydrolysis-analyzer>
-    <iron-ajax id="ajax" url="[[docSrc]]" handle-as="json" on-response="_handleAjaxResponse"></iron-ajax>
+    <iron-ajax id="ajax" url="[[docSrc]]" handle-as="json" on-response="_handleAjaxResponse" on-error="_handleError"></iron-ajax>
 
-    <paper-header-panel id="headerPanel" mode="waterfall">
+    <paper-header-panel id="headerPanel" mode="[[scrollMode]]">
       <paper-toolbar catalog-hidden>
         <div class="flex">
           <!-- TODO: Replace with paper-dropdown-menu when available -->
@@ -185,6 +185,15 @@ documentation page including demos (if available).
         type: Array,
         notify: true,
         readOnly: true
+      },
+
+      /**
+       * The scroll mode for the page. For details about the modes,
+       * see the mode property in paper-header-panel.
+       */
+      scrollMode: {
+        type: String,
+        value: 'waterfall'
       },
 
       /**
@@ -444,6 +453,10 @@ documentation page including demos (if available).
       this._ajaxLoading = false;
       this._ajaxLastUrl = req.url;
       this._ajaxDesc = req.response;
+    },
+
+    _handleError: function(e) {
+      this.fire('iron-component-page-error', e.detail);
     },
 
     _handleComponentSelectedEvent: function(ev) {

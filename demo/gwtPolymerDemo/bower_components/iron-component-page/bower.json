@@ -13,7 +13,7 @@
     "type": "git",
     "url": "git://github.com/PolymerElements/iron-component-page.git"
   },
-  "version": "1.0.8",
+  "version": "1.0.9",
   "private": true,
   "license": "http://polymer.github.io/LICENSE.txt",
   "dependencies": {
@@ -32,5 +32,6 @@
     "test-fixture": "PolymerElements/test-fixture#^1.0.0",
     "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0",
     "web-component-tester": "*"
-  }
+  },
+  "main": "iron-component-page.html"
 }

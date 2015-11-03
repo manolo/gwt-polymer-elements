@@ -14,13 +14,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   padding: 16px 24px;
 }
 
-.type:before {
-  content: '\007b'; /* https://github.com/Polymer/polymer/issues/1291 */
-}
-.type:after {
-  content: '\007d'; /* https://github.com/Polymer/polymer/issues/1291 */
-}
-
 #transitionMask {
   position: relative;
   overflow: hidden;
@@ -32,7 +25,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 #signature {
   @apply(--paper-font-code1);
-  width: 160px;
+  width: 260px;
   overflow: hidden;
   text-overflow: ellipsis;
   float: left;
@@ -56,38 +49,38 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 }
 
 #details {
-  margin-left: 160px;
+  font-size: 12px;
+  margin-left: 260px;
   flex: 1;
 }
-
-@media (max-width: 500px) {
-  #details {
-    margin-left: 0;
-  }
-}
-
 /* Metadata */
-
-#meta {
-  display: flex;
-}
 
 #type {
   @apply(--paper-font-code1);
+  font-style: italic;
 }
 
-#default {
-  flex: 1;
-  text-align: right;
+.annotation {
+  float: right;
+  color: #666;
 }
+
+.annotation > span::before {
+  content: "  &middot;  ";
+}
+
+.annotation > span:first-child::before {
+  content: "" !important;
+}
+
 #default .value {
-  @apply(--paper-font-code1);
+  color: #999;
+  font-size: 12px;
 }
 
 /* Function Parameters */
 
 #params {
-  background: rgba(0,0,0,0.05);
   list-style: none;
   margin: 8px -8px 0 -8px;
   padding: 0 8px;
@@ -107,10 +100,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   padding-bottom: 8px;
 }
 
-#params marked-element {
+marked-element {
   display: inline-block;
 }
 #params .markdown-html p {
+
   margin: 0;
 }
 
@@ -118,6 +112,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 #desc {
   display: block;
+  clear: both;
 }
 
 #desc .markdown-html > :first-child {
@@ -132,6 +127,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   @apply(--paper-font-code1);
 }
 
+.return {
+  font-size: 14px;
+}
+
 /* State Transitions */
 
 #transitionMask {
@@ -144,6 +143,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   transition: transform ease-in-out 150ms, opacity  ease-in-out 150ms;
 }
 
+.name {
+  font-style: italic;
+  font-size: 14px;
+}
 /* Collapsed State */
 
 :host([_collapsed]) #transitionMask {
@@ -158,4 +161,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 }
 :host([_collapsed][function]) #desc {
   opacity: 0;
+}
+
+@media (max-width: 600px) {
+  #details {
+    margin-left: 0;
+  }
+
+  .annotation {
+    float: none;
+    display: block;
+  }
 }

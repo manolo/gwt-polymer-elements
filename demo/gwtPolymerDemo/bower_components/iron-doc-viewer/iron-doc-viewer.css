@@ -110,7 +110,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   background: white;
   margin-bottom: 20px;
   border-radius: 2px;
-  @apply(--shadow-elevation-2dp);
+  border: 1px solid #e5e5e5;
 }
 
 .card > header {
@@ -119,6 +119,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   font-size: 20px;
   line-height: 28px;
   font-weight: 400;
+  @apply(--iron-doc-viewer-header);
 }
 
 iron-doc-property {
@@ -148,4 +149,8 @@ iron-doc-property[configuration] {
   display: block;
   padding: 16px 24px;
   cursor: pointer;
+}
+
+#behaviors > p:last-of-type {
+  border-bottom: none;
 }
