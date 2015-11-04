@@ -10,7 +10,7 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.vaadin.polymer.iron.widget.IronCollapse;
 import com.vaadin.polymer.iron.widget.IronImage;
-import com.vaadin.polymer.paper.element.PaperMaterialElement;
+import com.vaadin.polymer.paper.PaperMaterialElement;
 import com.vaadin.polymer.paper.widget.PaperButton;
 
 public class IronImageSample extends Composite {

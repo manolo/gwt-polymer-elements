@@ -2,7 +2,7 @@ package com.vaadin.polymer.paper.widget;
 
 import com.vaadin.polymer.PolymerWidget;
 import com.vaadin.polymer.elemental.Element;
-import com.vaadin.polymer.paper.element.PaperTabsElement;
+import com.vaadin.polymer.paper.PaperTabsElement;
 
 /**
  * This class will be extended by PaperTabs.java and
