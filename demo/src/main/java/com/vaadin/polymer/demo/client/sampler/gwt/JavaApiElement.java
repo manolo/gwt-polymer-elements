@@ -7,8 +7,8 @@ import com.google.gwt.user.client.ui.FlowPanel;
 import com.vaadin.polymer.Polymer;
 import com.vaadin.polymer.elemental.Event;
 import com.vaadin.polymer.elemental.EventListener;
-import com.vaadin.polymer.paper.element.PaperDialogElement;
-import com.vaadin.polymer.paper.element.PaperIconButtonElement;
+import com.vaadin.polymer.paper.PaperDialogElement;
+import com.vaadin.polymer.paper.PaperIconButtonElement;
 
 public class JavaApiElement extends FlowPanel {
 

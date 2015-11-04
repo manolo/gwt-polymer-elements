@@ -9,7 +9,7 @@ import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.vaadin.polymer.iron.widget.event.IronSelectEvent;
-import com.vaadin.polymer.paper.element.PaperTabElement;
+import com.vaadin.polymer.paper.PaperTabElement;
 import com.vaadin.polymer.paper.widget.PaperTab;
 import com.vaadin.polymer.paper.widget.PaperTabs;
 import com.vaadin.polymer.paper.widget.PaperToast;

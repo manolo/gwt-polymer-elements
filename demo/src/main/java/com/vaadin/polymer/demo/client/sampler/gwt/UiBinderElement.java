@@ -8,10 +8,10 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Widget;
 import com.vaadin.polymer.Polymer;
-import com.vaadin.polymer.iron.element.event.IronSelectEvent;
-import com.vaadin.polymer.paper.element.PaperTabElement;
-import com.vaadin.polymer.paper.element.PaperTabsElement;
-import com.vaadin.polymer.paper.element.PaperToastElement;
+import com.vaadin.polymer.iron.event.IronSelectEvent;
+import com.vaadin.polymer.paper.PaperTabElement;
+import com.vaadin.polymer.paper.PaperTabsElement;
+import com.vaadin.polymer.paper.PaperToastElement;
 
 public class UiBinderElement extends Widget {
     interface PaperTabsViewUiBinder extends UiBinder<DivElement, UiBinderElement> {}
