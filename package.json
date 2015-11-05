@@ -5,7 +5,7 @@
   "author": "Vaadin Ltd",
   "license": "Apache License 2.0",
   "dependencies": {
-    "gwt-api-generator": "vaadin/gwt-api-generator"
+    "gwt-api-generator": "vaadin/gwt-api-generator#1.2.1"
   },
   "scripts": {
     "postinstall":"node node_modules/gwt-api-generator/bin/gwt-api-generator.js --package=PolymerElements/paper-elements,PolymerElements/iron-elements  --artifactId=vaadin-gwt-polymer-elements --groupId=com.vaadin.polymer --pom && mvn clean install javadoc:jar"
