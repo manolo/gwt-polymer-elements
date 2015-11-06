@@ -27,6 +27,7 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Widget;
+import com.vaadin.polymer.Polymer;
 import com.vaadin.polymer.demo.client.sampler.gwt.JavaApiElement;
 import com.vaadin.polymer.demo.client.sampler.gwt.JavaApiWidget;
 import com.vaadin.polymer.demo.client.sampler.gwt.UiBinderElement;
@@ -57,7 +58,7 @@ import com.vaadin.polymer.demo.client.sampler.paper.TabsSample;
 import com.vaadin.polymer.demo.client.sampler.paper.ToastSample;
 import com.vaadin.polymer.demo.client.sampler.paper.ToggleButtonSample;
 import com.vaadin.polymer.demo.client.sampler.paper.ToolbarSample;
-import com.vaadin.polymer.Polymer;
+import com.vaadin.polymer.demo.client.sampler.vaadin.VaadinGridSample;
 import com.vaadin.polymer.elemental.Function;
 import com.vaadin.polymer.iron.widget.IronCollapse;
 import com.vaadin.polymer.iron.widget.IronSelector;
@@ -68,7 +69,6 @@ import com.vaadin.polymer.paper.widget.PaperItem;
 
 public class Sampler extends Composite {
 
-    public static final String REPO_PATH = "https://github.com/vaadin/gwt-polymer-elements/blob/master/demo/src/main/java/com/vaadin/polymer/demo/client/sampler/";
     public static final String API_PATH = "https://api.github.com/repos/vaadin/gwt-polymer-elements/contents/demo/src/main/java/com/vaadin/polymer/demo/client/sampler/";
 
     interface SamplerUiBinder extends UiBinder<HTMLPanel, Sampler> {
@@ -135,6 +135,7 @@ public class Sampler extends Composite {
         case "IronImageSample": return new IronImageSample();
         case "IronListSample": return new IronListSample();
         case "IronSelectorSample": return new IronSelectorSample();
+        case "VaadinGridSample": return new VaadinGridSample();
         }
         return null;
     }
@@ -180,6 +181,9 @@ public class Sampler extends Composite {
         addSample("Image", "iron", "IronImageSample");
         addSample("List", "iron", "IronListSample");
         addSample("Selector", "iron", "IronSelectorSample");
+        
+        addCategory("vaadin", "Vaadin Elements");
+        addSample("Grid", "vaadin", "VaadinGridSample");
 
         History.addValueChangeHandler(new ValueChangeHandler<String>() {
             public void onValueChange(ValueChangeEvent<String> event) {
@@ -348,4 +352,8 @@ public class Sampler extends Composite {
             drawerPanel.closeDrawer();
         }
     }
+    
+    public static native void async(Function f, int timeout) /*-{
+       $wnd.Polymer.Base.async(f, timeout);
+    }-*/;
 }
