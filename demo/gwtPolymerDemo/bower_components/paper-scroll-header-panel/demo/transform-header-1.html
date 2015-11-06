@@ -10,7 +10,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 <html>
 <head>
-  <title>paper-scroll-header-panel: demo10</title>
+  <title>paper-scroll-header-panel: Transform header</title>
 
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
   <meta name="mobile-web-app-capable" content="yes">
@@ -22,11 +22,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <link rel="import" href="../../paper-toolbar/paper-toolbar.html">
   <link rel="import" href="../../iron-icons/iron-icons.html">
   <link rel="import" href="../../paper-icon-button/paper-icon-button.html">
-  <link rel="import" href="../../paper-drawer-panel/paper-drawer-panel.html">
-
   <link rel="import" href="sample-content.html">
 
   <link rel="stylesheet" href="../../paper-styles/demo.css">
+
 
   <style is="custom-style">
 
@@ -36,18 +35,32 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       right: 0;
       bottom: 0;
       left: 0;
-      background-color: var(--paper-grey-200, #eee);;
+      background-color: var(--paper-grey-200, #eee);
+
+      /* background for toolbar when it is at its full size */
+      --paper-scroll-header-panel-full-header: {
+        background-image: url(images/bg6.jpg);
+      };
+
+      /* background for toolbar when it is condensed */
+      --paper-scroll-header-panel-condensed-header: {
+        background-color: var(--paper-deep-orange-500, #ff5722);
+      };
     }
 
-    paper-toolbar {
-      background-color: var(--google-blue-500, #4285f4);
+    paper-toolbar.tall {
+      background-color: transparent;
     }
 
-    paper-toolbar .title {
-      margin: 0 8px;
+    paper-toolbar.tall .title {
+      font-size: 40px;
+      margin-left: 60px;
+
+      -webkit-transform-origin: left center;
+      transform-origin: left center;
     }
 
-    paper-scroll-header-panel .content {
+    .content {
       padding: 8px;
     }
 
@@ -56,21 +69,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 </head>
 <body unresolved>
 
+  <paper-scroll-header-panel condenses>
 
-  <paper-drawer-panel>
-    <paper-header-panel drawer>
-      <paper-toolbar>Menu</paper-toolbar>
-    </paper-header-panel>
-   
-
-    <paper-scroll-header-panel main>
-
-    <paper-toolbar>
+    <paper-toolbar class="tall">
 
       <paper-icon-button icon="arrow-back"></paper-icon-button>
-      <div class="flex title">Title</div>
+      <div class="flex"></div>
       <paper-icon-button icon="search"></paper-icon-button>
       <paper-icon-button icon="more-vert"></paper-icon-button>
+      <div class="bottom title">Title</div>
 
     </paper-toolbar>
 
@@ -82,9 +89,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   </paper-scroll-header-panel>
 
-  </paper-drawer-panel>
+  <script>
 
-  
+    // custom transformation: scale header's title
+    var title = document.querySelector('.title');
+    addEventListener('paper-header-transform', function(e) {
+      var d = e.detail;
+      var m = d.height - d.condensedHeight;
+      var scale = Math.max(0.75, (m - d.y) / (m / 0.25)  + 0.75);
+
+      Polymer.Base.transform('scale(' + scale + ') translateZ(0)', title);
+    });
+
+  </script>
 
 </body>
 </html>

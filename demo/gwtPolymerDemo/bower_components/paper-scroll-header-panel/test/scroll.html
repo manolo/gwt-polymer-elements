@@ -69,7 +69,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           var destination = 100;
           var adjustments = 0;
           function check() {
-            if (scrollHeaderPanel.headerState === scrollHeaderPanel.HEADER_STATE_CONDENSED) {
+            if (scrollHeaderPanel.headerState === Polymer.PaperScrollHeaderPanel.HEADER_STATE_CONDENSED) {
               assert.notEqual(adjustments, 0);
               done();
             }
@@ -88,7 +88,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           scrollHeaderPanel.condense();
 
           Polymer.Base.async(function() {
-            assert.equal(scrollHeaderPanel.headerState, scrollHeaderPanel.HEADER_STATE_CONDENSED);
+            assert.equal(scrollHeaderPanel.headerState, Polymer.PaperScrollHeaderPanel.HEADER_STATE_CONDENSED);
             done();
           }, 100);
         });

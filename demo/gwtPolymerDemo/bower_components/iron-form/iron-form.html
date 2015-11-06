@@ -40,6 +40,24 @@ call the form's `submit` method.
       document.getElementById('form').submit();
     }
 
+To customize the request sent to the server, you can listen to the `iron-form-presubmit`
+event, and modify the form's[`iron-ajax`](https://elements.polymer-project.org/elements/iron-ajax)
+object. However, If you want to not use `iron-ajax` at all, you can cancel the
+event and do your own custom submission:
+
+  Example of modifying the request, but still using the build-in form submission:
+    form.addEventListener('iron-form-presubmit', function() {
+      this.request.method = 'put';
+      this.request.params = someCustomParams;
+    });
+
+  Example of bypassing the build-in form submission:
+    form.addEventListener('iron-form-presubmit', function(event) {
+      event.preventDefault();
+      var firebase = new Firebase(form.getAttribute('action'));
+      firebase.set(form.serialize());
+    });
+
 @demo demo/index.html
 */
 
@@ -89,8 +107,16 @@ call the form's `submit` method.
         value: function() {
           return {};
         }
+      },
+
+      /**
+      * iron-ajax request object used to submit the form.
+      */
+      request: {
+        type: Object,
       }
     },
+
     /**
      * Fired if the form cannot be submitted because it's invalid.
      *
@@ -98,10 +124,22 @@ call the form's `submit` method.
      */
 
     /**
+     * Fired before the form is submitted.
+     *
+     * @event iron-form-presubmit
+     */
+
+    /**
      * Fired after the form is submitted.
      *
      * @event iron-form-submit
      */
+
+     /**
+      * Fired after the form is reset.
+      *
+      * @event iron-form-reset
+      */
 
     /**
     * Fired after the form is submitted and a response is received.
@@ -117,21 +155,24 @@ call the form's `submit` method.
     listeners: {
       'iron-form-element-register': '_registerElement',
       'iron-form-element-unregister': '_unregisterElement',
-      'submit': '_onSubmit'
+      'submit': '_onSubmit',
+      'reset': '_onReset'
     },
 
     ready: function() {
       // Object that handles the ajax form submission request.
-      this._requestBot = document.createElement('iron-ajax');
-      this._requestBot.addEventListener('response', this._handleFormResponse.bind(this));
-      this._requestBot.addEventListener('error', this._handleFormError.bind(this));
+      this.request = document.createElement('iron-ajax');
+      this.request.addEventListener('response', this._handleFormResponse.bind(this));
+      this.request.addEventListener('error', this._handleFormError.bind(this));
 
       // Holds all the custom elements registered with this form.
       this._customElements = [];
+      // Holds the initial values of the custom elements registered with this form.
+      this._customElementsInitialValues = [];
     },
 
     /**
-     * Called to submit the form.
+     * Submits the form.
      */
     submit: function() {
       if (!this.noValidate && !this.validate()) {
@@ -146,22 +187,34 @@ call the form's `submit` method.
 
       var json = this.serialize();
 
-      this._requestBot.url = this.action;
-      this._requestBot.method = this.method;
-      this._requestBot.contentType = this.contentType;
-      this._requestBot.withCredentials = this.withCredentials;
-      this._requestBot.headers = this.headers;
+      // Native forms can also index elements magically by their name (can't make
+      // this up if I tried) so we need to get the correct attributes, not the
+      // elements with those names.
+      this.request.url = this.getAttribute('action');
+      this.request.method = this.getAttribute('method');
+      this.request.contentType = this.contentType;
+      this.request.withCredentials = this.withCredentials;
+      this.request.headers = this.headers;
 
-      if (this.method.toUpperCase() == 'POST') {
-        this._requestBot.body = json;
+      if (this.method.toUpperCase() === 'POST') {
+        this.request.body = json;
       } else {
-        this._requestBot.params = json;
+        this.request.params = json;
       }
 
-      this._requestBot.generateRequest();
-      this.fire('iron-form-submit', json);
+      // Allow for a presubmit hook
+      var event = this.fire('iron-form-presubmit', {}, {cancelable: true});
+      if(!event.defaultPrevented) {
+        this.request.generateRequest();
+        this.fire('iron-form-submit', json);
+      }
     },
 
+    /**
+     * Handler that is called when the native form fires a `submit` event
+     *
+     * @param {Event} event A `submit` event.
+     */
     _onSubmit: function(event) {
       this.submit();
 
@@ -174,11 +227,20 @@ call the form's `submit` method.
     },
 
     /**
+     * Handler that is called when the native form fires a `reset` event
+     *
+     * @param {Event} event A `reset` event.
+     */
+    _onReset: function(event) {
+      this._resetCustomElements();
+    },
+
+    /**
      * Returns a json object containing name/value pairs for all the registered
      * custom components and native elements of the form. If there are elements
      * with duplicate names, then their values will get aggregated into an
      * array of values.
-     * 
+     *
      * @return {!Object}
      */
     serialize: function() {
@@ -230,8 +292,13 @@ call the form's `submit` method.
     },
 
     _registerElement: function(e) {
-      e.target._parentForm = this;
-      this._customElements.push(e.target);
+      var element = e.target;
+      element._parentForm = this;
+      this._customElements.push(element);
+
+      // Save the original value of this input.
+      this._customElementsInitialValues.push(
+          this._usesCheckedInsteadOfValue(element) ? element.checked : element.value);
     },
 
     _unregisterElement: function(e) {
@@ -240,6 +307,7 @@ call the form's `submit` method.
         var index = this._customElements.indexOf(target);
         if (index > -1) {
           this._customElements.splice(index, 1);
+          this._customElementsInitialValues.splice(index, 1);
         }
       }
     },
@@ -274,6 +342,20 @@ call the form's `submit` method.
       return valid;
     },
 
+    /**
+     * Returns whether the given element is a radio-button or a checkbox.
+     * @return {boolean} True if the element has a `checked` property.
+     */
+    _usesCheckedInsteadOfValue: function(el) {
+      if (el.type == 'checkbox' ||
+          el.type == 'radio' ||
+          el.getAttribute('role') == 'checkbox' ||
+          el.getAttribute('role') == 'radio') {
+        return true;
+      }
+      return false;
+    },
+
     _useValue: function(el) {
       // Skip disabled elements or elements that don't have a `name` attribute.
       if (el.disabled || !el.name) {
@@ -283,12 +365,8 @@ call the form's `submit` method.
       // Checkboxes and radio buttons should only use their value if they're
       // checked. Custom paper-checkbox and paper-radio-button elements
       // don't have a type, but they have the correct role set.
-      if (el.type == 'checkbox' ||
-          el.type == 'radio' ||
-          el.getAttribute('role') == 'checkbox' ||
-          el.getAttribute('role') == 'radio') {
+      if (this._usesCheckedInsteadOfValue(el))
         return el.checked;
-      }
       return true;
     },
 
@@ -301,6 +379,30 @@ call the form's `submit` method.
       fakeSubmit.click();
 
       this.removeChild(fakeSubmit);
+    },
+
+    /**
+     * Resets all non-disabled form custom elements to their initial values.
+     */
+    _resetCustomElements: function() {
+      // Reset all the registered custom components. We need to do this after
+      // the native reset, since programmatically changing the `value` of some
+      // native elements (iron-input in particular) does not notify its
+      // parent `paper-input`, which will now display the wrong value.
+      this.async(function() {
+        for (var el, i = 0; el = this._customElements[i], i < this._customElements.length; i++) {
+          if (el.disabled)
+            continue;
+
+          if (this._usesCheckedInsteadOfValue(el)) {
+            el.checked = this._customElementsInitialValues[i];
+          } else {
+            el.value = this._customElementsInitialValues[i];
+          }
+        }
+
+        this.fire('iron-form-reset');
+      }, 1);
     }
 
   });

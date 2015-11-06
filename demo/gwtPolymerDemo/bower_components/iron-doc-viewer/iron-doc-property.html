@@ -194,7 +194,7 @@ Give it a hydrolysis `PropertyDescriptor` (via `descriptor`), and watch it go!
     _getAnnotation: function(descriptor) {
       var annotations = [];
 
-      if (descriptor['default']) {
+      if (descriptor['default'] !== undefined) {
         annotations.push('Default: ' + descriptor['default']);
       }
       if (descriptor.readOnly) {

@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+
+<head>
+  <script src='../webcomponentsjs/webcomponents-lite.js'></script>
+  <link href='vaadin-grid.html' rel='import'>
+  <script>var randomUserUrl = 'https://randomuser.me/api/';</script>
+</head>
+
+<body>
+<div>
+  <vaadin-grid>
+    <table>
+      <colgroup>
+        <col name="user.name.first" header-text="First Name">
+        <col name="user.name.last" header-text="Last Name">
+        <col name="user.email" header-text="Email" flex="">
+      </colgroup>
+    </table>
+  </vaadin-grid>
+
+  <div id="templatewrapper" style="display: none;">
+    <template is="dom-bind">
+      <style>.userdata {-webkit-flex: 1; flex: 1; max-height: 20px;}
+      .usercolumn { display: -webkit-flex; display: flex; -webkit-flex-direction: column; flex-direction: column; }</style>
+      <div class="userdetails" style="display: -webkit-flex; display: flex; height: 170px;">
+        <img src="{{user.picture.large}}" style="height: 100px; width: 100px;">
+        <div class="usercolumn">
+          <small>Name</small>
+          <div class="userdata">{{user.name.first}}</div>
+          <small>Surname</small>
+          <div class="userdata">{{user.name.last}}</div>
+          <small>Title</small>
+          <div class="userdata">Designer</div>
+          <small>Hire date</small>
+          <div class="userdata">10th August 2015</div>
+        </div>
+        <div class="usercolumn">
+          <small>City</small>
+          <div class="userdata">{{user.location.city}}</div>
+          <small>Street</small>
+          <div class="userdata">{{user.location.street}}</div>
+          <small>Phone</small>
+          <div class="userdata">{{user.phone}}</div>
+          <div style="display: -webkit-flex; display: flex;">
+            <button class="demo-button">MESSAGE</button>
+            <button class="demo-button whitebutton">EDIT</button>
+          </div>
+        </div>
+      </div>
+    </template>
+  </div>
+
+</div>
+<script>
+  var templateWrapper = document.getElementById("templatewrapper");
+  var template = templateWrapper.querySelector("template");
+
+  function getUserDetails(user) {
+    template.user = user;
+    return templateWrapper.querySelector(".userdetails").outerHTML;
+  }
+</script>
+<script>
+  var grid = grid || document.querySelector("vaadin-grid");
+
+  HTMLImports.whenReady(function() {
+    var dataSourceSize = 1000;
+    grid.items = function(params, callback) {
+      // Fetch the JSON data from a URL
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+          if (xhr.status == 200) {
+            var json = JSON.parse(xhr.responseText);
+            callback(json.results, dataSourceSize);
+          }
+        }
+      }
+      var rowsNeeded = params.count > 0 ? params.count : 10;
+      xhr.open("GET", randomUserUrl + "?results=" + rowsNeeded, true);
+      xhr.send();
+    };
+
+    // code
+    // Add a row details generator
+    grid.rowDetailsGenerator = function(rowIndex) {
+      var elem = document.createElement('div');
+      elem.innerHTML = "AAA"
+      return elem;
+    }
+
+    var detailsOpenIndex = -1;
+
+    // Show details for the selected row
+    grid.addEventListener('select', function() {
+      grid.setRowDetailsVisible(detailsOpenIndex, false);
+      var selected = grid.selection.selected();
+      if (selected.length == 1) {
+        grid.setRowDetailsVisible(selected[0], true);
+        detailsOpenIndex = selected[0];
+      }
+    });
+    // end-code
+  });
+</script>
+</body>
+
+</html>

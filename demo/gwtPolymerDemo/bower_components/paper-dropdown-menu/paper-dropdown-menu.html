@@ -138,6 +138,8 @@ respectively.
 
   </style>
   <template>
+    <!-- this div fulfills an a11y requirement for combobox, do not remove -->
+    <div role="button"></div>
     <paper-menu-button
       id="menuButton"
       vertical-align="top"
@@ -150,7 +152,9 @@ respectively.
       opened="{{opened}}">
       <div class="dropdown-trigger">
         <paper-ripple></paper-ripple>
+        <!-- paper-input has type="text" for a11y, do not remove -->
         <paper-input
+          type="text"
           invalid="[[invalid]]"
           readonly
           disabled="[[disabled]]"
@@ -248,7 +252,8 @@ respectively.
         opened: {
           type: Boolean,
           notify: true,
-          value: false
+          value: false,
+          observer: '_openedChanged'
         },
 
         /**
@@ -290,7 +295,8 @@ respectively.
       },
 
       hostAttributes: {
-        role: 'group',
+        role: 'combobox',
+        'aria-autocomplete': 'none',
         'aria-haspopup': 'true'
       },
 
@@ -395,11 +401,19 @@ respectively.
       /**
        * Returns false if the element is required and does not have a selection,
        * and true otherwise.
-       * @return {Boolean} true if `required` is false, or if `required` is true
+       * @return {boolean} true if `required` is false, or if `required` is true
        * and the element has a valid selection.
        */
       _getValidity: function() {
         return this.disabled || !this.required || (this.required && this.value);
+      },
+
+      _openedChanged: function() {
+        var openState = this.opened ? 'true' : 'false';
+        var e = this.contentElement;
+        if (e) {
+          e.setAttribute('aria-expanded', openState);
+        }
       }
     });
   })();

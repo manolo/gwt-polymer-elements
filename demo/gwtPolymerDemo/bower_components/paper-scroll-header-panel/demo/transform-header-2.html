@@ -10,7 +10,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 <html>
 <head>
-  <title>paper-scroll-header-panel: demo5</title>
+  <title>paper-scroll-header-panel: transform header</title>
 
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
   <meta name="mobile-web-app-capable" content="yes">
@@ -22,9 +22,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <link rel="import" href="../../paper-toolbar/paper-toolbar.html">
   <link rel="import" href="../../iron-icons/iron-icons.html">
   <link rel="import" href="../../paper-icon-button/paper-icon-button.html">
-  <link rel="import" href="sample-content.html">
-
   <link rel="stylesheet" href="../../paper-styles/demo.css">
+  <link rel="import" href="sample-content.html">
 
   <style is="custom-style">
 
@@ -35,28 +34,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       bottom: 0;
       left: 0;
       background-color: var(--paper-grey-200, #eee);
-
-      /* background for toolbar when it is at its full size */
-      --paper-scroll-header-panel-full-header: {
-        background-image: url(images/bg6.jpg);
-      };
-
-      /* background for toolbar when it is condensed */
-      --paper-scroll-header-panel-condensed-header: {
-        background-color: var(--google-yellow-500, #f4b400);
-      };
     }
 
-    paper-toolbar.tall {
-      background-color: transparent;
+    paper-toolbar {
+      background-color: var(--google-blue-500, #4285f4);
     }
 
-    paper-toolbar.tall .title {
-      font-size: 40px;
+    paper-toolbar .title {
       margin-left: 60px;
-
-      -webkit-transform-origin: left center;
-      transform-origin: left center;
     }
 
     .content {
@@ -76,6 +61,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <div class="flex"></div>
       <paper-icon-button icon="search"></paper-icon-button>
       <paper-icon-button icon="more-vert"></paper-icon-button>
+
       <div class="bottom title">Title</div>
 
     </paper-toolbar>
@@ -87,20 +73,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </div>
 
   </paper-scroll-header-panel>
-
-  <script>
-
-    // custom transformation: scale header's title
-    var title = document.querySelector('.title');
-    addEventListener('paper-header-transform', function(e) {
-      var d = e.detail;
-      var m = d.height - d.condensedHeight;
-      var scale = Math.max(0.75, (m - d.y) / (m / 0.25)  + 0.75);
-
-      Polymer.Base.transform('scale(' + scale + ') translateZ(0)', title);
-    });
-
-  </script>
 
 </body>
 </html>

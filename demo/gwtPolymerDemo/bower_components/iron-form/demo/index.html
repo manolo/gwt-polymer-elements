@@ -22,6 +22,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <link rel="import" href="../../paper-styles/paper-styles.html">
   <link rel="import" href="../../paper-styles/demo-pages.html">
   <link rel="import" href="../../paper-checkbox/paper-checkbox.html">
+  <link rel="import" href="../../paper-dropdown-menu/paper-dropdown-menu.html">
+  <link rel="import" href="../../paper-menu/paper-menu.html">
+  <link rel="import" href="../../paper-item/paper-item.html">
   <link rel="import" href="../iron-form.html">
   <link rel="import" href="simple-element.html">
 </head>
@@ -44,6 +47,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <input type="checkbox" name="food" value="pizza" required> I like pizza<br>
           <paper-checkbox name="food" value="cheese" required>I like cheese</paper-checkbox><br>
 
+          <paper-dropdown-menu label="Cars" name="cars" required>
+            <paper-menu class="dropdown-content">
+              <paper-item>Volvo</paper-item>
+              <paper-item>Saab</paper-item>
+              <paper-item>Fiat</paper-item>
+              <paper-item>Audi</paper-item>
+            </paper-menu>
+          </paper-dropdown-menu>
+
           <p>
             Sample custom element, not required: <br>
             <simple-element name="custom-one"></simple-element>
@@ -57,7 +69,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <br><br>
 
           <paper-button raised
-              onclick="clickHandler(event)">Submit</paper-button>
+              onclick="submitHandler(event)">Submit</paper-button>
+          <paper-button raised
+              onclick="resetHandler(event)">Reset</paper-button>
         </form>
       </div>
     </div>
@@ -100,8 +114,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
           <br><br><br>
           <paper-button raised
-              onclick="clickHandler(event)">Submit</paper-button>
+              onclick="submitHandler(event)">Submit</paper-button>
           <button type="submit">Native Submit</button>
+          <button type="reset">Native Reset</button>
         </form>
       </div>
     </div>
@@ -126,8 +141,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       output.innerHTML = JSON.stringify(event.detail);
     }
 
-    function clickHandler(event) {
+    function submitHandler(event) {
       Polymer.dom(event).localTarget.parentElement.submit();
+    }
+    function resetHandler(event) {
+      Polymer.dom(event).localTarget.parentElement.reset();
     }
   </script>
 </body>

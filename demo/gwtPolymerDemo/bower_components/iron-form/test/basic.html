@@ -100,6 +100,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </template>
   </test-fixture>
 
+  <test-fixture id="FormForResetting">
+    <template>
+      <form is="iron-form">
+        <simple-element name="zig" value="zag"></simple-element>
+        <input name="foo" value="bar">
+        <input type="checkbox" name="foo" value="bar1" checked>
+        <input type="checkbox" name="foo" value="bar2">
+      </form>
+    </template>
+  </test-fixture>
+
   <script>
   suite('registration', function() {
     var f;
@@ -236,6 +247,48 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   });
 
+  suite('resetting', function () {
+    test('form restores the default values', function(done) {
+      var form = fixture('FormForResetting');
+
+      assert.equal(form._customElements.length, 1);
+      assert.equal(form.elements.length, 3);
+
+      // Initial values.
+      var customElement = form.querySelector('simple-element');
+      var input = form.querySelector('input[name="foo"]');
+      var checkbox1 = form.querySelectorAll('input[type="checkbox"]')[0];
+      var checkbox2 = form.querySelectorAll('input[type="checkbox"]')[1];
+
+      assert.equal(customElement.value, 'zag');
+      assert.equal(input.value, 'bar');
+      assert.isTrue(checkbox1.checked);
+      assert.isFalse(checkbox2.checked);
+
+      // Change the values.
+      customElement.value = 'not zag';
+      input.value = 'not bar';
+      checkbox1.checked = false;
+      checkbox2.checked = true;
+      assert.equal(customElement.value, 'not zag');
+      assert.equal(input.value, 'not bar');
+      assert.isFalse(checkbox1.checked);
+      assert.isTrue(checkbox2.checked);
+
+      form.addEventListener('iron-form-reset', function(event) {
+        // Restored initial values.
+        assert.equal(customElement.value, 'zag');
+        assert.equal(input.value, 'bar');
+        assert.isTrue(checkbox1.checked);
+        assert.isFalse(checkbox2.checked);
+        done();
+      });
+
+      form.reset();
+
+    });
+  });
+
   suite('submitting', function () {
     var server;
     var form;
@@ -299,6 +352,71 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       server.respond();
     });
 
+    test('can modify the request in the presubmit', function(done) {
+      form = fixture('FormGet');
+
+      var submitted = false;
+      var presubmitted = false;
+
+      form.addEventListener('iron-form-submit', function() {
+        submitted = true;
+      });
+
+      form.addEventListener('iron-form-presubmit', function() {
+        presubmitted = true;
+        this.request.params = {batman: true};
+      });
+
+      form.addEventListener('iron-form-response', function(event) {
+        expect(submitted).to.be.equal(true);
+        expect(presubmitted).to.be.equal(true);
+
+        // We have changed the json parameters
+        expect(event.detail.url).to.contain('batman=true');
+
+        var response = event.detail.response;
+        expect(response).to.be.ok;
+        expect(response).to.be.an('object');
+        expect(response.success).to.be.equal(true);
+        done();
+      });
+
+      form.submit();
+      server.respond();
+    });
+
+
+    test('can do a custom submission in the presubmit', function(done) {
+      form = fixture('FormGet');
+
+      var presubmitted = false;
+
+      // Since we are not using the normal form submission, these events should
+      // never be called.
+      var formResponseHandler = sinon.spy();
+      form.addEventListener('iron-form-response', formResponseHandler);
+      var formSubmitHandler = sinon.spy();
+      form.addEventListener('iron-form-submit', formSubmitHandler);
+
+      form.addEventListener('iron-form-presubmit', function(event) {
+        presubmitted = true;
+        event.preventDefault();
+
+        // Your custom submission logic could go here (like using Firebase).
+        // In this case, fire a custom event as a an example.
+        this.fire('custom-form-submit');
+      });
+
+      form.addEventListener('custom-form-submit', function(event) {
+        expect(presubmitted).to.be.equal(true);
+        expect(formResponseHandler.callCount).to.be.equal(0);
+        expect(formSubmitHandler.callCount).to.be.equal(0);
+        done();
+      });
+
+      form.submit();
+    });
+
     test('can submit with method=get', function(done) {
       form = fixture('FormGet');
 
@@ -309,6 +427,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       form.addEventListener('iron-form-response', function(event) {
         expect(submitted).to.be.equal(true);
+        expect(event.detail.url).to.contain('zig=zag');
 
         var response = event.detail.response;
         expect(response).to.be.ok;
@@ -331,6 +450,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       form.addEventListener('iron-form-response', function(event) {
         expect(submitted).to.be.equal(true);
+
         var response = event.detail.response;
         expect(response).to.be.ok;
         expect(response).to.be.an('object');

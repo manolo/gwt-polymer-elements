@@ -48,12 +48,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       });
 
       test('HEADER_STATE_EXPANDED', function(done) {
-        assert.equal(scrollHeaderPanel.headerState, scrollHeaderPanel.HEADER_STATE_EXPANDED);
+        assert.equal(scrollHeaderPanel.headerState, Polymer.PaperScrollHeaderPanel.HEADER_STATE_EXPANDED);
 
         scrollHeaderPanel.scroller.scrollTop = 1;
 
         flush(function() {
-          assert.notEqual(scrollHeaderPanel.headerState, scrollHeaderPanel.HEADER_STATE_EXPANDED);
+          assert.notEqual(scrollHeaderPanel.headerState, Polymer.PaperScrollHeaderPanel.HEADER_STATE_EXPANDED);
           done();
         });
       });
@@ -62,7 +62,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         scrollHeaderPanel.scroller.scrollTop = toolbar.offsetHeight * 2;
 
         flush(function() {
-          assert.equal(scrollHeaderPanel.headerState, scrollHeaderPanel.HEADER_STATE_HIDDEN);
+          assert.equal(scrollHeaderPanel.headerState, Polymer.PaperScrollHeaderPanel.HEADER_STATE_HIDDEN);
           done();
         });
       });
@@ -72,7 +72,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         scrollHeaderPanel.scroller.scrollTop = toolbar.offsetHeight * 5;
 
         flush(function() {
-            assert.equal(scrollHeaderPanel.headerState, scrollHeaderPanel.HEADER_STATE_CONDENSED);
+            assert.equal(scrollHeaderPanel.headerState, Polymer.PaperScrollHeaderPanel.HEADER_STATE_CONDENSED);
             done();
         });
       });
@@ -81,7 +81,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         scrollHeaderPanel.scroller.scrollTop = toolbar.offsetHeight * 0.5;
 
         flush(function() {
-          assert.equal(scrollHeaderPanel.headerState, scrollHeaderPanel.HEADER_STATE_INTERPOLATED);
+          assert.equal(scrollHeaderPanel.headerState, Polymer.PaperScrollHeaderPanel.HEADER_STATE_INTERPOLATED);
           done();
         });
       });

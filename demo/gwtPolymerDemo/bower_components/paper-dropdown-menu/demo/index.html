@@ -21,7 +21,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <link rel="import" href="../../iron-icons/iron-icons.html">
   <link rel="import" href="../../iron-icon/iron-icon.html">
-  <link rel="import" href="../../paper-menu/paper-menu.html">
+  <link rel="import" href="../../paper-listbox/paper-listbox.html">
   <link rel="import" href="../../paper-item/paper-item.html">
   <link rel="import" href="../../paper-button/paper-button.html">
   <link rel="import" href="../../paper-styles/demo-pages.html">
@@ -30,10 +30,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <link rel="import" href="../paper-dropdown-menu.html">
 
   <style>
-    paper-menu {
-      display: block;
-    }
-
     paper-dropdown-menu {
       text-align: left;
       margin: auto;
@@ -63,11 +59,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <h4>Basic Menu</h4>
         <div class="horizontal-section">
           <paper-dropdown-menu label="Dinosaurs">
-            <paper-menu class="dropdown-content">
+            <paper-listbox class="dropdown-content">
               <template is="dom-repeat" items="[[dinosaurs]]" as="dinosaur">
                 <paper-item>[[dinosaur]]</paper-item>
               </template>
-            </paper-menu>
+            </paper-listbox>
           </paper-dropdown-menu>
         </div>
       </div>
@@ -78,11 +74,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <h4>Pre-selected Value</h4>
         <div class="horizontal-section">
           <paper-dropdown-menu label="Dinosaurs">
-            <paper-menu class="dropdown-content" selected="1">
+            <paper-listbox class="dropdown-content" selected="1">
               <template is="dom-repeat" items="[[dinosaurs]]" as="dinosaur">
                 <paper-item>[[dinosaur]]</paper-item>
               </template>
-            </paper-menu>
+            </paper-listbox>
           </paper-dropdown-menu>
         </div>
       </div>
@@ -93,11 +89,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <h4>Disabled</h4>
         <div class="horizontal-section">
           <paper-dropdown-menu disabled label="Disabled">
-            <paper-menu class="dropdown-content">
+            <paper-listbox class="dropdown-content">
               <template is="dom-repeat" items="[[letters]]" as="letter">
                 <paper-item>[[letter]]</paper-item>
               </template>
-            </paper-menu>
+            </paper-listbox>
           </paper-dropdown-menu>
         </div>
       </div>
@@ -123,11 +119,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <h4>No Label Float</h4>
         <div class="horizontal-section">
           <paper-dropdown-menu class="letters" label="Letters" no-label-float>
-            <paper-menu class="dropdown-content">
+            <paper-listbox class="dropdown-content">
               <template is="dom-repeat" items="[[letters]]" as="letter">
                 <paper-item>[[letter]]</paper-item>
               </template>
-            </paper-menu>
+            </paper-listbox>
           </paper-dropdown-menu>
         </div>
       </div>
@@ -138,11 +134,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <h4>No Ripple, No Animations</h4>
         <div class="horizontal-section">
           <paper-dropdown-menu label="Dinosaurs" noink no-animations>
-            <paper-menu class="dropdown-content">
+            <paper-listbox class="dropdown-content">
               <template is="dom-repeat" items="[[dinosaurs]]" as="dinosaur">
                 <paper-item>[[dinosaur]]</paper-item>
               </template>
-            </paper-menu>
+            </paper-listbox>
           </paper-dropdown-menu>
         </div>
       </div>

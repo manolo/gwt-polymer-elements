@@ -18,7 +18,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <link rel="stylesheet" href="../../paper-styles/demo.css">
     <link rel="import" href="../iron-image.html">
 
-    <style>
+    <style is="custom-style">
       .sized {
         width: 200px;
         height: 200px;
@@ -39,6 +39,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: block;
         margin-bottom: 1em;
       }
+
+      #full-width-container {
+        width: 450px;
+        height: 500px;
+        background: #eef;
+      }
+
+      #full-width-container iron-image {
+        width: 100%;
+        --iron-image-width: 100%;
+      }
+
+      #full-height-container {
+        height: 300px;
+        background: #eef;
+      }
+
+      #full-height-container iron-image {
+        height: 100%;
+        --iron-image-height: 100%;
+      }
     </style>
 
   </head>
@@ -55,6 +76,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <h3>Sizing: contain</h3>
       <iron-image class="sized gray" sizing="contain"  src="./polymer.svg"></iron-image>
       <iron-image class="sized gray" sizing="contain"  src="./polymer.svg"></iron-image>
+
+      <h3>Full width</h3>
+      <div id="full-width-container">
+        <iron-image class="gray" src="./polymer.svg"></iron-image>
+      </div>
+
+      <h3>Full height</h3>
+      <div id="full-height-container">
+        <iron-image class="gray" src="./polymer.svg"></iron-image>
+      </div>
 
       <h3>Preload: none</h3>
       <div class="group">
