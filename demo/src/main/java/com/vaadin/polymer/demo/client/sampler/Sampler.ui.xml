@@ -13,6 +13,11 @@
         .toolbar > div {
            justify-content: center;
         }
+        .toolbar > div {
+           padding: 0px !important;
+           bottom: -4px !important; 
+        }
+        
         .toolbar paper-fab {
            margin: 5px;
         }
@@ -63,6 +68,7 @@
         }
         .panel {
             padding: 20px;
+            padding-top: 60px;
         }
         paper-item {
             cursor: pointer;
@@ -82,13 +88,16 @@
         }
         .source-buttons {
            background-color: #CDE5E3;
-           height: 35px;
+           height: 43px;
            padding: 7px 0px 7px 30px;
            color: #009688;
         }
         .source-buttons iron-icon {
            margin: 0px 0px 4px 4px;
            width: 14px;
+        }
+        paper-header-panel[mode="waterfall-tall"]  #mainContainer {
+          overflow: auto;
         }
 
     </ui:style>
@@ -109,6 +118,9 @@
         paper-item span {
             pointer-events: none;
         }
+        paper-toolbar.tall {
+           height: 121px;
+        }
        </style>
 
         <p:PaperDrawerPanel ui:field="drawerPanel">
@@ -123,19 +135,19 @@
                 </p:PaperHeaderPanel>
             </div>
             <div main="">
-                <p:PaperHeaderPanel mode="seamed">
-                    <p:PaperToolbar addStyleNames="{style.toolbar}">
+                <p:PaperHeaderPanel mode="waterfall-tall">
+                    <p:PaperToolbar addStyleNames="{style.toolbar}" >
                         <p:PaperIconButton icon="menu" attributes="paper-drawer-toggle" />
                         <span ui:field="currentLabel" class="{style.current}"></span>
                         <span class="flex"></span>
                         <p:PaperButton ui:field="help" addStyleNames="{style.buttons}"><i:IronIcon icon="help"/>About</p:PaperButton>
+                        <div class="{style.source-buttons} bottom flex">
+                            <spam>VIEW SOURCE: </spam>
+                            <p:PaperButton ui:field="javaButton" addStyleNames="{style.buttons}">.java<i:IronIcon icon="launch"/></p:PaperButton>
+                            <p:PaperButton ui:field="xmlButton" addStyleNames="{style.buttons}">.ui.xml<i:IronIcon icon="launch"/></p:PaperButton>
+                        </div>
                     </p:PaperToolbar>
-                    <div class="{style.source-buttons}">
-                        <spam>VIEW SOURCE: </spam>
-                        <p:PaperButton ui:field="javaButton" addStyleNames="{style.buttons}">.java<i:IronIcon icon="launch"/></p:PaperButton>
-                        <p:PaperButton ui:field="xmlButton" addStyleNames="{style.buttons}">.ui.xml<i:IronIcon icon="launch"/></p:PaperButton>
-                    </div>
-                    <g:HTMLPanel ui:field="content" addStyleNames="{style.panel}"/>
+                    <g:HTMLPanel ui:field="content" addStyleNames="{style.panel} fit"/>
                 </p:PaperHeaderPanel>
             </div>
         </p:PaperDrawerPanel>
