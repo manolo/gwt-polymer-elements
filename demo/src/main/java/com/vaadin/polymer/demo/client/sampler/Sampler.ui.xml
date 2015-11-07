@@ -15,9 +15,9 @@
         }
         .toolbar > div {
            padding: 0px !important;
-           bottom: -4px !important; 
+           bottom: -4px !important;
         }
-        
+
         .toolbar paper-fab {
            margin: 5px;
         }
@@ -68,7 +68,6 @@
         }
         .panel {
             padding: 20px;
-            padding-top: 60px;
         }
         paper-item {
             cursor: pointer;
@@ -80,6 +79,14 @@
            text-align: center;
            padding: 5px;
         }
+        @external .tall;
+        .toolbar.tall {
+           height: 108px !important;
+           padding: 0 !important;
+        }
+        .toolbar.tall #bottomBar {
+           height: 50px !important;
+        }
         .source pre {
            font-size: 12px;
            line-height: 13px;
@@ -88,8 +95,8 @@
         }
         .source-buttons {
            background-color: #CDE5E3;
-           height: 43px;
-           padding: 7px 0px 7px 30px;
+           height: 45px;
+           padding: 0px 0px 0px 30px;
            color: #009688;
         }
         .source-buttons iron-icon {
@@ -99,6 +106,8 @@
         paper-header-panel[mode="waterfall-tall"]  #mainContainer {
           overflow: auto;
         }
+
+
 
     </ui:style>
 
@@ -117,9 +126,6 @@
         paper-item iron-icon,
         paper-item span {
             pointer-events: none;
-        }
-        paper-toolbar.tall {
-           height: 121px;
         }
        </style>
 
@@ -153,6 +159,7 @@
         </p:PaperDrawerPanel>
 
         <p:PaperDialog ui:field="about" modal="true" >
+          <p:PaperDialogScrollable>
             <h2>About GWT-Polymer-Elements</h2>
              <p>
                GWT-Polymer-Elements is a library developed in Vaadin Labs. It allows to use Polymer Elements in GWT projects.
@@ -179,6 +186,7 @@
             <div class="buttons">
                 <p:PaperButton attributes="dialog-dismiss"  raised="true">OK</p:PaperButton>
             </div>
+          </p:PaperDialogScrollable>
         </p:PaperDialog>
 
         <p:PaperDialog ui:field="source" modal="true" addStyleNames="{style.source}">

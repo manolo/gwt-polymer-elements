@@ -8,6 +8,7 @@ import com.vaadin.polymer.Polymer;
 import com.vaadin.polymer.elemental.Event;
 import com.vaadin.polymer.elemental.EventListener;
 import com.vaadin.polymer.paper.PaperDialogElement;
+import com.vaadin.polymer.paper.PaperFabElement;
 import com.vaadin.polymer.paper.PaperIconButtonElement;
 
 public class JavaApiElement extends FlowPanel {
@@ -19,9 +20,10 @@ public class JavaApiElement extends FlowPanel {
 
         PaperDialogElement dialog = Polymer.createElement(PaperDialogElement.TAG);
         dialog.setInnerHTML("<div>Welcome Polymer to GWT</div>");
+        dialog.setEntryAnimation("scale-up-animation");
         this.getElement().appendChild((Element)dialog);
 
-        PaperIconButtonElement iconElem = Polymer.createElement(PaperIconButtonElement.TAG);
+        PaperFabElement iconElem = Polymer.createElement(PaperFabElement.TAG);
         iconElem.setIcon("open-in-browser");
         iconElem.setAttribute("title", "Click to say Hello");
         iconElem.addEventListener("click", new EventListener() {

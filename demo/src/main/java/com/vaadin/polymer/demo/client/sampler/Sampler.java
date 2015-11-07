@@ -145,12 +145,6 @@ public class Sampler extends Composite {
 
         JsHighlight.INSTANCE.initialize();
 
-        addCategory("gwt", "GWT Integration");
-        addSample("Widget Java API", "gwt", "JavaApiWidget", false);
-        addSample("Element Java API", "gwt", "JavaApiElement", false);
-        addSample("UiBinder Widgets", "gwt", "UiBinderWidget");
-        addSample("UiBinder Elements", "gwt", "UiBinderElement");
-
         addCategory("paper", "Paper Elements");
         addSample("Button", "paper", "ButtonSample");
         addSample("CheckBox", "paper", "CheckboxSample");
@@ -181,9 +175,17 @@ public class Sampler extends Composite {
         addSample("Image", "iron", "IronImageSample");
         addSample("List", "iron", "IronListSample");
         addSample("Selector", "iron", "IronSelectorSample");
-        
+
         addCategory("vaadin", "Vaadin Elements");
         addSample("Grid", "vaadin", "VaadinGridSample");
+
+        addCategory("gwt", "GWT Integration");
+        addSample("Widget Java API", "gwt", "JavaApiWidget", false);
+        addSample("Element Java API", "gwt", "JavaApiElement", false);
+        addSample("UiBinder Widgets", "gwt", "UiBinderWidget");
+        addSample("UiBinder Elements", "gwt", "UiBinderElement");
+
+
 
         History.addValueChangeHandler(new ValueChangeHandler<String>() {
             public void onValueChange(ValueChangeEvent<String> event) {
@@ -352,7 +354,7 @@ public class Sampler extends Composite {
             drawerPanel.closeDrawer();
         }
     }
-    
+
     public static native void async(Function f, int timeout) /*-{
        $wnd.Polymer.Base.async(f, timeout);
     }-*/;
