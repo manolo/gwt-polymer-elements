@@ -698,17 +698,6 @@ More examples available at https://cdn.vaadin.com/vaadin-elements/latest/vaadin-
       _grid: undefined,
 
       properties: {
-        /**
-         * The array of Columns attached to the grid.
-         *
-         * @property {Array<Column>} columns
-         * @type {Array<Column>}
-         */
-        columns: {
-          type: Array,
-          value: [],
-          observer: '_columnsChanged'
-        },
 
         /**
          * Object for controlling and accessing the header rows in the grid.
@@ -877,114 +866,8 @@ More examples available at https://cdn.vaadin.com/vaadin-elements/latest/vaadin-
           type: Array,
           notify: true,
           observer: '_sortOrderChanged'
-        },
-         
-        /**
-         * The row detail generator that is used for generating detail content for rows.
-         *
-         * Example:
-         * ```
-         * grid.rowDetails.detailsGenerator = function(rowIndex) {
-         *  var detail = document.createElement('div');
-         *  detail.textContent = 'Row detail content for row ' + rowIndex;
-         *  return detail;
-         * };
-         *```
-         *
-         * @property {Function} rowDetailsGenerator
-         * @type {Function}
-         */
-        rowDetailsGenerator: {
-          type: Function,
-          observer: '_rowDetailsGeneratorChanged'
-        },
-        
-
-        /**
-         * The number of frozen columns in this grid. Setting it to 0
-         * means that no data columns will be frozen, but the built-in selection
-         * checkbox column will still be frozen if it's in use. Setting the count to
-         * -1 will also disable the selection column.
-         *
-         * Attribute: `frozen-columns`
-         *
-         * @property {number} frozenColumns
-         * @default 0
-         * @type {number}
-         */
-        frozenColumns: {
-          type: Number,
-          value: 0,
-          notify: true,
-          observer: '_frozenColumnsChanged'
-        },
-
-        /**
-         * The style generator that is used for generating styles for rows.
-         *
-         * Example:
-         * ```
-         * grid.rowClassGenerator = function(row) {
-         *  var activity = row.data[2];
-         *  return 'activity-' + activity.toLowerCase();
-         * };
-         *```
-         *
-         * @property {Function} rowClassGenerator
-         * @param {Row} row - Reference to the row being rendered.
-         * @type {Function}
-         */        
-        rowClassGenerator: {
-          type: Function,
-          observer: '_rowClassGeneratorChanged'
-        },
-
-        /**
-         * The style generator that is used for generating styles for cells.
-         *
-         * Example:
-         * ```
-         * grid.cellClassGenerator = function(cell) {
-         *   if (cell.index == 2) {
-         *      var activity = cell.row.data[2];
-         *      return 'activity-' + activity.toLowerCase();
-         *    }
-         *    return '';
-         *  };
-         * ```
-         * @property {Function} cellClassGenerator
-         * @param {Cell} cell - Reference to the cell being rendered.
-         * @type {Function}
-         *
-         */
-        cellClassGenerator: {
-          type: Function,
-          observer: '_rowClassGeneratorChanged'
-        },
-      },
-      
-      _columnsChanged: function(cols) {
-        this._grid.setColumns(cols);
-      },      
-
-      _cellClassGeneratorChanged: function(cell) {
-        this._grid.setCellClassGenerator(cell);
-      },        
-      
-      _rowDetailsGeneratorChanged: function(rowDetailsGenerator) {
-        this._grid.setRowDetailsGenerator(rowDetailsGenerator);
-      },
-
-      _frozenColumnsChanged: function(frozenColumns) {
-        if (frozenColumns <= this.columns.length) {
-            this._grid.setFrozenColumns(frozenColumns);
         }
       },
-
-      _rowClassGeneratorChanged: function(row) {
-        this._grid.setRowClassGenerator(row);
-      },
-      
 
       attributeChanged: function(name, type, value) {
         switch (name) {
@@ -1060,7 +943,6 @@ More examples available at https://cdn.vaadin.com/vaadin-elements/latest/vaadin-
           }
         });
         this._grid.init(this, Polymer.dom(this).querySelector("table"), Polymer.dom(this.root), this.$.measureobject);
-        this.columns = this._grid.getColumns();
       },
 
       _bindResizeListener: function() {
@@ -1163,6 +1045,55 @@ More examples available at https://cdn.vaadin.com/vaadin-elements/latest/vaadin-
         this._grid.removeColumn(id);
       },
 
+      get rowClassGenerator() {
+        return this._grid.getRowClassGenerator();
+      },
+
+      /**
+       * The style generator that is used for generating styles for rows.
+       *
+       * Example:
+       * ```
+       * grid.rowClassGenerator = function(row) {
+       *  var activity = row.data[2];
+       *  return 'activity-' + activity.toLowerCase();
+       * };
+       *```
+       *
+       * @property {function} rowClassGenerator
+       * @param {Row} row - Reference to the row being rendered.
+       * @type {function}
+       */
+      set rowClassGenerator(row) {
+        this._grid.setRowClassGenerator(row);
+      },
+
+      get cellClassGenerator() {
+        return this._grid.getCellClassGenerator();
+      },
+
+      /**
+       * The style generator that is used for generating styles for cells.
+       *
+       * Example:
+       * ```
+       * grid.cellClassGenerator = function(cell) {
+       *   if (cell.index == 2) {
+       *      var activity = cell.row.data[2];
+       *      return 'activity-' + activity.toLowerCase();
+       *    }
+       *    return '';
+       *  };
+       * ```
+       * @property {function} cellClassGenerator
+       * @param {Cell} cell - Reference to the cell being rendered.
+       * @type {function}
+       *
+       */
+      set cellClassGenerator(cell) {
+        this._grid.setCellClassGenerator(cell);
+      },
+
       /**
        * Disables the grid.
        *
@@ -1178,6 +1109,26 @@ More examples available at https://cdn.vaadin.com/vaadin-elements/latest/vaadin-
       set disabled(disabled) {
         this._grid.setDisabled(disabled);
         this.reflectPropertyToAttribute("disabled");
+      },
+
+      /**
+       * The number of frozen columns in this grid. Setting it to 0
+       * means that no data columns will be frozen, but the built-in selection
+       * checkbox column will still be frozen if it's in use. Setting the count to
+       * -1 will also disable the selection column.
+       *
+       * Attribute: `frozen-columns`
+       *
+       * @property {number} frozenColumns
+       * @default 0
+       * @type {number}
+       */
+      get frozenColumns() {
+        return this._grid.getFrozenColumns();
+      },
+      set frozenColumns(frozenColumns) {
+        this._grid.setFrozenColumns(frozenColumns);
+        this.reflectPropertyToAttribute("frozenColumns");
       },
 
       /**
@@ -1200,6 +1151,18 @@ More examples available at https://cdn.vaadin.com/vaadin-elements/latest/vaadin-
         this.reflectPropertyToAttribute("visibleRows");
       },
 
+      /**
+       * The array of Columns attached to the grid.
+       *
+       * @property {Array<Column>} columns
+       * @type {Array<Column>}
+       */
+      get columns() {
+        return this._grid.getColumns();
+      },
+      set columns(cols) {
+        this._grid.setColumns(cols);
+      },
 
       /**
        * Executes a callback when the grid has finished any pending work.
@@ -1210,6 +1173,28 @@ More examples available at https://cdn.vaadin.com/vaadin-elements/latest/vaadin-
        */
       then: function(callback) {
         return this._grid.then(callback);
+      },
+
+      /**
+       * The row detail generator that is used for generating detail content for rows.
+       *
+       * Example:
+       * ```
+       * grid.rowDetails.detailsGenerator = function(rowIndex) {
+       *  var detail = document.createElement('div');
+       *  detail.textContent = 'Row detail content for row ' + rowIndex;
+       *  return detail;
+       * };
+       *```
+       *
+       * @property {function} rowDetailsGenerator
+       * @type {function}
+       */
+      set rowDetailsGenerator(rowDetailsGenerator) {
+        this._grid.setRowDetailsGenerator(rowDetailsGenerator);
+      },
+      get rowDetailsGenerator() {
+        return this._grid.getRowDetailsGenerator();
       },
 
       /**
