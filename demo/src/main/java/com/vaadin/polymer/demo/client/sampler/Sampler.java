@@ -27,6 +27,7 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Widget;
+import com.vaadin.polymer.Polymer;
 import com.vaadin.polymer.demo.client.sampler.gwt.JavaApiElement;
 import com.vaadin.polymer.demo.client.sampler.gwt.JavaApiWidget;
 import com.vaadin.polymer.demo.client.sampler.gwt.UiBinderElement;
@@ -57,7 +58,7 @@ import com.vaadin.polymer.demo.client.sampler.paper.TabsSample;
 import com.vaadin.polymer.demo.client.sampler.paper.ToastSample;
 import com.vaadin.polymer.demo.client.sampler.paper.ToggleButtonSample;
 import com.vaadin.polymer.demo.client.sampler.paper.ToolbarSample;
-import com.vaadin.polymer.Polymer;
+import com.vaadin.polymer.demo.client.sampler.paper.TooltipSample;
 import com.vaadin.polymer.elemental.Function;
 import com.vaadin.polymer.iron.widget.IronCollapse;
 import com.vaadin.polymer.iron.widget.IronSelector;
@@ -103,7 +104,6 @@ public class Sampler extends Composite {
     @UiField HeadingElement sourceTitle;
     @UiField PreElement sourceContent;
 
-
     private Widget createWidget(String name) {
         switch (name) {
         case "JavaApiWidget": return new JavaApiWidget();
@@ -135,6 +135,7 @@ public class Sampler extends Composite {
         case "IronImageSample": return new IronImageSample();
         case "IronListSample": return new IronListSample();
         case "IronSelectorSample": return new IronSelectorSample();
+        case "TooltipSample": return new TooltipSample();
         }
         return null;
     }
@@ -157,6 +158,7 @@ public class Sampler extends Composite {
         addSample("DropdownMenu", "paper", "DropdownMenuSample");
         // not suitable for current showcase. In original showcase it works inside iframe
         // addSample("DrawerPanel", "paper", "DrawerPanelSample");
+        addSample("Tooltip", "paper", "TooltipSample");
         addSample("Floating Button", "paper", "FabSample");
         addSample("Header Panel", "paper", "HeaderPanelSample");
         addSample("Icon Button", "paper", "IconButtonSample");
@@ -174,7 +176,6 @@ public class Sampler extends Composite {
         addSample("Toast", "paper", "ToastSample");
         addSample("Toggle Button", "paper", "ToggleButtonSample");
         addSample("Toolbar", "paper", "ToolbarSample");
-
         addCategory("iron", "Iron Elements");
         addSample("Collapse", "iron", "IronCollapseSample");
         addSample("Image", "iron", "IronImageSample");
