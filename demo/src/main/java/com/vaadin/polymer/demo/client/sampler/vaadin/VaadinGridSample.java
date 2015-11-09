@@ -17,6 +17,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.vaadin.polymer.Polymer;
+import com.vaadin.polymer.demo.client.sampler.Sampler;
 import com.vaadin.polymer.iron.widget.IronAjax;
 import com.vaadin.polymer.paper.widget.PaperInput;
 import com.vaadin.polymer.paper.widget.PaperMaterial;
@@ -32,7 +33,6 @@ public class VaadinGridSample extends Composite {
 
     private static MyUiBinder myUiBinder = GWT.create(MyUiBinder.class);
 
-    @UiField IronAjax ajax;
     @UiField VaadinGrid grid;
     @UiField PaperMaterial info;
     @UiField ImageElement img;
@@ -49,14 +49,12 @@ public class VaadinGridSample extends Composite {
 
         info.removeFromParent();
 
-        ajax.addResponseHandler(event -> {
-            items = ajax.getLastResponse().cast();
-            list = Polymer.asList(items);
-            grid.setItems(items);
-
-            // Save a copy to use in filters.
-            original = new ArrayList<Properties>(list);
-        });
+        // We have a global list of contacts
+        items = Sampler.contacts;
+        list = Polymer.asList(items);
+        grid.setItems(items);
+        // Save a copy to use in filters.
+        original = new ArrayList<Properties>(list);
 
         Polymer.ready(grid.getElement(), arg -> {
 
