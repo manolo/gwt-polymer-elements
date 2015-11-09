@@ -107,8 +107,6 @@
           overflow: auto;
         }
 
-
-
     </ui:style>
 
     <g:HTMLPanel>
@@ -128,6 +126,8 @@
             pointer-events: none;
         }
        </style>
+
+        <i:IronAjax ui:field="ironAjax" url="gwtPolymerDemo/contacts.json" auto="true"/>
 
         <p:PaperDrawerPanel ui:field="drawerPanel">
             <div drawer="">

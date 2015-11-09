@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import com.google.gwt.core.client.JsArray;
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.dom.client.HeadingElement;
 import com.google.gwt.dom.client.PreElement;
@@ -19,6 +20,7 @@ import com.google.gwt.query.client.Properties;
 import com.google.gwt.query.client.plugins.ajax.Ajax;
 import com.google.gwt.resources.client.CssResource;
 import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.uibinder.client.UiFactory;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.History;
@@ -60,6 +62,7 @@ import com.vaadin.polymer.demo.client.sampler.paper.ToggleButtonSample;
 import com.vaadin.polymer.demo.client.sampler.paper.ToolbarSample;
 import com.vaadin.polymer.demo.client.sampler.vaadin.VaadinGridSample;
 import com.vaadin.polymer.elemental.Function;
+import com.vaadin.polymer.iron.widget.IronAjax;
 import com.vaadin.polymer.iron.widget.IronCollapse;
 import com.vaadin.polymer.iron.widget.IronSelector;
 import com.vaadin.polymer.paper.widget.PaperButton;
@@ -102,7 +105,9 @@ public class Sampler extends Composite {
     @UiField PaperDialog source;
     @UiField HeadingElement sourceTitle;
     @UiField PreElement sourceContent;
+    @UiField IronAjax ironAjax;
 
+    public static JsArray<Properties> contacts;
 
     private Widget createWidget(String name) {
         switch (name) {
@@ -185,21 +190,21 @@ public class Sampler extends Composite {
         addSample("UiBinder Widgets", "gwt", "UiBinderWidget");
         addSample("UiBinder Elements", "gwt", "UiBinderElement");
 
-
-
         History.addValueChangeHandler(new ValueChangeHandler<String>() {
             public void onValueChange(ValueChangeEvent<String> event) {
                 selectItem(event.getValue());
             }
         });
 
-        Polymer.endLoading(this.getElement(),
-                collapseMap.lastEntry().getValue().getElement(), new Function() {
-            public Object call(Object arg) {
+        ironAjax.addResponseHandler(event -> {
+            contacts = ironAjax.getLastResponse().cast();
+            Polymer.endLoading(this.getElement(), collapseMap.lastEntry()
+                    .getValue().getElement(), o -> {
                 selectItem(Window.Location.getHash().replace("#", ""));
                 return null;
-            }
+            });
         });
+
     }
 
     private void showSource(String category, String file) {
