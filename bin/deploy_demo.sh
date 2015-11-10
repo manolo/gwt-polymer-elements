@@ -43,17 +43,17 @@ git checkout gh-pages
   tar xf /tmp/demo.tar )
 
 ( cd api && \
-  rm * && \
+  rm -rf -rf ./* && \
   tar xf /tmp/api.tar )
 
 # Create an index
 cp demo/demo.html demo/index.html
 
 # Commit changes to gh-pages
-git add demo/gwt* 
-git add api/* 
-#git commit -m 'Update demo' demo
-#git push origin gh-pages
+git add demo/gwt*
+git add api
+git commit -m 'Update demo' demo api
+git push origin gh-pages
 
 # Return to master branch
 git checkout master
