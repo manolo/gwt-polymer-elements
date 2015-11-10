@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import com.google.gwt.core.client.JsArray;
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.dom.client.HeadingElement;
 import com.google.gwt.dom.client.PreElement;
@@ -19,6 +20,7 @@ import com.google.gwt.query.client.Properties;
 import com.google.gwt.query.client.plugins.ajax.Ajax;
 import com.google.gwt.resources.client.CssResource;
 import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.uibinder.client.UiFactory;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.History;
@@ -27,6 +29,7 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Widget;
+import com.vaadin.polymer.Polymer;
 import com.vaadin.polymer.demo.client.sampler.gwt.JavaApiElement;
 import com.vaadin.polymer.demo.client.sampler.gwt.JavaApiWidget;
 import com.vaadin.polymer.demo.client.sampler.gwt.UiBinderElement;
@@ -57,8 +60,9 @@ import com.vaadin.polymer.demo.client.sampler.paper.TabsSample;
 import com.vaadin.polymer.demo.client.sampler.paper.ToastSample;
 import com.vaadin.polymer.demo.client.sampler.paper.ToggleButtonSample;
 import com.vaadin.polymer.demo.client.sampler.paper.ToolbarSample;
-import com.vaadin.polymer.Polymer;
+import com.vaadin.polymer.demo.client.sampler.vaadin.VaadinGridSample;
 import com.vaadin.polymer.elemental.Function;
+import com.vaadin.polymer.iron.widget.IronAjax;
 import com.vaadin.polymer.iron.widget.IronCollapse;
 import com.vaadin.polymer.iron.widget.IronSelector;
 import com.vaadin.polymer.paper.widget.PaperButton;
@@ -68,7 +72,6 @@ import com.vaadin.polymer.paper.widget.PaperItem;
 
 public class Sampler extends Composite {
 
-    public static final String REPO_PATH = "https://github.com/vaadin/gwt-polymer-elements/blob/master/demo/src/main/java/com/vaadin/polymer/demo/client/sampler/";
     public static final String API_PATH = "https://api.github.com/repos/vaadin/gwt-polymer-elements/contents/demo/src/main/java/com/vaadin/polymer/demo/client/sampler/";
 
     interface SamplerUiBinder extends UiBinder<HTMLPanel, Sampler> {
@@ -102,7 +105,9 @@ public class Sampler extends Composite {
     @UiField PaperDialog source;
     @UiField HeadingElement sourceTitle;
     @UiField PreElement sourceContent;
+    @UiField IronAjax ironAjax;
 
+    public static JsArray<Properties> contacts;
 
     private Widget createWidget(String name) {
         switch (name) {
@@ -135,6 +140,7 @@ public class Sampler extends Composite {
         case "IronImageSample": return new IronImageSample();
         case "IronListSample": return new IronListSample();
         case "IronSelectorSample": return new IronSelectorSample();
+        case "VaadinGridSample": return new VaadinGridSample();
         }
         return null;
     }
@@ -143,12 +149,6 @@ public class Sampler extends Composite {
         initWidget(ourUiBinder.createAndBindUi(this));
 
         JsHighlight.INSTANCE.initialize();
-
-        addCategory("gwt", "GWT Integration");
-        addSample("Widget Java API", "gwt", "JavaApiWidget", false);
-        addSample("Element Java API", "gwt", "JavaApiElement", false);
-        addSample("UiBinder Widgets", "gwt", "UiBinderWidget");
-        addSample("UiBinder Elements", "gwt", "UiBinderElement");
 
         addCategory("paper", "Paper Elements");
         addSample("Button", "paper", "ButtonSample");
@@ -181,19 +181,30 @@ public class Sampler extends Composite {
         addSample("List", "iron", "IronListSample");
         addSample("Selector", "iron", "IronSelectorSample");
 
+        addCategory("vaadin", "Vaadin Elements");
+        addSample("Grid", "vaadin", "VaadinGridSample");
+
+        addCategory("gwt", "GWT Integration");
+        addSample("Widget Java API", "gwt", "JavaApiWidget", false);
+        addSample("Element Java API", "gwt", "JavaApiElement", false);
+        addSample("UiBinder Widgets", "gwt", "UiBinderWidget");
+        addSample("UiBinder Elements", "gwt", "UiBinderElement");
+
         History.addValueChangeHandler(new ValueChangeHandler<String>() {
             public void onValueChange(ValueChangeEvent<String> event) {
                 selectItem(event.getValue());
             }
         });
 
-        Polymer.endLoading(this.getElement(),
-                collapseMap.lastEntry().getValue().getElement(), new Function() {
-            public Object call(Object arg) {
+        ironAjax.addResponseHandler(event -> {
+            contacts = ironAjax.getLastResponse().cast();
+            Polymer.endLoading(this.getElement(), collapseMap.lastEntry()
+                    .getValue().getElement(), o -> {
                 selectItem(Window.Location.getHash().replace("#", ""));
                 return null;
-            }
+            });
         });
+
     }
 
     private void showSource(String category, String file) {
@@ -348,4 +359,8 @@ public class Sampler extends Composite {
             drawerPanel.closeDrawer();
         }
     }
+
+    public static native void async(Function f, int timeout) /*-{
+       $wnd.Polymer.Base.async(f, timeout);
+    }-*/;
 }

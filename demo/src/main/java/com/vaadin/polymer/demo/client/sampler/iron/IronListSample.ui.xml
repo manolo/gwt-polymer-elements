@@ -45,12 +45,7 @@
             .iron-list-sample .dim {
                 color: gray;
             }
-            iron-list {
-               top: 50px !important;
-            }
         </style>
-
-        <i:IronAjax ui:field="ajax" url="gwtPolymerDemo/contacts.json" auto="true"/>
 
         <i:IronList ui:field="list" as="item" addStyleNames="fit">
             <template>

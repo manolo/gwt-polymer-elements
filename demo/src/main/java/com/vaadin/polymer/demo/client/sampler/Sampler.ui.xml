@@ -13,6 +13,11 @@
         .toolbar > div {
            justify-content: center;
         }
+        .toolbar > div {
+           padding: 0px !important;
+           bottom: -4px !important;
+        }
+
         .toolbar paper-fab {
            margin: 5px;
         }
@@ -74,6 +79,14 @@
            text-align: center;
            padding: 5px;
         }
+        @external .tall;
+        .toolbar.tall {
+           height: 108px !important;
+           padding: 0 !important;
+        }
+        .toolbar.tall #bottomBar {
+           height: 50px !important;
+        }
         .source pre {
            font-size: 12px;
            line-height: 13px;
@@ -82,13 +95,16 @@
         }
         .source-buttons {
            background-color: #CDE5E3;
-           height: 35px;
-           padding: 7px 0px 7px 30px;
+           height: 45px;
+           padding: 0px 0px 0px 30px;
            color: #009688;
         }
         .source-buttons iron-icon {
            margin: 0px 0px 4px 4px;
            width: 14px;
+        }
+        paper-header-panel[mode="waterfall-tall"]  #mainContainer {
+          overflow: auto;
         }
 
     </ui:style>
@@ -111,6 +127,8 @@
         }
        </style>
 
+        <i:IronAjax ui:field="ironAjax" url="gwtPolymerDemo/contacts.json" auto="true"/>
+
         <p:PaperDrawerPanel ui:field="drawerPanel">
             <div drawer="">
                 <p:PaperHeaderPanel mode="seamed">
@@ -123,24 +141,25 @@
                 </p:PaperHeaderPanel>
             </div>
             <div main="">
-                <p:PaperHeaderPanel mode="seamed">
-                    <p:PaperToolbar addStyleNames="{style.toolbar}">
+                <p:PaperHeaderPanel mode="waterfall-tall">
+                    <p:PaperToolbar addStyleNames="{style.toolbar}" >
                         <p:PaperIconButton icon="menu" attributes="paper-drawer-toggle" />
                         <span ui:field="currentLabel" class="{style.current}"></span>
                         <span class="flex"></span>
                         <p:PaperButton ui:field="help" addStyleNames="{style.buttons}"><i:IronIcon icon="help"/>About</p:PaperButton>
+                        <div class="{style.source-buttons} bottom flex">
+                            <spam>VIEW SOURCE: </spam>
+                            <p:PaperButton ui:field="javaButton" addStyleNames="{style.buttons}">.java<i:IronIcon icon="launch"/></p:PaperButton>
+                            <p:PaperButton ui:field="xmlButton" addStyleNames="{style.buttons}">.ui.xml<i:IronIcon icon="launch"/></p:PaperButton>
+                        </div>
                     </p:PaperToolbar>
-                    <div class="{style.source-buttons}">
-                        <spam>VIEW SOURCE: </spam>
-                        <p:PaperButton ui:field="javaButton" addStyleNames="{style.buttons}">.java<i:IronIcon icon="launch"/></p:PaperButton>
-                        <p:PaperButton ui:field="xmlButton" addStyleNames="{style.buttons}">.ui.xml<i:IronIcon icon="launch"/></p:PaperButton>
-                    </div>
-                    <g:HTMLPanel ui:field="content" addStyleNames="{style.panel}"/>
+                    <g:HTMLPanel ui:field="content" addStyleNames="{style.panel} fit"/>
                 </p:PaperHeaderPanel>
             </div>
         </p:PaperDrawerPanel>
 
         <p:PaperDialog ui:field="about" modal="true" >
+          <p:PaperDialogScrollable>
             <h2>About GWT-Polymer-Elements</h2>
              <p>
                GWT-Polymer-Elements is a library developed in Vaadin Labs. It allows to use Polymer Elements in GWT projects.
@@ -167,6 +186,7 @@
             <div class="buttons">
                 <p:PaperButton attributes="dialog-dismiss"  raised="true">OK</p:PaperButton>
             </div>
+          </p:PaperDialogScrollable>
         </p:PaperDialog>
 
         <p:PaperDialog ui:field="source" modal="true" addStyleNames="{style.source}">
