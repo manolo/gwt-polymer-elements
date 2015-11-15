@@ -7,7 +7,7 @@
     <groupId>com.vaadin.polymer</groupId>
     <artifactId>gwt-polymer-elements-demo</artifactId>
     <packaging>war</packaging>
-    <version>1.2.1.0-alpha1-SNAPSHOT</version>
+    <version>1.2.1.1-SNAPSHOT</version>
     <properties>
       <gwtVersion>2.8.0-SNAPSHOT</gwtVersion>
       <gwtPolymerVersion>${project.version}</gwtPolymerVersion>
@@ -83,7 +83,6 @@
                     <runTarget>demo.html</runTarget>
                     <draftCompile>false</draftCompile>
                     <optimizationLevel>9</optimizationLevel>
-                    <jsInteropMode>JS</jsInteropMode>
                     <disableCastChecking>true</disableCastChecking>
                     <disableClassMetadata>true</disableClassMetadata>
                     <enableAssertions>false</enableAssertions>

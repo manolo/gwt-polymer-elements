@@ -8,6 +8,7 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Widget;
 import com.vaadin.polymer.Polymer;
+import com.vaadin.polymer.elemental.EventListener;
 import com.vaadin.polymer.iron.event.IronSelectEvent;
 import com.vaadin.polymer.paper.PaperTabElement;
 import com.vaadin.polymer.paper.PaperTabsElement;
@@ -28,9 +29,9 @@ public class UiBinderElement extends Widget {
         // import web components hrefs by hand, and continue the flow
         // asynchronously
         Polymer.importHref(Arrays.asList(PaperTabsElement.SRC, PaperTabElement.SRC), o -> {
-            paperTabs.addEventListener(IronSelectEvent.NAME, new IronSelectEvent.Listener() {
+            paperTabs.addEventListener(IronSelectEvent.NAME, new EventListener<IronSelectEvent>() {
                 public void handleEvent(IronSelectEvent event) {
-                    PaperTabElement tab = (PaperTabElement) event.getDetail().getItem();
+                    PaperTabElement tab = (PaperTabElement)event.getDetail().getItem();
                     toast.setText("Tab \"" + tab.getTextContent() + "\" has been selected");
                     toast.show();
                 }

@@ -5,12 +5,12 @@
 ## Introduction
 
 - **Polymer**: is a JavaScript library for building web applications with Web Components.
-- **Polymer-Elements**: is a collection of widgets built in Polymer. The collection is divided in sections: _Iron, Paper, Gold, Neon, Platinum,_ etc.
--  **GWT-Polymer-Elements**: is a Java wrapper enabling Polymer Elements to be used in GWT projects. Right now it includes wrappers for [Paper](https://elements.polymer-project.org/browse?package=paper-elements) and [Iron](https://elements.polymer-project.org/browse?package=iron-elements) collections, but more might be added in the future.
+- **Polymer-Elements**: is a collection of widgets built in Polymer. The collection is divided in sections: _Iron, Paper, Gold, Neon, Platinum, Vaadin,_ etc.
+-  **GWT-Polymer-Elements**: is a Java wrapper enabling Polymer Elements to be used in GWT projects. Right now it includes wrappers for [Paper](https://elements.polymer-project.org/browse?package=paper-elements), [Iron](https://elements.polymer-project.org/browse?package=iron-elements) and [Vaadin](https://vaadin.com/elements) collections, but more might be added in the future.
 
  The library has been generated using the Vaadin [gwt-api-generator](https://github.com/vaadin/gwt-api-generator), an utility able to inspect polymer webcomponents and emit GWT Java code.
 
- Because Polymer differentiates between collections, gwt-polymer-elements classes are prefixed with the same prefixes (_Iron, Paper_), in order to easily refer to the original web component, and to easily find the documentation related with it.
+ Because Polymer differentiates between collections, gwt-polymer-elements classes are prefixed with the same prefixes (_Iron, Paper, Vaadin_), in order to easily refer to the original web component, and to easily find the documentation related with it.
 
 ## Demo
  Visit our [show case](http://vaadin.github.io/gwt-polymer-elements/demo/) to see how components look like, and to take a look to the example code using each component.
@@ -19,9 +19,9 @@
  When we parse the original components code to generate the Java API, we copy all the existing JS documentation so as it's available in the [javadoc](http://vaadin.github.io/gwt-polymer-elements/api/). Note that sometimes descriptions would refer to JS, but we consider that it's better to maintain the info.
 
 
-## Using the GWT Polymer/Paper library
+## Using the GWT library
 
-_**NOTICE** : We make extensive use of `JsInterop` a new feature in `GWT` for easily interacting with JavaScript. It is experimental in `GWT-2.7` and `GWT-2.8-SNAPSHOT`. Thus, double check that you are using latest GWT, and you enable it via the **`-XjsInteropMode JS`** flag, otherwise you will get **`Uncaught java.lang.ClassCastException`** errors in the JavaScript console._
+_**NOTICE** : We make extensive use of `JsInterop` a new feature in `GWT` for easily interacting with JavaScript. It is experimental in `GWT-2.7` and stable in `GWT-2.8-SNAPSHOT`, but starting from gwt-polymer-elements-1.2.1.0.beta1, we don't support 2.7.0 anymore. Thus, double check that you are using latest GWT, and you enable it via the **`-XjsInteropMode JS_RC`** flag, otherwise you will get **`Uncaught java.lang.ClassCastException`** errors in the JavaScript console._
 
 ### Add vaadin-gwt-polymer-elements to your CLASSPATH
 The `.jar` file includes all the java code and web components of
@@ -36,7 +36,7 @@ Polymer Iron and Paper collections, so as you don't have to deal with the proces
      <dependency>
        <groupId>com.vaadin.polymer</groupId>
        <artifactId>vaadin-gwt-polymer-elements</artifactId>
-       <version>1.2.1.0</version>
+       <version>1.2.1.1</version>
        <scope>provided</scope>
      </dependency>
    </dependencies>
@@ -57,7 +57,7 @@ Polymer Iron and Paper collections, so as you don't have to deal with the proces
 
 ### Enable `JsInterop` mode
 
-- Finally you must add the experimental JsInterop flag to the GWT compiler either modifying the `pom.xml` file if you use maven, or adding the option `-XjsInteropMode JS` to your IDE GWT SuperDevMode launcher.
+- Finally you must add the experimental JsInterop flag to the GWT compiler either modifying the `pom.xml` file if you use maven, or adding the option `-XjsInteropMode JS_RC` to your IDE GWT SuperDevMode launcher.
 
    ```xml
    <plugin>
@@ -65,7 +65,7 @@ Polymer Iron and Paper collections, so as you don't have to deal with the proces
       <artifactId>gwt-maven-plugin</artifactId>
       <configuration>
          ...
-         <jsInteropMode>JS</jsInteropMode>
+         <jsInteropMode>JS_RC</jsInteropMode>
       </configuration>
       ...
    </plugin>
