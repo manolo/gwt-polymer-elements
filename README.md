@@ -55,22 +55,6 @@ Polymer Iron and Paper collections, so as you don't have to deal with the proces
 
  ```
 
-### Enable `JsInterop` mode
-
-- Finally you must add the experimental JsInterop flag to the GWT compiler either modifying the `pom.xml` file if you use maven, or adding the option `-XjsInteropMode JS_RC` to your IDE GWT SuperDevMode launcher.
-
-   ```xml
-   <plugin>
-      <groupId>org.codehaus.mojo</groupId>
-      <artifactId>gwt-maven-plugin</artifactId>
-      <configuration>
-         ...
-         <jsInteropMode>JS_RC</jsInteropMode>
-      </configuration>
-      ...
-   </plugin>
-   ```
-
 ### Add the Web Components Polyfill
 
 - Nowadays, only Chrome has full native support for Web Components, therefore, to make your project work in all browsers, you have to include Polymer Polyfill, very early in your `.html` host page. Since `vaadin-gwt-polymer-elements` already is bundled with the polyfill, so you only have to replace `myapp` fragments with your actual application name.
