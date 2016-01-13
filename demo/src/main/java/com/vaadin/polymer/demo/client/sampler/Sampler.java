@@ -20,7 +20,6 @@ import com.google.gwt.query.client.Properties;
 import com.google.gwt.query.client.plugins.ajax.Ajax;
 import com.google.gwt.resources.client.CssResource;
 import com.google.gwt.uibinder.client.UiBinder;
-import com.google.gwt.uibinder.client.UiFactory;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.History;
@@ -60,6 +59,7 @@ import com.vaadin.polymer.demo.client.sampler.paper.TabsSample;
 import com.vaadin.polymer.demo.client.sampler.paper.ToastSample;
 import com.vaadin.polymer.demo.client.sampler.paper.ToggleButtonSample;
 import com.vaadin.polymer.demo.client.sampler.paper.ToolbarSample;
+import com.vaadin.polymer.demo.client.sampler.vaadin.VaadinComboBoxSample;
 import com.vaadin.polymer.demo.client.sampler.vaadin.VaadinGridSample;
 import com.vaadin.polymer.elemental.Function;
 import com.vaadin.polymer.iron.widget.IronAjax;
@@ -141,6 +141,7 @@ public class Sampler extends Composite {
         case "IronListSample": return new IronListSample();
         case "IronSelectorSample": return new IronSelectorSample();
         case "VaadinGridSample": return new VaadinGridSample();
+        case "VaadinComboBoxSample": return new VaadinComboBoxSample();
         }
         return null;
     }
@@ -183,6 +184,7 @@ public class Sampler extends Composite {
 
         addCategory("vaadin", "Vaadin Elements");
         addSample("Grid", "vaadin", "VaadinGridSample");
+        addSample("Combo box", "vaadin", "VaadinComboBoxSample");
 
         addCategory("gwt", "GWT Integration");
         addSample("Widget Java API", "gwt", "JavaApiWidget", false);
@@ -349,7 +351,10 @@ public class Sampler extends Composite {
             History.newItem(category + "/" + path, false);
             currentLabel.setInnerText(name);
             xmlButton.setVisible(uixml);
-            setOpened(collapse, true);
+            collapse.ready(o -> {
+                setOpened(collapse, true);
+                return null;
+            });
             closeMenu();
         }
     }

@@ -135,7 +135,7 @@
                     <p:PaperToolbar addStyleNames="{style.toolbar} ">
                     <p:PaperFab ui:field="logo3" icon="polymer" attributes="mini url:http://polymer-project.org" addStyleNames="iconpolymer"></p:PaperFab>
                     <p:PaperFab ui:field="logo2" src="img/gwt.png" attributes="mini url:http://gwtproject.org" addStyleNames="icongwt"></p:PaperFab>
-                    <p:PaperFab ui:field="logo1" src="img/vaadin.png" attributes="mini url:http://vaadin.com" addStyleNames="iconvaadin"></p:PaperFab>
+                    <p:PaperFab ui:field="logo1" src="img/vaadin.png" attributes="mini url:http://vaadin.com/gwt" addStyleNames="iconvaadin"></p:PaperFab>
                     </p:PaperToolbar>
                     <g:FlowPanel ui:field="listPanel" addStyleNames="{style.list}"/>
                 </p:PaperHeaderPanel>

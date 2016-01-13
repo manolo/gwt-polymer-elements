@@ -48,7 +48,9 @@ public class VaadinGridSample extends Composite {
     public VaadinGridSample() {
         initWidget(myUiBinder.createAndBindUi(this));
 
+        // info and filter will be used later.
         info.removeFromParent();
+        filter.removeFromParent();
 
         // We have a global list of contacts
         items = Sampler.contacts;
