@@ -51,15 +51,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         });
       });
 
-      test('iron-resize', function(done) {
+      test('resize', function(done) {
         list.items = buildDataSet(100);
-        list.fire('iron-resize');
+        list.fire('resize');
        
         assert.notEqual(getFirstItemFromList(list).textContent, '0');
         Polymer.RenderStatus.whenReady(function() {
           container.removeAttribute('hidden');
           assert.notEqual(getFirstItemFromList(list).textContent, '0');
-          list.fire('iron-resize');
+          list.fire('resize');
           flush(function() {
             assert.isTrue(list.isAttached);
             assert.equal(getFirstItemFromList(list).textContent, '0');

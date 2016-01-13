@@ -39,7 +39,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <iron-list style$="[[_computedListHeight(listHeight)]]" items="[[data]]" as="item" id="list">
       <template>
         <div class="item">
-          <div style$="[[_computedItemHeight(item)]]">[[item.index]]</div>
+          <div style$="[[_computedItemHeight()]]">[[item.index]]</div>
         </div>
       </template>
     </iron-list>
@@ -64,10 +64,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       listHeight: {
         type: Number,
         value: 300
-      },
-
-      pre: {
-        type: Boolean
       }
     },
 
@@ -75,18 +71,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       return this.$.list;
     },
 
-    _computedItemHeight: function(item) {
-      var css = this.pre ? 'white-space:pre;' : '';
-      if (item.height) {
-        css += this.itemHeight === 0 ? '' : 'height: ' + (item.height) + 'px;';
-      } else if (this.itemHeight) {
-        css += 'height: ' + (this.itemHeight) + 'px;';
-      }
-      return css;
+    _computedItemHeight: function() {
+      return 'height: ' + (this.itemHeight) + 'px';
     },
 
     _computedListHeight: function(listHeight) {
       return 'height: ' + (listHeight) + 'px';
-    }
+    },
   });
 </script>

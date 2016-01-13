@@ -291,9 +291,6 @@ element.
        * many backends will mitigate this by prefixing all JSON response bodies
        * with a string that would be nonsensical to a JavaScript parser.
        *
-       * In the case where the server returns a prefix via the `X-JSON-Prefix`
-       * header, this attribute can be omitted as the value of the header will
-       * supercede the value passed here.
        */
       jsonPrefix: {
         type: String,

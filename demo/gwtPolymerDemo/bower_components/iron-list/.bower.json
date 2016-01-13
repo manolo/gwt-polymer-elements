@@ -1,26 +1,18 @@
 {
   "name": "iron-list",
-  "description": "Displays a virtual, 'infinite' scrolling list of items",
-  "keywords": [
-    "web-components",
-    "polymer",
-    "list",
-    "virtual-list"
-  ],
-  "version": "1.1.5",
+  "version": "1.0.3",
   "homepage": "https://github.com/PolymerElements/iron-list",
   "authors": [
     "The Polymer Authors"
   ],
   "main": "iron-list.html",
   "license": "http://polymer.github.io/LICENSE.txt",
-  "ignore": [],
   "dependencies": {
-    "polymer": "Polymer/polymer#^1.1.0",
+    "polymer": "Polymer/polymer#^1.0.0",
     "iron-resizable-behavior": "polymerelements/iron-resizable-behavior#^1.0.0"
   },
   "devDependencies": {
-    "iron-flex-layout": "polymerelements/iron-flex-layout#^1.0.0",
+    "iron-flex-layout": "polymerelements/iron-flex-layout#^1.0.1",
     "iron-component-page": "polymerelements/iron-component-page#^1.0.0",
     "paper-scroll-header-panel": "polymerelements/paper-scroll-header-panel#^1.0.0",
     "paper-menu": "polymerelements/paper-menu#^1.0.0",
@@ -37,13 +29,13 @@
     "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.2",
     "web-component-tester": "*"
   },
-  "_release": "1.1.5",
+  "_release": "1.0.3",
   "_resolution": {
     "type": "version",
-    "tag": "v1.1.5",
-    "commit": "c6bf7caf1745cc3bed0769d41ac405476ef981b8"
+    "tag": "v1.0.3",
+    "commit": "af27dab4e6bd7879a4ba2849a8ee4cc4ec58cc9c"
   },
-  "_source": "git://github.com/PolymerElements/iron-list.git",
-  "_target": "^1.0.0",
-  "_originalSource": "PolymerElements/iron-list"
+  "_source": "git://github.com/polymerelements/iron-list.git",
+  "_target": "~1.0.3",
+  "_originalSource": "polymerelements/iron-list"
 }

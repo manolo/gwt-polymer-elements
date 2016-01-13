@@ -7,7 +7,7 @@
  * Code distributed by Google as part of the polymer project is also
  * subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
  */
-// @version 0.7.16
+// @version 0.7.20
 if (typeof WeakMap === "undefined") {
   (function() {
     var defineProperty = Object.defineProperty;
@@ -394,7 +394,8 @@ if (typeof WeakMap === "undefined") {
       Object.defineProperty(this, "defaultPrevented", {
         get: function() {
           return true;
-        }
+        },
+        configurable: true
       });
     };
   }
@@ -690,6 +691,11 @@ window.CustomElements.addModule(function(scope) {
 window.CustomElements.addModule(function(scope) {
   var flags = scope.flags;
   function upgrade(node, isAttached) {
+    if (node.localName === "template") {
+      if (window.HTMLTemplateElement && HTMLTemplateElement.decorate) {
+        HTMLTemplateElement.decorate(node);
+      }
+    }
     if (!node.__upgraded__ && node.nodeType === Node.ELEMENT_NODE) {
       var is = node.getAttribute("is");
       var definition = scope.getRegisteredDefinition(node.localName) || scope.getRegisteredDefinition(is);

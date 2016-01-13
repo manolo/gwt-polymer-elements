@@ -3,7 +3,7 @@
   "authors": [
     "Vaadin Ltd"
   ],
-  "license": "Apache License 2.0",
+  "license": "Apache-2.0",
   "keywords": [
     "web-components",
     "vaadin",
@@ -23,21 +23,24 @@
     "wct.conf.js"
   ],
   "dependencies": {
-    "polymer": "Polymer/polymer#^1.1.1",
-    "elements-demo-resources": "vaadin/elements-demo-resources#master"
+    "polymer": "Polymer/polymer#^1.1.1"
   },
   "devDependencies": {
-    "web-component-tester": "~3.3.21"
+    "web-component-tester": "4.0.3",
+    "iron-test-helpers": "polymerelements/iron-test-helpers#~1.0.6",
+    "test-fixture": "polymerelements/test-fixture#~1.0.1",
+    "iron-component-page": "polymerelements/iron-component-page#~1.1.0",
+    "elements-demo-resources": "vaadin/elements-demo-resources#master"
   },
   "homepage": "https://github.com/vaadin/vaadin-grid",
-  "_release": "d263fdf6af",
+  "_release": "33b3ed5edb",
   "_resolution": {
     "type": "branch",
-    "branch": "behaviors",
-    "commit": "d263fdf6afd29560679efd74016bbd58fa25eb9d"
+    "branch": "master",
+    "commit": "33b3ed5edbea4965e2900c2babc4d48ac5bf70a3"
   },
   "_source": "git://github.com/vaadin/vaadin-grid.git",
-  "_target": "behaviors",
+  "_target": "master",
   "_originalSource": "vaadin/vaadin-grid",
   "_direct": true
 }

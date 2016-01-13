@@ -65,7 +65,7 @@ bound from the model object provided to the template scope):
 
 ### Resizing
 
-`iron-list` lays out the items when it recives a notification via the `iron-resize` event.
+`iron-list` lays out the items when it recives a notification via the `resize` event.
 This event is fired by any element that implements `IronResizableBehavior`.
 
 By default, elements such as `iron-pages`, `paper-tabs` or `paper-dialog` will trigger
@@ -74,23 +74,5 @@ you might want to implement `IronResizableBehavior` or fire this event manually 
 after the list became visible again. e.g.
 
 ```js
-document.querySelector('iron-list').fire('iron-resize');
+document.querySelector('iron-list').fire('resize');
 ```
-
-### Styling
-
-Use the `--iron-list-items-container` mixin to style the container of items, e.g.
-
-```css
-iron-list {
- --iron-list-items-container: {
-    margin: auto;
-  };
-}
-```
-
-### When should `<iron-list>` be used?
-
-`iron-list` should be used when a page has significantly more DOM nodes than the ones visible on the screen. e.g. the page has 500 nodes, but only 20 are visible at the time. This is why we refer to it as a `virtual` list. In this case, a `dom-repeat` will still create 500 nodes which could slow down the web app, but `iron-list` will only create 20.
-
-However, having an `iron-list` does not mean that you can load all the data at once. Say, you have a million records in the database, you want to split the data into pages so you can bring a page at the time. The page could contain 500 items, and iron-list will only render 20.

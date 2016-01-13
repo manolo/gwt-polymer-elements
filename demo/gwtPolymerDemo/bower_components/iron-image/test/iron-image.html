@@ -98,12 +98,81 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 loadCount++;
 
                 if (loadCount === 2) {
+                  image.removeEventListener('loaded-changed', onLoadedChanged);
                   done();
                 } else {
                   image.src = randomImageUrl();
-                  image.removeEventListener('loaded-changed', onLoadedChanged);
                 }
               }
+            });
+
+            image.src = randomImageUrl();
+          });
+
+          test('error property is set when the image fails to load', function(done) {
+            image.addEventListener('error-changed', function onErrorChanged() {
+              assert(image.error, 'image has error property set');
+              image.removeEventListener('error-changed', onErrorChanged);
+              done();
+            });
+
+            image.src = '/this_image_should_not_exist.jpg';
+          });
+
+          // Test for PolymerElements/iron-image#16.
+          test('placeholder is hidden after loading when src is changed from invalid to valid', function(done) {
+            image.preload = true;
+
+            image.addEventListener('error-changed', function onErrorChanged() {
+              image.removeEventListener('error-changed', onErrorChanged);
+
+              assert.equal(image.loading, false, 'errored image loading = false');
+              assert.equal(image.loaded, false, 'errored image loaded = false');
+              assert.equal(image.error, true, 'errored image error = true');
+
+              image.addEventListener('loaded-changed', function onLoadedChanged() {
+                if (!image.loaded) return;
+
+                image.removeEventListener('loaded-changed', onLoadedChanged);
+
+                assert.equal(image.loading, false, 'ok image loading = false');
+                assert.equal(image.loaded, true, 'ok image loaded = true');
+                assert.equal(image.error, false, 'ok image error = false');
+                assert.equal(getComputedStyle(image.$.placeholder).display, 'none', 'placeholder has style.display = none');
+
+                done();
+              });
+
+              image.src = randomImageUrl();
+            });
+
+            image.src = '/this_image_should_not_exist.jpg';
+          });
+
+          // Test for PolymerElements/iron-image#23.
+          test('image is not shown below placeholder if previous image was loaded with' +
+               ' sizing on and current image fails to load', function(done) {
+            image.preload = true;
+            image.sizing = 'cover';
+
+            image.addEventListener('loaded-changed', function onLoadedChanged() {
+              if (!image.loaded) return;
+              image.removeEventListener('loaded-changed', onLoadedChanged);
+
+              assert.notEqual(getComputedStyle(image.$.sizedImgDiv).backgroundImage, 'none', 'image visible after successful load');
+              assert.equal(getComputedStyle(image.$.placeholder).display, 'none', 'placeholder hidden after successful load');
+
+              image.addEventListener('error-changed', function onErrorChanged() {
+                if (!image.error) return;
+                image.removeEventListener('error-changed', onErrorChanged);
+
+                assert.equal(getComputedStyle(image.$.sizedImgDiv).backgroundImage, 'none', 'image hidden after failed load');
+                assert.notEqual(getComputedStyle(image.$.placeholder).display, 'none', 'placeholder visible after failed load');
+
+                done();
+              });
+
+              image.src = '/this_image_should_not_exist.jpg';
             });
 
             image.src = randomImageUrl();
@@ -159,6 +228,80 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             });
 
             fixedHeightIronImage.src = randomImageUrl();
+          });
+        });
+
+        suite('accessibility', function() {
+          suite('sizing inactive', function() {
+            var image;
+
+            setup(function() {
+              image = fixture('TrivialImage');
+            });
+
+            test('#sizedImgDiv is hidden', function() {
+              var sizedImgDivStyle = window.getComputedStyle(image.$.sizedImgDiv);
+              assert.strictEqual(sizedImgDivStyle.display, 'none');
+            });
+
+            test('img has no alt text by default', function() {
+              assert.isFalse(image.$.img.hasAttribute('alt'));
+            });
+
+            test('img alt text is empty string when iron-image alt text is empty string', function() {
+              image.alt = '';
+
+              assert.isTrue(image.$.img.hasAttribute('alt'));
+              assert.strictEqual(image.$.img.getAttribute('alt'), '');
+            });
+
+            test('img alt text matches iron-image alt text when defined', function() {
+              image.alt = 'alt text value';
+
+              assert.isTrue(image.$.img.hasAttribute('alt'));
+              assert.strictEqual(image.$.img.getAttribute('alt'), 'alt text value');
+            });
+          });
+
+          suite('sizing active', function() {
+            var image;
+
+            setup(function() {
+              image = fixture('TrivialImage');
+              image.sizing = 'cover';
+            });
+
+            test('inner img is hidden', function() {
+              var imgStyle = window.getComputedStyle(image.$.img);
+              assert.strictEqual(imgStyle.display, 'none');
+            });
+
+            test('#sizedImgDiv has empty aria-label text by default', function() {
+              assert.isTrue(image.$.sizedImgDiv.hasAttribute('aria-label'));
+              assert.strictEqual(image.$.sizedImgDiv.getAttribute('aria-label'), '');
+            });
+
+            test('#sizedImgDiv has aria-hidden when iron-image alt text is empty string', function() {
+              image.alt = '';
+
+              assert.isTrue(image.$.sizedImgDiv.hasAttribute('aria-hidden'));
+              var hiddenValue = image.$.sizedImgDiv.getAttribute('aria-hidden');
+              assert.isTrue(hiddenValue === '' || hiddenValue === 'true');
+            });
+
+            test('#sizedImgDiv aria-label matches iron-image alt text when defined', function() {
+              image.alt = 'alt text value';
+
+              assert.isTrue(image.$.sizedImgDiv.hasAttribute('aria-label'));
+              assert.strictEqual(image.$.sizedImgDiv.getAttribute('aria-label'), 'alt text value');
+            });
+
+            test('#sizedImgDiv aria-label text is last path component of src when iron-image alt text is undefined', function() {
+              image.src = '/some/path.components/file.jpg?a=b&c=d#anchor';
+
+              assert.isTrue(image.$.sizedImgDiv.hasAttribute('aria-label'));
+              assert.strictEqual(image.$.sizedImgDiv.getAttribute('aria-label'), 'file.jpg');
+            });
           });
         });
       });

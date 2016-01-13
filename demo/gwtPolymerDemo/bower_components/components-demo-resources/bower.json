@@ -1,0 +1,19 @@
+{
+  "name": "elements-demo-resources",
+  "version": "1.0.0",
+  "authors": [
+    "Vaadin Ltd"
+  ],
+  "keywords": [
+    "vaadin",
+    "vaadin elements"
+  ],
+  "license": "Apache License 2.0",
+  "ignore": [
+    "bower_components"
+  ],
+  "dependencies": {
+    "code-example": "master",
+    "table-of-contents": "~0.0.2"
+  }
+}

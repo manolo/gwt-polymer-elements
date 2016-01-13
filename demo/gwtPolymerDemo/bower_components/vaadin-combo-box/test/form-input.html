@@ -1,0 +1,124 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset='UTF-8'>
+  <title>vaadin-combo basic tests</title>
+  <script src='../../webcomponentsjs/webcomponents-lite.js'></script>
+  <script src='../../web-component-tester/browser.js'></script>
+  <script src='../../test-fixture/test-fixture-mocha.js'></script>
+
+  <link rel='import' href='common.html'>
+  <link rel='import' href='../../iron-form/iron-form.html'>
+</head>
+
+<body>
+
+  <test-fixture id='combobox'>
+    <template is='dom-template'>
+      <vaadin-combo-box name=[[name]] required=[[required]]></vaadin-combo-box>
+    </template>
+  </test-fixture>
+
+  <test-fixture id='combobox-in-form'>
+    <template is='dom-template'>
+      <form is="iron-form">
+        <vaadin-combo-box name=[[name]] required=[[required]]></vaadin-combo-box>
+      </form>
+    </template>
+  </test-fixture>
+
+  <script>
+    describe('using as a field in html form', function() {
+
+      it('should have the given name', function() {
+        var comboBox = fixture('combobox', {
+          name: 'foo'
+        });
+        expect(comboBox.$$('input').getAttribute('name')).to.equal('foo');
+      });
+
+      it('should have no name', function() {
+        var comboBox = fixture('combobox');
+        expect(comboBox.$$('input').getAttribute('name')).to.equal(null);
+      });
+
+      it('should be required', function() {
+        var comboBox = fixture('combobox', {
+          required: true
+        });
+        expect(comboBox.$$('input').getAttribute('required')).to.equal('');
+      });
+
+      it('should not be required', function() {
+        var comboBox = fixture('combobox');
+        expect(comboBox.$$('input').getAttribute('required')).to.equal(null);
+      });
+
+      it('should validate correctly', function() {
+        var comboBox = fixture('combobox', {name: 'foo', required: true});
+        expect(comboBox.validate()).to.equal(false);
+        expect(comboBox.invalid).to.be.equal(true);
+        comboBox.value = 'foo';
+        expect(comboBox.validate()).to.equal(true);
+        expect(comboBox.invalid).to.be.equal(false);
+      });
+
+      it('should serialize correctly', function() {
+        var form = fixture('combobox-in-form', {name: 'foo'});
+        var comboBox = form.querySelector('vaadin-combo-box');
+        comboBox.value = 'bar';
+        expect(form.serialize().foo).to.equal('bar');
+      });
+
+      it('should not-submit iron-form with invalid value', function() {
+        var form = fixture('combobox-in-form', {name: 'foo', required: true});
+        var spy = sinon.spy();
+        form.addEventListener('iron-form-invalid', spy);
+        form.submit();
+        expect(spy).to.have.been.called;
+      });
+
+      describe('enter key behavior', function() {
+        var keydownEvent;
+        var preventDefault;
+        var comboBox;
+        var input;
+
+        beforeEach(function() {
+          // These tests fake a keydown event for the enter key and
+          // use a spy to verify if preventDefault was called on the
+          // event. Actually replicating the form submit on enter turned
+          // out to be extremely tricky to do in a test.
+          preventDefault = sinon.spy();
+
+          keydownEvent = new CustomEvent('keydown', {
+            bubbles: true,
+            cancelable: true
+          });
+          keydownEvent.keyCode = 13;
+          keydownEvent.code = 13;
+          keydownEvent.preventDefault = preventDefault;
+
+          comboBox = fixture('combobox-in-form').$$('vaadin-combo-box');
+          input = comboBox.$$('input');
+        });
+
+        it('should prevent default on open combobox', function() {
+          comboBox.open();
+          input.dispatchEvent(keydownEvent);
+          expect(preventDefault).to.have.been.called;
+        });
+
+        it('should not prevent default on closed combobox', function() {
+          input.dispatchEvent(keydownEvent);
+          expect(preventDefault).to.not.have.been.called;
+        });
+      });
+
+    });
+  </script>
+
+</body>
+
+</html>

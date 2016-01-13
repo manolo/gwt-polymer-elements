@@ -1,11 +1,13 @@
 
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/vaadin/vaadin-elements?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/vaadin/vaadin-core-elements?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 [![Build Status](https://travis-ci.org/vaadin/vaadin-grid.svg?branch=master)](https://travis-ci.org/vaadin/vaadin-grid)
 
 # vaadin-grid
 
-`vaadin-grid` is a Web Component for showing large amounts of tabular data, part of the [vaadin-elements](https://github.com/vaadin/vaadin-elements) element bundle.
+[`<vaadin-grid>`](https://vaadin.com/elements/-/element/vaadin-grid) is a Web Component for showing large amounts of tabular data, part of the [vaadin-core-elements](https://vaadin.com/elements) element bundle.
+
+[<img src="https://github.com/vaadin/vaadin-grid/raw/master/screenshot.png" width="481" alt="Screenshot of vaadin-grid" />](https://vaadin.com/elements/-/element/vaadin-grid)
 
 **Features:**
  - Lazy-loading
@@ -18,24 +20,7 @@
  - Sorting
  - Accessibility
  - Declarative and imperative APIs
-
-## Getting started
-
- - [Demos](https://cdn.vaadin.com/vaadin-elements/latest/vaadin-grid/demo/)
- - [Getting started instructions](https://cdn.vaadin.com/vaadin-elements/latest/vaadin-elements/demo/)
-
-## Overview of this repository
-
-- **demo**:
-  A set of examples using the element
-
-- **test**:
-  Unit and visual tests
-
-- **java**:
-  The internal GWT implementation of the element
-  exported to JavaScript which is used by the Polymer-based implementation.
-
+ - [Learn more](https://vaadin.com/elements/-/element/vaadin-grid)
 
 ## Developing
 
@@ -54,7 +39,7 @@ Then do the following:
  ```shell
  $ npm install -g bower gulp web-component-tester polyserve
  ```
- 
+
  > Note: you might need to prepend `sudo` if you are in a unix like system (linux, mac)
 
 2. Clone the project:
@@ -70,7 +55,7 @@ Then do the following:
 
 ## Demos / examples
 
-Start a server in the root folder, and access one of the demo files inside 
+Start a server in the root folder, and access one of the demo files inside
 the elements folders, e.g:
 ```shell
 $ polyserve
@@ -99,7 +84,7 @@ $ polyserve
 
 - Compiling GWT module:
 
-Compiled module is in the repository, so you don't need to compile it unless
+The compiled module is in the repository, so you don't need to compile it unless
 you modify GWT .java files.
 
 ```shell

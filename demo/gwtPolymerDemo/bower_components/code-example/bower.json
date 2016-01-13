@@ -22,6 +22,6 @@
   ],
   "dependencies": {
     "polymer": "Polymer/polymer#^v1.0.5",
-    "zeroclipboard": "zeroclipboard/zeroclipboard#~2.2.0"
+    "clipboard": "~1.5.5"
   }
 }

@@ -72,8 +72,8 @@ Custom property | Description | Default
 @demo demo/transform-header-1.html Transform header 1
 @demo demo/transform-header-2.html Transform header 2
 @demo demo/transform-header-3.html Transform header 3
-@demo demo/transform-header-4.html Tranform header 4
-@demo demo/transform-header-5.html Tranform header 5
+@demo demo/transform-header-4.html Transform header 4
+@demo demo/transform-header-5.html Transform header 5
 @demo demo/transform-header-6.html Transform header 6
 @demo demo/keep-header.html Keep header
 @demo demo/hide-header.html Hide header
@@ -84,7 +84,7 @@ Custom property | Description | Default
 
 <dom-module id="paper-scroll-header-panel">
 
-  <style>C
+  <style>
     :host {
       display: block;
       position: relative;
@@ -273,16 +273,7 @@ Custom property | Description | Default
       headerState: {
         type: Number,
         readOnly: true,
-        value: 0
-      },
-
-      _prevScrollTop: {
-        type: Number,
-        value: 0
-      },
-
-      _y: {
-        type: Number,
+        notify:true,
         value: 0
       },
 
@@ -305,9 +296,12 @@ Custom property | Description | Default
     },
 
     ready: function() {
-      this.async(this.measureHeaderHeight, 5);
       this._scrollHandler = this._scroll.bind(this);
       this.scroller.addEventListener('scroll', this._scrollHandler);
+    },
+
+    attached: function() {
+      this.async(this.measureHeaderHeight, 1);
     },
 
     /**
@@ -551,9 +545,13 @@ Custom property | Description | Default
 
       if (y > this._headerMaxDelta) {
         y = this._headerMaxDelta;
-        this._setHeaderState(ctx.HEADER_STATE_HIDDEN);
 
-      } else if (this.condenses && this._prevScrollTop >= scrollTop && scrollTop >= this._headerMargin) {
+        if (this.keepCondensedHeader) {
+          this._setHeaderState(ctx.HEADER_STATE_CONDENSED);
+        } else {
+          this._setHeaderState(ctx.HEADER_STATE_HIDDEN);
+        }
+      } else if (this.condenses && scrollTop >= this._headerMargin) {
         y = Math.max(y, this._headerMargin);
         this._setHeaderState(ctx.HEADER_STATE_CONDENSED);
 

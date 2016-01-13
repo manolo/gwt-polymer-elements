@@ -52,7 +52,7 @@ layout: page
 
   <section>
     <h3>Sizing the grid</h3>
-    <p>If <code>vaadin-grid</code> is not assigned any bounds externally it will size automatically by itself. By default it
+    <p>If <code>vaadin-grid</code> is not assigned any bounds externally, it will size automatically by itself. By default it
     will take 100% of the horizontal space available and its default height depends on the number of
     contained data rows.</p>
     <p>Standard CSS rules can be used to set a size for the grid or alternatively <code>vaadin-grid</code> can be
@@ -62,28 +62,36 @@ layout: page
       <vaadin-grid visible-rows=5 demo>
         <table>
           <colgroup>
-            <col header-text="Name">
-            <col header-text="Surname">
-            <col header-text="Activity">
+            <col>
+            <col>
+            <col>
           </colgroup>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Surname</th>
+              <th>Activity</th>
+            </tr>
+          </thead>
         </table>
       </vaadin-grid>
       <code hidden>
+        function random(arr) {
+          return arr[Math.floor(Math.random() * arr.length)];
+        }
+
         var employees = [];
-        var names = ["Artur", "Patrik", "Henrik", "Teemu"];
-        var surnames = ["Signell","Lehtinen","Ahlroos","Paul"];
-        var activities = ["Design","Implement","Polish","Deliver"];
-        var targets = ["soup","Vaadin","dog","world peace"];
-        for (var i = 0; i < 400; i++){
-            var row = [];
-            [names, surnames, activities, targets].forEach(function(array){
-              row.push(array[Math.floor(Math.random()*array.length)]);
-            });
-            employees.push(row);
+        var names = ['Artur', 'Patrik', 'Henrik', 'Teemu'];
+        var surnames = ['Signell', 'Lehtinen', 'Ahlroos', 'Paul'];
+        var activities = ['Design', 'Implement', 'Polish', 'Deliver'];
+        var targets = ['soup', 'Vaadin', 'dog', 'world peace'];
+        for (var i = 0; i < 400; i++) {
+          var row = [random(names), random(surnames), random(activities), random(targets)];
+          employees.push(row);
         }
       </code>
       <code demo-var="grid">
-        var grid = grid || document.querySelector("vaadin-grid");
+        var grid = grid || document.querySelector('vaadin-grid');
 
         HTMLImports.whenReady(function() {
           grid.items = employees;
@@ -103,28 +111,36 @@ layout: page
       <vaadin-grid demo hidden>
         <table>
           <colgroup>
-            <col header-text="Name">
-            <col header-text="Surname">
-            <col header-text="Activity">
+            <col>
+            <col>
+            <col>
           </colgroup>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Surname</th>
+              <th>Activity</th>
+            </tr>
+          </thead>
         </table>
       </vaadin-grid>
       <code hidden>
+        function random(arr) {
+          return arr[Math.floor(Math.random() * arr.length)];
+        }
+
         var employees = [];
-        var names = ["Artur", "Patrik", "Henrik", "Teemu"];
-        var surnames = ["Signell","Lehtinen","Ahlroos","Paul"];
-        var activities = ["Design","Implement","Polish","Deliver"];
-        var targets = ["soup","Vaadin","dog","world peace"];
-        for (var i = 0; i < 400; i++){
-            var row = [];
-            [names, surnames, activities, targets].forEach(function(array){
-              row.push(array[Math.floor(Math.random()*array.length)]);
-            });
-            employees.push(row);
+        var names = ['Artur', 'Patrik', 'Henrik', 'Teemu'];
+        var surnames = ['Signell', 'Lehtinen', 'Ahlroos', 'Paul'];
+        var activities = ['Design', 'Implement', 'Polish', 'Deliver'];
+        var targets = ['soup', 'Vaadin', 'dog', 'world peace'];
+        for (var i = 0; i < 400; i++) {
+          var row = [random(names), random(surnames), random(activities), random(targets)];
+          employees.push(row);
         }
       </code>
       <code demo-var="grid">
-        var grid = grid || document.querySelector("vaadin-grid");
+        var grid = grid || document.querySelector('vaadin-grid');
 
         HTMLImports.whenReady(function() {
           grid.items = employees;
@@ -146,28 +162,36 @@ layout: page
       <vaadin-grid demo hidden>
         <table>
           <colgroup>
-            <col header-text="Name">
-            <col header-text="Surname">
-            <col header-text="Activity">
+            <col>
+            <col>
+            <col>
           </colgroup>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Surname</th>
+              <th>Activity</th>
+            </tr>
+          </thead>
         </table>
       </vaadin-grid>
       <code hidden>
+        function random(arr) {
+          return arr[Math.floor(Math.random() * arr.length)];
+        }
+
         var employees = [];
-        var names = ["Artur", "Patrik", "Henrik", "Teemu"];
-        var surnames = ["Signell","Lehtinen","Ahlroos","Paul"];
-        var activities = ["Design","Implement","Polish","Deliver"];
-        var targets = ["soup","Vaadin","dog","world peace"];
-        for (var i = 0; i < 400; i++){
-            var row = [];
-            [names, surnames, activities, targets].forEach(function(array){
-              row.push(array[Math.floor(Math.random()*array.length)]);
-            });
-            employees.push(row);
+        var names = ['Artur', 'Patrik', 'Henrik', 'Teemu'];
+        var surnames = ['Signell', 'Lehtinen', 'Ahlroos', 'Paul'];
+        var activities = ['Design', 'Implement', 'Polish', 'Deliver'];
+        var targets = ['soup', 'Vaadin', 'dog', 'world peace'];
+        for (var i = 0; i < 400; i++) {
+          var row = [random(names), random(surnames), random(activities), random(targets)];
+          employees.push(row);
         }
       </code>
       <code demo-var="grid">
-        var grid = grid || document.querySelector("vaadin-grid");
+        var grid = grid || document.querySelector('vaadin-grid');
 
         HTMLImports.whenReady(function() {
           grid.items = employees;
@@ -178,12 +202,85 @@ layout: page
               var activity = cell.row.data[2];
               return 'activity-' + activity.toLowerCase();
             }
-            return '';
           };
           // end-code
         });
       </code>
     </code-example>
   </section>
+
+  <section>
+    <h3>Styling with Custom Properties</h3>
+    <p>The grid uses <code>--default-primary-color</code> from <a href="https://github.com/PolymerElements/paper-styles">paper-styles</a> as a highlight color.</p>
+    <p>Modifying the row height is enabled with <code>--vaadin-grid-row-height</code> custom property. For header and footer heights use <code>--vaadin-grid-header-row-height</code> and/or <code>--vaadin-grid-footer-row-height</code> properties.</p>
+
+    <style is="custom-style">
+      vaadin-grid.themed {
+        --default-primary-color: red;
+        --vaadin-grid-row-height: 36px;
+        --vaadin-grid-header-row-height: 44px;
+        --vaadin-grid-footer-row-height: 44px;
+      }
+    </style>
+    <code-example>
+      <vaadin-grid visible-rows=5 selection-mode="multi" class="themed" demo hidden>
+        <table>
+          <colgroup>
+            <col>
+            <col>
+            <col>
+          </colgroup>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Surname</th>
+              <th>Activity</th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <th colspan="3">Footer row</th>
+            </tr>
+          </tfoot>
+        </table>
+      </vaadin-grid>
+      <code>
+        /*
+        // code
+        &lt;style is=&quot;custom-style&quot;&gt;
+          vaadin-grid {
+            --default-primary-color: red;
+            --vaadin-grid-row-height: 36px;
+            --vaadin-grid-header-row-height: 44px;
+            --vaadin-grid-footer-row-height: 44px;
+          }
+        &lt;/style&gt;
+        // end-code
+        */
+      </code>
+      <code demo-var="grid" hidden>
+        function random(arr) {
+          return arr[Math.floor(Math.random() * arr.length)];
+        }
+
+        var employees = [];
+        var names = ['Artur', 'Patrik', 'Henrik', 'Teemu'];
+        var surnames = ['Signell', 'Lehtinen', 'Ahlroos', 'Paul'];
+        var activities = ['Design', 'Implement', 'Polish', 'Deliver'];
+        var targets = ['soup', 'Vaadin', 'dog', 'world peace'];
+        for (var i = 0; i < 400; i++) {
+          var row = [random(names), random(surnames), random(activities), random(targets)];
+          employees.push(row);
+        }
+
+        var grid = document.querySelector('vaadin-grid.themed');
+
+        HTMLImports.whenReady(function() {
+          grid.items = employees;
+        });
+      </code>
+    </code-example>
+  </section>
+
 </body>
 </html>
