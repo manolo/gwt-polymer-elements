@@ -62,7 +62,7 @@
 
         <p:PaperInput label="Filter by Name" ui:field="filter"></p:PaperInput>
 
-        <v:VaadinGrid ui:field="grid" addStyleNames="fit" frozenColumns="1">
+        <v:VaadinGrid ui:field="grid" frozenColumns="1">
           <table>
             <colgroup>
               <col name="index" header-text="#" width='30' />
