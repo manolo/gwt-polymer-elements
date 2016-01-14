@@ -364,8 +364,4 @@ public class Sampler extends Composite {
             drawerPanel.closeDrawer();
         }
     }
-
-    public static native void async(Function f, int timeout) /*-{
-       $wnd.Polymer.Base.async(f, timeout);
-    }-*/;
 }
