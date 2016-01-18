@@ -27,7 +27,7 @@
                 color: #00b4f0;
             }
             .set iron-icon {
-                fill: #75bff4;
+                fill: #616161;
                 -webkit-transition: all 200ms;
                 transition: all 200ms;
             }

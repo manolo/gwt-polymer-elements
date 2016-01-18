@@ -6,7 +6,6 @@ import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.vaadin.polymer.demo.client.sampler.Sampler;
 import com.vaadin.polymer.Polymer;
-import com.vaadin.polymer.elemental.Function;
 
 public class Demo implements EntryPoint {
 
@@ -28,16 +27,11 @@ public class Demo implements EntryPoint {
                 "paper-styles",
                 // Styles for paper examples
                 "paper-styles/demo-pages.html",
-                // Iconsets must be loaded before using any component depending on them
-                //   Iron comes with the collections:
-                //   communication, device, editor, hardware, image, iron, maps, notifications, social.
-                "iron-icons/iron-icons.html",
+                // Iconsets must be loaded before using any component depending on them.
+                // We load all Iron and Vaadin collections.
+                "iron-icons",
                 "iron-icons/communication-icons.html",
-                "iron-flex-layout/iron-flex-layout.html",
-                // Animation must be loaded at the beginning
-                "neon-animation/neon-animations.html",
                 "iron-icons/av-icons.html",
-                // "iron-icons/communication-icons.html",
                 "iron-icons/device-icons.html",
                 "iron-icons/editor-icons.html",
                 "iron-icons/hardware-icons.html",
@@ -45,14 +39,16 @@ public class Demo implements EntryPoint {
                 "iron-icons/maps-icons.html",
                 "iron-icons/notification-icons.html",
                 "iron-icons/social-icons.html",
-                "vaadin-icons/vaadin-icons.html"
+                "vaadin-icons",
+                // Flex-layout and animations are used in all the app, loading it early.
+                "iron-flex-layout",
+                "neon-animation"
                 ));
-        Polymer.whenReady(new Function() {
-            public Object call(Object arg) {
-                // The app is executed when all imports succeed.
-                RootPanel.get().add(new Sampler());
-                return null;
-            }
+
+        Polymer.whenReady(o -> {
+            // The app is executed when all imports succeed.
+            RootPanel.get().add(new Sampler());
+            return null;
         });
     }
 }
