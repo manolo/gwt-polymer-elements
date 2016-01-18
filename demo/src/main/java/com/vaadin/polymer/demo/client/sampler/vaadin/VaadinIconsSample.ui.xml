@@ -1,0 +1,53 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:i='urn:import:com.vaadin.polymer.iron.widget'
+             xmlns:p='urn:import:com.vaadin.polymer.paper.widget'>
+
+    <g:HTMLPanel addStyleNames="horizontal-section-container">
+        <style is="custom-style">
+            .set {
+               @apply(--layout-horizontal);
+               @apply(--layout-wrap);
+            }
+            .set .icon {
+                margin: 24px 8px;
+                text-align: center;
+                width: 130px;
+                cursor: default;
+            }
+            .set .icon span {
+                font-family: sans-serif;
+                font-size: 10px;
+                display: block;
+                color: #616161;
+                -webkit-transition: all 600ms;
+                transition: all 600ms;
+            }
+            .set .icon:hover span {
+                color: #00b4f0;
+            }
+            .set iron-icon {
+                fill: #75bff4;
+                -webkit-transition: all 200ms;
+                transition: all 200ms;
+            }
+            .set .icon:hover iron-icon {
+                fill: #00b4f0;
+            }
+        </style>
+
+        <template ui:field="bindTemplate" is="dom-bind">
+          <iron-meta type="iconset" list="{{iconsets}}"></iron-meta>
+          <template ui:field="repeatTemplate" is="dom-repeat" items="{{iconsets}}" as="iconSet">
+            <div class="set">
+              <template is="dom-repeat" items="{{getIconNames(iconSet)}}" as="iconName">
+                <div class="icon">
+                  <iron-icon icon="[[iconName]]"></iron-icon>
+                  <span>{{iconName}}</span>
+                </div>              
+              </template>
+            </div>
+          </template>
+        </template>
+    </g:HTMLPanel>
+</ui:UiBinder>
