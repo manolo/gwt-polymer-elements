@@ -38,6 +38,7 @@ import com.vaadin.polymer.demo.client.sampler.iron.IronAjaxSample;
 import com.vaadin.polymer.demo.client.sampler.iron.IronCollapseSample;
 import com.vaadin.polymer.demo.client.sampler.iron.IronIconsSample;
 import com.vaadin.polymer.demo.client.sampler.iron.IronImageSample;
+import com.vaadin.polymer.demo.client.sampler.iron.IronInputSample;
 import com.vaadin.polymer.demo.client.sampler.iron.IronListSample;
 import com.vaadin.polymer.demo.client.sampler.iron.IronSelectorSample;
 import com.vaadin.polymer.demo.client.sampler.paper.ButtonSample;
@@ -140,6 +141,7 @@ public class Sampler extends Composite {
         case "ToolbarSample": return new ToolbarSample();
         case "IronAjaxSample": return new IronAjaxSample();
         case "IronIconsSample": return new IronIconsSample();
+        case "IronInputSample": return new IronInputSample();
         case "IronCollapseSample": return new IronCollapseSample();
         case "IronImageSample": return new IronImageSample();
         case "IronListSample": return new IronListSample();
@@ -184,6 +186,7 @@ public class Sampler extends Composite {
         addCategory("iron", "Iron Elements");
         addSample("Ajax", "iron", "IronAjaxSample");
         addSample("Icons", "iron", "IronIconsSample");
+        addSample("Input", "iron", "IronInputSample");
         addSample("Collapse", "iron", "IronCollapseSample");
         addSample("Image", "iron", "IronImageSample");
         addSample("List", "iron", "IronListSample");
@@ -218,7 +221,7 @@ public class Sampler extends Composite {
     }
 
     private void showSource(String category, String file) {
-        Ajax.get(API_PATH + category + "/" + file)
+        Ajax.get(API_PATH + category + "/" + file + "?" + "ref=" + Window.Location.getParameter("ref"))
           .done(new com.google.gwt.query.client.Function() {
             native String atob(String b64) /*-{
                try {

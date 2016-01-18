@@ -3,7 +3,7 @@
              xmlns:i='urn:import:com.vaadin.polymer.iron.widget'
              xmlns:p='urn:import:com.vaadin.polymer.paper.widget'>
 
-    <g:HTMLPanel addStyleNames="horizontal-section-container">
+    <g:HTMLPanel>
         <style is="custom-style">
           iron-image {
             background-color: lightgray;
@@ -12,21 +12,23 @@
           .horizontal-section {
             max-width: 300px;
             margin-bottom: 24px;
-          }        
+          }
         </style>
         <h1>Video Feed</h1>
-        
+
         <i:IronAjax ui:field="ajax" auto="true"
             url="https://www.googleapis.com/youtube/v3/search"
             params='{"part":"snippet", "q":"gwt polymer", "key": "AIzaSyAuecFZ9xJXbGDkQYWBmYrtzOGJD-iDIgI", "type": "video"}'
             handleAs="json" />
-      
-        <template ui:field="repeat" is="dom-repeat">
-          <div class="horizontal-section">
-            <h2>[[item.snippet.title]]</h2>
-            <a href="https://www.youtube.com/watch?v=[[item.id.videoId]]" target="_blank"><img src="[[item.snippet.thumbnails.high.url]]" width="256" height="256" /></a>
-            <p>[[item.snippet.description]]</p>
-          </div>
-        </template>
+
+        <div class="horizontal-section-container">
+          <template ui:field="repeat" is="dom-repeat">
+            <div class="horizontal-section">
+              <h2>[[item.snippet.title]]</h2>
+              <a href="https://www.youtube.com/watch?v=[[item.id.videoId]]" target="_blank"><img src="[[item.snippet.thumbnails.high.url]]" width="256" /></a>
+              <p>[[item.snippet.description]]</p>
+            </div>
+          </template>
+        </div>
     </g:HTMLPanel>
 </ui:UiBinder>
