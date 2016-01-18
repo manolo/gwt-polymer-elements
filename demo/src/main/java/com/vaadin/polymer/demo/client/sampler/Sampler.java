@@ -221,7 +221,8 @@ public class Sampler extends Composite {
     }
 
     private void showSource(String category, String file) {
-        Ajax.get(API_PATH + category + "/" + file + "?" + "ref=" + Window.Location.getParameter("ref"))
+        String branch = Window.Location.getParameter("ref");
+        Ajax.get(API_PATH + category + "/" + file + "?" + (branch != null ? "ref=" + branch : ""))
           .done(new com.google.gwt.query.client.Function() {
             native String atob(String b64) /*-{
                try {
