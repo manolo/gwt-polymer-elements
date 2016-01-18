@@ -34,7 +34,9 @@ import com.vaadin.polymer.demo.client.sampler.gwt.JavaApiWidget;
 import com.vaadin.polymer.demo.client.sampler.gwt.UiBinderElement;
 import com.vaadin.polymer.demo.client.sampler.gwt.UiBinderWidget;
 import com.vaadin.polymer.demo.client.sampler.highlight.JsHighlight;
+import com.vaadin.polymer.demo.client.sampler.iron.IronAjaxSample;
 import com.vaadin.polymer.demo.client.sampler.iron.IronCollapseSample;
+import com.vaadin.polymer.demo.client.sampler.iron.IronIconsSample;
 import com.vaadin.polymer.demo.client.sampler.iron.IronImageSample;
 import com.vaadin.polymer.demo.client.sampler.iron.IronListSample;
 import com.vaadin.polymer.demo.client.sampler.iron.IronSelectorSample;
@@ -61,7 +63,7 @@ import com.vaadin.polymer.demo.client.sampler.paper.ToggleButtonSample;
 import com.vaadin.polymer.demo.client.sampler.paper.ToolbarSample;
 import com.vaadin.polymer.demo.client.sampler.vaadin.VaadinComboBoxSample;
 import com.vaadin.polymer.demo.client.sampler.vaadin.VaadinGridSample;
-import com.vaadin.polymer.elemental.Function;
+import com.vaadin.polymer.demo.client.sampler.vaadin.VaadinIconsSample;
 import com.vaadin.polymer.iron.widget.IronAjax;
 import com.vaadin.polymer.iron.widget.IronCollapse;
 import com.vaadin.polymer.iron.widget.IronSelector;
@@ -136,12 +138,15 @@ public class Sampler extends Composite {
         case "ToastSample": return new ToastSample();
         case "ToggleButtonSample": return new ToggleButtonSample();
         case "ToolbarSample": return new ToolbarSample();
+        case "IronAjaxSample": return new IronAjaxSample();
+        case "IronIconsSample": return new IronIconsSample();
         case "IronCollapseSample": return new IronCollapseSample();
         case "IronImageSample": return new IronImageSample();
         case "IronListSample": return new IronListSample();
         case "IronSelectorSample": return new IronSelectorSample();
         case "VaadinGridSample": return new VaadinGridSample();
         case "VaadinComboBoxSample": return new VaadinComboBoxSample();
+        case "VaadinIconsSample": return new VaadinIconsSample();
         }
         return null;
     }
@@ -177,6 +182,8 @@ public class Sampler extends Composite {
         addSample("Toolbar", "paper", "ToolbarSample");
 
         addCategory("iron", "Iron Elements");
+        addSample("Ajax", "iron", "IronAjaxSample");
+        addSample("Icons", "iron", "IronIconsSample");
         addSample("Collapse", "iron", "IronCollapseSample");
         addSample("Image", "iron", "IronImageSample");
         addSample("List", "iron", "IronListSample");
@@ -185,6 +192,7 @@ public class Sampler extends Composite {
         addCategory("vaadin", "Vaadin Elements");
         addSample("Grid", "vaadin", "VaadinGridSample");
         addSample("Combo box", "vaadin", "VaadinComboBoxSample");
+        addSample("Vaadin Icons", "vaadin", "VaadinIconsSample");
 
         addCategory("gwt", "GWT Integration");
         addSample("Widget Java API", "gwt", "JavaApiWidget", false);

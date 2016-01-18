@@ -35,7 +35,17 @@ public class Demo implements EntryPoint {
                 "iron-icons/communication-icons.html",
                 "iron-flex-layout/iron-flex-layout.html",
                 // Animation must be loaded at the beginning
-                "neon-animation/neon-animations.html"
+                "neon-animation/neon-animations.html",
+                "iron-icons/av-icons.html",
+                // "iron-icons/communication-icons.html",
+                "iron-icons/device-icons.html",
+                "iron-icons/editor-icons.html",
+                "iron-icons/hardware-icons.html",
+                "iron-icons/image-icons.html",
+                "iron-icons/maps-icons.html",
+                "iron-icons/notification-icons.html",
+                "iron-icons/social-icons.html",
+                "vaadin-icons/vaadin-icons.html"
                 ));
         Polymer.whenReady(new Function() {
             public Object call(Object arg) {
