@@ -18,17 +18,17 @@
 
         <template ui:field="bindTemplate" is="dom-bind">
           <p>
-            <input ui:field="ironInput" is="iron-input" bind-value="{{bindValue}}" value="{{value::input}}" />
+            <input is="iron-input" bind-value="{{bindValue}}" value="{{value::input}}" />
             <br />
             bind to <code>bind-value</code>: <b>[[bindValue]]</b>
             <br />
             bind to <code>value::input</code>: <b>{{value}}</b>
           </p>
-    
+
           <p>
-            set bind-value to: <input ui:field="input1"/> <button on-click="function1" >set</button>
+            set bind-value to: <input class="input1"/> <button on-click="function1" >set</button>
             <br />
-            set value to: <input ui:field="input2"/> <button on-click="function2">set</button>
+            set value to: <input class="input2"/> <button on-click="function2">set</button>
           </p>
         </template>
 

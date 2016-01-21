@@ -3,34 +3,34 @@
              xmlns:i='urn:import:com.vaadin.polymer.iron.widget'
              xmlns:p='urn:import:com.vaadin.polymer.paper.widget'>
 
-    <g:HTMLPanel addStyleNames="horizontal-section-container">
+    <g:HTMLPanel addStyleNames="horizontal-section-container iicons">
         <style is="custom-style">
-          iron-icon:hover {
+          .iicons iron-icon:hover {
             fill: var(--google-yellow-700);
           }
-          .set {
+          .iicons .set {
             margin: auto;
             padding: 1em 0;
             border-bottom: 1px solid silver;
             @apply(--layout-horizontal);
             @apply(--layout-wrap);
           }
-          .set:last-of-type {
+          .iicons .set:last-of-type {
             border-bottom: none;
           }
-          .set:nth-of-type(4n-3) {
+          .iicons .set:nth-of-type(4n-3) {
             color: var(--paper-grey-700);
           }
-          .set:nth-of-type(4n-2) {
+          .iicons .set:nth-of-type(4n-2) {
             color: var(--paper-pink-500);
           }
-          .set:nth-of-type(4n-1) {
+          .iicons .set:nth-of-type(4n-1) {
             color: var(--google-green-500);
           }
-          .set:nth-of-type(4n) {
+          .iicons .set:nth-of-type(4n) {
             color: var( --google-blue-500);
           }
-          .container {
+          .iicons .container {
             min-width: 10em;
             padding: 1em 0.5em;
             text-align: center;
@@ -38,7 +38,7 @@
             @apply(--layout-center);
             @apply(--layout-flex-1);
           }
-          .container > div {
+          .iicons .name {
             margin-top: 0.5em;
             color: black;
             font-size: 10px;
@@ -56,11 +56,12 @@
               <template is="dom-repeat" items="{{getIconNames(iconSet)}}" as="iconName">
                 <span class="container">
                   <iron-icon icon="{{iconName}}"></iron-icon>
-                  <div>{{iconName}}</div>
+                  <div class="name">{{iconName}}</div>
                 </span>
               </template>
             </div>
           </template>
+
         </template>
     </g:HTMLPanel>
 </ui:UiBinder>

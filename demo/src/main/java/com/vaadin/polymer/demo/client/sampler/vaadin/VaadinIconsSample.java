@@ -16,15 +16,14 @@ public class VaadinIconsSample extends Composite {
     private static SampleUiBinder ourUiBinder = GWT.create(SampleUiBinder.class);
     
     @UiField Template bindTemplate;
-    @UiField Template repeatTemplate;
 
     public VaadinIconsSample() {
         initWidget(ourUiBinder.createAndBindUi(this));
         
-        repeatTemplate.setFilter(iconSet -> Polymer.property(iconSet, "name") == "vaadin-icons");
-
         Polymer.property(bindTemplate, "getIconNames",
                 (Function<?,?>) iconSet -> Polymer.apply(iconSet, "getIconNames"));
 
+        Polymer.property(bindTemplate, "filterIconset",
+                (Function<?,?>) iconSet -> Polymer.property(iconSet, "name") == "vaadin-icons");
     }
 }
