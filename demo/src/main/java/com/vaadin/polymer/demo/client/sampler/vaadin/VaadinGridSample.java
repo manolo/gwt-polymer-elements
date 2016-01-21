@@ -18,12 +18,13 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.vaadin.polymer.Polymer;
 import com.vaadin.polymer.demo.client.sampler.Sampler;
-import com.vaadin.polymer.iron.widget.IronAjax;
 import com.vaadin.polymer.paper.widget.PaperInput;
 import com.vaadin.polymer.paper.widget.PaperMaterial;
 import com.vaadin.polymer.vaadin.Column;
 import com.vaadin.polymer.vaadin.Row;
 import com.vaadin.polymer.vaadin.SortOrder;
+import com.vaadin.polymer.vaadin.event.SelectedItemsChangedEvent;
+import com.vaadin.polymer.vaadin.event.SortOrderChangedEvent;
 import com.vaadin.polymer.vaadin.widget.VaadinGrid;
 
 public class VaadinGridSample extends Composite {
@@ -47,7 +48,9 @@ public class VaadinGridSample extends Composite {
     public VaadinGridSample() {
         initWidget(myUiBinder.createAndBindUi(this));
 
+        // info and filter will be used later.
         info.removeFromParent();
+        filter.removeFromParent();
 
         // We have a global list of contacts
         items = Sampler.contacts;
@@ -91,8 +94,8 @@ public class VaadinGridSample extends Composite {
                 return info.getPolymerElement();
             });
             // Open the row details on grid selection
-            grid.getPolymerElement().addEventListener("select", evnt -> {
-                JsArrayNumber n = grid.getSelection().selected().cast();
+            grid.getPolymerElement().addEventListener(SelectedItemsChangedEvent.NAME, evnt -> {
+                JsArrayNumber n = grid.getSelection().selected(null, 0, 200).cast();
                 grid.setRowDetailsVisible(opened, false);
                 if (n.length() == 1) {
                     grid.setRowDetailsVisible(opened = n.get(0), true);
@@ -101,7 +104,7 @@ public class VaadinGridSample extends Composite {
 
             // Feature: sorting data
             // Reorder data when clicking on the header sort arrows
-            grid.getPolymerElement().addEventListener("sort-order-changed", evnt -> {
+            grid.getPolymerElement().addEventListener(SortOrderChangedEvent.NAME, evnt -> {
                 SortOrder order =  grid.getSortOrder().get(0).cast();
 
                 int i = (int)order.getColumn();

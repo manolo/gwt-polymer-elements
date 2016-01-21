@@ -54,19 +54,10 @@
             }
 
             .icon-button-sample paper-icon-button.huge {
-                margin-left: 0px;
-                width: 50px;
+                margin: 0 auto;
+                width: 70px;
+                height: 70px;
                 --paper-icon-button-ink-color: var(--paper-indigo-500);
-            }
-
-            .icon-button-sample paper-icon-button.huge::shadow #icon {
-                width: 50px;
-                height: 50px;
-            }
-
-            .icon-button-sample paper-icon-button.huge #icon {
-                width: 50px;
-                height: 50px;
             }
         </style>
         <div class="horizontal-section-container center-justified layout">

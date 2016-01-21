@@ -7,7 +7,7 @@
     <groupId>com.vaadin.polymer</groupId>
     <artifactId>gwt-polymer-elements-demo</artifactId>
     <packaging>war</packaging>
-    <version>1.2.1.0-alpha1-SNAPSHOT</version>
+    <version>1.2.3.0-SNAPSHOT</version>
     <properties>
       <gwtVersion>2.8.0-SNAPSHOT</gwtVersion>
       <gwtPolymerVersion>${project.version}</gwtPolymerVersion>
@@ -34,18 +34,28 @@
        </repository>
     </repositories>
 
+    <dependencyManagement>
+      <dependencies>
+        <dependency>
+          <groupId>com.google.gwt</groupId>
+          <artifactId>gwt</artifactId>
+          <version>${gwtVersion}</version>
+          <type>pom</type>
+          <scope>import</scope>
+        </dependency>
+      </dependencies>
+    </dependencyManagement>
+
     <dependencies>
         <dependency>
             <groupId>com.google.gwt</groupId>
             <artifactId>gwt-user</artifactId>
             <scope>provided</scope>
-            <version>${gwtVersion}</version>
         </dependency>
         <dependency>
             <groupId>com.google.gwt</groupId>
             <artifactId>gwt-codeserver</artifactId>
             <scope>provided</scope>
-            <version>${gwtVersion}</version>
         </dependency>
 
         <!-- this is the dependency to the "jar"-subproject -->
@@ -60,6 +70,12 @@
             <artifactId>gwtquery</artifactId>
             <version>1.4.4-SNAPSHOT</version>
             <scope>provided</scope>
+            <exclusions>
+              <exclusion>
+                <groupId>com.google.gwt</groupId>
+                <artifactId>gwt-elemental</artifactId>
+              </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
 
@@ -83,7 +99,6 @@
                     <runTarget>demo.html</runTarget>
                     <draftCompile>false</draftCompile>
                     <optimizationLevel>9</optimizationLevel>
-                    <jsInteropMode>JS</jsInteropMode>
                     <disableCastChecking>true</disableCastChecking>
                     <disableClassMetadata>true</disableClassMetadata>
                     <enableAssertions>false</enableAssertions>

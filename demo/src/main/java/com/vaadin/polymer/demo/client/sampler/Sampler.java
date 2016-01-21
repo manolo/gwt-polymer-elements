@@ -20,7 +20,6 @@ import com.google.gwt.query.client.Properties;
 import com.google.gwt.query.client.plugins.ajax.Ajax;
 import com.google.gwt.resources.client.CssResource;
 import com.google.gwt.uibinder.client.UiBinder;
-import com.google.gwt.uibinder.client.UiFactory;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.History;
@@ -35,8 +34,11 @@ import com.vaadin.polymer.demo.client.sampler.gwt.JavaApiWidget;
 import com.vaadin.polymer.demo.client.sampler.gwt.UiBinderElement;
 import com.vaadin.polymer.demo.client.sampler.gwt.UiBinderWidget;
 import com.vaadin.polymer.demo.client.sampler.highlight.JsHighlight;
+import com.vaadin.polymer.demo.client.sampler.iron.IronAjaxSample;
 import com.vaadin.polymer.demo.client.sampler.iron.IronCollapseSample;
+import com.vaadin.polymer.demo.client.sampler.iron.IronIconsSample;
 import com.vaadin.polymer.demo.client.sampler.iron.IronImageSample;
+import com.vaadin.polymer.demo.client.sampler.iron.IronInputSample;
 import com.vaadin.polymer.demo.client.sampler.iron.IronListSample;
 import com.vaadin.polymer.demo.client.sampler.iron.IronSelectorSample;
 import com.vaadin.polymer.demo.client.sampler.paper.ButtonSample;
@@ -60,8 +62,9 @@ import com.vaadin.polymer.demo.client.sampler.paper.TabsSample;
 import com.vaadin.polymer.demo.client.sampler.paper.ToastSample;
 import com.vaadin.polymer.demo.client.sampler.paper.ToggleButtonSample;
 import com.vaadin.polymer.demo.client.sampler.paper.ToolbarSample;
+import com.vaadin.polymer.demo.client.sampler.vaadin.VaadinComboBoxSample;
 import com.vaadin.polymer.demo.client.sampler.vaadin.VaadinGridSample;
-import com.vaadin.polymer.elemental.Function;
+import com.vaadin.polymer.demo.client.sampler.vaadin.VaadinIconsSample;
 import com.vaadin.polymer.iron.widget.IronAjax;
 import com.vaadin.polymer.iron.widget.IronCollapse;
 import com.vaadin.polymer.iron.widget.IronSelector;
@@ -136,11 +139,16 @@ public class Sampler extends Composite {
         case "ToastSample": return new ToastSample();
         case "ToggleButtonSample": return new ToggleButtonSample();
         case "ToolbarSample": return new ToolbarSample();
+        case "IronAjaxSample": return new IronAjaxSample();
+        case "IronIconsSample": return new IronIconsSample();
+        case "IronInputSample": return new IronInputSample();
         case "IronCollapseSample": return new IronCollapseSample();
         case "IronImageSample": return new IronImageSample();
         case "IronListSample": return new IronListSample();
         case "IronSelectorSample": return new IronSelectorSample();
         case "VaadinGridSample": return new VaadinGridSample();
+        case "VaadinComboBoxSample": return new VaadinComboBoxSample();
+        case "VaadinIconsSample": return new VaadinIconsSample();
         }
         return null;
     }
@@ -176,6 +184,9 @@ public class Sampler extends Composite {
         addSample("Toolbar", "paper", "ToolbarSample");
 
         addCategory("iron", "Iron Elements");
+        addSample("Ajax", "iron", "IronAjaxSample");
+        addSample("Icons", "iron", "IronIconsSample");
+        addSample("Input", "iron", "IronInputSample");
         addSample("Collapse", "iron", "IronCollapseSample");
         addSample("Image", "iron", "IronImageSample");
         addSample("List", "iron", "IronListSample");
@@ -183,6 +194,8 @@ public class Sampler extends Composite {
 
         addCategory("vaadin", "Vaadin Elements");
         addSample("Grid", "vaadin", "VaadinGridSample");
+        addSample("Combo box", "vaadin", "VaadinComboBoxSample");
+        addSample("Vaadin Icons", "vaadin", "VaadinIconsSample");
 
         addCategory("gwt", "GWT Integration");
         addSample("Widget Java API", "gwt", "JavaApiWidget", false);
@@ -198,17 +211,16 @@ public class Sampler extends Composite {
 
         ironAjax.addResponseHandler(event -> {
             contacts = ironAjax.getLastResponse().cast();
+            selectItem(Window.Location.getHash().replace("#", ""));
             Polymer.endLoading(this.getElement(), collapseMap.lastEntry()
-                    .getValue().getElement(), o -> {
-                selectItem(Window.Location.getHash().replace("#", ""));
-                return null;
-            });
+                    .getValue().getElement());
         });
 
     }
 
     private void showSource(String category, String file) {
-        Ajax.get(API_PATH + category + "/" + file)
+        String branch = Window.Location.getParameter("ref");
+        Ajax.get(API_PATH + category + "/" + file + "?" + (branch != null ? "ref=" + branch : ""))
           .done(new com.google.gwt.query.client.Function() {
             native String atob(String b64) /*-{
                try {
@@ -349,7 +361,10 @@ public class Sampler extends Composite {
             History.newItem(category + "/" + path, false);
             currentLabel.setInnerText(name);
             xmlButton.setVisible(uixml);
-            setOpened(collapse, true);
+            collapse.ready(o -> {
+                setOpened(collapse, true);
+                return null;
+            });
             closeMenu();
         }
     }
@@ -359,8 +374,4 @@ public class Sampler extends Composite {
             drawerPanel.closeDrawer();
         }
     }
-
-    public static native void async(Function f, int timeout) /*-{
-       $wnd.Polymer.Base.async(f, timeout);
-    }-*/;
 }
