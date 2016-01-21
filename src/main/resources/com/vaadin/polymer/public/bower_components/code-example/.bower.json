@@ -1,0 +1,35 @@
+{
+  "name": "code-example",
+  "homepage": "https://github.com/jounik/code-example",
+  "authors": [
+    "Jouni Koivuviita <jouni@jouni.me>"
+  ],
+  "description": "A custom HTML element for showing a live example with the source code visually next to it.",
+  "main": "code-example.html",
+  "keywords": [
+    "web-components",
+    "polymer",
+    "code"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^v1.0.5",
+    "clipboard": "~1.5.5"
+  },
+  "_release": "2f28a6a817",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "2f28a6a817c6cda4a43072f86dc9377d2a88680e"
+  },
+  "_source": "git://github.com/jounik/code-example.git",
+  "_target": "master",
+  "_originalSource": "code-example"
+}

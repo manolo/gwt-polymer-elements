@@ -1,0 +1,385 @@
+<!--
+@license
+Copyright (c) 2015 Vaadin Ltd.
+This program is available under Apache License Version 2.0, available at https://vaadin.com/license/
+-->
+
+<!--
+`<vaadin-combo-box>` is a combo box element combining a dropdown list with an
+input field for filtering the list of items.
+
+Items in the dropdown list must be provided as a list of `String` values.
+Defining the items is done using the `items` property, which can be assigned
+with data-binding, using an attribute or directly with the JavaScript property.
+
+```html
+<vaadin-combo-box
+    label="Fruit"
+    items="[[data]]">
+</vaadin-combo-box>
+```
+
+```js
+combobox.items = ['apple', 'orange', 'banana'];
+```
+
+When the selected `value` is changed, a `value-changed` event is triggered.
+
+This element is also extended with the `IronFormElementBehavior` to
+enable usage within an `iron-form`.
+
+@element vaadin-combo-box
+@demo demo/
+-->
+
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-input/paper-input-container.html">
+<link rel="import" href="../iron-input/iron-input.html">
+<link rel="import" href="../paper-ripple/paper-ripple.html">
+<link rel="import" href="../iron-icons/iron-icons.html">
+<link rel="import" href="../iron-icon/iron-icon.html">
+<link rel="import" href="../iron-form-element-behavior/iron-form-element-behavior.html">
+<link rel="import" href="../iron-validatable-behavior/iron-validatable-behavior.html">
+<link rel="import" href="../iron-a11y-keys-behavior/iron-a11y-keys-behavior.html">
+<link rel="import" href="../iron-a11y-announcer/iron-a11y-announcer.html">
+<link rel="import" href="vaadin-combo-box-overlay.html">
+<link rel="import" href="vaadin-dropdown-behavior.html">
+
+<dom-module id="vaadin-combo-box">
+  <style>
+    :host {
+       display: block;
+    }
+
+    :host > #overlay {
+      display: none;
+    }
+
+    paper-input-container {
+      position: relative;
+      padding-bottom: 0;
+    }
+
+    paper-input-container[opened] {
+      /* Keep the paper-input-container above the dropdown. */
+      z-index: 20;
+    }
+
+    paper-input-container div[suffix] {
+      position: relative;
+      width: 24px;
+      height: 24px;
+    }
+
+    paper-input-container iron-icon {
+      fill: rgba(0, 0, 0, .26);
+      cursor: pointer;
+      padding: 0px;
+      width: 24px;
+      height: 24px;
+      transition: all .2s;
+    }
+
+    paper-input-container paper-ripple {
+      color: rgba(0, 0, 0, .54);
+    }
+
+    paper-input-container[opened] iron-icon {
+      fill: rgba(0, 0, 0, .54);
+      transform: rotate(-180deg);
+    }
+  </style>
+
+  <template>
+    <paper-input-container class="dropdown-input" id="inputContainer" opened$="[[opened]]">
+      <label id="label" on-tap="open">[[label]]</label>
+      <input
+          is="iron-input"
+          id="input"
+          role="combobox"
+          aria-activedescendant$="[[_ariaActiveIndex]]"
+          aria-expanded$="[[_getAriaExpanded(opened)]]"
+          aria-labelledby="label"
+          aria-autocomplete="list" aria-owns="overlay"
+          autocomplete="off"
+          bind-value="[[value]]"
+          name$="[[name]]"
+          type="text"
+          required$="[[required]]"
+          on-bind-value-changed="_inputValueChanged"
+          on-blur="_onBlur"
+          on-tap="open"
+          key-event-target>
+      <div suffix on-tap="toggle" on-touchend="_preventDefault">
+        <iron-icon icon="arrow-drop-down" aria-controls="overlay"></iron-icon>
+        <paper-ripple class="circle" center></paper-ripple>
+      </div>
+    </paper-input-container>
+
+    <vaadin-combo-box-overlay
+        id="overlay"
+        _aria-active-index="{{_ariaActiveIndex}}"
+        _selected-item="{{_selectedItem}}"
+        position-target="[[_positionTarget]]"
+        _focused-index="[[_focusedIndex]]"
+        on-down="_blurInput"
+        vertical-offset="2">
+    </vaadin-combo-box-overlay>
+  </template>
+</dom-module>
+
+<script>
+  Polymer({
+    is: 'vaadin-combo-box',
+
+    behaviors: [
+      Polymer.IronFormElementBehavior,
+      Polymer.IronValidatableBehavior,
+      Polymer.IronA11yKeysBehavior,
+      vaadin.elements.combobox.DropdownBehavior
+    ],
+
+    properties: {
+      /**
+       * An array of `String` values to be displayed as options in the dropdown.
+       */
+      items: {
+        type: Array,
+        observer: '_setItems'
+      },
+
+      /**
+       * The value for this element.
+       */
+      value: {
+        type: String,
+        observer: 'close'
+      },
+
+      /**
+       * The label for this element.
+       */
+      label: {
+        type: String,
+        reflectToAttribute: true
+      },
+
+      _positionTarget: {
+        type: Object,
+        value: function() {
+          return this.$.inputContainer;
+        }
+      },
+
+      _focusedIndex: {
+        type: Number,
+        value: -1
+      }
+    },
+
+    listeners: {
+      'vaadin-dropdown-opened': '_onOpened',
+      'vaadin-dropdown-closed': '_onClosed'
+    },
+
+    ready: function() {
+      this._addKeyEventListeners();
+      Polymer.IronA11yAnnouncer.requestAvailability();
+    },
+
+    /**
+     * Keyboard navigation
+     */
+
+    // iron-dropdown locks scrolling outside the overlay and prevents all scrolling
+    // related events from propagating. So, we needed to either hack into the
+    // iron-dropdown or provide custom event handling.
+    _addKeyEventListeners: function() {
+      document.addEventListener('keydown', function(e) {
+        if (this._isEventKey(e, 'left right')) {
+          e.stopImmediatePropagation();
+        }
+      }.bind(this), true);
+
+      this.addEventListener('keydown', function(e) {
+        if (this._isEventKey(e, 'down')) {
+          this._onArrowDown();
+        } else if (this._isEventKey(e, 'up')) {
+          this._onArrowUp();
+        } else if (this._isEventKey(e, 'enter')) {
+          this._onEnter(e);
+        } else if (this._isEventKey(e, 'esc')) {
+          this._onEscape();
+        }
+      }.bind(this));
+    },
+
+    _isEventKey: function(e, k) {
+      return Polymer.IronA11yKeysBehavior.keyboardEventMatchesKeys(e, k);
+    },
+
+    _onArrowDown: function() {
+      if (this.opened) {
+        this._focusedIndex = Math.min(this.$.overlay._items.length - 1, this._focusedIndex + 1);
+      } else {
+        this.open();
+      }
+    },
+
+    _onArrowUp: function() {
+      if (this.opened) {
+        if (this._focusedIndex > -1) {
+          this._focusedIndex = Math.max(0, this._focusedIndex - 1);
+        }
+      } else {
+        this.open();
+      }
+    },
+
+    _onEnter: function(e) {
+      if (this.opened) {
+        if (this._focusedIndex > -1) {
+          this.close();
+          this.$.overlay._selectItem(this._focusedIndex);
+        } else if (this.$.input.bindValue === undefined || this.$.input.bindValue === '') {
+          this.close();
+          this.value = undefined;
+        }
+        // Do not submit the surrounding form.
+        e.preventDefault();
+      }
+    },
+
+    _onEscape: function() {
+      this.close();
+    },
+
+    /**
+     * Opening and closing related functionality
+     */
+
+    _onBlur: function() {
+      // Async needed to access the new activeElement reliably.
+      this.async(function() {
+        var focusInsideCombobox = this.contains(document.activeElement);
+
+        // When grabbing the scroll handle, the activeElement will become
+        // the body on some browsers, so check for it also.
+        if (!focusInsideCombobox && document.activeElement !== document.body) {
+          this.close();
+        }
+      }, 1);
+    },
+
+    _blurInput: function() {
+      this.$.input.blur();
+    },
+
+    /**
+     * Opens and closes the dropdown list.
+     */
+    toggle: function() {
+      if (this.opened) {
+        this.close();
+
+        // Refocus input field after clicking the toggle button, but not for touch devices,
+        // because we don't want to popup the virtual keyboard.
+        if (!this.$.overlay.touchDevice) {
+          this.$.input.focus();
+        }
+      } else {
+        this.open();
+      }
+    },
+
+    _onOpened: function() {
+      this.$.overlay.notifyResize();
+
+      this._setItems(this.items);
+      this.$.overlay._scrollIntoView(this._focusedIndex);
+    },
+
+    _onClosed: function() {
+      this.$.input.bindValue = this.value;
+    },
+
+    /**
+     * WAI-ARIA
+     */
+
+    _getAriaExpanded: function(value) {
+      return value.toString();
+    },
+
+    /**
+     *  Filtering and items handling
+     */
+
+    _inputValueChanged: function(event) {
+      if (!this.opened && this._isFiltering(event)) {
+        this.open();
+      }
+      if (this.opened && this.items) {
+        this._setItems(this._filter(this.items, this.$.input.bindValue));
+      }
+    },
+
+    _filter: function(arr, filter) {
+      return arr.filter(function(item) {
+        filter = filter || '';
+
+        // Check if item contains input value.
+        return item.toString().toLowerCase()
+                .indexOf(filter.toString().toLowerCase()) > -1;
+      }.bind(this));
+    },
+
+    _isFiltering: function(event) {
+      var filterOrValueIsSet = (event.detail.value || typeof this.value !== 'undefined');
+      var filterIsNotValue = this.$.input.bindValue !== this.value;
+
+      return filterOrValueIsSet && filterIsNotValue;
+    },
+
+    _setItems: function(items) {
+      this.unlisten(this.$.overlay, '_selected-item-changed', '_selectedItemChanged');
+      this.$.overlay._items = items;
+
+      if (this.$.overlay._items && this.$.overlay._items.indexOf(this.value) > -1) {
+        this.$.overlay._selectItem(this.value);
+      }
+
+      if (this.$.overlay._items) {
+        this._focusedIndex = this.$.overlay._items.indexOf(this.$.input.bindValue);
+      }
+      this.listen(this.$.overlay, '_selected-item-changed', '_selectedItemChanged');
+    },
+
+    _selectedItemChanged: function(event, selectedItem) {
+      if (selectedItem.value !== null) {
+        this.value = selectedItem.value;
+      } else if (this.opened) {
+        this.close();
+      }
+    },
+
+    _preventDefault: function(e) {
+      e.preventDefault();
+    },
+
+    /**
+    * Validates the input element and sets an error style if needed.
+    *
+    * @return {boolean}
+    */
+    _getValidity: function() {
+      return this.$.input.validate();
+    }
+  });
+
+  /**
+   * Fired when the value changes.
+   *
+   * @event value-changed
+   */
+</script>

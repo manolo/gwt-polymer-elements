@@ -1,0 +1,39 @@
+/*
+ * This code was generated with Vaadin Web Component GWT API Generator, 
+ * from iron-icons project by The Polymer Authors
+ * that is licensed with http://polymer.github.io/LICENSE.txt license.
+ */
+package com.vaadin.polymer.iron;
+
+import com.vaadin.polymer.elemental.*;
+import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.core.client.JsArray;
+import jsinterop.annotations.JsOverlay;
+import jsinterop.annotations.JsProperty;
+import jsinterop.annotations.JsType;
+
+/**
+ * <p><code>iron-icons</code> is a utility import that includes the definition for the <code>iron-icon</code> element, <code>iron-iconset-svg</code> element, as well as an import for the default icon set.</p>
+ * <p>The <code>iron-icons</code> directory also includes imports for additional icon sets that can be loaded into your project.</p>
+ * <p>Example loading icon set:</p>
+ * <pre><code>&lt;link rel=&quot;import&quot; href=&quot;../iron-icons/maps-icons.html&quot;&gt;
+ * 
+ * 
+ * </code></pre><p>To use an icon from one of these sets, first prefix your <code>iron-icon</code> with the icon set name, followed by a colon, “:”, and then the icon id.</p>
+ * <p>Example using the directions-bus icon from the maps icon set:</p>
+ * <pre><code>&lt;iron-icon icon=&quot;maps:directions-bus&quot;&gt;&lt;/iron-icon&gt;
+ * 
+ * 
+ * 
+ * </code></pre><p>See <a href="#iron-icon">iron-icon</a> for more information about working with icons.</p>
+ * <p>See <a href="#iron-iconset">iron-iconset</a> and <a href="#iron-iconset-svg">iron-iconset-svg</a> for more information about how to create a custom iconset.</p>
+ */
+@JsType(isNative=true)
+public interface IronIconsElement extends HTMLElement {
+
+    @JsOverlay public static final String TAG = "iron-icons";
+    @JsOverlay public static final String SRC = "iron-icons/iron-icons.html";
+
+
+
+}

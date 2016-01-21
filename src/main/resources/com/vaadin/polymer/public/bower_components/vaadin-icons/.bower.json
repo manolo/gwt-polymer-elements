@@ -1,0 +1,41 @@
+{
+  "name": "vaadin-icons",
+  "homepage": "https://github.com/vaadin/vaadin-icons",
+  "authors": [
+    "Vaadin Ltd"
+  ],
+  "keywords": [
+    "web-component",
+    "web-components",
+    "polymer",
+    "vaadin",
+    "icons",
+    "vaadin-icons"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.1.1",
+    "iron-icon": "polymerelements/iron-icon#~1.0.5",
+    "iron-iconset-svg": "polymerelements/iron-iconset-svg#~1.0.6"
+  },
+  "_release": "ff46612ce2",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "ff46612ce26e839d987bdea1d5a62ecb92b5f3aa"
+  },
+  "_source": "git://github.com/vaadin/vaadin-icons.git",
+  "_target": "master",
+  "_originalSource": "vaadin/vaadin-icons",
+  "_direct": true
+}

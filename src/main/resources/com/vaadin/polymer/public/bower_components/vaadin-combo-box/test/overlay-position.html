@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset='UTF-8'>
+  <title>vaadin-combo-box resizing tests</title>
+  <script src='../../webcomponentsjs/webcomponents-lite.js'></script>
+  <script src='../../web-component-tester/browser.js'></script>
+  <script src='../../test-fixture/test-fixture-mocha.js'></script>
+
+  <link rel='import' href='common.html'>
+  <script src="common.js"></script>
+
+</head>
+
+<body>
+
+<test-fixture id='combobox'>
+  <template>
+    <vaadin-combo-box label='combobox' style='width: 300px'></vaadin-combo-box>
+  </template>
+</test-fixture>
+
+<script>
+  var comboBox;
+
+  var wh = window.innerHeight;
+  var ww = window.innerWidth;
+  var horiCenter =  ww * 0.5;
+  var vertTop = 0, vertBottom = wh;
+
+  // The ideal test would be to resize the window, but testing system disallows
+  // resizing the iframe, but moving the combo-box using styles and firing
+  // window.onresize event is equivalent.
+  function moveComboBox(left, top, width) {
+    comboBox.style.position = 'fixed';
+    comboBox.style.width = width + 'px';
+    comboBox.style.top = top + 'px';
+    comboBox.style.left = left + 'px';
+    if (document.createEvent) {
+      // using old way because IE11 does not support: new Event('resize')
+      var ev = document.createEvent('Event');
+      ev.initEvent('resize', true, true);
+      window.dispatchEvent(ev);
+    } else { // Old IE
+      var event = document.createEventObject();
+      element.fireEvent('onresize', event);
+    }
+  }
+
+  function dropContent() {
+    return comboBox.$.overlay;
+  }
+  function dropContentRect() {
+    return dropContent().getBoundingClientRect();
+  }
+  function inputContentRect() {
+    return comboBox.$.inputContainer.getBoundingClientRect();
+  }
+
+  describe('overlay', function() {
+    beforeEach(function(done) {
+      comboBox = fixture('combobox');
+      comboBox.items = getItemArray(20);
+
+      // <paper-input-container> adds floated-label-placeholder div asynchronously,
+      // we want to wait that out so that the dropdown clientHeight is calculated correctly.
+      return Polymer.Base.async(done);
+    });
+
+    afterEach(function() {
+      // clean out <vaadin-overlay> elements from body.
+      comboBox.close();
+    });
+
+    describe('overlay position', function() {
+      it('should match the input container width', function() {
+        comboBox.open();
+
+        expect(dropContentRect().width).to.equal(inputContentRect().width);
+      });
+
+      it('should be below the input box', function() {
+        comboBox.open();
+
+        expect(dropContentRect().top).to.equal(inputContentRect().bottom + comboBox.$.overlay.verticalOffset);
+      });
+
+      it('should be aligned with input container', function() {
+        comboBox.open();
+
+        expect(dropContentRect().left).to.equal(inputContentRect().left);
+      });
+
+      it('when the input position moves in the view port the overlay position should change', function() {
+        moveComboBox(horiCenter, vertTop, 100);
+
+        comboBox.open();
+
+        expect(dropContentRect().left).to.equal(inputContentRect().left);
+
+        expect(dropContentRect().top).to.equal(inputContentRect().bottom + comboBox.$.overlay.verticalOffset);
+      });
+
+      it('when the input position width changes overlay width should change', function() {
+        moveComboBox(horiCenter, vertBottom, 150);
+
+        comboBox.open();
+
+        expect(dropContentRect().width).to.equal(inputContentRect().width);
+      });
+    });
+  });
+</script>
+
+</body>
+
+</html>
