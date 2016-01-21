@@ -44,7 +44,7 @@ git commit -m 'tmp: Adding stuff needed for releasing library' pom.xml src
 
 # Perform the release, this command is interactive and will prompt for
 # version numbers and sign passwords
-mvn clean release:prepare release:perform
+mvn clean release:prepare release:perform -DignoreSnapshots=true
 
 # New development version is changed by release:prepare
 newVersion=`cat pom.xml  | grep /version | grep SNAPSHOT | head -1 | sed -e 's,.*>\(.*\)-SNAPSHOT<.*,\1,'`
