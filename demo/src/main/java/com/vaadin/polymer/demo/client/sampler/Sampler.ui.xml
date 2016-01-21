@@ -148,7 +148,7 @@
                         <span class="flex"></span>
                         <p:PaperButton ui:field="help" addStyleNames="{style.buttons}"><i:IronIcon icon="help"/>About</p:PaperButton>
                         <div class="{style.source-buttons} bottom flex">
-                            <spam>VIEW SOURCE: </spam>
+                            <span>VIEW SOURCE: </span>
                             <p:PaperButton ui:field="javaButton" addStyleNames="{style.buttons}">.java<i:IronIcon icon="launch"/></p:PaperButton>
                             <p:PaperButton ui:field="xmlButton" addStyleNames="{style.buttons}">.ui.xml<i:IronIcon icon="launch"/></p:PaperButton>
                         </div>
