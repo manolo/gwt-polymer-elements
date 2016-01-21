@@ -21,7 +21,7 @@
 
 ## Using the GWT library
 
-_**NOTICE** : We make extensive use of `JsInterop` a new feature in `GWT` for easily interacting with JavaScript. It is experimental in `GWT-2.7` and stable in `GWT-2.8-SNAPSHOT`, but starting from gwt-polymer-elements-1.2.1.0.beta1, we don't support 2.7.0 anymore. Thus, double check that you are using latest GWT, and you enable it via the **`-XjsInteropMode JS_RC`** flag, otherwise you will get **`Uncaught java.lang.ClassCastException`** errors in the JavaScript console._
+_**NOTICE** : We make extensive use of `JsInterop` a new feature in `GWT` for easily interacting with JavaScript. It is experimental in `GWT-2.7` and will be stable in `GWT-2.8.0`, but starting from gwt-polymer-elements-1.2.1.0.beta1, we don't support 2.7.0 anymore nor it's legacy JsInterop syntax. If you got **`Uncaught java.lang.ClassCastException`** errors in the JavaScript console when running your application, it does mean that you are not using `GWT-2.8.0-SNAPSHOT`_
 
 ### Add vaadin-gwt-polymer-elements to your CLASSPATH
 The `.jar` file includes all the java code and web components of
