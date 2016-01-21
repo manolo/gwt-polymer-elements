@@ -8,6 +8,9 @@
           .vertical-section {
             line-height: 40px;
           }
+          input {
+            width: 150px;
+          }
           input[is=iron-input] {
             width: 100%;
           }

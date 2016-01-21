@@ -6,7 +6,6 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.vaadin.polymer.Polymer;
-import com.vaadin.polymer.elemental.Function;
 import com.vaadin.polymer.elemental.Template;
 
 public class IronIconsSample extends Composite {
@@ -21,7 +20,7 @@ public class IronIconsSample extends Composite {
         initWidget(ourUiBinder.createAndBindUi(this));
 
         // Example of how to bind functions to custom elements. 
-        Polymer.property(bindTemplate, "getIconNames",
-                (Function<?,?>) iconSet -> Polymer.apply(iconSet, "getIconNames"));
+        Polymer.function(bindTemplate, "getIconNames",
+                iconSet -> Polymer.apply(iconSet, "getIconNames"));
     }
 }
