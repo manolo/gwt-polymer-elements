@@ -211,11 +211,9 @@ public class Sampler extends Composite {
 
         ironAjax.addResponseHandler(event -> {
             contacts = ironAjax.getLastResponse().cast();
+            selectItem(Window.Location.getHash().replace("#", ""));
             Polymer.endLoading(this.getElement(), collapseMap.lastEntry()
-                    .getValue().getElement(), o -> {
-                selectItem(Window.Location.getHash().replace("#", ""));
-                return null;
-            });
+                    .getValue().getElement());
         });
 
     }

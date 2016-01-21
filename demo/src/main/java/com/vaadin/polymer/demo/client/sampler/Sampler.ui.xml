@@ -106,10 +106,12 @@
         paper-header-panel[mode="waterfall-tall"]  #mainContainer {
           overflow: auto;
         }
-
+        .hidden {
+           opacity: 0;
+        }
     </ui:style>
 
-    <g:HTMLPanel>
+    <g:HTMLPanel addStyleNames="{style.hidden}">
        <style is='custom-style'>
         .iconpolymer {
            --paper-fab-background: var(--paper-purple-500);
