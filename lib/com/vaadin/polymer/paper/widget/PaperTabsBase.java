@@ -25,10 +25,10 @@ public abstract class PaperTabsBase extends PolymerWidget {
     // A temporary workaround to fix the underline tab issue
     // Not a solution.
     private native void fixTabsSelection(Element e) /*-{
-        @com.vaadin.polymer.Polymer::onReady(*)(e, function(){
+        @com.vaadin.polymer.Polymer::whenReady(Lcom/vaadin/polymer/elemental/Function;Lcom/google/gwt/dom/client/Element;)(function(){
           setTimeout(function() {
             e._onResize();
           }, 400);
-        });
+        }, e);
     }-*/;
   }
