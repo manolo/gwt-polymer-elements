@@ -87,7 +87,7 @@ public class VaadinGridSample extends Composite {
             // Feature: row details
             // Generate a widget to show the details of a row
             grid.setRowDetailsGenerator(index -> {
-                int i = ((Double)index).intValue();
+                int i = ((Properties)index).getInt("a");
                 Properties u = items.get(i);
                 img.setSrc(u.get("image"));
                 txt.setInnerText(u.get("mediumText"));
