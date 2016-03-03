@@ -36,6 +36,6 @@ public class VaadinComboBoxSample extends Composite {
     @UiHandler("comboBox")
     public void valueChanged(ValueChangedEvent e) {
         toast.setText("Value Changed: " + comboBox.getValue());
-        toast.show();
+        toast.open();
     }
 }

@@ -42,12 +42,12 @@ public class UiBinderWidget extends Composite {
     void tabSelected(IronSelectEvent event) {
         PaperTabElement tab = (PaperTabElement) event.getItem();
         toast.setText("widget event handler:" + tab.getTextContent());
-        toast.show();
+        toast.open();
     }
 
     @UiHandler({"button1", "button2"})
     void buttonClicked(ClickEvent event) {
         toast.setText("widget event handler:" + ((Button)event.getSource()).getElement().getInnerText());
-        toast.show();
+        toast.open();
     }
 }

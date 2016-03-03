@@ -27,14 +27,14 @@ public class ToastSample extends Composite {
         button1.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent clickEvent) {
-                toast1.show();
+                toast1.open();
             }
         });
 
         button2.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent clickEvent) {
-                toast2.show();
+                toast2.open();
             }
         });
     }

@@ -33,7 +33,7 @@ public class UiBinderElement extends Widget {
                 public void handleEvent(IronSelectEvent event) {
                     PaperTabElement tab = (PaperTabElement)event.getDetail().getItem();
                     toast.setText("Tab \"" + tab.getTextContent() + "\" has been selected");
-                    toast.show();
+                    toast.open();
                 }
             });
             return null;
