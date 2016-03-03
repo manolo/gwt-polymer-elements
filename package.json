@@ -8,7 +8,7 @@
     "gwt-api-generator": "vaadin/gwt-api-generator#master"
   },
   "scripts": {
-    "postinstall":"node node_modules/gwt-api-generator/bin/gwt-api-generator.js --package=PolymerElements/paper-elements,PolymerElements/iron-elements,vaadin/vaadin-grid#master,vaadin/vaadin-combo-box#master,vaadin/vaadin-icons#master  --artifactId=vaadin-gwt-polymer-elements --groupId=com.vaadin.polymer --pom && mvn clean install javadoc:jar"
+    "postinstall":"node node_modules/gwt-api-generator/bin/gwt-api-generator.js --package=PolymerElements/paper-elements,PolymerElements/iron-elements,vaadin/vaadin-grid#master,vaadin/vaadin-combo-box#master,vaadin/vaadin-icons#master,vaadin/vaadin-date-picker#master,vaadin/vaadin-upload#master  --artifactId=vaadin-gwt-polymer-elements --groupId=com.vaadin.polymer --pom && mvn clean install javadoc:jar"
   },
   "pom": {
     "version" : "1.2.3.1",
