@@ -28,10 +28,11 @@ public class UiBinderElement extends Widget {
         // DOM.createElement instead of Polymer.createElement, so we need to
         // import web components hrefs by hand, and continue the flow
         // asynchronously
-        Polymer.importHref(Arrays.asList(PaperTabsElement.SRC, PaperTabElement.SRC), o -> {
+        Polymer.importHref(Arrays.asList(PaperTabsElement.SRC, PaperTabElement.SRC, PaperToastElement.SRC), o -> {
             paperTabs.addEventListener(IronSelectEvent.NAME, new EventListener<IronSelectEvent>() {
                 public void handleEvent(IronSelectEvent event) {
                     PaperTabElement tab = (PaperTabElement)event.getDetail().getItem();
+                    toast.close();
                     toast.setText("Tab \"" + tab.getTextContent() + "\" has been selected");
                     toast.open();
                 }
