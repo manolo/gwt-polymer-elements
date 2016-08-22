@@ -9,10 +9,9 @@
     <g:HTMLPanel >
 
        <i:IronAjax ui:field="ironAjax" url="gwtPolymerDemo/elements.json" auto="true"/>
+       <p:PaperToast ui:field="toast" />
        
        <v:VaadinComboBox ui:field="comboBox" label="Element" />
-       
-       <p:PaperToast ui:field="toast" />
 
     </g:HTMLPanel>
 </ui:UiBinder>

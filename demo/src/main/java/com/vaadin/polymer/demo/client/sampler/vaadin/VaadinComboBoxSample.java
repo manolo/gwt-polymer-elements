@@ -7,6 +7,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
+import com.vaadin.polymer.Polymer;
 import com.vaadin.polymer.iron.widget.IronAjax;
 import com.vaadin.polymer.paper.widget.PaperToast;
 import com.vaadin.polymer.vaadin.widget.VaadinComboBox;
@@ -35,7 +36,10 @@ public class VaadinComboBoxSample extends Composite {
 
     @UiHandler("comboBox")
     public void valueChanged(ValueChangedEvent e) {
-        toast.setText("Value Changed: " + comboBox.getValue());
-        toast.open();
+        if (!comboBox.getValue().isEmpty()) {
+            toast.close();
+            toast.setText("Value Changed: " + comboBox.getValue());
+            toast.open();
+        }
     }
 }
