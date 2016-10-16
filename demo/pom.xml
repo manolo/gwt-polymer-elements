@@ -9,7 +9,7 @@
     <packaging>war</packaging>
     <version>1.2.3.1-SNAPSHOT</version>
     <properties>
-      <gwtVersion>2.8.0-SNAPSHOT</gwtVersion>
+      <gwtVersion>2.8.0-rc3</gwtVersion>
       <gwtPolymerVersion>${project.version}</gwtPolymerVersion>
       <maven.compiler.target>1.8</maven.compiler.target>
       <maven.compiler.source>1.8</maven.compiler.source>
@@ -82,28 +82,40 @@
     <build>
         <finalName>gwt-polymer-demo</finalName>
         <plugins>
+
+
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
+                <groupId>net.ltgt.gwt.maven</groupId>
                 <artifactId>gwt-maven-plugin</artifactId>
-                <version>2.7.0</version>
+                <version>1.0-rc-6</version>
                 <executions>
-                    <!-- GWT version detected from dependencyManagement -->
-                    <execution>
-                        <goals>
-                            <goal>compile</goal>
-                            <!--<goal>generateAsync</goal>-->
-                        </goals>
-                    </execution>
+                  <execution>
+                    <goals>
+                      <goal>import-sources</goal>
+                      <goal>compile</goal>
+                    </goals>
+                  </execution>
                 </executions>
                 <configuration>
-                    <runTarget>demo.html</runTarget>
-                    <draftCompile>false</draftCompile>
-                    <optimizationLevel>9</optimizationLevel>
-                    <disableCastChecking>true</disableCastChecking>
-                    <disableClassMetadata>true</disableClassMetadata>
-                    <enableAssertions>false</enableAssertions>
-                    <closureCompiler>true</closureCompiler>
-                    <bindAddress>0.0.0.0</bindAddress>
+                  <moduleName>com.vaadin.polymer.demo.Demo</moduleName>
+                  <moduleShortName>gwtPolymerDemo</moduleShortName>
+                  <failOnError>true</failOnError>
+                  <compilerArgs>
+                    <arg>-compileReport</arg>
+                    <arg>-XcompilerMetrics</arg>
+                  </compilerArgs>
+                  <devmodeArgs>
+                    <arg>-bindAddress</arg><arg>0.0.0.0</arg>
+                  </devmodeArgs>
+                  <codeserverArgs>
+                    <arg>-bindAddress</arg><arg>0.0.0.0</arg>
+                    <arg>-gen</arg><arg>${project.build.directory}/.generated</arg>
+                  </codeserverArgs>
+                  <warDir>${project.build.directory}/${project.build.finalName}</warDir>
+                  <classpathScope>compile+runtime</classpathScope>
+                  <startupUrls>
+                    <startupUrl>demo.html</startupUrl>
+                  </startupUrls>
                 </configuration>
             </plugin>
             <plugin>
