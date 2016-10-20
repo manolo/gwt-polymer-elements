@@ -1,11 +1,5 @@
 package com.vaadin.polymer.demo.client.sampler;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
-
 import com.google.gwt.core.client.JsArray;
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.dom.client.HeadingElement;
@@ -28,6 +22,7 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Widget;
+
 import com.vaadin.polymer.Polymer;
 import com.vaadin.polymer.demo.client.sampler.gwt.JavaApiElement;
 import com.vaadin.polymer.demo.client.sampler.gwt.JavaApiWidget;
@@ -62,9 +57,14 @@ import com.vaadin.polymer.demo.client.sampler.paper.TabsSample;
 import com.vaadin.polymer.demo.client.sampler.paper.ToastSample;
 import com.vaadin.polymer.demo.client.sampler.paper.ToggleButtonSample;
 import com.vaadin.polymer.demo.client.sampler.paper.ToolbarSample;
+import com.vaadin.polymer.demo.client.sampler.paper.TooltipSample;
 import com.vaadin.polymer.demo.client.sampler.vaadin.VaadinComboBoxSample;
+import com.vaadin.polymer.demo.client.sampler.vaadin.VaadinContextMenuSample;
+import com.vaadin.polymer.demo.client.sampler.vaadin.VaadinDatePickerSample;
 import com.vaadin.polymer.demo.client.sampler.vaadin.VaadinGridSample;
 import com.vaadin.polymer.demo.client.sampler.vaadin.VaadinIconsSample;
+import com.vaadin.polymer.demo.client.sampler.vaadin.VaadinSplitLayoutSample;
+import com.vaadin.polymer.demo.client.sampler.vaadin.VaadinUploadSample;
 import com.vaadin.polymer.iron.widget.IronAjax;
 import com.vaadin.polymer.iron.widget.IronCollapse;
 import com.vaadin.polymer.iron.widget.IronSelector;
@@ -72,6 +72,12 @@ import com.vaadin.polymer.paper.widget.PaperButton;
 import com.vaadin.polymer.paper.widget.PaperDialog;
 import com.vaadin.polymer.paper.widget.PaperDrawerPanel;
 import com.vaadin.polymer.paper.widget.PaperItem;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class Sampler extends Composite {
 
@@ -136,6 +142,7 @@ public class Sampler extends Composite {
         case "SpinnerSample": return new SpinnerSample();
         case "SliderSample": return new SliderSample();
         case "TabsSample": return new TabsSample();
+        case "TooltipSample": return new TooltipSample();
         case "ToastSample": return new ToastSample();
         case "ToggleButtonSample": return new ToggleButtonSample();
         case "ToolbarSample": return new ToolbarSample();
@@ -148,6 +155,10 @@ public class Sampler extends Composite {
         case "IronSelectorSample": return new IronSelectorSample();
         case "VaadinGridSample": return new VaadinGridSample();
         case "VaadinComboBoxSample": return new VaadinComboBoxSample();
+        case "VaadinDatePickerSample": return new VaadinDatePickerSample();
+        case "VaadinUploadSample": return new VaadinUploadSample();
+        case "VaadinSplitLayoutSample": return new VaadinSplitLayoutSample();
+        case "VaadinContextMenuSample": return new VaadinContextMenuSample();
         case "VaadinIconsSample": return new VaadinIconsSample();
         }
         return null;
@@ -179,6 +190,7 @@ public class Sampler extends Composite {
         addSample("Spinner", "paper", "SpinnerSample");
         addSample("Slider", "paper", "SliderSample");
         addSample("Tabs", "paper", "TabsSample");
+        addSample("Tooltip", "paper", "TooltipSample");
         addSample("Toast", "paper", "ToastSample");
         addSample("Toggle Button", "paper", "ToggleButtonSample");
         addSample("Toolbar", "paper", "ToolbarSample");
@@ -195,6 +207,10 @@ public class Sampler extends Composite {
         addCategory("vaadin", "Vaadin Elements");
         addSample("Grid", "vaadin", "VaadinGridSample");
         addSample("Combo box", "vaadin", "VaadinComboBoxSample");
+        addSample("Date picker", "vaadin", "VaadinDatePickerSample");
+        addSample("Uploader", "vaadin", "VaadinUploadSample");
+        addSample("Split layout", "vaadin", "VaadinSplitLayoutSample");
+        addSample("Context menu", "vaadin", "VaadinContextMenuSample");
         addSample("Vaadin Icons", "vaadin", "VaadinIconsSample");
 
         addCategory("gwt", "GWT Integration");

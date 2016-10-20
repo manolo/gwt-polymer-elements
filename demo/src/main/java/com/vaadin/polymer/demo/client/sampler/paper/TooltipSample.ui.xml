@@ -1,0 +1,134 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:i='urn:import:com.vaadin.polymer.iron.widget'
+             xmlns:p='urn:import:com.vaadin.polymer.paper.widget'>
+
+    <ui:style>
+
+    </ui:style>
+
+    <g:HTMLPanel addStyleNames="tooltip-sample">
+        <style is="custom-style">
+            .tooltip-sample .horizontal-section {
+                min-width: 120px;
+            }
+
+            .tooltip-sample .with-tooltip {
+                display: inline-block;
+                margin-bottom: 30px;
+                overflow: hidden;
+            }
+
+            .tooltip-sample .avatar {
+                display: block;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                overflow: hidden;
+                background: #ccc;
+                margin: 0 auto 20px auto;
+                cursor: pointer;
+            }
+
+            .tooltip-sample .blue {
+                background-color: var(--paper-light-blue-300);
+            }
+            .tooltip-sample .red {
+                background-color: var(--paper-red-300);
+            }
+            .tooltip-sample .orange {
+                background-color: var(--paper-amber-300);
+            }
+            .tooltip-sample .green {
+                background-color: var(--paper-green-300);
+            }
+
+            .tooltip-sample paper-tooltip.custom img {
+                width: 40px;
+                padding-right: 10px;
+                padding-bottom: 10px;
+                float: left;
+            }
+
+            .tooltip-sample .custom {
+                --paper-tooltip-background: black;
+                --paper-tooltip-text-color: var(--paper-pink-100);
+                width: 160px;
+            }
+        </style>
+
+        <div class="horizontal-section-container">
+            <div>
+                <h4>Anchored to native elements</h4>
+                <div class="horizontal-section">
+                    <div class="with-tooltip" tabindex="0">
+                        <input type="checkbox"/>Oxygen
+                        <p:PaperTooltip>Atomic number: 8</p:PaperTooltip>
+                    </div>
+                    <br/>
+                    <div class="with-tooltip" tabindex="0">
+                        <input type="checkbox"/>Carbon
+                        <p:PaperTooltip>Atomic number: 6</p:PaperTooltip>
+                    </div>
+                    <br/>
+                    <div class="with-tooltip" tabindex="0">
+                        <input type="checkbox"/>Hydrogen
+                        <p:PaperTooltip>Atomic number: 1</p:PaperTooltip>
+                    </div>
+                    <br/>
+                    <div class="with-tooltip" tabindex="0">
+                        <input type="checkbox"/>Nitrogen
+                        <p:PaperTooltip>Atomic number: 7</p:PaperTooltip>
+                    </div>
+                    <br/>
+                    <div class="with-tooltip" tabindex="0">
+                        <input type="checkbox"/>Calcium
+                        <p:PaperTooltip>Atomic number: 20</p:PaperTooltip>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h4>Anchored to custom elements</h4>
+                <div class="horizontal-section">
+                    <p:PaperIconButton id="m" icon="menu" alt="menu"/>
+                    <p:PaperIconButton id="heart" icon="favorite" alt="heart"/>
+                    <p:PaperIconButton id="back" icon="arrow-back" alt="go back"/>
+                    <p:PaperIconButton id="fwd" icon="arrow-forward" alt="go forward"/>
+
+                    <!-- paper-icon-buttons have an inherent padding that will push the tooltip down. offset undoes it -->
+                    <p:PaperTooltip attributes="for:m" offset="0">hot dogs</p:PaperTooltip>
+                    <p:PaperTooltip for="heart" offset="0">&lt;3 &lt;3 &lt;3 </p:PaperTooltip>
+                    <p:PaperTooltip for="back" offset="0">halp I am trapped in a tooltip</p:PaperTooltip>
+                    <p:PaperTooltip for="fwd" offset="0">back to the future</p:PaperTooltip>
+                </div>
+            </div>
+
+            <div>
+                <h4>Rich-text tooltips (not Material Design)</h4>
+                <div class="horizontal-section">
+                    <div id="red" class="avatar red" tabindex="0"/>
+                    <div id="blue" class="avatar blue" tabindex="0"/>
+                    <div id="green" class="avatar green" tabindex="0"/>
+                    <div id="orange" class="avatar orange" tabindex="0"/>
+
+                    <p:PaperTooltip attributes="for:red" addStyleNames="custom" position="left">
+                        <img src="https://robohash.org/1.jpg"/>
+                        Rich-text tooltips are doable but against the Material Design spec.
+                    </p:PaperTooltip>
+                    <p:PaperTooltip attributes="for:blue" addStyleNames="custom" position="right">
+                        <img src="https://robohash.org/2.jpg"/>
+                        Rich-text tooltips are doable but against the Material Design spec.
+                    </p:PaperTooltip>
+                    <p:PaperTooltip attributes="for:green" addStyleNames="custom" position="top">
+                        <img src="https://robohash.org/3.jpg"/>
+                        Rich-text tooltips are doable but against the Material Design spec.
+                    </p:PaperTooltip>
+                    <p:PaperTooltip attributes="for:orange"  addStyleNames="custom" position="bottom">
+                        <img src="https://robohash.org/4.jpg"/>
+                        Rich-text tooltips are doable but against the Material Design spec.
+                    </p:PaperTooltip>
+                </div>
+            </div>
+        </div>
+    </g:HTMLPanel>
+</ui:UiBinder>

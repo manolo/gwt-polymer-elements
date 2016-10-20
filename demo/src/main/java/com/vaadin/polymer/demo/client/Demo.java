@@ -1,13 +1,16 @@
 package com.vaadin.polymer.demo.client;
 
-import java.util.Arrays;
-
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.user.client.ui.RootPanel;
-import com.vaadin.polymer.demo.client.sampler.Sampler;
+
 import com.vaadin.polymer.Polymer;
+import com.vaadin.polymer.demo.client.sampler.Sampler;
+
+import java.util.Arrays;
 
 public class Demo implements EntryPoint {
+
+
 
     public void onModuleLoad() {
         Polymer.startLoading();
