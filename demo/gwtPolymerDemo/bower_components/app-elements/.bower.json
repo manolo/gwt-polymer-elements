@@ -1,0 +1,42 @@
+{
+  "name": "app-elements",
+  "version": "0.10.0",
+  "homepage": "https://github.com/PolymerElements/app-elements",
+  "authors": [
+    "The Polymer Authors"
+  ],
+  "description": "The app elements enable building full web apps out of modular custom elements.",
+  "main": "app-elements.html",
+  "moduleType": [],
+  "keywords": [
+    "web-components",
+    "polymer",
+    "app"
+  ],
+  "license": "http://polymer.github.io/LICENSE.txt",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "app-layout": "PolymerElements/app-layout#^0.10.0",
+    "app-localize-behavior": "PolymerElements/app-localize-behavior#^0.9.0",
+    "app-pouchdb": "PolymerElements/app-pouchdb#^0.9.0",
+    "app-route": "PolymerElements/app-route#^0.9.0",
+    "app-storage": "PolymerElements/app-storage#^0.9.0"
+  },
+  "_release": "0.10.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.10.0",
+    "commit": "75855bc1478e03442376250b3d01c0cfc92fd8b5"
+  },
+  "_source": "https://github.com/PolymerElements/app-elements.git",
+  "_target": "^0.10.0",
+  "_originalSource": "app-elements",
+  "_direct": true
+}

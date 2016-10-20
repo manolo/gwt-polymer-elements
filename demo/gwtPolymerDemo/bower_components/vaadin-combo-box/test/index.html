@@ -10,6 +10,9 @@
 
 <body>
   <script>
+    var shadow = document.location.search.indexOf('dom=shadow') > -1;
+    WCT._config.environmentScripts.push(shadow ? 'webcomponentsjs/webcomponents.js' : 'webcomponentsjs/webcomponents-lite.js');
+
     WCT.loadSuites([
       'vaadin-combo-box-properties.html',
       'toggling-dropdown.html',
@@ -19,7 +22,12 @@
       'filtering.html',
       'keyboard.html',
       'scrolling.html',
-      'aria.html'
+      'aria.html',
+      'using-object-values.html',
+      'data-binding.html',
+      'late-upgrade.html',
+      'vaadin-combo-box-light.html',
+      'angular2.html'
     ]);
   </script>
 </body>

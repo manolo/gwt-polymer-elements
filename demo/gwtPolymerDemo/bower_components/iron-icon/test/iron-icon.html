@@ -24,6 +24,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <link rel="import" href="../../iron-iconset/iron-iconset.html">
   <link rel="import" href="../../promise-polyfill/promise-polyfill.html">
   <link rel="import" href="../../test-fixture/test-fixture.html">
+  <link rel="import" href="icon-holder.html">
 
 </head>
 <body>
@@ -61,6 +62,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     </template>
   </test-fixture>
 
+  <test-fixture id="SrcIconSwitch">
+    <template>
+      <iron-iconset name="example" icons="location blank" src="location.png" size="24" width="48"></iron-iconset>
+      <iron-icon></iron-icon>
+    </template>
+  </test-fixture>
+
+  <test-fixture id="ParentForceUpdate">
+    <template>
+      <icon-holder>
+        <iron-icon></iron-icon>
+      </icon-holder>
+    </template>
+  </test-fixture>
+
   <script>
 function iconElementFor (node) {
   var nodes = Polymer.dom(node.root).childNodes;
@@ -93,6 +109,32 @@ suite('<iron-icon>', function() {
       icon.src = 'foo.png';
 
       expect(iconElementFor(icon).src).to.match(/foo\.png/);
+    });
+  });
+
+  suite('lifecycle', function() {
+    var icon;
+
+    setup(function() {
+      icon = document.createElement('iron-icon');
+    });
+
+    teardown(function() {
+      if (icon.parentNode != null) {
+        Polymer.dom(icon.parentNode).removeChild(icon);
+      }
+    });
+
+    test('does not create icon until attached', function() {
+      icon.src = 'location.png';
+
+      var children = Polymer.dom(icon.root).querySelectorAll('img,svg');
+
+      expect(children.length).to.be.eql(0);
+      Polymer.dom(document.body).appendChild(icon);
+      Polymer.dom.flush();
+      children = Polymer.dom(icon.root).querySelectorAll('img,svg');
+      expect(children.length).to.be.eql(1);
     });
   });
 
@@ -141,6 +183,60 @@ suite('<iron-icon>', function() {
         });
         fixture('AsyncIconset');
       });
+    });
+  });
+
+  suite('when switching between src and icon properties', function() {
+    var icon;
+
+    setup(function() {
+      var elements = fixture('IconFromIconset');
+      icon = elements[1];
+    });
+
+    test('will display the icon if both icon and src are set', function() {
+      icon.src = '../demo/location.png';
+      icon.icon = 'example:location';
+      expect(hasIcon(icon)).to.be.true;
+      expect(iconElementFor(icon)).to.not.exist;
+
+      // Check if it works too it we change the affectation order
+      icon.icon = 'example:location';
+      icon.src = '../demo/location.png';
+      expect(hasIcon(icon)).to.be.true;
+      expect(iconElementFor(icon)).to.not.exist;
+    });
+
+    test('will display the icon when src is defined first and then reset', function() {
+      icon.src = '../demo/location.png';
+      icon.icon = null;
+      icon.src = null;
+      icon.icon = 'example:location';
+      expect(hasIcon(icon)).to.be.true;
+      expect(iconElementFor(icon)).to.not.exist;
+    });
+
+    test('will display the src when icon is defined first and then reset', function() {
+      icon.src = null;
+      icon.icon = 'example:location';
+      icon.src = '../demo/location.png';
+      icon.icon = null;
+      expect(hasIcon(icon)).to.be.false;
+      expect(iconElementFor(icon)).to.exist;
+    });
+
+    test('will display nothing if both properties are unset', function() {
+      icon.src = '../demo/location.png';
+      icon.icon = 'example:location';
+      icon.src = null;
+      icon.icon = null;
+      expect(hasIcon(icon)).to.be.false;
+      expect(iconElementFor(icon)).to.not.exist;
+    });
+  });
+  suite('ancestor direct updates', function() {
+    test('handle properties set before ready', function() {
+      var holder = fixture('ParentForceUpdate');
     });
   });
 });

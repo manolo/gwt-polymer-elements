@@ -1,4 +1,5 @@
 <!--
+@license
 Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
 This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
 The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
@@ -32,7 +33,7 @@ Example:
 ```
 
 `paper-toolbar` has a standard height, but can made be taller by setting `tall`
-class on the `paper-toolbar`.  This will make the toolbar 3x the normal height.
+class on the `paper-toolbar`. This will make the toolbar 3x the normal height.
 
 ```html
 <paper-toolbar class="tall">
@@ -73,6 +74,9 @@ with `bottom`.
 </paper-toolbar>
 ```
 
+When inside a `paper-header-panel` element with `mode="waterfall-tall"`, 
+the class `.animate` is toggled to animate the height change in the toolbar. 
+
 ### Styling
 
 The following custom properties and mixins are available for styling:
@@ -80,14 +84,15 @@ The following custom properties and mixins are available for styling:
 Custom property | Description | Default
 ----------------|-------------|----------
 `--paper-toolbar-title`      | Mixin applied to the title of the toolbar | `{}`
-`--paper-toolbar-background` | Toolbar background color     | `--default-primary-color`
-`--paper-toolbar-color`      | Toolbar foreground color     | `--text-primary-color`
+`--paper-toolbar-background` | Toolbar background color     | `--primary-color`
+`--paper-toolbar-color`      | Toolbar foreground color     | `--dark-theme-text-color`
 `--paper-toolbar-height`     | Custom height for toolbar    | `64px`
 `--paper-toolbar-sm-height`  | Custom height for small screen toolbar | `56px`
 `--paper-toolbar`            | Mixin applied to the toolbar | `{}`
 `--paper-toolbar-content`    | Mixin applied to the content section of the toolbar | `{}`
 `--paper-toolbar-medium`     | Mixin applied to medium height toolbar | `{}`
 `--paper-toolbar-tall`       | Mixin applied to tall height toolbar | `{}`
+`--paper-toolbar-transition` | Transition applied to the `.animate` class | `height 0.18s ease-in`
 
 ### Accessibility
 
@@ -101,6 +106,9 @@ be used as the label of the toolbar via `aria-labelledby`.
   <template>
     <style>
       :host {
+        --calculated-paper-toolbar-height: var(--paper-toolbar-height, 64px);
+        --calculated-paper-toolbar-sm-height: var(--paper-toolbar-sm-height, 56px);
+
         /* technical */
         display: block;
         position: relative;
@@ -108,32 +116,32 @@ be used as the label of the toolbar via `aria-labelledby`.
         -moz-box-sizing: border-box;
 
         /* size */
-        height: var(--paper-toolbar-height, 64px);
+        height: var(--calculated-paper-toolbar-height);
 
-        background: var(--paper-toolbar-background, --default-primary-color);
-        color: var(--paper-toolbar-color, --text-primary-color);
+        background: var(--paper-toolbar-background, --primary-color);
+        color: var(--paper-toolbar-color, --dark-theme-text-color);
 
         @apply(--paper-toolbar);
       }
 
       :host(.animate) {
         /* transition */
-        transition: height 0.18s ease-in;
+        transition: var(--paper-toolbar-transition, height 0.18s ease-in);
       }
 
       :host(.medium-tall) {
-        height: calc(var(--paper-toolbar-height, 64px) * 2);
+        height: calc(var(--calculated-paper-toolbar-height) * 2);
         @apply(--paper-toolbar-medium);
       }
 
       :host(.tall) {
-        height: calc(var(--paper-toolbar-height, 64px) * 3);
+        height: calc(var(--calculated-paper-toolbar-height) * 3);
         @apply(--paper-toolbar-tall);
       }
 
       .toolbar-tools {
         position: relative;
-        height: var(--paper-toolbar-height, 64px);
+        height: var(--calculated-paper-toolbar-height);
         padding: 0 16px;
         pointer-events: none;
         @apply(--layout-horizontal);
@@ -147,19 +155,19 @@ be used as the label of the toolbar via `aria-labelledby`.
 
       @media (max-width: 600px) {
         :host {
-          height: var(--paper-toolbar-sm-height, 56px);
+          height: var(--calculated-paper-toolbar-sm-height);
         }
 
         :host(.medium-tall) {
-          height: calc(var(--paper-toolbar-sm-height, 56px) * 2);
+          height: calc(var(--calculated-paper-toolbar-sm-height) * 2);
         }
 
         :host(.tall) {
-          height: calc(var(--paper-toolbar-sm-height, 56px) * 3);
+          height: calc(var(--calculated-paper-toolbar-sm-height) * 3);
         }
 
         .toolbar-tools {
-          height: var(--paper-toolbar-sm-height, 56px);
+          height: var(--calculated-paper-toolbar-sm-height);
         }
       }
 
@@ -212,27 +220,26 @@ be used as the label of the toolbar via `aria-labelledby`.
         pointer-events: none;
 
         @apply(--layout-flex);
-        @apply(--paper-toolbar-title);
       }
 
-      /**
-       * TODO: Refactor these selectors
-       * Work in progress.
-       */
-      .toolbar-tools > ::content paper-icon-button[icon=menu] {
-        margin-right: 24px;
-      }
-
-      .toolbar-tools > ::content > .title,
-      .toolbar-tools > ::content[select=".middle"] > .title,
-      .toolbar-tools > ::content[select=".bottom"] > .title {
+      .toolbar-tools > ::content > .title {
         margin-left: 56px;
       }
 
-      .toolbar-tools > ::content > paper-icon-button + .title,
-      .toolbar-tools > ::content[select=".middle"] paper-icon-button + .title,
-      .toolbar-tools > ::content[select=".bottom"] paper-icon-button + .title {
+      .toolbar-tools > ::content > paper-icon-button + .title {
         margin-left: 0;
+      }
+
+      /**
+       * The --paper-toolbar-title mixin is applied here instead of above to
+       * fix the issue with margin-left being ignored due to css ordering.
+       */
+      .toolbar-tools > ::content .title {
+        @apply(--paper-toolbar-title);
+      }
+
+      .toolbar-tools > ::content paper-icon-button[icon=menu] {
+        margin-right: 24px;
       }
 
       .toolbar-tools > ::content > .fit {

@@ -4,9 +4,7 @@
 <head>
   <meta charset='UTF-8'>
   <title>vaadin-combo basic tests</title>
-  <script src='../../webcomponentsjs/webcomponents-lite.js'></script>
   <script src='../../web-component-tester/browser.js'></script>
-  <script src='../../test-fixture/test-fixture-mocha.js'></script>
 
   <link rel='import' href='common.html'>
   <script src="../../promise-polyfill/Promise.js"></script>
@@ -95,7 +93,6 @@
         expect(getItemElement(0).getAttribute('role')).to.equal('option');
         expect(getItemElement(0).getAttribute('aria-selected')).to.equal('true');
         expect(getItemElement(1).getAttribute('aria-selected')).to.equal('false');
-        expect(getItemElement(3).getAttribute('role')).to.be.null;
         expect(getInput().getAttribute('aria-activedescendant')).to.equal('it0');
         expect(comboBox.$.overlay.$.selector.getAttribute('data-selection')).to.equal('it0');
 

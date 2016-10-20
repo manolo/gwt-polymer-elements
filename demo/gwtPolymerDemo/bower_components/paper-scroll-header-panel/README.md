@@ -7,15 +7,17 @@ paper-scroll-header-panel.html
 Edit those files, and our readme bot will duplicate them over here!
 Edit this file, and the bot will squash your changes :)
 
+The bot does some handling of markdown. Please file a bug if it does the wrong
+thing! https://github.com/PolymerLabs/tedium/issues
+
 -->
 
-[![Build Status](https://travis-ci.org/PolymerElements/paper-scroll-header-panel.svg?branch=master)](https://travis-ci.org/PolymerElements/paper-scroll-header-panel)
+[![Build status](https://travis-ci.org/PolymerElements/paper-scroll-header-panel.svg?branch=master)](https://travis-ci.org/PolymerElements/paper-scroll-header-panel)
 
-_[Demo and API Docs](https://elements.polymer-project.org/elements/paper-scroll-header-panel)_
+_[Demo and API docs](https://elements.polymer-project.org/elements/paper-scroll-header-panel)_
 
 
 ##&lt;paper-scroll-header-panel&gt;
-
 
 Material design: [Scrolling techniques](https://www.google.com/design/spec/patterns/scrolling-techniques.html)
 
@@ -54,22 +56,32 @@ paper-scroll-header-panel {
 `paper-scroll-header-panel` works well with `paper-toolbar` but can use any element
 that represents a header by adding a `paper-header` class to it.
 
+Note: If the class `paper-header` is used, the header must be positioned relative or absolute. e.g.
+
+```css
+.paper-header {
+  position: relative;
+}
+```
+
 ```html
 <paper-scroll-header-panel>
-  <paper-toolbar>Header</paper-toolbar>
+  <div class="paper-header">Header</div>
   <div>Content goes here...</div>
 </paper-scroll-header-panel>
 ```
 
 ### Styling
+
 =======
 
 The following custom properties and mixins are available for styling:
 
-Custom property | Description | Default
-----------------|-------------|----------
---paper-scroll-header-panel-full-header | To change background for toolbar when it is at its full size | {}
---paper-scroll-header-panel-condensed-header | To change the background for toolbar when it is condensed | {}
---paper-scroll-header-container | To override or add container styles | {}
+| Custom property | Description | Default |
+| --- | --- | --- |
+| --paper-scroll-header-panel-full-header | To change background for toolbar when it is at its full size | {} |
+| --paper-scroll-header-panel-condensed-header | To change the background for toolbar when it is condensed | {} |
+| --paper-scroll-header-panel-container | To override or add container styles | {} |
+| --paper-scroll-header-panel-header-container | To override or add header styles | {} |
 
 

@@ -1,6 +1,6 @@
 <!--
 @license
-Copyright (c) 2015 The Polymer Project Authors. All rights reserved.
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
 This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
 The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
 The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
@@ -9,9 +9,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../paper-ripple/paper-ripple.html">
 <link rel="import" href="../paper-styles/default-theme.html">
-<link rel="import" href="../paper-styles/color.html">
 <link rel="import" href="../paper-behaviors/paper-checked-element-behavior.html">
 
 <!--
@@ -38,13 +36,22 @@ Custom property | Description | Default
 `--paper-checkbox-unchecked-background-color` | Checkbox background color when the input is not checked | `transparent`
 `--paper-checkbox-unchecked-color` | Checkbox border color when the input is not checked | `--primary-text-color`
 `--paper-checkbox-unchecked-ink-color` | Selected/focus ripple color when the input is not checked | `--primary-text-color`
-`--paper-checkbox-checked-color` | Checkbox color when the input is checked | `--default-primary-color`
-`--paper-checkbox-checked-ink-color` | Selected/focus ripple color when the input is checked | `--default-primary-color`
+`--paper-checkbox-checked-color` | Checkbox color when the input is checked | `--primary-color`
+`--paper-checkbox-checked-ink-color` | Selected/focus ripple color when the input is checked | `--primary-color`
 `--paper-checkbox-checkmark-color` | Checkmark color | `white`
 `--paper-checkbox-label-color` | Label color | `--primary-text-color`
+`--paper-checkbox-label-checked-color` | Label color when the input is checked | `--paper-checkbox-label-color`
 `--paper-checkbox-label-spacing` | Spacing between the label and the checkbox | `8px`
-`--paper-checkbox-error-color` | Checkbox color when invalid | `--google-red-500`
+`--paper-checkbox-label` | Mixin applied to the label | `{}`
+`--paper-checkbox-label-checked` | Mixin applied to the label when the input is checked | `{}`
+`--paper-checkbox-error-color` | Checkbox color when invalid | `--error-color`
 `--paper-checkbox-size` | Size of the checkbox | `18px`
+`--paper-checkbox-ink-size` | Size of the ripple | `48px`
+`--paper-checkbox-margin` | Margin around the checkbox container | `initial`
+`--paper-checkbox-vertical-align` | Vertical alignment of the checkbox container | `middle`
+
+This element applies the mixin `--paper-font-common-base` but does not import `paper-styles/typography.html`.
+In order to apply the `Roboto` font to this element, make sure you've imported `paper-styles/typography.html`.
 
 @demo demo/index.html
 -->
@@ -57,6 +64,15 @@ Custom property | Description | Default
         white-space: nowrap;
         cursor: pointer;
         --calculated-paper-checkbox-size: var(--paper-checkbox-size, 18px);
+        /* -1px is a sentinel for the default and is replaced in `attached`. */
+        --calculated-paper-checkbox-ink-size: var(--paper-checkbox-ink-size, -1px);
+        @apply(--paper-font-common-base);
+        line-height: 0;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      :host([hidden]) {
+        display: none !important;
       }
 
       :host(:focus) {
@@ -73,7 +89,8 @@ Custom property | Description | Default
         width: var(--calculated-paper-checkbox-size);
         height: var(--calculated-paper-checkbox-size);
         min-width: var(--calculated-paper-checkbox-size);
-        vertical-align: middle;
+        margin: var(--paper-checkbox-margin, initial);
+        vertical-align: var(--paper-checkbox-vertical-align, middle);
         background-color: var(--paper-checkbox-unchecked-background-color, transparent);
       }
 
@@ -82,22 +99,22 @@ Custom property | Description | Default
 
         /* Center the ripple in the checkbox by negative offsetting it by
          * (inkWidth - rippleWidth) / 2 */
-        top: calc(0px - (2.66 * var(--calculated-paper-checkbox-size) - var(--calculated-paper-checkbox-size)) / 2);
-        left: calc(0px - (2.66 * var(--calculated-paper-checkbox-size) - var(--calculated-paper-checkbox-size)) / 2);
-        width: calc(2.66 * var(--calculated-paper-checkbox-size));
-        height: calc(2.66 * var(--calculated-paper-checkbox-size));
-        color: var(--paper-checkbox-unchecked-ink-color, --primary-text-color);
+        top: calc(0px - (var(--calculated-paper-checkbox-ink-size) - var(--calculated-paper-checkbox-size)) / 2);
+        left: calc(0px - (var(--calculated-paper-checkbox-ink-size) - var(--calculated-paper-checkbox-size)) / 2);
+        width: var(--calculated-paper-checkbox-ink-size);
+        height: var(--calculated-paper-checkbox-ink-size);
+        color: var(--paper-checkbox-unchecked-ink-color, var(--primary-text-color));
         opacity: 0.6;
         pointer-events: none;
       }
 
       :host-context([dir="rtl"]) #ink {
-        right: calc(0px - (2.66 * var(--calculated-paper-checkbox-size) - var(--calculated-paper-checkbox-size)) / 2);
+        right: calc(0px - (var(--calculated-paper-checkbox-ink-size) - var(--calculated-paper-checkbox-size)) / 2);
         left: auto;
       }
 
       #ink[checked] {
-        color: var(--paper-checkbox-checked-ink-color, --default-primary-color);
+        color: var(--paper-checkbox-checked-ink-color, var(--primary-color));
       }
 
       #checkbox {
@@ -105,7 +122,7 @@ Custom property | Description | Default
         box-sizing: border-box;
         height: 100%;
         border: solid 2px;
-        border-color: var(--paper-checkbox-unchecked-color, --primary-text-color);
+        border-color: var(--paper-checkbox-unchecked-color, var(--primary-text-color));
         border-radius: 2px;
         pointer-events: none;
         -webkit-transition: background-color 140ms, border-color 140ms;
@@ -137,8 +154,8 @@ Custom property | Description | Default
       }
 
       #checkbox.checked {
-        background-color: var(--paper-checkbox-checked-color, --default-primary-color);
-        border-color: var(--paper-checkbox-checked-color, --default-primary-color);
+        background-color: var(--paper-checkbox-checked-color, var(--primary-color));
+        border-color: var(--paper-checkbox-checked-color, var(--primary-color));
       }
 
       #checkmark {
@@ -151,13 +168,14 @@ Custom property | Description | Default
         border-right-width: calc(2/15 * var(--calculated-paper-checkbox-size));
         border-bottom-width: calc(2/15 * var(--calculated-paper-checkbox-size));
         border-color: var(--paper-checkbox-checkmark-color, white);
-        transform-origin: 97% 86%;
         -webkit-transform-origin: 97% 86%;
+        transform-origin: 97% 86%;
+        box-sizing: content-box; /* protect against page-level box-sizing */
       }
 
       :host-context([dir="rtl"]) #checkmark {
-        transform-origin: 50% 14%;
         -webkit-transform-origin: 50% 14%;
+        transform-origin: 50% 14%;
       }
 
       /* label */
@@ -167,8 +185,14 @@ Custom property | Description | Default
         vertical-align: middle;
         padding-left: var(--paper-checkbox-label-spacing, 8px);
         white-space: normal;
-        pointer-events: none;
-        color: var(--paper-checkbox-label-color, --primary-text-color);
+        line-height: normal;
+        color: var(--paper-checkbox-label-color, var(--primary-text-color));
+        @apply(--paper-checkbox-label);
+      }
+
+      :host([checked]) #checkboxLabel {
+        color: var(--paper-checkbox-label-checked-color, var(--paper-checkbox-label-color, var(--primary-text-color)));
+        @apply(--paper-checkbox-label-checked);
       }
 
       :host-context([dir="rtl"]) #checkboxLabel {
@@ -181,17 +205,14 @@ Custom property | Description | Default
       }
 
       /* disabled state */
-      :host([disabled]) {
-        pointer-events: none;
-      }
 
       :host([disabled]) #checkbox {
         opacity: 0.5;
-        border-color: var(--paper-checkbox-unchecked-color, --primary-text-color);
+        border-color: var(--paper-checkbox-unchecked-color, var(--primary-text-color));
       }
 
       :host([disabled][checked]) #checkbox {
-        background-color: var(--paper-checkbox-unchecked-color, --primary-text-color);
+        background-color: var(--paper-checkbox-unchecked-color, var(--primary-text-color));
         opacity: 0.5;
       }
 
@@ -201,7 +222,7 @@ Custom property | Description | Default
 
       /* invalid state */
       #checkbox.invalid:not(.checked) {
-        border-color: var(--paper-checkbox-error-color, --google-red-500);
+        border-color: var(--paper-checkbox-error-color, var(--error-color));
       }
     </style>
 
@@ -243,6 +264,24 @@ Custom property | Description | Default
         ariaActiveAttribute: {
           type: String,
           value: 'aria-checked'
+        }
+      },
+
+      attached: function() {
+        var inkSize = this.getComputedStyleValue('--calculated-paper-checkbox-ink-size');
+        // If unset, compute and set the default `--paper-checkbox-ink-size`.
+        if (inkSize === '-1px') {
+          var checkboxSize = parseFloat(this.getComputedStyleValue('--calculated-paper-checkbox-size'));
+          var defaultInkSize = Math.floor((8 / 3) * checkboxSize);
+
+          // The checkbox and ripple need to have the same parity so that their
+          // centers align.
+          if (defaultInkSize % 2 !== checkboxSize % 2) {
+            defaultInkSize++;
+          }
+
+          this.customStyle['--paper-checkbox-ink-size'] = defaultInkSize + 'px';
+          this.updateStyles();
         }
       },
 

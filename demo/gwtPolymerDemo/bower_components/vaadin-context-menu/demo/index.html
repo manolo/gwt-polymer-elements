@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>vaadin-context-menu Basic Examples</title>
+
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+  <link rel="import" href="common.html">
+</head>
+
+<body unresolved>
+  <div class="vertical-section-container centered">
+    <nav class="vertical-section">
+      <ul class="layout horizontal wrap">
+        <li><b>Basic Examples</b></li>
+        <li><a href="advanced.html">Advanced Usage</a></li>
+      </ul>
+    </nav>
+
+    <h3>Context Menu Basic Usage</h3>
+    <p>
+      In this example you can see how to use
+      <code>paper-menu</code>,
+      <code>paper-items</code>
+      and
+      <code>paper-item-body</code> elements to configure the content of the context menu.
+    </p>
+    <demo-snippet>
+      <template>
+        <template is="dom-bind" id="container">
+          <vaadin-context-menu selector="a">
+            <template>
+              <style>
+                paper-menu {
+                  width: 100%;
+                }
+              </style>
+              <paper-menu on-iron-select="_selectedItemChanged">
+                <paper-item>Item 1</paper-item>
+                <paper-item>Item 2</paper-item>
+                <paper-item>Item 3</paper-item>
+                <paper-item>
+                  <iron-icon icon="warning"></iron-icon>
+                  <paper-item-body two-line>
+                    <div>Item 4 - Line 1</div>
+                    <div secondary>Item 4 - Line 2</div>
+                  </paper-item-body>
+                </paper-item>
+              </paper-menu>
+            </template>
+            Right click on this <a id="opener" href="#">link</a> to open the context menu.
+          </vaadin-context-menu>
+          <script>
+            var container = document.querySelector('#container');
+            container._selectedItemChanged = function(e) {
+              console.log('Selected Item: ' + e.target.indexOf(e.detail.item));
+            };
+          </script>
+        </template>
+      </template>
+    </demo-snippet>
+
+    <h3>Customized Items</h3>
+    <p>
+      In the following example we use plain HTML elements as items in the context menu.
+    </p>
+    <demo-snippet>
+      <template>
+        <template is="dom-bind">
+          <vaadin-context-menu selector="#opener" open-on="click">
+            <template>
+              <style>
+                div[role="menu"] {
+                  padding: 16px 0;
+                }
+
+                div[role="option"] {
+                  min-height: 32px;
+                  padding: 0 24px;
+                  font-size: 16px;
+                  display: flex;
+                  align-items: center;
+                }
+
+                div[role="option"]:hover {
+                  background: #d6d6d6;
+                }
+              </style>
+              <div role="menu">
+                <div on-tap="_log" role="option">Item 1</div>
+                <div on-tap="_log" role="option">Item 2</div>
+              </div>
+            </template>
+            <button id="opener">Open</button>
+          </vaadin-context-menu>
+        </template>
+      </template>
+    </demo-snippet>
+
+  </div>
+</body>
+
+</html>

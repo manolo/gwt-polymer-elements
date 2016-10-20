@@ -1,0 +1,72 @@
+{
+  "name": "vaadin-core-elements",
+  "authors": [
+    "Vaadin Ltd"
+  ],
+  "description": "Vaadin Core Elements is an evolving set of free, open sourced custom HTML elements, built using Polymer.",
+  "license": "Apache-2.0",
+  "keywords": [
+    "vaadin",
+    "core",
+    "elements",
+    "web",
+    "components",
+    "webcomponents",
+    "web-components",
+    "element-collection"
+  ],
+  "main": "vaadin-core-elements.html",
+  "ignore": [
+    "**/.*",
+    "**/node_modules",
+    "**/bower_components",
+    "**/test",
+    "**/tests"
+  ],
+  "dependencies": {
+    "vaadin-grid": "vaadin/vaadin-grid#1.2.x",
+    "vaadin-combo-box": "vaadin/vaadin-combo-box#1.1.x",
+    "vaadin-icons": "vaadin/vaadin-icons#1.0.x",
+    "vaadin-date-picker": "vaadin/vaadin-date-picker#1.1.x",
+    "vaadin-upload": "vaadin/vaadin-upload#1.1.x"
+  },
+  "devDependencies": {
+    "web-component-tester": "^4.0.3",
+    "test-fixture": "polymerelements/test-fixture#^1.0.0",
+    "iron-test-helpers": "polymerelements/iron-test-helpers#^1.0.0",
+    "iron-component-page": "polymerelements/iron-component-page#~1.1.0",
+    "elements-demo-resources": "vaadin/elements-demo-resources#master",
+    "components-demo-resources": "vaadin/components-demo-resources#master",
+    "mock-http-request": "philikon/MockHttpRequest#master",
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^1.0.0",
+    "paper-toast": "polymerelements/paper-toast#^1.0.0",
+    "paper-menu": "^1.2.2",
+    "paper-item": "^1.2.1"
+  },
+  "resolutions": {
+    "polymer": "v1.1.1"
+  },
+  "masterOverrides": {
+    "version": "master",
+    "dependencies": {
+      "vaadin-grid": "vaadin/vaadin-grid#master",
+      "vaadin-combo-box": "vaadin/vaadin-combo-box#master",
+      "vaadin-icons": "vaadin/vaadin-icons#master",
+      "vaadin-date-picker": "vaadin/vaadin-date-picker#master",
+      "vaadin-upload": "vaadin/vaadin-upload#master",
+      "vaadin-split-layout": "vaadin/vaadin-split-layout#master",
+      "vaadin-context-menu": "vaadin/vaadin-context-menu#master"
+    }
+  },
+  "homepage": "https://github.com/vaadin/vaadin-core-elements",
+  "_release": "fe43fb2316",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "fe43fb2316fbdd8a0f27b89816addef326945102"
+  },
+  "_source": "https://github.com/vaadin/vaadin-core-elements.git",
+  "_target": "master",
+  "_originalSource": "vaadin-core-elements",
+  "_direct": true
+}

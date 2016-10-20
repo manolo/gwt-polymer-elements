@@ -1,6 +1,6 @@
 {
   "name": "vaadin-grid",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "authors": [
     "Vaadin Ltd"
   ],
@@ -9,7 +9,12 @@
     "web-components",
     "vaadin",
     "vaadin elements",
-    "grid"
+    "grid",
+    "table",
+    "datagrid",
+    "datatable",
+    "data-grid",
+    "data-table"
   ],
   "main": "vaadin-grid.html",
   "ignore": [
@@ -24,7 +29,7 @@
     "wct.conf.js"
   ],
   "dependencies": {
-    "polymer": "Polymer/polymer#^1.1.1"
+    "polymer": "polymer/polymer#^1.1.1"
   },
   "devDependencies": {
     "web-component-tester": "4.0.3",

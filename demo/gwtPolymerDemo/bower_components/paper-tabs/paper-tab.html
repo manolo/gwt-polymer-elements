@@ -37,6 +37,9 @@ Custom property | Description | Default
 `--paper-tab-content` | Mixin applied to the tab content | `{}`
 `--paper-tab-content-unselected` | Mixin applied to the tab content when the tab is not selected | `{}`
 
+This element applies the mixin `--paper-font-common-base` but does not import `paper-styles/typography.html`.
+In order to apply the `Roboto` font to this element, make sure you've imported `paper-styles/typography.html`.
+
 -->
 
 <dom-module id="paper-tab">
@@ -46,13 +49,15 @@ Custom property | Description | Default
         @apply(--layout-inline);
         @apply(--layout-center);
         @apply(--layout-center-justified);
-        @apply(--layout-flex);
+        @apply(--layout-flex-auto);
 
         position: relative;
         padding: 0 12px;
         overflow: hidden;
         cursor: pointer;
+        vertical-align: middle;
 
+        @apply(--paper-font-common-base);
         @apply(--paper-tab);
       }
 
@@ -91,7 +96,7 @@ Custom property | Description | Default
       }
 
       .tab-content > ::content > a {
-        @apply(--layout-flex)
+        @apply(--layout-flex-auto);
 
         height: 100%;
       }
@@ -112,12 +117,27 @@ Custom property | Description | Default
         Polymer.PaperRippleBehavior
       ],
 
+      properties: {
+
+        /**
+         * If true, the tab will forward keyboard clicks (enter/space) to
+         * the first anchor element found in its descendants
+         */
+        link: {
+          type: Boolean,
+          value: false,
+          reflectToAttribute: true
+        }
+
+      },
+
       hostAttributes: {
         role: 'tab'
       },
 
       listeners: {
-        down: '_updateNoink'
+        down: '_updateNoink',
+        tap: '_onTap'
       },
 
       attached: function() {
@@ -131,7 +151,26 @@ Custom property | Description | Default
 
       _updateNoink: function() {
         this.noink = !!this.noink || !!this._parentNoink;
+      },
+
+      _onTap: function(event) {
+        if (this.link) {
+          var anchor = this.queryEffectiveChildren('a');
+
+          if (!anchor) {
+            return;
+          }
+
+          // Don't get stuck in a loop delegating
+          // the listener from the child anchor
+          if (event.target === anchor) {
+            return;
+          }
+
+          anchor.click();
+        }
       }
+
     });
   </script>
 </dom-module>

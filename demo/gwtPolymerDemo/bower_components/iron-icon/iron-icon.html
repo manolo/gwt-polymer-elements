@@ -58,6 +58,10 @@ how to create a custom iconset.
 See the [iron-icons demo](iron-icons?view=demo:demo/index.html) to see the icons available
 in the various iconsets.
 
+To load a subset of icons from one of the default `iron-icons` sets, you can
+use the [poly-icon](https://poly-icon.appspot.com/) tool. It allows you
+to select individual icons, and creates an iconset from them that you can
+use directly in your elements.
 
 ### Styling
 
@@ -65,6 +69,7 @@ The following custom properties are available for styling:
 
 Custom property | Description | Default
 ----------------|-------------|----------
+`--iron-icon` | Mixin applied to the icon | {}
 `--iron-icon-width` | Width of the icon | `24px`
 `--iron-icon-height` | Height of the icon | `24px`
 `--iron-icon-fill-color` | Fill color of the svg icon | `currentcolor`
@@ -78,24 +83,23 @@ Custom property | Description | Default
 -->
 
 <dom-module id="iron-icon">
-
-  <style>
-    :host {
-      @apply(--layout-inline);
-      @apply(--layout-center-center);
-      position: relative;
-
-      vertical-align: middle;
-
-      fill: var(--iron-icon-fill-color, currentcolor);
-      stroke: var(--iron-icon-stroke-color, none);
-
-      width: var(--iron-icon-width, 24px);
-      height: var(--iron-icon-height, 24px);
-    }
-  </style>
-
   <template>
+    <style>
+      :host {
+        @apply(--layout-inline);
+        @apply(--layout-center-center);
+        position: relative;
+
+        vertical-align: middle;
+
+        fill: var(--iron-icon-fill-color, currentcolor);
+        stroke: var(--iron-icon-stroke-color, none);
+
+        width: var(--iron-icon-width, 24px);
+        height: var(--iron-icon-height, 24px);
+        @apply(--iron-icon);
+      }
+    </style>
   </template>
 
   <script>
@@ -111,8 +115,7 @@ Custom property | Description | Default
          * `iconset_name:icon_name`.
          */
         icon: {
-          type: String,
-          observer: '_iconChanged'
+          type: String
         },
 
         /**
@@ -120,8 +123,7 @@ Custom property | Description | Default
          * iconset.
          */
         theme: {
-          type: String,
-          observer: '_updateIcon'
+          type: String
         },
 
         /**
@@ -130,8 +132,7 @@ Custom property | Description | Default
          * precedence over a given icon attribute.
          */
         src: {
-          type: String,
-          observer: '_srcChanged'
+          type: String
         },
 
         /**
@@ -142,6 +143,13 @@ Custom property | Description | Default
         }
 
       },
+
+      observers: [
+        '_updateIcon(_meta, isAttached)',
+        '_updateIcon(theme, isAttached)',
+        '_srcChanged(src, isAttached)',
+        '_iconChanged(icon, isAttached)'
+      ],
 
       _DEFAULT_ICONSET: 'icons',
 
@@ -163,7 +171,14 @@ Custom property | Description | Default
       /** @suppress {visibility} */
       _updateIcon: function() {
         if (this._usesIconset()) {
-          if (this._iconsetName) {
+          if (this._img && this._img.parentNode) {
+            Polymer.dom(this.root).removeChild(this._img);
+          }
+          if (this._iconName === "") {
+            if (this._iconset) {
+              this._iconset.removeIcon(this);
+            }
+          } else if (this._iconsetName && this._meta) {
             this._iconset = /** @type {?Polymer.Iconset} */ (
               this._meta.byKey(this._iconsetName));
             if (this._iconset) {
@@ -174,6 +189,9 @@ Custom property | Description | Default
             }
           }
         } else {
+          if (this._iconset) {
+            this._iconset.removeIcon(this);
+          }
           if (!this._img) {
             this._img = document.createElement('img');
             this._img.style.width = '100%';

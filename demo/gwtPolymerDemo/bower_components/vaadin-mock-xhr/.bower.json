@@ -1,0 +1,32 @@
+{
+  "name": "vaadin-mock-xhr",
+  "authors": [
+    "manolo@vaadin.com"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "Apache 2.0",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.3.1",
+    "mock-http-request": "philikon/MockHttpRequest#master"
+  },
+  "homepage": "https://github.com/manolo/vaadin-mock-xhr",
+  "_release": "bfd2e1d2c9",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "bfd2e1d2c9a78c44341d97ecb939d1501b0b3654"
+  },
+  "_source": "git://github.com/manolo/vaadin-mock-xhr.git",
+  "_target": "*",
+  "_originalSource": "manolo/vaadin-mock-xhr",
+  "_direct": true
+}

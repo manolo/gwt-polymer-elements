@@ -1,0 +1,424 @@
+
+<script src="../pouchdb/dist/pouchdb.js"></script>
+
+<link rel="import" href="../polymer/polymer.html">
+
+<script>
+  Polymer({
+    is: 'vaadin-pouchdb',
+    properties: {
+      liveSync: {
+        type: Boolean,
+        value: true
+      },
+      index: String,
+      noAutoSave: Boolean,
+      noAutoChanges: Boolean,
+      dbname: String,
+      remote: String,
+      descending: {
+        type: Boolean
+      },
+      attachments: {
+        type: Object,
+        notify: true
+      },
+      data: {
+        type: Array,
+        notify: true,
+        value: function() {
+          return [];
+        }
+      },
+      status: {
+        type: String,
+        notify: true
+      },
+      queryString: {
+        type: String
+      }
+    },
+
+    observers: [
+      '_dbnameChanged(dbname)',
+      '_remoteChanged(remote)',
+      '_onDataChanged(data.*)'
+    ],
+
+    _indexes: [],
+    _db: null,
+    _remotedb: null,
+    _oldname: null,
+    _synchandler: null,
+    _changesHandler: null,
+
+    _onDataChanged: function(e) {
+      if (!this.noAutoSave) {
+        if (e.path == 'data.splices') {
+          for (var i in e.value.indexSplices) {
+            var is = e.value.indexSplices[i];
+            for (var r in is.removed) {
+              this.remove(is.removed[r]);
+            }
+            for (var a = is.index; a < is.index + is.addedCount; a++) {
+              this.post(is.object[a]);
+            }
+          }
+        } else if (/#\d/.test(e.path)) {
+          var obj = e.base[parseInt(/#(\d+)/.exec(e.path)[1])];
+          this.post(obj);
+        }
+      }
+    },
+
+    getAttachment: function(docId, attachmentName) {
+      return this._db.getAttachment(docId, attachmentName);
+    },
+
+    _dbnameChanged: function() {
+      this.cancelSync();
+      this.cancelChanges();
+      this.close();
+      if (this.dbname) {
+        console.log("PouchDB local connection to: " + this.dbname);
+        this._db = new PouchDB(this.dbname);
+        this._indexes = this.index && this.index.split(/[ *, *]/) || [];
+        for (var i = 0; i < this._indexes.length; i++) {
+          this.createIndex(this._indexes[i]);
+        }
+        this._remoteChanged();
+        if (!this.noAutoChanges) {
+          this.changes(function() {
+            this.query();
+          }.bind(this));
+          this.query();
+        }
+      }
+    },
+
+    _remoteChanged: function() {
+      this.cancelSync();
+      if (this._db && this.remote)
+       this.sync()
+       .on('change', function(o) {
+         // For some reason after syncing PouchDB sends out one change event per doc
+         // Restarting sync seems mitigate the issue.
+         if (o && (o.changes && o.changes.array || o.change && o.change.docs).length > 1) {
+           this.cancelSync();
+           this.sync();
+         }
+       }.bind(this));
+    },
+
+    /**
+     * Close the DB and remove local instance in case
+     *
+     * @method close
+     * @param {Boolean} destroy if true local database would be removed when closed.
+     */
+    close: function(destroy) {
+      if (this._db) {
+        if (destroy) {
+          this._db.destroy();
+        } else {
+          this._db.close();
+        }
+        this._db = null;
+      }
+    },
+
+    /**
+     * Info
+     *
+     * @method info
+     * @param {Object} info example: since:0, include_docs: true, limit: pagesize, live: true
+     * @param {Function} fnc
+     * @param {Function} err
+     */
+    info: function(info, fnc, err) {
+      this.status = 'info';
+      return this._db
+        .changes({since: info.update_seq, onError: err, onChange: fnc, continuous: true})
+        .then(this._statusdone.bind(this));
+    },
+
+    /**
+     * Post
+     *
+     * @method post
+     * @param {Object} obj
+     * @return {DbPromise} a promise
+     */
+    post: function(obj) {
+      this.status = 'post';
+      return this._db.post(obj).then(this._statusdone.bind(this));
+    },
+
+    /**
+     * Put
+     *
+     * @method put
+     * @param {Object} obj must have an _id
+     * @return {DbPromise} a promise
+     */
+    put: function(obj) {
+      this.status = 'put';
+      return this._db.put(obj).then(this._statusdone.bind(this));
+    },
+
+    /**
+     * Save
+     *
+     * @method remove
+     * @param {Object} obj
+     * @return {DbPromise} a promise
+     */
+    save: function(obj) {
+      return obj._id ? this._db.put(obj) : this._db.post(obj);
+    },
+
+    /**
+     * Remove
+     *
+     * @method remove
+     * @param {Object} obj
+     * @return {DbPromise} a promise
+     */
+    remove: function(obj) {
+      this.status = 'remove';
+      return this._db.remove(obj).then(this._statusdone.bind(this));
+    },
+
+    /**
+     * Subscribe to changes
+     *
+     * @method
+     * @param {Function} func
+     */
+    changes: function(func, conf) {
+      console.log("PouchDB listening to changes in: " + this.dbname);
+      this._changesHandler = this._db.changes(conf || {
+        since: 'now',
+        live: true,
+        include_docs: true
+      }).on('change', function(obj){
+        func(obj.doc);
+      });
+      return this._changesHandler;
+    },
+
+    /**
+     * allDocs
+     *
+     * @method allDocs
+     * @return {DbPromise} a promise
+     */
+    allDocs: function() {
+      return this.query();
+    },
+
+    /**
+     * Get all docs matching the query string if provided,
+     * otherwise we will use the default index defined as an attribute.
+     *
+     * @method query, by default it uses the queryString instead.
+     * @param {string} query, by default use the index attribute
+     * @param {Conf} conf, by default  {include_docs=true}
+     * @return {DbPromise} a promise
+     */
+    query: function(query, conf) {
+      this.status = 'query';
+      conf = conf || {include_docs: true, descending: this.descending};
+      query = this.queryString || query || this._indexes && this._indexes[0];
+      return (query ? this._db.query(query, conf) : this._db.allDocs(conf))
+        .then(function(req) {
+          if (req.rows) {
+            this.data = req.rows.map(function(row) {
+              return row.doc;
+            });
+          }
+        }.bind(this))
+        .then(this._statusdone.bind(this));;
+    },
+
+    createIndex: function(prop) {
+      var views = {};
+      views[prop] = {
+        map: "function(doc){if(doc." + prop + ") emit(doc." + prop + ")}"
+      }
+      var idx = {
+        _id: '_design/' + prop,
+        views: views
+      };
+      this._db.put(idx)
+      .catch(function (err) {
+        if (err.name != 'conflict') throw(err);
+      }.bind(this));
+      return this.query();
+    },
+    /**
+     * Sync
+     *
+     * @method sync
+     * @param {Function} fnc
+     * @param {Function} err
+     */
+    sync: function(fnc, err, conf) {
+      console.log("PouchDB syncing local: " + this.dbname + " to: " + this.remote);
+      if (!this._db || !this.remote || this._synchandler) return this._synchandler;
+      var opts = conf || {
+        timeout: 0
+      };
+      if (this.liveSync) {
+        opts.live = opts.retry = true;
+      }
+      // TODO: normally the sync is in paused status, seems that active is
+      // only for the very short time some data is being transferred.
+      var h = this._db.sync(this.remote, opts);
+      h.on('paused', this._statusdone.bind(this))
+        .on('change', function() {
+          this.status = 'change';
+        }.bind(this))
+        .on('active', function() {
+          this.status = 'syncing';
+        }.bind(this));
+      if (fnc) {
+        h.on('change', fnc)
+         .on('paused', fnc)
+         .on('active', fnc)
+      }
+      if (err) {
+        h.on('error', err)
+      }
+      this._synchandler = this.live ? h : null;
+      return h;
+    },
+
+    /**
+     * Cancel the synchronisation with remote process.
+     */
+    cancelSync: function() {
+      if (this._synchandler) {
+        this._synchandler.cancel();
+        this._synchandler = null;
+      }
+    },
+
+    /**
+     * Cancel observing changes.
+     */
+    cancelChanges: function() {
+      if (this._changesHandler) {
+        this._changesHandler.cancel();
+        this._changesHandler = null;
+      }
+    },
+
+    _statusdone: function() {
+      this.status = 'done';
+    }
+
+  });
+</script>
+
+<script>
+Polymer.Vaadin = Polymer.Vaadin || {};
+
+/**
+ * @polymerBehavior DbPromise
+ */
+Polymer.Vaadin.DbPromise = {
+  /**
+   * @method
+   * @param {Function} func
+   */
+  then: function(func){},
+
+  /**
+   * @method
+   * @param {String} evntName
+   * @param {Function} func
+   */
+  on: function(evntName, func){}
+   // TODO: catch cancel
+};
+
+/**
+ * @polymerBehavior DbResp
+ */
+Polymer.Vaadin.DbResp = {
+  properties: {
+    rows: {
+      type: Array
+    },
+    total_rows: {
+      type: Number
+    },
+    offset: {
+      type: Number
+    }
+  }
+};
+
+/**
+ * @polymerBehavior DbRow
+ */
+Polymer.Vaadin.DbRow = {
+   properties: {
+     doc: {
+       type: Object
+     },
+     _id: {
+       type: String
+     }
+   }
+};
+
+/**
+ * @polymerBehavior Conf
+ */
+Polymer.Vaadin.Conf = {
+  properties: {
+    key: {
+      type: String
+    },
+    keys: {
+      type: Array
+    },
+    startkey: {
+      type: String
+    },
+    endkey: {
+      type: String
+    },
+    limit: {
+      type: Number
+    },
+    descending: {
+      type: Boolean
+    },
+    skip: {
+      type: Number
+    },
+    group: {
+      type: Number
+    },
+    group_level: {
+      type: Number
+    },
+    reduce: {
+      type: Boolean
+    },
+    include_docs: {
+      type: Boolean
+    },
+    inclusive_end: {
+      type: Boolean
+    },
+    update_seq: {
+      type: Boolean
+    }
+  }
+};
+
+</script>

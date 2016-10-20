@@ -76,6 +76,34 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             image = fixture('TrivialImage');
           });
 
+          test('loading, loaded, error are false before any src is set', function() {
+            expect(image.loading).to.be.eql(false);
+            expect(image.loaded).to.be.eql(false);
+            expect(image.error).to.be.eql(false);
+          });
+
+          test('loading, loaded, error are false when src is set to empty string', function(done) {
+            image.addEventListener('loaded-changed', function onLoadedChanged() {
+              if (image.loaded) {
+                image.removeEventListener('loaded-changed', onLoadedChanged);
+                image.addEventListener('loaded-changed', function onLoadedChanged2() {
+                  image.removeEventListener('loaded-changed', onLoadedChanged2);
+
+                  expect(image.loading).to.be.eql(false);
+                  expect(image.loaded).to.be.eql(false);
+                  expect(image.error).to.be.eql(false);
+                  done();
+                });
+
+                expect(image.loading).to.be.eql(false);
+                expect(image.loaded).to.be.eql(true);
+                expect(image.error).to.be.eql(false);
+                image.src = '';
+              }
+            });
+            image.src = randomImageUrl();
+          });
+
           test('can load images given a src', function(done) {
             image.addEventListener('loaded-changed', function onLoadedChanged() {
               image.removeEventListener('loaded-changed', onLoadedChanged);

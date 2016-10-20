@@ -4,29 +4,43 @@
 
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../iron-list/iron-list.html">
+<link rel="import" href="../paper-styles/shadow.html">
 <link rel="import" href="vaadin-overlay-behavior.html">
 
 <dom-module id="vaadin-combo-box-overlay">
   <style>
     :host {
       position: absolute;
-      z-index: 100;
       @apply(--shadow-elevation-2dp);
       background: #fff;
       border-radius: 0 0 2px 2px;
+      top: 0;
+      left: 0;
+
+      /**
+      * Keep the vaadin-combo-box-overlay above paper-dialogs.
+      * iron-overlay-manager.html: Polymer.IronOverlayManagerClass.prototype._applyOverlayZ
+      */
+      z-index: 200;
+      overflow: hidden;
     }
 
     #scroller {
       overflow: auto;
-      max-height: 65vh;
+      max-height: var(--vaadin-combo-box-overlay-max-height, 65vh);
 
       /* Fixes item background from getting on top of scrollbars on Safari */
       transform: translate3d(0,0,0);
+
+      /* Enable momentum scrolling on iOS (iron-list v1.2+ no longer does it for us) */
+      -webkit-overflow-scrolling: touch;
     }
 
     #selector {
-      padding-top: 8px;
-      padding-bottom: 8px;
+      --iron-list-items-container: {
+        border-top: 8px solid transparent;
+        border-bottom: 8px solid transparent;
+      };
     }
 
     #selector .item {
@@ -44,12 +58,12 @@
     }
 
     #selector .item[selected] {
-      color: var(--default-primary-color);
+      color: var(--primary-color);
     }
   </style>
 
   <template>
-    <div id="scroller" scroller="[[_getScroller()]]">
+    <div id="scroller" scroller="[[_getScroller()]]" on-tap="_stopPropagation">
       <iron-list
           id="selector"
           touch-device$="[[touchDevice]]"
@@ -58,7 +72,8 @@
           on-touchend="_preventDefault"
           selected-item="{{_selectedItem}}"
           items="[[_items]]"
-          selection-enabled>
+          selection-enabled
+          scroll-target="[[_getScroller()]]">
         <template>
           <div class="item"
               id$="it[[index]]"
@@ -66,7 +81,7 @@
               role$="[[_getAriaRole(index)]]"
               aria-selected$="[[_getAriaSelected(_focusedIndex,index)]]"
               focused$="[[_isItemFocused(_focusedIndex,index)]]">
-              [[item]]
+              [[getItemLabel(item)]]
           </div>
         </template>
       </iron-list>
@@ -116,15 +131,71 @@
         observer: '_focusedIndexChanged'
       },
 
+      _focusedItem: {
+        type: String,
+        computed: '_getFocusedItem(_focusedIndex)'
+      },
+
       _ariaActiveIndex: {
         type: Number,
         notify: true,
         computed: '_getAriaActiveIndex(_focusedIndex)'
+      },
+
+      _itemLabelPath: {
+        type: String,
+        value: 'label'
+      },
+
+      _itemValuePath: {
+        type: String,
+        value: 'value'
       }
     },
 
     ready: function() {
       this._patchWheelOverScrolling();
+
+      // Fix for #182. Only relevant for iron-list 1.0.X and 1.1.X.
+      // 1.2.X works fine without this.
+      if (this.$.selector._scroller !== undefined) {
+        this.$.selector._scroller = this._getScroller();
+      }
+    },
+
+    _getFocusedItem: function(focusedIndex) {
+      if (focusedIndex >= 0) {
+        return this._items[focusedIndex];
+      }
+    },
+
+    /**
+     * Gets the index of the item with the provided label.
+     * @return {Number}
+     */
+    indexOfLabel: function(label) {
+      if (this._items && label) {
+        for (var i = 0; i < this._items.length; i++) {
+          if (this.getItemLabel(this._items[i]).toString().toLowerCase() ===
+              label.toString().toLowerCase()) {
+            return i;
+          }
+        }
+      }
+
+      return -1;
+    },
+
+    /**
+     * Gets the label string for the item based on the `_itemLabelPath`.
+     * @return {String}
+     */
+    getItemLabel: function(item) {
+      var label = this.get(this._itemLabelPath, item);
+      if (label === undefined || label === null) {
+        label = item ? item.toString() : '';
+      }
+      return label;
     },
 
     _isItemFocused: function(focusedIndex, itemIndex) {
@@ -154,13 +225,45 @@
     },
 
     _scrollIntoView: function(index) {
-      if (index <= this.$.selector.firstVisibleIndex) {
+      if (this._visibleItemsCount() === undefined) {
+        // Scroller is not visible. Moving is unnecessary.
+        return;
+      }
+
+      var targetIndex = index;
+
+      if (index > this._lastVisibleIndex()) {
+        // Index is below the bottom, scrolling down. Make the item appear at the bottom.
+        targetIndex = index - this._visibleItemsCount() + 1;
+
+        // From iron-list 1.2.4, scrolling to an index guarantees that the item
+        // is visible into the viewport, but does not gurarantee that it is at the
+        // first position. Jumping first to the item we want to be at the bottom,
+        // fixes the problem.
         this.$.selector.scrollToIndex(index);
-      } else if (index > this._lastVisibleIndex()) {
-        this.$.selector.scrollToIndex(index - this._visibleItemsCount() + 1);
+      } else if (index > this.$.selector.firstVisibleIndex) {
+        // The item is already visible, scrolling is unnecessary per se. But we need to trigger iron-list to set
+        // the correct scrollTop on the scrollTarget. Scrolling to firstVisibleIndex.
+        targetIndex = this.$.selector.firstVisibleIndex;
+      }
+      this.$.selector.scrollToIndex(Math.max(0, targetIndex));
+    },
+
+    ensureItemsRendered: function() {
+      this.$.selector.flushDebouncer('_debounceTemplate');
+      this.$.selector._render && this.$.selector._render();
+    },
+
+    adjustScrollPosition: function() {
+      if (this._items) {
+        this._scrollIntoView(this._focusedIndex);
       }
     },
 
+    // Note: this whole scroller thing is done to support iron lists scrollToIndex()
+    // and features that use it like keyboard navigation in IE11 for iron-list 1.0.x.
+    // Tested that iron-list 1.2.x works nicely even without the external scroller, but
+    // left these here for now for backwards compatibility.
     _getScroller: function() {
       return this.$.scroller;
     },
@@ -173,8 +276,9 @@
     _patchWheelOverScrolling: function() {
       var selector = this.$.selector;
       selector.addEventListener('wheel', function(e) {
-        var scrolledToTop = selector._scroller.scrollTop === 0;
-        var scrolledToBottom = (selector._scroller.scrollHeight - selector._scroller.scrollTop - selector._scroller.clientHeight) <= 1;
+        var scroller = selector._scroller || selector.scrollTarget;
+        var scrolledToTop = scroller.scrollTop === 0;
+        var scrolledToBottom = (scroller.scrollHeight - scroller.scrollTop - scroller.clientHeight) <= 1;
 
         if (scrolledToTop && e.deltaY < 0) {
           e.preventDefault();
@@ -184,13 +288,38 @@
       });
     },
 
+    updateViewportBoundaries: function() {
+      this._cachedViewportTotalPadding = undefined;
+      this.$.selector.updateViewportBoundaries();
+    },
+
+    get _viewportTotalPadding() {
+      if (this._cachedViewportTotalPadding === undefined) {
+        var itemsStyle = window.getComputedStyle(this._unwrapIfNeeded(this.$.selector.$.items));
+        this._cachedViewportTotalPadding = [
+          itemsStyle.paddingTop,
+          itemsStyle.paddingBottom,
+          itemsStyle.borderTopWidth,
+          itemsStyle.borderBottomWidth
+        ].map(function(v) {
+          return parseInt(v, 10);
+        }).reduce(function(sum, v) {
+          return sum + v;
+        });
+      }
+
+      return this._cachedViewportTotalPadding;
+    },
+
     // TODO: PR for iron-list: https://github.com/PolymerElements/iron-list/pull/150
     _visibleItemsCount: function() {
       var firstItemIndex = this.$.selector._physicalStart;
       var firstItemHeight = this.$.selector._physicalSizes[firstItemIndex];
 
-      if (firstItemHeight) {
-        var visibleItems = this.$.selector._viewportSize / firstItemHeight;
+      var viewportHeight = this.$.selector._viewportHeight || this.$.selector._viewportSize; //Changed in v1.3.0.
+
+      if (firstItemHeight && viewportHeight) {
+        var visibleItems = (viewportHeight - this._viewportTotalPadding) / firstItemHeight;
         return Math.floor(visibleItems);
       }
     },
@@ -203,11 +332,18 @@
     },
 
     _selectItem: function(item) {
-      this.$.selector.selectItem(item);
+      item = (typeof item === 'number') ? this._items[item] : item;
+      if (this.$.selector.selectedItem !== item) {
+        this.$.selector.selectItem(item);
+      }
     },
 
     _preventDefault: function(e) {
       e.preventDefault();
+    },
+
+    _stopPropagation: function(e) {
+      e.stopPropagation();
     }
   });
 </script>

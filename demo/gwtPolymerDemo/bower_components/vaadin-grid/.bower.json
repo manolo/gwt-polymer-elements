@@ -1,5 +1,6 @@
 {
   "name": "vaadin-grid",
+  "version": "1.2.0",
   "authors": [
     "Vaadin Ltd"
   ],
@@ -8,7 +9,12 @@
     "web-components",
     "vaadin",
     "vaadin elements",
-    "grid"
+    "grid",
+    "table",
+    "datagrid",
+    "datatable",
+    "data-grid",
+    "data-table"
   ],
   "main": "vaadin-grid.html",
   "ignore": [
@@ -23,7 +29,7 @@
     "wct.conf.js"
   ],
   "dependencies": {
-    "polymer": "Polymer/polymer#^1.1.1"
+    "polymer": "polymer/polymer#^1.1.1"
   },
   "devDependencies": {
     "web-component-tester": "4.0.3",
@@ -33,14 +39,13 @@
     "elements-demo-resources": "vaadin/elements-demo-resources#master"
   },
   "homepage": "https://github.com/vaadin/vaadin-grid",
-  "_release": "33b3ed5edb",
+  "_release": "1.2.0",
   "_resolution": {
-    "type": "branch",
-    "branch": "master",
-    "commit": "33b3ed5edbea4965e2900c2babc4d48ac5bf70a3"
+    "type": "version",
+    "tag": "1.2.0",
+    "commit": "2821e80e49f43b15b9b07ee5bae2507fdecbbc81"
   },
   "_source": "git://github.com/vaadin/vaadin-grid.git",
-  "_target": "master",
-  "_originalSource": "vaadin/vaadin-grid",
-  "_direct": true
+  "_target": "1.2.x",
+  "_originalSource": "vaadin/vaadin-grid"
 }

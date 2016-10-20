@@ -1,0 +1,27 @@
+{
+    "name": "MockHttpRequest",
+    "description": "A mock implementation of XMLHttpRequest for unit testing",
+    "version": "1.0",
+    "keywords": ["testing", "unit", "mock", "ajax", "http", "request"],
+    "maintainers": [{
+        "name": "Philipp von Weitershausen",
+        "email": "philipp@weitershausen.de",
+        "web": "http://philikon.de"
+    }],
+    "contributors": [{
+        "name": "Philipp von Weitershausen",
+        "email": "philipp@weitershausen.de",
+        "web": "http://philikon.de"
+    }],
+    "bugs": "http://github.com/philikon/MockHttpRequest/issues",
+    "licenses": [{
+        "name": "MIT",
+        "url": "http://www.opensource.org/licenses/mit-license.php"
+    }],
+    "repositories": [{
+        "type": "git",
+        "url": "http://github.com/philikon/MockHttpRequest"
+    }],
+    "dependencies": [],
+    "homepage": "http://github.com/philikon/MockHttpRequest",
+}

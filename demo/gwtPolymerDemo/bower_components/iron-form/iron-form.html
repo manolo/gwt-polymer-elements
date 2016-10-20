@@ -15,7 +15,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 /*
 `<iron-form>` is an HTML `<form>` element that can validate and submit any custom
 elements that implement `Polymer.IronFormElementBehavior`, as well as any
-native HTML elements.
+native HTML elements. For more information on which attributes are
+available on the native form element, see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form
 
 It supports both `get` and `post` methods, and uses an `iron-ajax` element to
 submit the form data to the action URL.
@@ -62,7 +63,6 @@ event and do your own custom submission:
 
 @demo demo/index.html
 */
-
   Polymer({
 
     is: 'iron-form',
@@ -70,14 +70,6 @@ event and do your own custom submission:
     extends: 'form',
 
     properties: {
-      /**
-       * Content type to use when sending data.
-       */
-      contentType: {
-        type: String,
-        value: "application/x-www-form-urlencoded"
-      },
-
       /**
        * By default, the form will display the browser's native validation
        * UI (i.e. popup bubbles and invalid styles on invalid fields). You can
@@ -99,7 +91,24 @@ event and do your own custom submission:
       },
 
       /**
-      * HTTP request headers to send
+       * Content type to use when sending data. If the `contentType` property
+       * is set and a `Content-Type` header is specified in the `headers`
+       * property, the `headers` property value will take precedence.
+       * If Content-Type is set to a value listed below, then
+       * the `body` (typically used with POST requests) will be encoded accordingly.
+       *
+       *    * `content-type="application/json"`
+       *      * body is encoded like `{"foo":"bar baz","x":1}`
+       *    * `content-type="application/x-www-form-urlencoded"`
+       *      * body is encoded like `foo=bar+baz&x=1`
+       */
+      contentType: {
+        type: String,
+        value: "application/x-www-form-urlencoded"
+      },
+
+      /**
+      * HTTP request headers to send.
       *
       * Note: setting a `Content-Type` header here will override the value
       * specified by the `contentType` property of this element.
@@ -163,6 +172,36 @@ event and do your own custom submission:
       'reset': '_onReset'
     },
 
+    registered: function() {
+      // Dear reader: I apologize for what you're about to experience. You see,
+      // Safari does not respect `required` on input elements, so it never
+      // has any browser validation bubbles to show. And we have to feature
+      // detect that, since we rely on the form submission to do the right thing.
+      // See http://caniuse.com/#search=required.
+
+      // Create a fake form, with an invalid input. If it gets submitted, it's Safari.
+      var form = document.createElement('form');
+      var input = document.createElement('input');
+      input.setAttribute('required', 'true');
+      form.appendChild(input);
+
+      // If you call submit(), the form doesn't actually fire a submit event,
+      // so you can't intercept it and cancel it. The event is only fired
+      // from the magical button click submission.
+      // See http://wayback.archive.org/web/20090323062817/http://blogs.vertigosoftware.com/snyholm/archive/2006/09/27/3788.aspx.
+      var button = document.createElement('input');
+      button.setAttribute('type', 'submit');
+      form.appendChild(button);
+
+      Polymer.clientSupportsFormValidationUI = true;
+      form.addEventListener('submit', function(event) {
+        // Oh good! We don't handle `required` correctly.
+        Polymer.clientSupportsFormValidationUI = false;
+        event.preventDefault();
+      });
+      button.click();
+    },
+
     ready: function() {
       // Object that handles the ajax form submission request.
       this.request = document.createElement('iron-ajax');
@@ -182,7 +221,7 @@ event and do your own custom submission:
       if (!this.noValidate && !this.validate()) {
         // In order to trigger the native browser invalid-form UI, we need
         // to do perform a fake form submit.
-        if (!this.disableNativeValidationUi) {
+        if (Polymer.clientSupportsFormValidationUI && !this.disableNativeValidationUi) {
           this._doFakeSubmitForValidation();
         }
         this.fire('iron-form-invalid');
@@ -250,38 +289,46 @@ event and do your own custom submission:
     serialize: function() {
       var json = {};
 
-      function addSerializedElement(el) {
+      function addSerializedElement(name, value) {
         // If the name doesn't exist, add it. Otherwise, serialize it to
         // an array,
-        if (!json[el.name]) {
-          json[el.name] = el.value;
+        if (!json[name]) {
+          json[name] = value;
         } else {
-          if (!Array.isArray(json[el.name])) {
-            json[el.name] = [json[el.name]];
+          if (!Array.isArray(json[name])) {
+            json[name] = [json[name]];
           }
-          json[el.name].push(el.value);
+          json[name].push(value);
         }
       }
 
       // Go through all of the registered custom components.
       for (var el, i = 0; el = this._customElements[i], i < this._customElements.length; i++) {
-        if (this._useValue(el)) {
-          addSerializedElement(el);
+        // If this custom element is inside a custom element that has already
+        // registered to this form, skip it.
+        if (!this._isChildOfRegisteredParent(el, true) && this._useValue(el)) {
+          addSerializedElement(el.name, el.value);
         }
       }
 
       // Also go through the form's native elements.
       for (var el, i = 0; el = this.elements[i], i < this.elements.length; i++) {
-        // Checkboxes and radio buttons should only use their value if they're checked.
-        // Also, custom elements that extend native elements (like an
-        // `<input is="fancy-input">`) will appear in both lists. Since they
-        // were already added as a custom element, they don't need
-        // to be re-added.
-        if (!this._useValue(el) ||
-            (el.hasAttribute('is') && json[el.name])) {
+        // If this native element is inside a custom element that has already
+        // registered to this form, skip it.
+        if (this._isChildOfRegisteredParent(el, true) || !this._useValue(el)) {
           continue;
         }
-        addSerializedElement(el);
+
+        // A <select multiple> has an array of values.
+        if (el.tagName.toLowerCase() === 'select' && el.multiple) {
+          for (var o = 0; o < el.options.length; o++) {
+            if (el.options[o].selected) {
+              addSerializedElement(el.name, el.options[o].value);
+            }
+          }
+        } else {
+          addSerializedElement(el.name, el.value);
+        }
       }
 
       return json;
@@ -296,7 +343,9 @@ event and do your own custom submission:
     },
 
     _registerElement: function(e) {
-      var element = e.target;
+      // Get the actual element that fired the event
+      var element = Polymer.dom(e).rootTarget;
+
       element._parentForm = this;
       this._customElements.push(element);
 
@@ -326,7 +375,7 @@ event and do your own custom submission:
       // Validate all the custom elements.
       var validatable;
       for (var el, i = 0; el = this._customElements[i], i < this._customElements.length; i++) {
-        if (el.required && !el.disabled) {
+        if (!this._isChildOfRegisteredParent(el, false) && !el.disabled) {
           validatable = /** @type {{validate: (function() : boolean)}} */ (el);
           // Some elements may not have correctly defined a validate method.
           if (validatable.validate)
@@ -336,9 +385,15 @@ event and do your own custom submission:
 
       // Validate the form's native elements.
       for (var el, i = 0; el = this.elements[i], i < this.elements.length; i++) {
+        // If this native element is inside a custom element that has already
+        // registered to this form, skip it.
+        if (this._isChildOfRegisteredParent(el, false)) {
+          continue;
+        }
+
         // Custom elements that extend a native element will also appear in
         // this list, but they've already been validated.
-        if (!el.hasAttribute('is') && el.willValidate && el.checkValidity && el.name) {
+        if (!el.hasAttribute('is') && el.willValidate && el.checkValidity) {
           valid = el.checkValidity() && valid;
         }
       }
@@ -355,7 +410,7 @@ event and do your own custom submission:
           el.type == 'radio' ||
           el.getAttribute('role') == 'checkbox' ||
           el.getAttribute('role') == 'radio' ||
-          el._hasIronCheckedElementBehavior) {
+          el['_hasIronCheckedElementBehavior']) {
         return true;
       }
       return false;
@@ -402,12 +457,55 @@ event and do your own custom submission:
           if (this._usesCheckedInsteadOfValue(el)) {
             el.checked = this._customElementsInitialValues[i];
           } else {
-            el.value = this._customElementsInitialValues[i];
+            // The native input/textarea displays literal "undefined" when its
+            // its value is set to undefined, so default to null instead.
+            var value = this._customElementsInitialValues[i];
+            if (value === undefined) {
+              value = null;
+            }
+            el.value = value;
+
+            // In the shady DOM, the native form is all-seeing, and will
+            // reset the nested inputs inside <paper-input> and <paper-textarea>.
+            // In particular, it resets them to what it thinks the default value
+            // is (i.e. "", before the bindings have ran), and since this is
+            // a programmatic update, it also doesn't fire any events.
+            // Which means we need to manually update the native element's value.
+            if (el.inputElement) {
+              el.inputElement.value = el.value;
+            } else if (el.textarea) {
+              el.textarea.value = el.value;
+            }
           }
+          el.invalid = false;
         }
 
         this.fire('iron-form-reset');
       }, 1);
+    },
+
+    /**
+     * Returns true if `node` is in the shadow DOM of a different element,
+     * that has also implemented IronFormElementBehavior and is registered
+     * to this form. The second parameter specifies if the parent must have a
+     * name to be considered.
+     */
+    _isChildOfRegisteredParent: function(node, checkHasName) {
+      var parent = node;
+
+      // At some point going up the tree we'll find either this form or the document.
+      while (parent && parent !== document && parent != this) {
+        // Use logical parentnode, or native ShadowRoot host.
+        parent = Polymer.dom(parent).parentNode || parent.host;
+
+        // Check if the parent was registered and submittable.
+        if (parent &&
+            (!checkHasName || parent.name) &&
+            parent._parentForm === this) {
+          return true;
+        }
+      }
+      return false;
     }
 
   });

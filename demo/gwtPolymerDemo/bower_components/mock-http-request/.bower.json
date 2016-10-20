@@ -1,0 +1,13 @@
+{
+  "name": "mock-http-request",
+  "homepage": "https://github.com/philikon/MockHttpRequest",
+  "_release": "1ab0a3e004",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "1ab0a3e004c6a2ad770e3b4e0a03d4d3260bf50f"
+  },
+  "_source": "git://github.com/philikon/MockHttpRequest.git",
+  "_target": "master",
+  "_originalSource": "philikon/MockHttpRequest"
+}

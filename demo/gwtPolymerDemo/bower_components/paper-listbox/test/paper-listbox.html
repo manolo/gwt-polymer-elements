@@ -44,9 +44,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           listbox = fixture('basic');
         });
 
-        test('selected item has an appropriate className', function() {
+        test('selected item has an appropriate className', function(done) {
           Polymer.Base.async(function() {
             assert(listbox.selectedItem.classList.contains('iron-selected'));
+            done();
           }, 1);
         });
 

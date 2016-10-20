@@ -39,6 +39,7 @@ The following custom properties and mixins are available for styling:
 Custom property | Description | Default
 ----------------|-------------|----------
 `--paper-spinner-color` | Color of the spinner | `--google-blue-500`
+`--paper-spinner-stroke-width` | The width of the spinner stroke | 3px
 
 @group Paper Elements
 @element paper-spinner-lite
@@ -47,18 +48,13 @@ Custom property | Description | Default
 -->
 
 <dom-module id="paper-spinner-lite">
-  <template>
+  <template strip-whitespace>
     <style include="paper-spinner-styles"></style>
 
     <div id="spinnerContainer" class-name="[[__computeContainerClasses(active, __coolingDown)]]">
       <div class="spinner-layer">
-        <div class="circle-clipper left">
-          <div class="circle"></div>
-        </div><div class="gap-patch">
-          <div class="circle"></div>
-        </div><div class="circle-clipper right">
-          <div class="circle"></div>
-        </div>
+        <div class="circle-clipper left"></div>
+        <div class="circle-clipper right"></div>
       </div>
     </div>
   </template>

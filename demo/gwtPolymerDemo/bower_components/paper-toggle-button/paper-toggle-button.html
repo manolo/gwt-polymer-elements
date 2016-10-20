@@ -12,7 +12,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../paper-styles/color.html">
 <link rel="import" href="../paper-styles/default-theme.html">
-<link rel="import" href="../paper-ripple/paper-ripple.html">
 <link rel="import" href="../paper-behaviors/paper-checked-element-behavior.html">
 
 <!--
@@ -34,15 +33,21 @@ Custom property | Description | Default
 `--paper-toggle-button-unchecked-bar-color` | Slider color when the input is not checked | `#000000`
 `--paper-toggle-button-unchecked-button-color` | Button color when the input is not checked | `--paper-grey-50`
 `--paper-toggle-button-unchecked-ink-color` | Selected/focus ripple color when the input is not checked | `--dark-primary-color`
-`--paper-toggle-button-checked-bar-color` | Slider button color when the input is checked | `--default-primary-color`
-`--paper-toggle-button-checked-button-color` | Button color when the input is checked | `--default-primary-color`
-`--paper-toggle-button-checked-ink-color` | Selected/focus ripple color when the input is checked | `--default-primary-color`
+`--paper-toggle-button-checked-bar-color` | Slider button color when the input is checked | `--primary-color`
+`--paper-toggle-button-checked-button-color` | Button color when the input is checked | `--primary-color`
+`--paper-toggle-button-checked-ink-color` | Selected/focus ripple color when the input is checked | `--primary-color`
+`--paper-toggle-button-invalid-bar-color` | Slider button color when the input is invalid | `--error-color`
+`--paper-toggle-button-invalid-button-color` | Button color when the input is invalid | `--error-color`
+`--paper-toggle-button-invalid-ink-color` | Selected/focus ripple color when the input is invalid | `--error-color`
 `--paper-toggle-button-unchecked-bar` | Mixin applied to the slider when the input is not checked | `{}`
 `--paper-toggle-button-unchecked-button` | Mixin applied to the slider button when the input is not checked | `{}`
 `--paper-toggle-button-checked-bar` | Mixin applied to the slider when the input is checked | `{}`
 `--paper-toggle-button-checked-button` | Mixin applied to the slider button when the input is checked | `{}`
 `--paper-toggle-button-label-color` | Label color | `--primary-text-color`
 `--paper-toggle-button-label-spacing` | Spacing between the label and the button | `8px`
+
+This element applies the mixin `--paper-font-common-base` but does not import `paper-styles/typography.html`.
+In order to apply the `Roboto` font to this element, make sure you've imported `paper-styles/typography.html`.
 
 @group Paper Elements
 @element paper-toggle-button
@@ -58,6 +63,7 @@ Custom property | Description | Default
         display: inline-block;
         @apply(--layout-horizontal);
         @apply(--layout-center);
+        @apply(--paper-font-common-base);
       }
 
       :host([disabled]) {
@@ -77,12 +83,14 @@ Custom property | Description | Default
         opacity: 0.4;
         transition: background-color linear .08s;
         background-color: var(--paper-toggle-button-unchecked-bar-color, #000000);
+
         @apply(--paper-toggle-button-unchecked-bar);
       }
 
       .toggle-button {
         position: absolute;
         top: -3px;
+        left: 0;
         height: 20px;
         width: 20px;
         border-radius: 50%;
@@ -91,6 +99,7 @@ Custom property | Description | Default
         transition: transform linear .08s, background-color linear .08s;
         will-change: transform;
         background-color: var(--paper-toggle-button-unchecked-button-color, --paper-grey-50);
+
         @apply(--paper-toggle-button-unchecked-button);
       }
 
@@ -101,7 +110,8 @@ Custom property | Description | Default
 
       :host([checked]:not([disabled])) .toggle-bar {
         opacity: 0.5;
-        background-color: var(--paper-toggle-button-checked-bar-color, --default-primary-color);
+        background-color: var(--paper-toggle-button-checked-bar-color, --primary-color);
+
         @apply(--paper-toggle-button-checked-bar);
       }
 
@@ -116,7 +126,8 @@ Custom property | Description | Default
       }
 
       :host([checked]:not([disabled])) .toggle-button {
-        background-color: var(--paper-toggle-button-checked-button-color, --default-primary-color);
+        background-color: var(--paper-toggle-button-checked-button-color, --primary-color);
+
         @apply(--paper-toggle-button-checked-button);
       }
 
@@ -129,6 +140,8 @@ Custom property | Description | Default
         position: absolute;
         top: -14px;
         left: -14px;
+        right: auto;
+        bottom: auto;
         width: 48px;
         height: 48px;
         opacity: 0.5;
@@ -137,7 +150,7 @@ Custom property | Description | Default
       }
 
       :host([checked]) .toggle-ink {
-        color: var(--paper-toggle-button-checked-ink-color, --default-primary-color);
+        color: var(--paper-toggle-button-checked-ink-color, --primary-color);
       }
 
       .toggle-container {
@@ -155,9 +168,21 @@ Custom property | Description | Default
         display: inline-block;
         vertical-align: middle;
         padding-left: var(--paper-toggle-button-label-spacing, 8px);
-        white-space: normal;
         pointer-events: none;
         color: var(--paper-toggle-button-label-color, --primary-text-color);
+      }
+
+      /* invalid state */
+      :host([invalid]) .toggle-bar {
+        background-color: var(--paper-toggle-button-invalid-bar-color, --error-color);
+      }
+
+      :host([invalid]) .toggle-button {
+        background-color: var(--paper-toggle-button-invalid-button-color, --error-color);
+      }
+
+      :host([invalid]) .toggle-ink {
+        color: var(--paper-toggle-button-invalid-ink-color, --error-color);
       }
     </style>
 
@@ -199,6 +224,12 @@ Custom property | Description | Default
 
       listeners: {
         track: '_ontrack'
+      },
+
+      attached: function() {
+        Polymer.RenderStatus.afterNextRender(this, function() {
+          this.setScrollDirection('y');
+        });
       },
 
       _ontrack: function(event) {
