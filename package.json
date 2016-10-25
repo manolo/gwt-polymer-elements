@@ -8,7 +8,7 @@
     "gwt-api-generator": "vaadin/gwt-api-generator#master"
   },
   "scripts": {
-    "postinstall":"node node_modules/gwt-api-generator/bin/gwt-api-generator.js --package=paper-elements,iron-elements,app-elements,platinum-elements,vaadin-core-elements#master,vaadin-context-menu#master,vaadin-split-layout#master,manolo/vaadin-mock-xhr,manolo/vaadin-pouchdb#master --artifactId=vaadin-gwt-polymer-elements --groupId=com.vaadin.polymer --pom && mvn clean install javadoc:jar"
+    "postinstall":"node node_modules/gwt-api-generator/bin/gwt-api-generator.js --package=paper-elements,iron-elements,app-elements,platinum-elements,vaadin-core-elements,vaadin-context-menu,vaadin-split-layout --artifactId=vaadin-gwt-polymer-elements --groupId=com.vaadin.polymer --pom && mvn clean install javadoc:jar"
   },
   "pom": {
     "version" : "1.7.0.0",
