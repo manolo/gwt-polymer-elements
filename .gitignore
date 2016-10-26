@@ -51,3 +51,9 @@ target
 .settings
 .project
 .classpath
+
+# Temporary stuff in demo
+demo/bower_components
+demo/src/main/resources
+demo/node
+demo/src/main/java/com/vaadin/polymer/vaadin

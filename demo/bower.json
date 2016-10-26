@@ -1,0 +1,9 @@
+{
+  "name": "gwt-polymer-elements-demo",
+  "description": "demo npm and bower dependencies not included in jar",
+  "main": "",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "vaadin-mock-xhr": "manolo/vaadin-mock-xhr"
+  }
+}
