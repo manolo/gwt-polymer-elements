@@ -220,7 +220,8 @@ Mixin | Description | Default
 @demo app-header/demo/music.html Reveals Demo
 @demo app-header/demo/no-effects.html Condenses and Reveals Demo
 @demo app-header/demo/notes.html Fixed with Dynamic Shadow Demo
-@demo app-header/demo/custom-sticky-element.html Custom Sticky Element Demo
+@demo app-header/demo/custom-sticky-element-1.html Custom Sticky Element Demo 1
+@demo app-header/demo/custom-sticky-element-2.html Custom Sticky Element Demo 2
 -->
 
 <dom-module id="app-header">
@@ -645,9 +646,9 @@ Mixin | Description | Default
        */
       _transformHeader: function(y) {
         this.translate3d(0, (-y) + 'px', 0);
-        if (this._stickyEl && this.condenses && y >= this._stickyElTop) {
-          this.translate3d(0, (Math.min(y, this._dHeight) - this._stickyElTop) + 'px', 0,
-              this._stickyEl);
+        if (this._stickyEl) {
+          this.translate3d(0, this.condenses && y >= this._stickyElTop ?
+              (Math.min(y, this._dHeight) - this._stickyElTop) + 'px' : 0,  0, this._stickyEl);
         }
       },
 
