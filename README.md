@@ -6,7 +6,11 @@
 
 - **Polymer**: is a JavaScript library for building web applications with Web Components.
 - **Polymer-Elements**: is a collection of widgets built in Polymer. The collection is divided in sections: _Iron, Paper, Gold, Neon, Platinum, Vaadin,_ etc.
--  **GWT-Polymer-Elements**: is a Java wrapper enabling Polymer Elements to be used in GWT projects. Right now it includes wrappers for [Paper](https://elements.polymer-project.org/browse?package=paper-elements), [Iron](https://elements.polymer-project.org/browse?package=iron-elements) and [Vaadin](https://vaadin.com/elements) collections, but more might be added in the future.
+-  **GWT-Polymer-Elements**: is a Java wrapper enabling Polymer Elements to be used in GWT projects. Right now it includes wrappers for [Iron](https://elements.polymer-project.org/browse?package=iron-elements),
+[Paper](https://elements.polymer-project.org/browse?package=paper-elements),
+[App](https://elements.polymer-project.org/browse?package=app-elements),
+[Platinum](https://elements.polymer-project.org/browse?package=platinum-elements) and
+[Vaadin](https://vaadin.com/elements) collections, but more might be added in the future.
 
  The library has been generated using the Vaadin [gwt-api-generator](https://github.com/vaadin/gwt-api-generator), an utility able to inspect polymer webcomponents and emit GWT Java code.
 
@@ -21,7 +25,8 @@
 
 ## Using the GWT library
 
-_**NOTICE** : We make extensive use of `JsInterop` a new feature in `GWT` for easily interacting with JavaScript. It is experimental in `GWT-2.7` and will be stable in `GWT-2.8.0`, but starting from gwt-polymer-elements-1.2.1.0.beta1, we don't support 2.7.0 anymore nor it's legacy JsInterop syntax. If you got **`Uncaught java.lang.ClassCastException`** errors in the JavaScript console when running your application, it does mean that you are not using `GWT-2.8.0-SNAPSHOT`_
+**NOTICE** : We make an extensive use of `JsInterop`, a new feature in `GWT` for easily interacting with JavaScript.
+It was experimental in `GWT-2.7`, and stable in `GWT-2.8.0`, but starting from gwt-polymer-elements-1.2.1.0.beta1, we don't support 2.7.0 anymore or it's legacy JsInterop syntax.
 
 ### Add vaadin-gwt-polymer-elements to your CLASSPATH
 The `.jar` file includes all the java code and web components of
@@ -36,7 +41,7 @@ Polymer Iron and Paper collections, so as you don't have to deal with the proces
      <dependency>
        <groupId>com.vaadin.polymer</groupId>
        <artifactId>vaadin-gwt-polymer-elements</artifactId>
-       <version>1.2.3.0</version>
+       <version>1.7.0.0</version>
        <scope>provided</scope>
      </dependency>
    </dependencies>
@@ -44,7 +49,7 @@ Polymer Iron and Paper collections, so as you don't have to deal with the proces
 
 ##### Manually
 - otherwise you can [download](http://repo1.maven.org/maven2/com/vaadin/polymer/vaadin-gwt-polymer-elements/)
-  the `vaadin-gwt-polymer-elements-x.x.x.x.jar` archive and put it in your gwt project classpath.
+  the `vaadin-gwt-polymer-elements-1.7.0.0.jar` archive and put it in your gwt project classpath.
 
 ### Update your module configuration
 
@@ -55,24 +60,28 @@ Polymer Iron and Paper collections, so as you don't have to deal with the proces
 
  ```
 
-### Add the Web Components Polyfill
+### Add the Web Components Polyfill (Optional). 
 
-- Nowadays, only Chrome has full native support for Web Components, therefore, to make your project work in all browsers, you have to include Polymer Polyfill, very early in your `.html` host page. Since `vaadin-gwt-polymer-elements` already is bundled with the polyfill, so you only have to replace `myapp` fragments with your actual application name.
+- Only Chrome has full native support for Web Components nowadays, therefore, to make your project work with all modern browsers, you have to include the WebComponents Polyfill.
 
-    ```html
-    <head>
-      <script src="myapp/bower_components/webcomponentsjs/webcomponents.js"></script>
-      <script src="myapp/myapp.nocache.js"></script>
-    </head>
-    ```
+  If you use the polymer components as `Widgets`, the library will lazy load it when needed.
+Otherwise load it very early in your `.html` host page as it is shown in the following code.
+
+   ```html
+<head>
+    <script src="myapp/bower_components/webcomponentsjs/webcomponents.js"></script>
+    <script src="myapp/myapp.nocache.js"></script>
+</head>
+```
 
 ## Consuming Web Components in GWT
 
 Vaadin `gwt-polymer-elements` bundles classes to build your application using either `Widgets` or JsInterop `Elements`. The former is the classic approach, while the latter will become the new tendency.
 
-But Right now, `Elements` is the most difficult way because GWT lacks of a complete `Elemental-2.0` API relying on `JsInterop`, and because `JsInterop` has not been fully released yet. We provide a very basic set of elemental interfaces limited to those needed for our implementation, they will be replaced by Elemental-2.0 when it was available.
+But Right now, `Elements` is the most difficult way because GWT lacks of a complete `Elemental-2.0` API relying on `JsInterop`.
+We provide a very small set of elemental interfaces limited to those needed for our implementation, they will be replaced by Elemental-2.0 when it was available.
 
-In summary, for classic and production GWT projects it would be easier to use the `Widget` since the API would not have important changes. Otherwise, if you want to get rid of the widget hierarchy we recomend to start using the `Element` API mixing it with some DOM manipulation library like `gwtquery`.
+In summary, for classic and production GWT projects it would be easier to use the `Widget` since the API would not have important changes. Otherwise, if you want to get rid of the widget hierarchy we recommend to start using the `Element` API mixing it with some DOM manipulation library like `gwtquery` or just the methods included in the elemental API.
 
 
  - Using the classic **Widget API** in Java.
@@ -192,7 +201,7 @@ In summary, for classic and production GWT projects it would be easier to use th
  ```
 
 ### Asynchronous issues
-   Polymer 1.0.x does not allow using custom properties before the web component has been initialized.
+   Polymer 1.x.x does not allow using custom properties before the web component has been initialized.
    Thus `gwt-polymer-elements` comes with some methods which helps to run callbacks when the component starts ready.
    If you use widgets, the library would be able to deal with properties set very early, but call to some methods could not work
 
@@ -206,7 +215,7 @@ In summary, for classic and production GWT projects it would be easier to use th
 
    PolymerButton button = new PolymerButton();
    // You could set methods here
-   button.set...
+   button.setFoo(bar);
 
    button.ready(new Function() {
       public Object call(Object args) {
