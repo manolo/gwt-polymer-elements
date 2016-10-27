@@ -7,9 +7,9 @@
     <groupId>com.vaadin.polymer</groupId>
     <artifactId>gwt-polymer-elements-demo</artifactId>
     <packaging>war</packaging>
-    <version>1.2.3.1-SNAPSHOT</version>
+    <version>1.7.0.0-SNAPSHOT</version>
     <properties>
-      <gwtVersion>2.8.0-SNAPSHOT</gwtVersion>
+      <gwtVersion>2.8.0-rc3</gwtVersion>
       <gwtPolymerVersion>${project.version}</gwtPolymerVersion>
       <maven.compiler.target>1.8</maven.compiler.target>
       <maven.compiler.source>1.8</maven.compiler.source>
@@ -83,27 +83,37 @@
         <finalName>gwt-polymer-demo</finalName>
         <plugins>
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
+                <groupId>net.ltgt.gwt.maven</groupId>
                 <artifactId>gwt-maven-plugin</artifactId>
-                <version>2.7.0</version>
+                <version>1.0-rc-6</version>
                 <executions>
-                    <!-- GWT version detected from dependencyManagement -->
-                    <execution>
-                        <goals>
-                            <goal>compile</goal>
-                            <!--<goal>generateAsync</goal>-->
-                        </goals>
-                    </execution>
+                  <execution>
+                    <goals>
+                      <goal>import-sources</goal>
+                      <goal>compile</goal>
+                    </goals>
+                  </execution>
                 </executions>
                 <configuration>
-                    <runTarget>demo.html</runTarget>
-                    <draftCompile>false</draftCompile>
-                    <optimizationLevel>9</optimizationLevel>
-                    <disableCastChecking>true</disableCastChecking>
-                    <disableClassMetadata>true</disableClassMetadata>
-                    <enableAssertions>false</enableAssertions>
-                    <closureCompiler>true</closureCompiler>
-                    <bindAddress>0.0.0.0</bindAddress>
+                  <moduleName>com.vaadin.polymer.demo.Demo</moduleName>
+                  <moduleShortName>gwtPolymerDemo</moduleShortName>
+                  <failOnError>true</failOnError>
+                  <compilerArgs>
+                    <arg>-compileReport</arg>
+                    <arg>-XcompilerMetrics</arg>
+                  </compilerArgs>
+                  <devmodeArgs>
+                    <arg>-bindAddress</arg><arg>0.0.0.0</arg>
+                  </devmodeArgs>
+                  <codeserverArgs>
+                    <arg>-bindAddress</arg><arg>0.0.0.0</arg>
+                    <arg>-gen</arg><arg>${project.build.directory}/.generated</arg>
+                  </codeserverArgs>
+                  <warDir>${project.build.directory}/${project.build.finalName}</warDir>
+                  <classpathScope>compile+runtime</classpathScope>
+                  <startupUrls>
+                    <startupUrl>demo.html</startupUrl>
+                  </startupUrls>
                 </configuration>
             </plugin>
             <plugin>
@@ -133,6 +143,63 @@
                       </resource>
                     </resources>
                   </configuration>
+                </execution>
+              </executions>
+            </plugin>
+            <plugin>
+              <groupId>com.github.eirslett</groupId>
+              <artifactId>frontend-maven-plugin</artifactId>
+              <executions>
+                <execution>
+                  <id>install node and npm</id>
+                  <phase>generate-resources</phase>
+                  <goals>
+                    <goal>install-node-and-npm</goal>
+                  </goals>
+                  <configuration>
+                    <nodeVersion>v6.2.0</nodeVersion>
+                  </configuration>
+                </execution>
+                <execution>
+                  <id>npm install</id>
+                  <goals>
+                    <goal>npm</goal>
+                  </goals>
+                  <configuration>
+                    <arguments>install</arguments>
+                  </configuration>
+                </execution>
+                <execution>
+                  <id>bower install</id>
+                  <goals>
+                    <goal>bower</goal>
+                  </goals>
+                  <configuration>
+                    <arguments>install</arguments>
+                  </configuration>
+                </execution>
+              </executions>
+            </plugin>
+            <plugin>
+              <artifactId>maven-antrun-plugin</artifactId>
+              <version>1.7</version>
+              <executions>
+                <execution>
+                  <phase>generate-resources</phase>
+                  <configuration>
+                    <target>
+                      <delete dir="bower_components/polymer" />
+                      <delete dir="bower_components/webcomponentsjs" />
+                      <exec
+                        dir="${project.basedir}"
+                        executable="node_modules/.bin/gwt-api-generator">
+                        <arg value="--excludeLib" />
+                      </exec>
+                    </target>
+                  </configuration>
+                  <goals>
+                    <goal>run</goal>
+                  </goals>
                 </execution>
               </executions>
             </plugin>

@@ -1,43 +1,51 @@
-<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
-             xmlns:g='urn:import:com.google.gwt.user.client.ui'
-             xmlns:i='urn:import:com.vaadin.polymer.iron.widget'>
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder' xmlns:g='urn:import:com.google.gwt.user.client.ui' xmlns:i='urn:import:com.vaadin.polymer.iron.widget' xmlns:p='urn:import:com.vaadin.polymer.paper.widget'>
 
-    <ui:style>
-        @external .iron-selected, .selector-sample;
+  <ui:style>
+  @external .iron-selected, .selector-sample;
+  .selector-sample iron-selector>* {
+      padding: 8px;
+  }
+  
+  .selector-sample .iron-selected {
+      background-color: #ddd;
+  }
+  </ui:style>
 
-        .selector-sample iron-selector > * {
-            padding: 8px;
-        }
 
-        .selector-sample .iron-selected {
-            background-color: #ddd;
-        }
-    </ui:style>
+  <g:HTMLPanel addStyleNames="selector-sample">
+    <p:PaperToast ui:field="toast" />
 
-    <g:HTMLPanel addStyleNames="selector-sample">
+    <div class="horizontal-section-container center-justified layout">
+      <div class="vertical-section">
         <h3>Basic</h3>
-        <i:IronSelector selected="0">
-            <div>Item 0</div>
-            <div>Item 1</div>
-            <div>Item 2</div>
-            <div>Item 3</div>
-            <div>Item 4</div>
+        <i:IronSelector ui:field="selector1" selected="0">
+          <div selected="">Item 0</div>
+          <div>Item 1</div>
+          <div>Item 2</div>
+          <div>Item 3</div>
+          <div>Item 4</div>
         </i:IronSelector>
+      </div>
 
+      <div class="vertical-section">
         <h3>Multi-select</h3>
-        <i:IronSelector multi="true" selectedValues="[0,2]">
-            <div>Item 0</div>
-            <div>Item 1</div>
-            <div>Item 2</div>
-            <div>Item 3</div>
-            <div>Item 4</div>
+        <i:IronSelector ui:field="selector2" multi="true" selectedValues="[0,2]">
+          <div>Item 0</div>
+          <div>Item 1</div>
+          <div>Item 2</div>
+          <div>Item 3</div>
+          <div>Item 4</div>
         </i:IronSelector>
+      </div>
 
-        <h3>Example</h3>
-        <i:IronSelector selected="foo" attrForSelected="name">
-            <div name="foo">Foo</div>
-            <div name="bar">Bar</div>
-            <div name="zot">Zot</div>
+      <div class="vertical-section">
+        <h3>Valued-attribute</h3>
+        <i:IronSelector ui:field="selector3" selected="foo" attrForSelected="name">
+          <div name="foo">Foo</div>
+          <div name="bar">Bar</div>
+          <div name="zot">Zot</div>
         </i:IronSelector>
-    </g:HTMLPanel>
+      </div>
+    </div>
+  </g:HTMLPanel>
 </ui:UiBinder>

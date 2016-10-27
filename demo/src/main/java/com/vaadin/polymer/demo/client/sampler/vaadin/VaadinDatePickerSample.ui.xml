@@ -6,19 +6,11 @@
 
   <g:HTMLPanel>
 
-    <i:IronAjax ui:field="ironAjax" url="gwtPolymerDemo/elements.json" auto="true" />
-    <p:PaperToast ui:field="toast" />
-
     <div class="vertical center-justified layout">
 
       <h4>Default</h4>
-      <div class="vertical-section">
-        <v:VaadinComboBox ui:field="comboBox" label="Element" />
-      </div>
-
-      <h4>Valued, no Label</h4>
-      <div class="vertical-section">
-        <v:VaadinComboBox ui:field="comboBox2" label="Element" noLabelFloat="true" />
+      <div class="vertical-section" style="max-width: 400px">
+        <v:VaadinDatePicker ui:field="datePicker" label="Select a date" />
       </div>
 
     </div>

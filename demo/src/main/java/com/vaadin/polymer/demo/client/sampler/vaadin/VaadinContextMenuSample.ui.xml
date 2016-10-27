@@ -1,0 +1,63 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder' xmlns:g='urn:import:com.google.gwt.user.client.ui' xmlns:v='urn:import:com.vaadin.polymer.vaadin.widget' xmlns:i='urn:import:com.vaadin.polymer.iron.widget'
+  xmlns:p='urn:import:com.vaadin.polymer.paper.widget'>
+  <ui:style>
+
+  </ui:style>
+
+  <g:HTMLPanel>
+
+    <p:PaperToast ui:field="toast" />
+
+    <div class="vertical center-justified layout">
+      <h4>Basic</h4>
+      <div class="vertical-section">
+        <v:VaadinContextMenu ui:field="basiccontext" addStyleNames="basiccontext">
+          <template>
+            <paper-menu>
+              <paper-item value="item1">Item 1</paper-item>
+              <paper-item value="item2">Item 2</paper-item>
+              <paper-item value="item3">Item 3</paper-item>
+              <paper-item value="item4">
+                <iron-icon icon="warning"></iron-icon>
+                <paper-item-body attributes="two-line">
+                  <div>Item 4 - Line 1</div>
+                  <div secondary="">Item 4 - Line 2</div>
+                </paper-item-body>
+              </paper-item>
+            </paper-menu>
+          </template>
+        </v:VaadinContextMenu>
+
+        Right click on this <a ui:field="opener" href="javascript:void(0)">link</a> to open the context menu.
+      </div>
+
+      <h4>Advanced</h4>
+      <div class="vertical-section">
+        Right click on the grid to open the menu to hide and show columns.
+        <v:VaadinGrid ui:field="grid" addStyleNames="grid">
+          <table>
+            <colgroup>
+              <col name="name" header-text="Name" width="150" />
+              <col name="last" header-text="Surname" />
+              <col name="city" header-text="City" />
+              <col name="state" header-text="State" />
+              <col name="country" header-text="Country" />
+            </colgroup>
+          </table>
+        </v:VaadinGrid>
+        <v:VaadinContextMenu ui:field="gridcontext" addStyleNames="gridcontext" closeOn="">
+          <template ui:field="gridmenu">
+            <paper-menu multi="true">
+              <paper-item value="0">Name</paper-item>
+              <paper-item value="1">Surname</paper-item>
+              <paper-item value="2">City</paper-item>
+              <paper-item value="3">State</paper-item>
+              <paper-item value="4">Country</paper-item>
+            </paper-menu>
+          </template>
+        </v:VaadinContextMenu>
+      </div>
+    </div>
+
+  </g:HTMLPanel>
+</ui:UiBinder>

@@ -47,6 +47,7 @@ public class UiBinderWidget extends Composite {
 
     @UiHandler({"button1", "button2"})
     void buttonClicked(ClickEvent event) {
+        toast.close();
         toast.setText("widget event handler:" + ((Button)event.getSource()).getElement().getInnerText());
         toast.open();
     }

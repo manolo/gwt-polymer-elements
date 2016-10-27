@@ -62,16 +62,16 @@
 
         <p:PaperInput label="Filter by Name" ui:field="filter"></p:PaperInput>
 
-        <v:VaadinGrid ui:field="grid" frozenColumns="1">
+        <v:VaadinGrid ui:field="grid" addStyleNames="fit" frozenColumns="1" columnReorderingAllowed="true" >
           <table>
             <colgroup>
               <col name="index" header-text="#" width='30' />
-              <col name="name" header-text="Name" width="150"/>
-              <col name="address" header-text="Address" hidable="" sortable=""/>
-              <col name="city" header-text="City" sortable="" hidable=""/>
-              <col name="zip" header-text="ZIP" sortable="" hidable="" width='90'/>
-              <col name="state" header-text="State" sortable="" hidable=""/>
-              <col name="country" header-text="Country" sortable="" hidable=""/>
+              <col name="name" header-text="Name" width="150" resizable=""/>
+              <col name="address" header-text="Address" hidable="" sortable="" resizable=""/>
+              <col name="city" header-text="City" sortable="" hidable="" resizable=""/>
+              <col name="zip" header-text="ZIP" sortable="" hidable="" width='90' resizable=""/>
+              <col name="state" header-text="State" sortable="" hidable="" resizable=""/>
+              <col name="country" header-text="Country" sortable="" hidable="" resizable=""/>
             </colgroup>
           </table>
         </v:VaadinGrid>

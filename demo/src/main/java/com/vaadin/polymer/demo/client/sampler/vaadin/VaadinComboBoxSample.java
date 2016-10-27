@@ -7,6 +7,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
+import com.vaadin.polymer.Polymer;
 import com.vaadin.polymer.iron.widget.IronAjax;
 import com.vaadin.polymer.paper.widget.PaperToast;
 import com.vaadin.polymer.vaadin.widget.VaadinComboBox;
@@ -19,6 +20,7 @@ public class VaadinComboBoxSample extends Composite {
     private static MyUiBinder myUiBinder = GWT.create(MyUiBinder.class);
 
     @UiField VaadinComboBox comboBox;
+    @UiField VaadinComboBox comboBox2;
     @UiField IronAjax ironAjax;
     @UiField PaperToast toast;
 
@@ -30,12 +32,26 @@ public class VaadinComboBoxSample extends Composite {
         ironAjax.addResponseHandler(event -> {
             elements = ironAjax.getLastResponse().cast();
             comboBox.setItems(elements);
+            comboBox2.setItems(elements);
+            comboBox2.setValue("Bohrium");
         });
+    }
+
+    private void show(String message) {
+        if (!message.isEmpty()) {
+            toast.close();
+            toast.setText("Value: " + message);
+            toast.open();
+        }
     }
 
     @UiHandler("comboBox")
     public void valueChanged(ValueChangedEvent e) {
-        toast.setText("Value Changed: " + comboBox.getValue());
-        toast.open();
+        show(comboBox.getValue());
+    }
+
+    @UiHandler("comboBox2")
+    public void valueChanged2(ValueChangedEvent e) {
+        show(comboBox2.getValue());
     }
 }

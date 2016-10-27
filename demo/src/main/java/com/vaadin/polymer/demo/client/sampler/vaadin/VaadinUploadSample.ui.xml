@@ -6,21 +6,13 @@
 
   <g:HTMLPanel>
 
-    <i:IronAjax ui:field="ironAjax" url="gwtPolymerDemo/elements.json" auto="true" />
-    <p:PaperToast ui:field="toast" />
+    <vaadin-mock-xhr></vaadin-mock-xhr>
 
     <div class="vertical center-justified layout">
-
-      <h4>Default</h4>
-      <div class="vertical-section">
-        <v:VaadinComboBox ui:field="comboBox" label="Element" />
+      <div class="vertical-section" style="max-width: 600px">
+        <v:VaadinUpload ui:field="uploader" />
       </div>
-
-      <h4>Valued, no Label</h4>
-      <div class="vertical-section">
-        <v:VaadinComboBox ui:field="comboBox2" label="Element" noLabelFloat="true" />
-      </div>
-
     </div>
+
   </g:HTMLPanel>
 </ui:UiBinder>

@@ -1,0 +1,51 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder' xmlns:g='urn:import:com.google.gwt.user.client.ui' xmlns:v='urn:import:com.vaadin.polymer.vaadin.widget' xmlns:i='urn:import:com.vaadin.polymer.iron.widget'
+  xmlns:p='urn:import:com.vaadin.polymer.paper.widget'>
+
+  <g:HTMLPanel>
+    <style>
+      vaadin-split-layout {
+        height: 200px;
+      }
+    </style>
+    <div class="vertical center-justified layout">
+        <h4>Horizontal Split Layout (Default)</h4>
+        <div class="vertical-section">
+          <v:VaadinSplitLayout>
+            <div>First layout content</div>
+            <div>Second layout content</div>
+          </v:VaadinSplitLayout>
+        </div>
+        <h4>Vertical Split Layout</h4>
+        <div class="vertical-section">
+          <v:VaadinSplitLayout vertical="true">
+            <div>Top layout content</div>
+            <div>Bottom layout content</div>
+          </v:VaadinSplitLayout>
+        </div>
+        <h4>Layout Combination</h4>
+        <div class="vertical-section">
+          <v:VaadinSplitLayout>
+            <div>First layout content</div>
+            <v:VaadinSplitLayout vertical="true">
+              <div>Second layout content</div>
+              <div>Third layout content</div>
+            </v:VaadinSplitLayout>
+          </v:VaadinSplitLayout>
+        </div>
+        <h4>Specifying Initial Sizes</h4>
+        <div class="vertical-section">
+          <v:VaadinSplitLayout>
+            <div style="width: 75%;">First layout content</div>
+            <div style="width: 25%;">Second layout content</div>
+          </v:VaadinSplitLayout>
+        </div>
+        <h4>Specifying Min- and Max- Sizes</h4>
+        <div class="vertical-section">
+          <v:VaadinSplitLayout>
+            <div style="min-width: 50px; max-width: 150px;">First</div>
+            <div>Second</div>
+          </v:VaadinSplitLayout>
+        </div>
+      </div>
+  </g:HTMLPanel>
+</ui:UiBinder>

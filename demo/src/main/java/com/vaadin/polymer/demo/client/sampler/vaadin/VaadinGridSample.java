@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import static com.google.gwt.query.client.GQuery.console;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.JsArray;
 import com.google.gwt.core.client.JsArrayNumber;
@@ -87,8 +89,7 @@ public class VaadinGridSample extends Composite {
             // Feature: row details
             // Generate a widget to show the details of a row
             grid.setRowDetailsGenerator(index -> {
-                int i = ((Properties)index).getInt("a");
-                Properties u = items.get(i);
+                Properties u = items.get(((Double)index).intValue());
                 img.setSrc(u.get("image"));
                 txt.setInnerText(u.get("mediumText"));
                 return info.getPolymerElement();
