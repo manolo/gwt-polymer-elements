@@ -44,6 +44,7 @@ npm install
 # Commit temporary all java stuff to master
 git add pom.xml src >/dev/null
 git commit -m 'tmp: Adding stuff needed for releasing library' pom.xml src
+git push origin master -f || (echo master is protected, cannot continue && exit 1)
 
 # Perform the release, this command is interactive and will prompt for
 # version numbers and sign passwords
@@ -57,7 +58,7 @@ git reset --hard $currentId
 # remove unreferenced blobs
 git -c gc.reflogExpire=0 -c gc.reflogExpireUnreachable=0 -c gc.rerereresolved=0 \
     -c gc.rerereunresolved=0 -c gc.pruneExpire=now gc --aggressive
-git push origin master -f
+git push origin master -f || (echo master is protected, cannot continue && exit 1)
 
 # Change versions in 
 [ -z "$newVersion" ] && exit 3
