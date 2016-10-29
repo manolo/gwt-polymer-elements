@@ -38,6 +38,9 @@ git push origin :refs/tags/$tag || true
 rm -rf pom.xml src node_modules pom.xml.releaseBackup release.properties target
 npm install
 
+# Set java home in mac
+[ -x /usr/libexec/java_home ] && export JAVA_HOME=`/usr/libexec/java_home`
+
 # Commit temporary all java stuff to master
 git add pom.xml src >/dev/null
 git commit -m 'tmp: Adding stuff needed for releasing library' pom.xml src
