@@ -6,14 +6,198 @@
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1" />
 
     <title>Polymer Example</title>
+    <script async src="gwtPolymerDemo/gwtPolymerDemo.nocache.js"></script>
+    <script async src="https://cdn.vaadin.com/vaadin-core-elements/latest/elements-demo-resources/ga.js"></script>
 
-    <script src="https://cdn.vaadin.com/vaadin-core-elements/latest/elements-demo-resources/ga.js"></script>
-    <script type="text/javascript" src="gwtPolymerDemo/gwtPolymerDemo.nocache.js"></script>
+    <style>
+      body {
+        margin: 0 !important;
+        font-family: sans-serif;
+        font-weight: 400;
+      }
+      .out {
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+      }
+      .left {
+        position: absolute;
+        width: 256px;
+        height: 100%;
+        background: #fafafa;
+      }
+      .right {
+        position: absolute;
+        width: calc(100% - 256px);
+        height: 100%;
+        background: white;
+        margin-left: 256px;
+      }
+
+      .left-top, .right-top, .left-middle, .right-middle {
+        display: flex;
+        align-items: center;
+      }
+
+      .left-top, .right-top {
+        width: 100%;
+        height: 65px;
+        background: #00796b;
+      }
+      .left-top {
+        justify-content: center;
+      }
+      .left-middle {
+        width: 100%;
+        height: 49px;
+        background:#009688;
+        border-top: solid 1px #cde5e3;
+        margin-top: -1px;
+      }
+      .right-middle {
+        width: 100%;
+        background: #cde5e3;
+        height: 45px;
+      }
+
+      .left-middle .text {
+        color: white;
+        font-size: 14px;
+        margin-left: 25px;
+      }
+      .right-top .text, .draw-button {
+        color: white;
+        font-size: 17px;
+        margin-left: 19px;
+        margin-top: 2px;
+      }
+      .draw-button {
+        display: none;
+        margin-left: 11px;
+      }
+      .left-middle .text::before, .draw-button::before {
+        content: "█ ";
+        opacity: 0.4;
+      }
+
+      .text {
+        overflow: hidden;
+      }
+
+      .text::after {
+        content: "█████████";
+        opacity: 0.3;
+      }
+      .left-content .text, .right-middle .text {
+        font-size: 14px;
+        line-height: 40px;
+        color: #009688;
+        margin-left: 42px;
+        opacity: 0.5;
+      }
+      .logo {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        align-self: flex-start;
+        margin: 15px 5px 0 5px;
+      }
+      .logo1 {
+        background: #9c27b0;
+      }
+      .logo2 {
+        background: #f44336;
+      }
+      .logo3 {
+        background: #03a9f4;
+      }
+      .source {
+        margin-left: 27px !important;
+        width: 98px;
+      }
+      .java {
+        margin-left: 15px !important;
+        width: 56px;
+      }
+      .xml {
+        margin-left: 25px !important;
+        width: 69px;
+      }
+      .right-content {
+        padding: 20px 40px;
+      }
+      .material {
+        height: 115px;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+      }
+      @media only screen and (max-width: 720px) {
+        .left {
+          display: none;
+        }
+        .button {
+          display: block;
+        }
+        .right {
+          width: 100%;
+          margin-left: 0px;
+        }
+        .right-top .text {
+          margin-top: -4px;
+          margin-left: 32px;
+        }
+        .draw-button {
+          margin-top: -4px;
+          display: block;
+        }
+      }
+    </style>
   </head>
 
   <body>
-    <div id='loading' style='position:fixed;top:0px;left:0px;width:100%;text-align:center;font-family:arial;font-size:24px;color:#009688;'>
-     loading...
+    <div class="out">
+      <div class="right">
+        <div class="right-top">
+          <div class="draw-button"></div>
+          <div class="text"></div>
+        </div>
+        <div id="loading">
+          <div class="right-middle">
+            <span class="text source"></span>
+            <span class="text java"></span>
+            <span class="text xml"></span>
+          </div>
+          <div class="right-content">
+            <div class="material"></div>
+          </div>
+        </div>
+      </div>
+      <div class="left">
+        <div class="left-top">
+          <div class="logo logo1"></div>
+          <div class="logo logo2"></div>
+          <div class="logo logo3"></div>
+        </div>
+        <div class="left-middle">
+          <div class="text"></div>
+        </div>
+        <div class="left-middle">
+          <div class="text"></div>
+        </div>
+        <div class="left-middle">
+          <div class="text"></div>
+        </div>
+        <div class="left-middle">
+          <div class="text"></div>
+        </div>
+        <div class="left-content">
+          <div class="text"></div>
+          <div class="text"></div>
+          <div class="text"></div>
+          <div class="text"></div>
+        </div>
+      </div>
     </div>
   </body>
 </html>
