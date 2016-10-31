@@ -15,6 +15,9 @@
         font-family: sans-serif;
         font-weight: 400;
       }
+      body * {
+        transition: opacity 500ms;
+      }
       .out {
         position: fixed;
         top: 0px;
@@ -49,17 +52,23 @@
       .left-top {
         justify-content: center;
       }
-      .left-middle {
+
+      .left-middle, .right-middle {
         width: 100%;
+        opacity: 0;
+      }
+      .left-middle {
         height: 49px;
         background:#009688;
         border-top: solid 1px #cde5e3;
         margin-top: -1px;
       }
       .right-middle {
-        width: 100%;
         background: #cde5e3;
         height: 45px;
+      }
+      .ready1 .left-middle, .ready2 .right-middle {
+        opacity: 1;
       }
 
       .left-middle .text {
@@ -77,15 +86,21 @@
         display: none;
         margin-left: 11px;
       }
-      .left-middle .text::before, .draw-button::before {
+
+      .left-middle .text::before,
+      .draw-button::before {
         content: "█ ";
-        opacity: 0.4;
+        opacity: 0.3;
       }
 
-      .text {
+      .draw-button, .text {
         overflow: hidden;
+        opacity: 0;
       }
-
+      .ready2 .draw-button, .ready2 .text {
+        overflow: hidden;
+        opacity: 1;
+      }
       .text::after {
         content: "█████████";
         opacity: 0.3;
@@ -95,8 +110,12 @@
         line-height: 40px;
         color: #009688;
         margin-left: 42px;
+        opacity: 0;
+      }
+      .ready2 .left-content .text, .ready2 .right-middle .text {
         opacity: 0.5;
       }
+
       .logo {
         width: 40px;
         height: 40px;
@@ -128,11 +147,17 @@
       .right-content {
         padding: 20px 40px;
       }
+
       .material {
         height: 115px;
         box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+        opacity: 0;
       }
-      @media only screen and (max-width: 720px) {
+      .ready3 .material {
+        opacity: 1;
+      }
+
+      @media only screen and (max-width: 764px) {
         .left {
           display: none;
         }
