@@ -15,8 +15,12 @@
         font-family: sans-serif;
         font-weight: 400;
       }
-      body * {
+      .out * {
         transition: opacity 500ms;
+      }
+      .right-middle {
+        transition: opacity none;
+        transition: margin-top 100ms;
       }
       .out {
         position: fixed;
@@ -39,7 +43,7 @@
         margin-left: 256px;
       }
 
-      .left-top, .right-top, .left-middle, .right-middle {
+      .left-top, .right-top, .left-middle, .right-middle, .logo {
         display: flex;
         align-items: center;
       }
@@ -49,7 +53,13 @@
         height: 65px;
         background: #00796b;
       }
-      .left-top {
+
+      .logo img {
+        opacity: 0;
+        width: 24px;
+        height: 24px;
+      }
+      .left-top, .logo {
         justify-content: center;
       }
 
@@ -67,8 +77,11 @@
         background: #cde5e3;
         height: 45px;
       }
-      .ready1 .left-middle, .ready2 .right-middle {
+      .ready1 .left-middle, .ready1 .right-middle {
         opacity: 1;
+      }
+      .ready2 .right-middle {
+        margin-top: -51px;
       }
 
       .left-middle .text {
@@ -76,28 +89,17 @@
         font-size: 14px;
         margin-left: 25px;
       }
-      .right-top .text, .draw-button {
-        color: white;
-        font-size: 17px;
-        margin-left: 19px;
-        margin-top: 2px;
-      }
-      .draw-button {
-        display: none;
-        margin-left: 11px;
-      }
 
-      .left-middle .text::before,
-      .draw-button::before {
+      .left-middle .text::before {
         content: "█ ";
         opacity: 0.3;
       }
 
-      .draw-button, .text {
+      .text {
         overflow: hidden;
         opacity: 0;
       }
-      .ready2 .draw-button, .ready2 .text {
+      .ready2 .text, .ready2 .logo img {
         overflow: hidden;
         opacity: 1;
       }
@@ -105,14 +107,14 @@
         content: "█████████";
         opacity: 0.3;
       }
-      .left-content .text, .right-middle .text {
+      .left-content .text {
         font-size: 14px;
         line-height: 40px;
         color: #009688;
         margin-left: 42px;
         opacity: 0;
       }
-      .ready2 .left-content .text, .ready2 .right-middle .text {
+      .ready2 .left-content .text {
         opacity: 0.5;
       }
 
@@ -132,26 +134,29 @@
       .logo3 {
         background: #03a9f4;
       }
-      .source {
+      .text1 {
         margin-left: 27px !important;
         width: 98px;
       }
-      .java {
+      .text2 {
         margin-left: 15px !important;
         width: 56px;
       }
-      .xml {
+      .text3 {
         margin-left: 25px !important;
         width: 69px;
       }
       .right-content {
-        padding: 20px 40px;
+        position: relative;
+        padding: 50px 40px;
+        height: 100%;
       }
 
       .material {
-        height: 115px;
+        height: calc(100% - 150px);
         box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
         opacity: 0;
+        background: #f9f9f9;
       }
       .ready3 .material {
         opacity: 1;
@@ -168,13 +173,8 @@
           width: 100%;
           margin-left: 0px;
         }
-        .right-top .text {
-          margin-top: -4px;
-          margin-left: 32px;
-        }
-        .draw-button {
-          margin-top: -4px;
-          display: block;
+        .ready2 .right-middle {
+          margin-top: -55px;
         }
       }
     </style>
@@ -184,24 +184,19 @@
     <div class="out">
       <div class="right">
         <div class="right-top">
-          <div class="draw-button"></div>
-          <div class="text"></div>
         </div>
-        <div>
-          <div class="right-middle">
-            <span class="text source"></span>
-            <span class="text java"></span>
-            <span class="text xml"></span>
-          </div>
-          <div id="loading" class="right-content">
-            <div class="material"></div>
-          </div>
+        <div class="right-middle">
+        </div>
+        <div id="loading" class="right-content">
+          <div class="material"></div>
         </div>
       </div>
       <div class="left">
         <div class="left-top">
           <div class="logo logo1"></div>
-          <div class="logo logo2"></div>
+          <div class="logo logo2">
+            <img src="img/gwt.png" />
+          </div>
           <div class="logo logo3"></div>
         </div>
         <div class="left-middle">
