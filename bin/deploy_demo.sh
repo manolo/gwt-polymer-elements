@@ -29,7 +29,7 @@ npm install
 
 # Save application
 ( cd demo/target/gwt-polymer-demo/ && \
-  tar cf /tmp/demo.tar demo.* gwt* img )
+  tar cf /tmp/demo.tar demo.* index.* gwt* img )
 
 # Save apidocs
 ( cd target/apidocs/ && \
@@ -47,7 +47,7 @@ git checkout gh-pages
   tar xf /tmp/api.tar )
 
 # Create an index
-cp demo/demo.html demo/index.html
+[ -f demo/demo.html ] && cp demo/demo.html demo/index.html
 
 # Commit changes to gh-pages
 git add demo/gwt*
