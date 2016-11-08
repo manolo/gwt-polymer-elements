@@ -3,11 +3,40 @@
 <html>
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1" />
 
-    <title>Polymer Example</title>
-    <script async src="gwtPolymerDemo/gwtPolymerDemo.nocache.js"></script>
-    <script async src="https://cdn.vaadin.com/vaadin-core-elements/latest/elements-demo-resources/ga.js"></script>
+    <title>Gwt-Polymer Demo</title>
+    <meta name="description" content="Gwt-Polymer-Elements Demo">
+
+    <link rel="icon" href="img/gwt-polymer.ico">
+
+    <!-- See https://goo.gl/OOhYW5 -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- See https://goo.gl/qRE0vM -->
+    <meta name="theme-color" content="#00796b">
+
+    <!-- Add to homescreen for Chrome on Android. Fallback for manifest.json -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Gwt-Polymer-Elements">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Gwt-Polymer-Elements">
+
+    <!-- Homescreen icons -->
+    <link rel="apple-touch-icon" href="img/gwt-polymer.png">
+    <!-- <link rel="apple-touch-icon" sizes="72x72" href="img/icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="96x96" href="img/icon-96x96.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="img/icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="img/icon-192x192.png">-->
+
+    <!-- Tile icon for Windows 8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="img/gwt-polymer.png">
+    <meta name="msapplication-TileColor" content="#00796b">
+    <meta name="msapplication-tap-highlight" content="no">
 
     <style>
       body {
@@ -84,13 +113,13 @@
         margin-top: -51px;
       }
 
-      .left-middle .text {
+      .left-middle .text, .right-middle .text, .right-top .text {
         color: white;
         font-size: 14px;
         margin-left: 25px;
       }
 
-      .left-middle .text::before {
+      .left-middle .text::before, .top-right .text:before {
         content: "█ ";
         opacity: 0.3;
       }
@@ -107,15 +136,20 @@
         content: "█████████";
         opacity: 0.3;
       }
-      .left-content .text {
+      .left-content .text, .right-content .text {
         font-size: 14px;
         line-height: 40px;
         color: #009688;
         margin-left: 42px;
         opacity: 0;
       }
-      .ready2 .left-content .text {
+
+      .ready2 .left-content .text, .right-content .text {
         opacity: 0.5;
+      }
+
+      .right-content .text {
+        display: inline-block;
       }
 
       .logo {
@@ -134,18 +168,6 @@
       .logo3 {
         background: #03a9f4;
       }
-      .text1 {
-        margin-left: 27px !important;
-        width: 98px;
-      }
-      .text2 {
-        margin-left: 15px !important;
-        width: 56px;
-      }
-      .text3 {
-        margin-left: 25px !important;
-        width: 69px;
-      }
       .right-content {
         position: relative;
         padding: 50px 40px;
@@ -153,7 +175,6 @@
       }
 
       .material {
-        height: calc(100% - 150px);
         box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
         opacity: 0;
         background: #f9f9f9;
@@ -177,6 +198,10 @@
           margin-top: -55px;
         }
       }
+
+      body.chrome.ready2 .right-middle {
+        margin-top: 0px;
+      }
     </style>
   </head>
 
@@ -184,11 +209,26 @@
     <div class="out">
       <div class="right">
         <div class="right-top">
+          <div class="text"></div>
         </div>
         <div class="right-middle">
+          <div class="text"></div>
         </div>
-        <div id="loading" class="right-content">
-          <div class="material"></div>
+        <div class="right-content">
+          <div class="material">
+            <div class="text"></div>
+            <div class="text"></div>
+            <div class="text"></div>
+            <div class="text"></div>
+            <div class="text"></div>
+            <div class="text"></div>
+            <div class="text"></div>
+            <div class="text"></div>
+            <div class="text"></div>
+            <div class="text"></div>
+            <div class="text"></div>
+            <div class="text"></div>
+          </div>
         </div>
       </div>
       <div class="left">
@@ -211,7 +251,7 @@
         <div class="left-middle">
           <div class="text"></div>
         </div>
-        <div class="left-content">
+        <div id="loading" class="left-content">
           <div class="text"></div>
           <div class="text"></div>
           <div class="text"></div>
@@ -219,5 +259,15 @@
         </div>
       </div>
     </div>
+    <script>
+      if ('serviceWorker' in navigator && /https/.test(window.location.protocol)) {
+        navigator.serviceWorker.register('service-worker.js');
+      }
+      if (/chrome/i.test(navigator.userAgent)) {
+        document.body.classList.add('chrome')
+      }
+    </script>
+    <script src="gwtPolymerDemo/gwtPolymerDemo.nocache.js"></script>
+    <script async src="https://cdn.vaadin.com/vaadin-core-elements/latest/elements-demo-resources/ga.js"></script>
   </body>
 </html>

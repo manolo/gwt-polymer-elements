@@ -21,11 +21,11 @@ occur, `app-location` produces and updates an object called `route`. This
 elements.
 
 An example of the public API of a route object that describes the URL
-`https://elements.polymer-project.org/elements/app-route-converter?foo=bar&baz=qux`:
+`https://elements.polymer-project.org/elements/app-location`:
 
     {
       prefix: '',
-      path: '/elements/app-route-converter'
+      path: '/elements/app-location'
     }
 
 Example Usage:
@@ -54,6 +54,13 @@ There is no standard event that is fired when window.location is modified.
 location. It also listens for that same event, and re-reads the URL when it's
 fired. This makes it very easy to interop with other routing code.
 
+So for example if you want to navigate to `/new_path` imperatively you could
+call `window.location.pushState` or `window.location.replaceState` followed by
+firing a `location-changed` event on `window`. i.e.
+
+    window.history.pushState({}, null, '/new_path');
+    window.dispatchEvent(new CustomEvent('location-changed'));
+
 @element app-location
 @demo demo/index.html
 -->
@@ -71,115 +78,117 @@ fired. This makes it very easy to interop with other routing code.
     </iron-query-params>
   </template>
   <script>
-    'use strict';
+    (function() {
+      'use strict';
 
-    Polymer({
-      is: 'app-location',
+      Polymer({
+        is: 'app-location',
 
-      properties: {
-        /**
-         * A model representing the deserialized path through the route tree, as
-         * well as the current queryParams.
-         */
-        route: {
-          type: Object,
-          notify: true
+        properties: {
+          /**
+           * A model representing the deserialized path through the route tree, as
+           * well as the current queryParams.
+           */
+          route: {
+            type: Object,
+            notify: true
+          },
+
+          /**
+           * In many scenarios, it is convenient to treat the `hash` as a stand-in
+           * alternative to the `path`. For example, if deploying an app to a static
+           * web server (e.g., Github Pages) - where one does not have control over
+           * server-side routing - it is usually a better experience to use the hash
+           * to represent paths through one's app.
+           *
+           * When this property is set to true, the `hash` will be used in place of
+
+           * the `path` for generating a `route`.
+           */
+          useHashAsPath: {
+            type: Boolean,
+            value: false
+          },
+
+          /**
+           * A regexp that defines the set of URLs that should be considered part
+           * of this web app.
+           *
+           * Clicking on a link that matches this regex won't result in a full page
+           * navigation, but will instead just update the URL state in place.
+           *
+           * This regexp is given everything after the origin in an absolute
+           * URL. So to match just URLs that start with /search/ do:
+           *     url-space-regex="^/search/"
+           *
+           * @type {string|RegExp}
+           */
+          urlSpaceRegex: {
+            type: String,
+            notify: true
+          },
+
+          /**
+           * A set of key/value pairs that are universally accessible to branches
+           * of the route tree.
+           */
+          __queryParams: {
+            type: Object
+          },
+
+          /**
+           * The pathname component of the current URL.
+           */
+          __path: {
+            type: String
+          },
+
+          /**
+           * The query string portion of the current URL.
+           */
+          __query: {
+            type: String
+          },
+
+          /**
+           * The hash portion of the current URL.
+           */
+          __hash: {
+            type: String
+          },
+
+          /**
+           * The route path, which will be either the hash or the path, depending
+           * on useHashAsPath.
+           */
+          path: {
+            type: String,
+            observer: '__onPathChanged'
+          }
         },
 
-        /**
-         * In many scenarios, it is convenient to treat the `hash` as a stand-in
-         * alternative to the `path`. For example, if deploying an app to a static
-         * web server (e.g., Github Pages) - where one does not have control over
-         * server-side routing - it is usually a better experience to use the hash
-         * to represent paths through one's app.
-         *
-         * When this property is set to true, the `hash` will be used in place of
+        behaviors: [Polymer.AppRouteConverterBehavior],
 
-         * the `path` for generating a `route`.
-         */
-        useHashAsPath: {
-          type: Boolean,
-          value: false
+        observers: [
+          '__computeRoutePath(useHashAsPath, __hash, __path)'
+        ],
+
+        __computeRoutePath: function() {
+          this.path = this.useHashAsPath ? this.__hash : this.__path;
         },
 
-        /**
-         * A regexp that defines the set of URLs that should be considered part
-         * of this web app.
-         *
-         * Clicking on a link that matches this regex won't result in a full page
-         * navigation, but will instead just update the URL state in place.
-         *
-         * This regexp is given everything after the origin in an absolute
-         * URL. So to match just URLs that start with /search/ do:
-         *     url-space-regex="^/search/"
-         *
-         * @type {string|RegExp}
-         */
-        urlSpaceRegex: {
-          type: String,
-          notify: true
-        },
+        __onPathChanged: function() {
+          if (!this._readied) {
+            return;
+          }
 
-        /**
-         * A set of key/value pairs that are universally accessible to branches
-         * of the route tree.
-         */
-        __queryParams: {
-          type: Object
-        },
-
-        /**
-         * The pathname component of the current URL.
-         */
-        __path: {
-          type: String
-        },
-
-        /**
-         * The query string portion of the current URL.
-         */
-        __query: {
-          type: String
-        },
-
-        /**
-         * The hash portion of the current URL.
-         */
-        __hash: {
-          type: String
-        },
-
-        /**
-         * The route path, which will be either the hash or the path, depending
-         * on useHashAsPath.
-         */
-        path: {
-          type: String,
-          observer: '__onPathChanged'
+          if (this.useHashAsPath) {
+            this.__hash = this.path;
+          } else {
+            this.__path = this.path;
+          }
         }
-      },
-
-      behaviors: [Polymer.AppRouteConverterBehavior],
-
-      observers: [
-        '__computeRoutePath(useHashAsPath, __hash, __path)'
-      ],
-
-      __computeRoutePath: function() {
-        this.path = this.useHashAsPath ? this.__hash : this.__path;
-      },
-
-      __onPathChanged: function() {
-        if (!this._readied) {
-          return;
-        }
-
-        if (this.useHashAsPath) {
-          this.__hash = this.path;
-        } else {
-          this.__path = this.path;
-        }
-      }
-    });
+      });
+    })();
   </script>
 </dom-module>
