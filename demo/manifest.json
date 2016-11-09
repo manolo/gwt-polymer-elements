@@ -1,0 +1,15 @@
+{
+  "name": "Gwt-Polymer-Elements Demo",
+  "short_name": "GWT-Polymer",
+  "start_url": "index.html",
+  "display": "standalone",
+  "theme_color": "#00796b",
+  "background_color": "#00796b",
+  "icons": [
+    {
+      "src": "img/gwt-polymer.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    }
+  ]
+}
