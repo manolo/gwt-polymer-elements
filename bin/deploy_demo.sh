@@ -24,7 +24,7 @@ rm -rf pom.xml src node_modules pom.xml.releaseBackup release.properties target 
 npm install
 
 # Compile demo using compiled library
-(cd demo && mvn clean package)
+(cd demo && mvn clean package -Ppwa)
 
 
 # Save application
