@@ -10,7 +10,7 @@ import static com.google.gwt.query.client.GQuery.console;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.JsArray;
 import com.google.gwt.core.client.JsArrayNumber;
-import com.google.gwt.dom.client.Element;
+import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.ImageElement;
 import com.google.gwt.dom.client.SpanElement;
 import com.google.gwt.query.client.Properties;
@@ -20,8 +20,12 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.vaadin.polymer.Polymer;
 import com.vaadin.polymer.demo.client.sampler.Sampler;
+import com.vaadin.polymer.demo.client.sampler.Sampler.UseContacts;
+import com.vaadin.polymer.elemental.HTMLElement;
+import com.vaadin.polymer.iron.IronIconElement;
 import com.vaadin.polymer.paper.widget.PaperInput;
 import com.vaadin.polymer.paper.widget.PaperMaterial;
+import com.vaadin.polymer.vaadin.Cell;
 import com.vaadin.polymer.vaadin.Column;
 import com.vaadin.polymer.vaadin.Row;
 import com.vaadin.polymer.vaadin.SortOrder;
@@ -70,11 +74,20 @@ public class VaadinGridSample extends Composite {
             // Feature: custom renders
             // Custom renderer for cell
             Column column = grid.getColumns().get(0).cast();
-            column.setRenderer(row -> {
-                Row r = (Row)row;
-                int n = Integer.valueOf(""+ r.getData()) % 4;
+            column.setRenderer(cell -> {
+                Cell c = (Cell)cell;
+                int n = Integer.valueOf(""+ c.getData()) % 4;
                 String icon = n == 2 ? "star-half" : n == 1 ? "star" : "star-border";
-                r.getElement().<Element>cast().setInnerHTML("<iron-icon icon='" + icon + "'>");;
+
+                // Reuse elements in the cell to improve performance
+                HTMLElement e = (HTMLElement)c.getElement();
+                IronIconElement elem = (IronIconElement)e.getFirstChild();
+                if (elem == null) {
+                  elem = (IronIconElement)Document.get().createElement("iron-icon");
+                  e.appendChild(elem);
+                }
+
+                elem.setIcon(icon);
                 return null;
             });
 
