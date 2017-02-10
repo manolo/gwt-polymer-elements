@@ -107,7 +107,7 @@ In summary, for classic and production GWT projects it would be easier to use th
 
   ```java
   // Create a new instance of PaperButton
-  PaperButtonElement button = Polymer.create(PaperButtonElement.TAG);
+  PaperButtonElement button = Polymer.createElement(PaperButtonElement.TAG);
   // Set some properties
   button.setIcon("polymer");
   button.setLabel("Polymer");
@@ -187,7 +187,7 @@ In summary, for classic and production GWT projects it would be easier to use th
  - **Elements** :
   Create new components through the `Polymer` helper class
  ```
-     PaperButtonElement button = Polymer.create(PaperButtonElement.TAG);
+     PaperButtonElement button = Polymer.createElement(PaperButtonElement.TAG);
  ```
  - **Dynamic imports** :
   `Polymer` has a couple of methods to do the import dynamically
