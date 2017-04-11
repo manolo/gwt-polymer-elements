@@ -8,9 +8,9 @@
 Vaadin transfers the ownership of this library, thus Vaadin no longer provides support or does active development on it. 
 We took this decision because once demonstrated that polymer elements could be easily be integrated in GWT, we want to invest our team’s time in adding valuable user benefits to Vaadin Core Elements, and pass the baton to the community to do integrations with other frameworks.
 
-**In addition, we are happy to announce that ownership of the repository will be transferred by 20 Apr 2017 to @manolo, who will continue to maintain it.**
+**In addition, we are happy to announce that ownership of the repository will be transferred by 20 Apr 2017 to [@manolo](https://github.com/manolo), who will continue to maintain it.**
 
-**If you are willing to participate as a collaborator, please leave a comment in #151. The collaborators will be granted access after transferring. We encourage contribution in any form and shape.**
+**If you are willing to participate as a collaborator, please leave a comment in [#151](https://github.com/vaadin/gwt-polymer-elements/issues/151). The collaborators will be granted access after transferring. We encourage contribution in any form and shape.**
 
 ## Introduction
 
