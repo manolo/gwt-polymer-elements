@@ -28,7 +28,7 @@ We took this decision because once demonstrated that polymer elements could be e
  Because Polymer differentiates between collections, gwt-polymer-elements classes are prefixed with the same prefixes (_Iron, Paper, Vaadin_), in order to easily refer to the original web component, and to easily find the documentation related with it.
 
 ## Demo
- Visit our [show case](http://vaadin.github.io/gwt-polymer-elements/demo/) to see how components look like, and to take a look to the example code using each component.
+ Visit our [show case](http://manolo.github.io/gwt-polymer-elements/demo/) to see how components look like, and to take a look to the example code using each component.
 
 ## Javadocs
  When we parse the original components code to generate the Java API, we copy all the existing JS documentation so as it's available in the [javadoc](http://vaadin.github.io/gwt-polymer-elements/api/). Note that sometimes descriptions would refer to JS, but we consider that it's better to maintain the info.
