@@ -1,6 +1,6 @@
 {
   "name": "gwt-polymer-elements",
-  "version": "1.7.0",
+  "version": "1.9.3",
   "description": "",
   "author": "Vaadin Ltd",
   "license": "Apache License 2.0",
@@ -8,10 +8,10 @@
     "gwt-api-generator": "vaadin/gwt-api-generator#master"
   },
   "scripts": {
-    "postinstall":"node node_modules/gwt-api-generator/bin/gwt-api-generator.js --package=paper-elements,iron-elements,app-elements,platinum-elements,vaadin-core-elements,vaadin-context-menu,vaadin-split-layout --artifactId=vaadin-gwt-polymer-elements --groupId=com.vaadin.polymer --pom && mvn clean install javadoc:jar"
+    "postinstall":"gwt-api-generator --package=manolo/gwt-polymer-elements#master --artifactId=vaadin-gwt-polymer-elements --groupId=com.vaadin.polymer --pom && mvn clean install javadoc:jar"
   },
   "pom": {
-    "version" : "1.7.0.1",
+    "version" : "1.9.3.0",
     "organization" : {
       "name" : "Vaadin Ltd",
       "url" : "http://vaadin.com"
