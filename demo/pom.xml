@@ -57,8 +57,6 @@
             <artifactId>gwt-codeserver</artifactId>
             <scope>provided</scope>
         </dependency>
-
-        <!-- this is the dependency to the "jar"-subproject -->
         <dependency>
             <groupId>com.vaadin.polymer</groupId>
             <artifactId>vaadin-gwt-polymer-elements</artifactId>

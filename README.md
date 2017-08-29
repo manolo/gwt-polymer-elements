@@ -36,8 +36,7 @@ We took this decision because once demonstrated that polymer elements could be e
 
 ## Using the GWT library
 
-**NOTICE** : We make an extensive use of `JsInterop`, a new feature in `GWT` for easily interacting with JavaScript.
-It was experimental in `GWT-2.7`, and stable in `GWT-2.8.0`, but starting from gwt-polymer-elements-1.2.1.0.beta1, we don't support 2.7.0 anymore or it's legacy JsInterop syntax.
+You need at least GWT-2.8.0 to use the library.
 
 ### Add vaadin-gwt-polymer-elements to your CLASSPATH
 The `.jar` file includes all the java code and web components of
@@ -45,7 +44,7 @@ Polymer Iron and Paper collections, so as you don't have to deal with the proces
 
 ##### Using maven
 
- - If your project uses maven add the dependency:
+ - If your project uses maven add the following dependency to your `pom.xml`
 
   ```xml
    <dependencies>
@@ -187,6 +186,10 @@ In summary, for classic and production GWT projects it would be easier to use th
 
 ## Notes
 
+### Java Sources
+  If you want to dive into `.java` sources, we don't maintain generated files, thus you need to download the [vaadin-gwt-polymer-elements-x.x.x-sources.jar](http://repo1.maven.org/maven2/com/vaadin/polymer/vaadin-gwt-polymer-elements/) bundle.
+  Otherwise you might take a look java helper classes and templates look in the [gwt-api-generator](https://github.com/manolo/gwt-api-generator) project.
+
 ### Importing Web Components
   Before using any component, you have to import the appropriate files. But `gwt-polymer-elements` comes with some utilities so as you it would be done automatically.
 
@@ -212,9 +215,8 @@ In summary, for classic and production GWT projects it would be easier to use th
  ```
 
 ### Asynchronous issues
-   Polymer 1.x.x does not allow using custom properties before the web component has been initialized.
-   Thus `gwt-polymer-elements` comes with some methods which helps to run callbacks when the component starts ready.
-   If you use widgets, the library would be able to deal with properties set very early, but call to some methods could not work
+   Web Components could be registered and initialised asynchronously. Thus `gwt-polymer-elements` comes with some methods which helps to run callbacks when the component is actually ready.
+   
 
  ```
    PaperButtonElement button = Polymer.createElement(PaperButtonElement.TAG);
@@ -242,6 +244,17 @@ In summary, for classic and production GWT projects it would be easier to use th
    })
 
  ```
+ 
+### Using latest snapshot
+
+Add the following repo to your `pom.xml`, and change the version using the latest listed at in [this url](https://oss.sonatype.org/content/repositories/snapshots/com/vaadin/polymer/vaadin-gwt-polymer-elements/)
+
+       <repository>
+         <id>snapshots</id>
+         <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+         <snapshots><enabled>true</enabled></snapshots>
+       </repository>
+
 
 ## Contributors
 
@@ -258,4 +271,4 @@ To compile the `vaadin-gwt-polymer-elements` library by yourself.
  1. To run and debug the demo, go to the demo folder `$ cd demo`
  1. Run `$ mvn gwt:devmode` to run the demo in SuperDevMode, otherwise run `$ mvn clean package` to
  build the demo application under `target` directory.
- 1. Host the demo either: by running for example `$ serve target/gwt-polymer-demo` (requires [serve](https://npmjs.org/packages/serve)) or deploying the generated `target/gwt-polymer-demo.war` to your favourite servlet container.
+ 1. You can serve the demo directly from the `target/gwt-polymer-demo` or you can deploy the generated `target/gwt-polymer-demo.war` in a servlet container.
