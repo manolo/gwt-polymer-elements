@@ -20,7 +20,6 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.vaadin.polymer.Polymer;
 import com.vaadin.polymer.demo.client.sampler.Sampler;
-import com.vaadin.polymer.demo.client.sampler.Sampler.UseContacts;
 import com.vaadin.polymer.elemental.HTMLElement;
 import com.vaadin.polymer.iron.IronIconElement;
 import com.vaadin.polymer.paper.widget.PaperInput;
@@ -82,7 +81,7 @@ public class VaadinGridSample extends Composite {
 
                 // Reuse elements in the cell to improve performance
                 HTMLElement cellElm = (HTMLElement)c.getElement();
-                IronIconElement iconElm = (IronIconElement)e.getFirstChild();
+                IronIconElement iconElm = (IronIconElement)cellElm.getFirstChild();
                 if (iconElm == null) {
                   iconElm = (IronIconElement)Document.get().createElement("iron-icon");
                   cellElm.appendChild(iconElm);
