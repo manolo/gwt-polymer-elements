@@ -1,7 +1,7 @@
 package com.vaadin.polymer.vaadin;
 
 import com.google.gwt.core.client.JavaScriptObject;
-import com.vaadin.polymer.elemental.PolymerHTMLElement;
+import com.vaadin.polymer.PolymerHTMLElement;
 
 import jsinterop.annotations.JsFunction;
 import jsinterop.annotations.JsPackage;

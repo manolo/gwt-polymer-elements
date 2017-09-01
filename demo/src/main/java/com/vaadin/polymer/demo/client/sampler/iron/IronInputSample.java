@@ -7,10 +7,11 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.vaadin.polymer.Polymer;
-import com.vaadin.polymer.elemental.HTMLElement;
-import com.vaadin.polymer.elemental.NodeList;
+import com.vaadin.polymer.PolymerHTMLElement;
 import com.vaadin.polymer.elemental.Template;
 import com.vaadin.polymer.iron.IronInputElement;
+
+import elemental2.dom.NodeList;
 
 public class IronInputSample extends Composite {
     interface SampleUiBinder extends UiBinder<HTMLPanel, IronInputSample> {
@@ -35,10 +36,10 @@ public class IronInputSample extends Composite {
 
         // Wait until the template has been rendered by polymer to query the dom.
         Polymer.ready(bindTemplate, o -> {
-            NodeList inputs = ((HTMLElement)getElement()).querySelectorAll("input");
-            ironInput = inputs.item(0);
-            input1 = inputs.item(1);
-            input2 = inputs.item(2);
+            NodeList inputs = PolymerHTMLElement.as(getElement()).querySelectorAll("input");
+            ironInput = ((PolymerHTMLElement)inputs.item(0)).cast();
+            input1 = ((PolymerHTMLElement)inputs.item(1)).cast();
+            input2 = ((PolymerHTMLElement)inputs.item(2)).cast();
             return null;
         });
 

@@ -5,12 +5,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import static com.google.gwt.query.client.GQuery.console;
-
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.JsArray;
 import com.google.gwt.core.client.JsArrayNumber;
-import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.ImageElement;
 import com.google.gwt.dom.client.SpanElement;
 import com.google.gwt.query.client.Properties;
@@ -20,7 +17,6 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.vaadin.polymer.Polymer;
 import com.vaadin.polymer.demo.client.sampler.Sampler;
-import com.vaadin.polymer.elemental.HTMLElement;
 import com.vaadin.polymer.iron.IronIconElement;
 import com.vaadin.polymer.paper.widget.PaperInput;
 import com.vaadin.polymer.paper.widget.PaperMaterial;
@@ -33,7 +29,7 @@ import com.vaadin.polymer.vaadin.event.SortOrderChangedEvent;
 import com.vaadin.polymer.vaadin.widget.VaadinGrid;
 
 import elemental2.dom.DomGlobal;
-import elemental2.dom.Window;
+import elemental2.dom.HTMLElement;
 
 public class VaadinGridSample extends Composite {
 
@@ -83,8 +79,8 @@ public class VaadinGridSample extends Composite {
                 String icon = n == 2 ? "star-half" : n == 1 ? "star" : "star-border";
 
                 // Reuse elements in the cell to improve performance
-                HTMLElement cellElm = (HTMLElement)c.getElement();
-                IronIconElement iconElm = (IronIconElement)cellElm.getFirstChild();
+                HTMLElement cellElm = c.getElement();
+                IronIconElement iconElm = (IronIconElement)cellElm.firstChild;
                 if (iconElm == null) {
                   iconElm = (IronIconElement)DomGlobal.document.createElement("iron-icon");
                   cellElm.appendChild(iconElm);

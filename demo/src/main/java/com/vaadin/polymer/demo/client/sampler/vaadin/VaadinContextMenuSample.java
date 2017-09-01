@@ -1,19 +1,18 @@
 package com.vaadin.polymer.demo.client.sampler.vaadin;
 
+import java.util.Arrays;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.JsArray;
 import com.google.gwt.core.client.JsArrayInteger;
 import com.google.gwt.core.client.Scheduler;
-import com.google.gwt.dom.client.Element;
-import com.google.gwt.query.client.Properties;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
-
 import com.vaadin.polymer.Polymer;
+import com.vaadin.polymer.PolymerHTMLElement;
 import com.vaadin.polymer.demo.client.sampler.Sampler;
-import com.vaadin.polymer.elemental.HTMLElement;
 import com.vaadin.polymer.iron.event.IronSelectEvent;
 import com.vaadin.polymer.paper.PaperMenuElement;
 import com.vaadin.polymer.paper.widget.PaperToast;
@@ -21,8 +20,7 @@ import com.vaadin.polymer.vaadin.Column;
 import com.vaadin.polymer.vaadin.widget.VaadinContextMenu;
 import com.vaadin.polymer.vaadin.widget.VaadinGrid;
 
-import java.util.Arrays;
-import java.util.List;
+import elemental2.dom.HTMLElement;
 
 public class VaadinContextMenuSample extends Composite {
 
@@ -34,7 +32,7 @@ public class VaadinContextMenuSample extends Composite {
     @UiField VaadinGrid grid;
     @UiField VaadinContextMenu gridcontext;
     @UiField VaadinContextMenu basiccontext;
-    @UiField Element opener;
+    @UiField HTMLElement opener;
     @UiField PaperToast toast;
 
     // ui:field do not work here because it's in a template that is not attached to the dom.
@@ -55,7 +53,7 @@ public class VaadinContextMenuSample extends Composite {
         // Demo 2
         // We have a global list of contacts
         grid.setItems(Sampler.contacts);
-        gridcontext.setListenOn(grid.getElement());
+        gridcontext.setListenOn(PolymerHTMLElement.as(grid.getElement()));
 
         // We have to wait until the overlay is attached to the DOM.
         // vaadin-contex-menu, lacks for an API able to realize when the overlay is opened
