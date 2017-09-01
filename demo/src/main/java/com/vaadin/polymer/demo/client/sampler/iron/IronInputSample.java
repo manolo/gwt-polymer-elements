@@ -50,7 +50,7 @@ public class IronInputSample extends Composite {
         Polymer.function(bindTemplate, "function2", o -> {
             // TODO: casting because api-generator does not support extending
             // native elements yet, hence we use gwt input.value instead.
-            ((InputElement) ironInput).setValue(input2.getValue());
+            ironInput.<InputElement>cast().setValue(input2.getValue());
             return null;
         });
     }

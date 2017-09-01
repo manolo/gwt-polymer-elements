@@ -48,7 +48,7 @@ public class VaadinContextMenuSample extends Composite {
         // Demo 1
         basiccontext.setListenOn(opener);
         basiccontext.getPolymerElement().addEventListener(IronSelectEvent.NAME, e -> {
-            HTMLElement item = Polymer.property(e.getDetail(), "item");
+            HTMLElement item = Polymer.property(((IronSelectEvent)e).getDetail(), "item");
             show(item.getAttribute("value"));
         });
 
@@ -60,7 +60,7 @@ public class VaadinContextMenuSample extends Composite {
         // We have to wait until the overlay is attached to the DOM.
         // vaadin-contex-menu, lacks for an API able to realize when the overlay is opened
         Scheduler.get().scheduleFixedPeriod(() -> {
-            gridmenu = Polymer.dom(gridcontext.getPolymerElement().getRoot()).querySelector("paper-menu");
+            gridmenu = Polymer.dom(gridcontext.getPolymerElement().root).querySelector("paper-menu");
             if (gridmenu != null) {
 
                 // First time we select all items

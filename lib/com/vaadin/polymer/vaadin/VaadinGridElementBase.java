@@ -1,11 +1,14 @@
 package com.vaadin.polymer.vaadin;
 
-import com.vaadin.polymer.elemental.*;
-import com.google.gwt.core.client.*;
-import jsinterop.annotations.*;
+import com.google.gwt.core.client.JavaScriptObject;
+import com.vaadin.polymer.elemental.PolymerHTMLElement;
 
-@JsType(isNative=true)
-public interface VaadinGridElementBase extends HTMLElement {
+import jsinterop.annotations.JsFunction;
+import jsinterop.annotations.JsPackage;
+import jsinterop.annotations.JsType;
+
+@JsType(isNative=true, namespace = JsPackage.GLOBAL, name = "HTMLElement")
+public class VaadinGridElementBase extends PolymerHTMLElement  {
 
      @JsFunction
      interface ItemCallback {
@@ -22,5 +25,5 @@ public interface VaadinGridElementBase extends HTMLElement {
      * @param {Function} callback
      * @param {boolean} onlyCached
      */
-    void getItem(double rowIndex, ItemCallback callback, boolean onlyCached);
+    native void getItem(double rowIndex, ItemCallback callback, boolean onlyCached);
 }

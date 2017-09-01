@@ -32,6 +32,9 @@ import com.vaadin.polymer.vaadin.event.SelectedItemsChangedEvent;
 import com.vaadin.polymer.vaadin.event.SortOrderChangedEvent;
 import com.vaadin.polymer.vaadin.widget.VaadinGrid;
 
+import elemental2.dom.DomGlobal;
+import elemental2.dom.Window;
+
 public class VaadinGridSample extends Composite {
 
     interface MyUiBinder extends UiBinder<HTMLPanel, VaadinGridSample> {
@@ -83,7 +86,7 @@ public class VaadinGridSample extends Composite {
                 HTMLElement cellElm = (HTMLElement)c.getElement();
                 IronIconElement iconElm = (IronIconElement)cellElm.getFirstChild();
                 if (iconElm == null) {
-                  iconElm = (IronIconElement)Document.get().createElement("iron-icon");
+                  iconElm = (IronIconElement)DomGlobal.document.createElement("iron-icon");
                   cellElm.appendChild(iconElm);
                 }
 
