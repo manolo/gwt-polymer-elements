@@ -7,7 +7,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.vaadin.polymer.Polymer;
-import com.vaadin.polymer.PolymerHTMLElement;
+import com.vaadin.polymer.PolymerElement;
 import com.vaadin.polymer.elemental.Template;
 import com.vaadin.polymer.iron.IronInputElement;
 
@@ -36,10 +36,10 @@ public class IronInputSample extends Composite {
 
         // Wait until the template has been rendered by polymer to query the dom.
         Polymer.ready(bindTemplate, o -> {
-            NodeList inputs = PolymerHTMLElement.as(getElement()).querySelectorAll("input");
-            ironInput = ((PolymerHTMLElement)inputs.item(0)).cast();
-            input1 = ((PolymerHTMLElement)inputs.item(1)).cast();
-            input2 = ((PolymerHTMLElement)inputs.item(2)).cast();
+            NodeList inputs = PolymerElement.as(getElement()).querySelectorAll("input");
+            ironInput = ((PolymerElement)inputs.item(0)).cast();
+            input1 = ((PolymerElement)inputs.item(1)).cast();
+            input2 = ((PolymerElement)inputs.item(2)).cast();
             return null;
         });
 

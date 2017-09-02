@@ -11,7 +11,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.vaadin.polymer.Polymer;
-import com.vaadin.polymer.PolymerHTMLElement;
+import com.vaadin.polymer.PolymerElement;
 import com.vaadin.polymer.demo.client.sampler.Sampler;
 import com.vaadin.polymer.iron.event.IronSelectEvent;
 import com.vaadin.polymer.paper.PaperMenuElement;
@@ -53,7 +53,7 @@ public class VaadinContextMenuSample extends Composite {
         // Demo 2
         // We have a global list of contacts
         grid.setItems(Sampler.contacts);
-        gridcontext.setListenOn(PolymerHTMLElement.as(grid.getElement()));
+        gridcontext.setListenOn(PolymerElement.as(grid.getElement()));
 
         // We have to wait until the overlay is attached to the DOM.
         // vaadin-contex-menu, lacks for an API able to realize when the overlay is opened

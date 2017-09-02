@@ -1,14 +1,16 @@
 package com.vaadin.polymer.vaadin;
 
 import com.google.gwt.core.client.JavaScriptObject;
-import com.vaadin.polymer.PolymerHTMLElement;
+import com.vaadin.polymer.PolymerElement;
 
 import jsinterop.annotations.JsFunction;
 import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsType;
 
-@JsType(isNative=true, namespace = JsPackage.GLOBAL, name = "HTMLElement")
-public class VaadinGridElementBase extends PolymerHTMLElement  {
+import static jsinterop.annotations.JsPackage.GLOBAL;
+
+@JsType(isNative=true, namespace = GLOBAL, name = "HTMLElement")
+public class VaadinGridElementBase extends PolymerElement  {
 
      @JsFunction
      interface ItemCallback {
