@@ -24,7 +24,7 @@
     "platinum-elements": "1 - 2",
     "vaadin-grid": "1 - 1.9",
     "vaadin-combo-box": "1 - 1.9",
-    "vaadin-date-picker": "1 - 1.9",
+    "vaadin-date-picker": "1.2.x-fixes",
     "vaadin-upload": "1 - 1.9",
     "vaadin-split-layout": "1 - 1.9",
     "vaadin-context-menu": "1 - 1.9",
@@ -40,5 +40,8 @@
     "lib",
     "src",
     "target"
-  ]
+  ],
+  "resolutions": {
+    "webcomponentsjs": "^0.7.24"
+  }
 }

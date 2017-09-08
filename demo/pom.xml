@@ -7,7 +7,7 @@
     <groupId>com.vaadin.polymer</groupId>
     <artifactId>gwt-polymer-elements-demo</artifactId>
     <packaging>war</packaging>
-    <version>1.7.0.1-SNAPSHOT</version>
+    <version>1.9.3.0</version>
     <properties>
       <gwtVersion>2.8.0</gwtVersion>
       <gwtPolymerVersion>${project.version}</gwtPolymerVersion>
