@@ -1,0 +1,44 @@
+{
+  "name": "gwt-polymer-elements",
+  "description": "This file is for maintaining the list of elements in the gwt-polymer-elements.jar",
+  "authors": [
+    "Manolo Carrasco"
+  ],
+  "license": "Apache License 2.0",
+  "keywords": [
+    "vaadin",
+    "polymer",
+    "paper",
+    "elements",
+    "web",
+    "components",
+    "webcomponents",
+    "gwt"
+  ],
+  "homepage": "https://github.com/vaadin/gwt-polymer-elements",
+  "dependencies": {
+    "polymer": "^1.9",
+    "iron-elements": "1 - 2",
+    "app-elements": "1 - 2",
+    "paper-elements": "1 - 2",
+    "platinum-elements": "1 - 2",
+    "vaadin-grid": "1 - 1.9",
+    "vaadin-combo-box": "1 - 1.9",
+    "vaadin-date-picker": "1 - 1.9",
+    "vaadin-upload": "1 - 1.9",
+    "vaadin-split-layout": "1 - 1.9",
+    "vaadin-context-menu": "1 - 1.9",
+    "vaadin-icons": "1 - 3",
+    "vaadin-pouchdb": "manolo/vaadin-pouchdb#master"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "lib",
+    "src",
+    "target"
+  ]
+}
