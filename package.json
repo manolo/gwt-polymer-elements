@@ -5,10 +5,10 @@
   "author": "Vaadin Ltd",
   "license": "Apache License 2.0",
   "dependencies": {
-    "gwt-api-generator": "manolo/gwt-api-generator#elemental2"
+    "gwt-api-generator": "manolo/gwt-api-generator"
   },
   "scripts": {
-    "postinstall": "node_modules/.bin/gwt-api-generator --package=manolo/gwt-polymer-elements#elemental2 --artifactId=vaadin-gwt-polymer-elements --groupId=com.vaadin.polymer --pom && mvn clean install javadoc:jar"
+    "postinstall": "node_modules/.bin/gwt-api-generator --package=manolo/gwt-polymer-elements --artifactId=vaadin-gwt-polymer-elements --groupId=com.vaadin.polymer --pom && mvn clean install javadoc:jar"
   },
   "pom": {
     "version": "1.9.3.0",
