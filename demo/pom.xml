@@ -7,10 +7,10 @@
     <groupId>com.vaadin.polymer</groupId>
     <artifactId>gwt-polymer-elements-demo</artifactId>
     <packaging>war</packaging>
-    <version>1.9.3.0-SNAPSHOT</version>
+    <version>1.9.4.0-SNAPSHOT</version>
     <properties>
       <gwtVersion>2.8.1</gwtVersion>
-      <gwtPolymerVersion>1.9.3.0-SNAPSHOT</gwtPolymerVersion>
+      <gwtPolymerVersion>1.9.4.0-SNAPSHOT</gwtPolymerVersion>
       <maven.compiler.target>1.8</maven.compiler.target>
       <maven.compiler.source>1.8</maven.compiler.source>
     </properties>
