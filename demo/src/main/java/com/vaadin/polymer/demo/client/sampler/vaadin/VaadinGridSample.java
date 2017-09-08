@@ -1,16 +1,8 @@
 package com.vaadin.polymer.demo.client.sampler.vaadin;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-
-import static com.google.gwt.query.client.GQuery.console;
+import java.util.*;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.core.client.JsArray;
-import com.google.gwt.core.client.JsArrayNumber;
-import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.ImageElement;
 import com.google.gwt.dom.client.SpanElement;
 import com.google.gwt.query.client.Properties;
@@ -20,7 +12,6 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.vaadin.polymer.Polymer;
 import com.vaadin.polymer.demo.client.sampler.Sampler;
-import com.vaadin.polymer.elemental.HTMLElement;
 import com.vaadin.polymer.iron.IronIconElement;
 import com.vaadin.polymer.paper.widget.PaperInput;
 import com.vaadin.polymer.paper.widget.PaperMaterial;
@@ -31,6 +22,11 @@ import com.vaadin.polymer.vaadin.SortOrder;
 import com.vaadin.polymer.vaadin.event.SelectedItemsChangedEvent;
 import com.vaadin.polymer.vaadin.event.SortOrderChangedEvent;
 import com.vaadin.polymer.vaadin.widget.VaadinGrid;
+
+import elemental2.core.Array;
+import elemental2.dom.DomGlobal;
+import elemental2.dom.HTMLElement;
+import jsinterop.base.Js;
 
 public class VaadinGridSample extends Composite {
 
@@ -47,7 +43,7 @@ public class VaadinGridSample extends Composite {
 
     private double opened = -1;
     private List<Properties> original;
-    private JsArray<Properties> items;
+    private Array<Properties> items;
     private List<Properties> list;
 
     public VaadinGridSample() {
@@ -59,10 +55,10 @@ public class VaadinGridSample extends Composite {
 
         // We have a global list of contacts
         items = Sampler.contacts;
-        list = Polymer.asList(items);
+        list = Arrays.asList(items.asArray());
         grid.setItems(items);
         // Save a copy to use in filters.
-        original = new ArrayList<Properties>(list);
+        original = new ArrayList<>(list);
 
         Polymer.ready(grid.getElement(), arg -> {
 
@@ -72,7 +68,8 @@ public class VaadinGridSample extends Composite {
 
             // Feature: custom renders
             // Custom renderer for cell
-            Column column = grid.getColumns().get(0).cast();
+            Array<Column> columns= grid.getColumns();
+            Column column = columns.getAt(0);
             column.setRenderer(cell -> {
                 Cell c = (Cell)cell;
 
@@ -80,10 +77,10 @@ public class VaadinGridSample extends Composite {
                 String icon = n == 2 ? "star-half" : n == 1 ? "star" : "star-border";
 
                 // Reuse elements in the cell to improve performance
-                HTMLElement cellElm = (HTMLElement)c.getElement();
-                IronIconElement iconElm = (IronIconElement)cellElm.getFirstChild();
+                HTMLElement cellElm = c.getElement();
+                IronIconElement iconElm = (IronIconElement)cellElm.firstChild;
                 if (iconElm == null) {
-                  iconElm = (IronIconElement)Document.get().createElement("iron-icon");
+                  iconElm = (IronIconElement)DomGlobal.document.createElement("iron-icon");
                   cellElm.appendChild(iconElm);
                 }
 
@@ -102,24 +99,24 @@ public class VaadinGridSample extends Composite {
             // Feature: row details
             // Generate a widget to show the details of a row
             grid.setRowDetailsGenerator(index -> {
-                Properties u = items.get(((Double)index).intValue());
+                Properties u = items.getAt(((Double)index).intValue());
                 img.setSrc(u.get("image"));
                 txt.setInnerText(u.get("mediumText"));
                 return info.getPolymerElement();
             });
             // Open the row details on grid selection
             grid.getPolymerElement().addEventListener(SelectedItemsChangedEvent.NAME, evnt -> {
-                JsArrayNumber n = grid.getSelection().selected(null, 0, 200).cast();
+                Array<Number> n = grid.getSelection().selected(null, 0, 200);
                 grid.setRowDetailsVisible(opened, false);
-                if (n.length() == 1) {
-                    grid.setRowDetailsVisible(opened = n.get(0), true);
+                if (n.length == 1) {
+                    grid.setRowDetailsVisible(opened = n.getAt(0).doubleValue(), true);
                 }
             });
 
             // Feature: sorting data
             // Reorder data when clicking on the header sort arrows
             grid.getPolymerElement().addEventListener(SortOrderChangedEvent.NAME, evnt -> {
-                SortOrder order =  grid.getSortOrder().get(0).cast();
+                SortOrder order =  Js.cast(grid.getSortOrder().getAt(0));
 
                 int i = (int)order.getColumn();
                 String col = i == 1 ? "name" : i == 3 ? "city" : i == 5 ? "state" : "country";

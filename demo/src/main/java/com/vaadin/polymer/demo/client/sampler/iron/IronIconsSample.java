@@ -6,7 +6,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.vaadin.polymer.Polymer;
-import com.vaadin.polymer.elemental.Template;
+import com.vaadin.polymer.PolymerTemplate;
 
 public class IronIconsSample extends Composite {
     interface SampleUiBinder extends UiBinder<HTMLPanel, IronIconsSample> {
@@ -14,7 +14,7 @@ public class IronIconsSample extends Composite {
 
     private static SampleUiBinder ourUiBinder = GWT.create(SampleUiBinder.class);
     
-    @UiField Template bindTemplate;
+    @UiField PolymerTemplate bindTemplate;
 
     public IronIconsSample() {
         initWidget(ourUiBinder.createAndBindUi(this));

@@ -7,6 +7,8 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.vaadin.polymer.demo.client.sampler.Sampler;
 import com.vaadin.polymer.iron.widget.IronList;
+import elemental2.core.Array;
+import jsinterop.base.Js;
 
 public class IronListSample extends Composite {
     interface SampleUiBinder extends UiBinder<HTMLPanel, IronListSample> {

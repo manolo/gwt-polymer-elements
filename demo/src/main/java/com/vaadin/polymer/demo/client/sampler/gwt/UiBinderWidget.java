@@ -14,6 +14,8 @@ import com.vaadin.polymer.paper.widget.PaperTab;
 import com.vaadin.polymer.paper.widget.PaperTabs;
 import com.vaadin.polymer.paper.widget.PaperToast;
 
+import jsinterop.base.Js;
+
 public class UiBinderWidget extends Composite {
     interface PaperTabsWidgetUiBinder extends UiBinder<HTMLPanel, UiBinderWidget> {
     }
@@ -40,8 +42,8 @@ public class UiBinderWidget extends Composite {
 
     @UiHandler("tabs")
     void tabSelected(IronSelectEvent event) {
-        PaperTabElement tab = (PaperTabElement) event.getItem();
-        toast.setText("widget event handler:" + tab.getTextContent());
+        PaperTabElement tab = Js.cast(event.getItem());
+        toast.setText("widget event handler:" + tab.textContent);
         toast.open();
     }
 

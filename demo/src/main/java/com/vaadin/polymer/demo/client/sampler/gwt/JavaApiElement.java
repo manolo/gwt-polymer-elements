@@ -1,27 +1,28 @@
 package com.vaadin.polymer.demo.client.sampler.gwt;
 
 import com.google.gwt.dom.client.Document;
-import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.HeadingElement;
 import com.google.gwt.user.client.ui.FlowPanel;
 import com.vaadin.polymer.Polymer;
-import com.vaadin.polymer.elemental.Event;
-import com.vaadin.polymer.elemental.EventListener;
 import com.vaadin.polymer.paper.PaperDialogElement;
 import com.vaadin.polymer.paper.PaperFabElement;
-import com.vaadin.polymer.paper.PaperIconButtonElement;
+
+import elemental2.dom.Event;
+import elemental2.dom.EventListener;
+import jsinterop.base.Js;
 
 public class JavaApiElement extends FlowPanel {
 
-    public JavaApiElement() {
+
+	public JavaApiElement() {
         HeadingElement h2 = Document.get().createHElement(2);
         h2.setInnerText("Java API using Elements");
         this.getElement().appendChild(h2);
 
         PaperDialogElement dialog = Polymer.createElement(PaperDialogElement.TAG);
-        dialog.setInnerHTML("<div>Welcome Polymer to GWT</div>");
+        dialog.innerHTML = "<div>Welcome Polymer to GWT</div>";
         dialog.setEntryAnimation("scale-up-animation");
-        this.getElement().appendChild((Element)dialog);
+        this.getElement().appendChild(Js.cast(dialog));
 
         PaperFabElement iconElem = Polymer.createElement(PaperFabElement.TAG);
         iconElem.setIcon("open-in-browser");
@@ -31,6 +32,7 @@ public class JavaApiElement extends FlowPanel {
                 dialog.open();
             }
         });
-        this.getElement().appendChild((Element)iconElem);
+
+        this.getElement().appendChild(Js.cast(iconElem));
     }
 }

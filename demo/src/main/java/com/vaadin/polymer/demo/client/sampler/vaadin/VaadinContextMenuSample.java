@@ -1,19 +1,15 @@
 package com.vaadin.polymer.demo.client.sampler.vaadin;
 
+import java.util.Arrays;
+
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.core.client.JsArray;
-import com.google.gwt.core.client.JsArrayInteger;
 import com.google.gwt.core.client.Scheduler;
-import com.google.gwt.dom.client.Element;
-import com.google.gwt.query.client.Properties;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
-
 import com.vaadin.polymer.Polymer;
 import com.vaadin.polymer.demo.client.sampler.Sampler;
-import com.vaadin.polymer.elemental.HTMLElement;
 import com.vaadin.polymer.iron.event.IronSelectEvent;
 import com.vaadin.polymer.paper.PaperMenuElement;
 import com.vaadin.polymer.paper.widget.PaperToast;
@@ -21,8 +17,9 @@ import com.vaadin.polymer.vaadin.Column;
 import com.vaadin.polymer.vaadin.widget.VaadinContextMenu;
 import com.vaadin.polymer.vaadin.widget.VaadinGrid;
 
-import java.util.Arrays;
-import java.util.List;
+import elemental2.core.Array;
+import elemental2.dom.HTMLElement;
+import jsinterop.base.Js;
 
 public class VaadinContextMenuSample extends Composite {
 
@@ -34,7 +31,7 @@ public class VaadinContextMenuSample extends Composite {
     @UiField VaadinGrid grid;
     @UiField VaadinContextMenu gridcontext;
     @UiField VaadinContextMenu basiccontext;
-    @UiField Element opener;
+    @UiField HTMLElement opener;
     @UiField PaperToast toast;
 
     // ui:field do not work here because it's in a template that is not attached to the dom.
@@ -48,38 +45,34 @@ public class VaadinContextMenuSample extends Composite {
         // Demo 1
         basiccontext.setListenOn(opener);
         basiccontext.getPolymerElement().addEventListener(IronSelectEvent.NAME, e -> {
-            HTMLElement item = Polymer.property(e.getDetail(), "item");
+            HTMLElement item = Polymer.property(((IronSelectEvent)e).getDetail(), "item");
             show(item.getAttribute("value"));
         });
 
         // Demo 2
         // We have a global list of contacts
         grid.setItems(Sampler.contacts);
-        gridcontext.setListenOn(grid.getElement());
+        gridcontext.setListenOn(Js.<HTMLElement>cast(grid.getElement()));
 
         // We have to wait until the overlay is attached to the DOM.
         // vaadin-contex-menu, lacks for an API able to realize when the overlay is opened
         Scheduler.get().scheduleFixedPeriod(() -> {
-            gridmenu = Polymer.dom(gridcontext.getPolymerElement().getRoot()).querySelector("paper-menu");
+            gridmenu = Polymer.dom(gridcontext.getPolymerElement().root).querySelector("paper-menu");
             if (gridmenu != null) {
 
                 // First time we select all items
-                JsArrayInteger all = JsArray.createArray().cast();
-                all.push(0);
-                all.push(1);
-                all.push(2);
-                all.push(3);
-                all.push(4);
-                gridmenu.setSelectedValues(all.cast());
+                Array<Integer> all = new Array<>(0,1,2,3,4);
+                gridmenu.setSelectedValues(all);
 
                 gridmenu.addEventListener("selected-values-changed", e -> {
                     gridcontext.getPolymerElement().debounce("values-changed", o -> {
                         for (int i = 0; i < 5; i++) {
-                            ((Column)grid.getColumns().get(i)).setHidden(true);
+                            ((Column)grid.getColumns().getAt(i)).setHidden(true);
                         }
-                        JsArrayInteger selected = gridmenu.getSelectedValues().cast();
-                        for (int i = 0; i < selected.length(); i++) {
-                            ((Column)grid.getColumns().get(selected.get(i))).setHidden(false);
+                        Array<Number> selected = gridmenu.getSelectedValues();
+                        for (int i = 0; i < selected.length; i++) {
+                            final Array<Column> columns = grid.getColumns();
+                            (columns.getAt(selected.getAt(i).intValue())).setHidden(false);
                         }
                         return null;
                     }, 1);
