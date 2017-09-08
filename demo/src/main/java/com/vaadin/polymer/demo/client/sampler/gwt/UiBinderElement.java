@@ -15,6 +15,7 @@ import com.vaadin.polymer.paper.PaperToastElement;
 
 import elemental2.dom.Event;
 import elemental2.dom.EventListener;
+import jsinterop.base.Js;
 
 public class UiBinderElement extends Widget {
     interface PaperTabsViewUiBinder extends UiBinder<DivElement, UiBinderElement> {}
@@ -33,7 +34,7 @@ public class UiBinderElement extends Widget {
         Polymer.importHref(Arrays.asList(PaperTabsElement.SRC, PaperTabElement.SRC, PaperToastElement.SRC), o -> {
             paperTabs.addEventListener(IronSelectEvent.NAME, new EventListener() {
                 public void handleEvent(Event event) {
-                    PaperTabElement tab = PaperTabElement.as(((IronSelectEvent)event).getDetail().getItem());
+                    PaperTabElement tab = Js.cast(((IronSelectEvent)event).getDetail().getItem());
                     toast.close();
                     toast.setText("Tab \"" + tab.textContent + "\" has been selected");
                     toast.open();

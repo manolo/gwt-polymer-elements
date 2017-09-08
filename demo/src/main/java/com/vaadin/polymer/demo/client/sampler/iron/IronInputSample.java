@@ -11,7 +11,10 @@ import com.vaadin.polymer.PolymerElement;
 import com.vaadin.polymer.PolymerTemplate;
 import com.vaadin.polymer.iron.IronInputElement;
 
+import elemental2.dom.Element;
+import elemental2.dom.HTMLInputElement;
 import elemental2.dom.NodeList;
+import jsinterop.base.Js;
 
 public class IronInputSample extends Composite {
     interface SampleUiBinder extends UiBinder<HTMLPanel, IronInputSample> {
@@ -25,8 +28,8 @@ public class IronInputSample extends Composite {
     // top level template. In chrome everything works as expected though.
     // We will get references to these elements once they are in the dom.
     IronInputElement ironInput;
-    InputElement input1;
-    InputElement input2;
+    HTMLInputElement input1;
+    HTMLInputElement input2;
 
     public IronInputSample() {
         // We can import elements before we create the UIBinder instance
@@ -36,22 +39,22 @@ public class IronInputSample extends Composite {
 
         // Wait until the template has been rendered by polymer to query the dom.
         Polymer.ready(bindTemplate, o -> {
-            NodeList inputs = PolymerElement.as(getElement()).querySelectorAll("input");
-            ironInput = ((PolymerElement)inputs.item(0)).cast();
-            input1 = ((PolymerElement)inputs.item(1)).cast();
-            input2 = ((PolymerElement)inputs.item(2)).cast();
+            NodeList<Element> inputs = Js.<PolymerElement>cast(getElement()).querySelectorAll("input");
+            ironInput = (IronInputElement)inputs.item(0);
+            input1 = (HTMLInputElement)inputs.item(1);
+            input2 = (HTMLInputElement)inputs.item(2);
             return null;
         });
 
         // Bind functions to the template
         Polymer.function(bindTemplate, "function1", o -> {
-            ironInput.setBindValue(input1.getValue());
+            ironInput.setBindValue(input1.value);
             return null;
         });
         Polymer.function(bindTemplate, "function2", o -> {
             // TODO: casting because api-generator does not support extending
-            // native elements yet, hence we use gwt input.value instead.
-            ironInput.<InputElement>cast().setValue(input2.getValue());
+            // native elements yet, hence we cast to elemental2 input.
+            Js.<HTMLInputElement>cast(ironInput).value = input2.value;
             return null;
         });
     }
