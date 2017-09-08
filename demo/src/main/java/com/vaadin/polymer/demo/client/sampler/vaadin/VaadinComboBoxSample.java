@@ -1,7 +1,6 @@
 package com.vaadin.polymer.demo.client.sampler.vaadin;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.core.client.JsArray;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
@@ -12,6 +11,8 @@ import com.vaadin.polymer.iron.widget.IronAjax;
 import com.vaadin.polymer.paper.widget.PaperToast;
 import com.vaadin.polymer.vaadin.widget.VaadinComboBox;
 import com.vaadin.polymer.vaadin.widget.event.ValueChangedEvent;
+import elemental2.core.Array;
+import jsinterop.base.Js;
 
 public class VaadinComboBoxSample extends Composite {
 
@@ -24,13 +25,13 @@ public class VaadinComboBoxSample extends Composite {
     @UiField IronAjax ironAjax;
     @UiField PaperToast toast;
 
-    public static JsArray<?> elements;
+    public static Array<Object> elements;
 
     public VaadinComboBoxSample() {
         initWidget(myUiBinder.createAndBindUi(this));
 
         ironAjax.addResponseHandler(event -> {
-            elements = ironAjax.getLastResponse().cast();
+            elements = Js.cast(ironAjax.getLastResponse());
             comboBox.setItems(elements);
             comboBox2.setItems(elements);
             comboBox2.setValue("Bohrium");

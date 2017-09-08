@@ -10,7 +10,7 @@
     <version>1.9.3.0-SNAPSHOT</version>
     <properties>
       <gwtVersion>2.8.1</gwtVersion>
-      <gwtPolymerVersion>${project.version}</gwtPolymerVersion>
+      <gwtPolymerVersion>1.9.3.0-SNAPSHOT</gwtPolymerVersion>
       <maven.compiler.target>1.8</maven.compiler.target>
       <maven.compiler.source>1.8</maven.compiler.source>
     </properties>
@@ -83,11 +83,10 @@
             <plugin>
                 <groupId>net.ltgt.gwt.maven</groupId>
                 <artifactId>gwt-maven-plugin</artifactId>
-                <version>1.0-rc-6</version>
+                <version>1.0-rc-8</version>
                 <executions>
                   <execution>
                     <goals>
-                      <goal>import-sources</goal>
                       <goal>compile</goal>
                     </goals>
                   </execution>

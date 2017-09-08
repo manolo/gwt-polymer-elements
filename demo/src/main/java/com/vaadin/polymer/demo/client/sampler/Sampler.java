@@ -1,6 +1,5 @@
 package com.vaadin.polymer.demo.client.sampler;
 
-import com.google.gwt.core.client.JsArray;
 import com.google.gwt.core.shared.GWT;
 import com.google.gwt.dom.client.HeadingElement;
 import com.google.gwt.dom.client.PreElement;
@@ -72,6 +71,8 @@ import com.vaadin.polymer.paper.widget.PaperButton;
 import com.vaadin.polymer.paper.widget.PaperDialog;
 import com.vaadin.polymer.paper.widget.PaperDrawerPanel;
 import com.vaadin.polymer.paper.widget.PaperItem;
+import elemental2.core.Array;
+import jsinterop.base.Js;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -116,7 +117,7 @@ public class Sampler extends Composite {
     @UiField PreElement sourceContent;
     @UiField IronAjax ironAjax;
 
-    public static JsArray<Properties> contacts;
+    public static Array<Properties> contacts;
 
     private Widget createWidget(String name) {
         switch (name) {
@@ -226,7 +227,7 @@ public class Sampler extends Composite {
         });
 
         ironAjax.addResponseHandler(event -> {
-            contacts = ironAjax.getLastResponse().cast();
+            contacts = Js.cast(ironAjax.getLastResponse());
             selectItem(Window.Location.getHash().replace("#", ""));
             Polymer.endLoading(this.getElement(), collapseMap.lastEntry()
                     .getValue().getElement());

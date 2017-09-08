@@ -8,7 +8,7 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.vaadin.polymer.Polymer;
 import com.vaadin.polymer.PolymerElement;
-import com.vaadin.polymer.elemental.Template;
+import com.vaadin.polymer.PolymerTemplate;
 import com.vaadin.polymer.iron.IronInputElement;
 
 import elemental2.dom.NodeList;
@@ -19,7 +19,7 @@ public class IronInputSample extends Composite {
 
     private static SampleUiBinder ourUiBinder = GWT.create(SampleUiBinder.class);
 
-    @UiField Template bindTemplate;
+    @UiField PolymerTemplate bindTemplate;
 
     // NOTE: @UiField on poly-filled browsers only works for the
     // top level template. In chrome everything works as expected though.

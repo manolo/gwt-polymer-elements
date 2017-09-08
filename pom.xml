@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project>
+  <parent>
+    <groupId>org.sonatype.oss</groupId>
+    <artifactId>oss-parent</artifactId>
+    <version>4</version>
+  </parent>
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.vaadin.polymer</groupId>
+  <version>1.9.3.0-SNAPSHOT</version>
+  <artifactId>vaadin-gwt-polymer-elements</artifactId>
+  <name>gwt-polymer-elements</name>
+  <description>vaadin-gwt-polymer-elements</description>
+ 
+  <licenses>
+    <license>
+      <name>Apache License 2.0</name>
+    </license>
+  </licenses>
+ 
+ 
+  <organization>
+    <name>Vaadin Ltd</name>
+    <url>http://vaadin.com</url>
+  </organization>
+  <url>http://vaadin.com</url>
+ 
+ 
+  <scm>
+    <connection>scm:git:git@github.com:vaadin/gwt-polymer-elements.git</connection>
+    <developerConnection>scm:git:git@github.com:vaadin/gwt-polymer-elements.git</developerConnection>
+    <url>https://github.com/vaadin/gwt-polymer-elements</url>
+  </scm>
+ 
+  <developers>
+    <developer>
+      <id>Vaadin Ltd</id>
+      <name>Vaadin Ltd</name>
+    </developer>
+  </developers>
+
+
+  <properties>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <additionalparam>-Xdoclint:none</additionalparam>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <elemental.version>1.0.0-beta-1</elemental.version>
+  </properties>
+
+  <distributionManagement>
+    <snapshotRepository>
+      <id>sonatype-nexus-snapshots</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+      <uniqueVersion>false</uniqueVersion>
+    </snapshotRepository>
+  </distributionManagement>
+
+  <repositories>
+    <repository>
+      <id>google-snapshots</id>
+      <url>https://oss.sonatype.org/content/repositories/google-snapshots/</url>
+      <snapshots><enabled>true</enabled></snapshots>
+    </repository>
+  </repositories>
+
+  <dependencies>
+        <dependency>
+          <groupId>com.google.gwt</groupId>
+          <artifactId>gwt-user</artifactId>
+          <version>2.8.1</version>
+          <scope>provided</scope>
+        </dependency>
+        <dependency>
+          <groupId>com.google.elemental2</groupId>
+          <artifactId>elemental2-core</artifactId>
+          <version>${elemental.version}</version>
+        </dependency>
+        <dependency>
+          <groupId>com.google.elemental2</groupId>
+          <artifactId>elemental2-dom</artifactId>
+          <version>${elemental.version}</version>
+        </dependency>
+  </dependencies>
+
+  <build>
+    <resources>
+      <resource>
+        <directory>src/main/java</directory>
+      </resource>
+      <resource>
+        <directory>src/main/resources</directory>
+      </resource>
+    </resources>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <executions>
+            <execution>
+                <id>attach-sources</id>
+                <goals>
+                    <goal>jar-no-fork</goal>
+                </goals>
+            </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <executions>
+            <execution>
+                <id>attach-javadocs</id>
+                <goals>
+                    <goal>jar</goal>
+                </goals>
+            </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <version>1.7</version>
+        <executions>
+          <execution>
+            <phase>generate-resources</phase>
+            <configuration>
+              <target description="Remove files to speed-up deployment" name="clean">
+                <delete includeEmptyDirs="true">
+                  <fileset dir="src/main/resources/com/vaadin/polymer/public/bower_components/" defaultexcludes="no">
+                    <include name="**/demo/**/*"/>
+                    <include name="**/test/**/*"/>
+                    <include name="**/docs/**/*"/>
+                    <include name="**/.*"/>
+                    <include name="**/index.html"/>
+                    <include name="**/package.json"/>
+                    <include name="**/*.md"/>
+                    <include name="**/*.txt"/>
+                  </fileset>
+                  <dirset dir="src/main/resources/com/vaadin/polymer/public/bower_components/">
+                    <include name="**/demo"/>
+                    <include name="**/test"/>
+                    <include name="**/docs"/>
+                  </dirset>
+                </delete>
+             </target>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>

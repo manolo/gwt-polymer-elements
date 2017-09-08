@@ -7,7 +7,7 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.vaadin.polymer.Polymer;
-import com.vaadin.polymer.elemental.Template;
+import com.vaadin.polymer.PolymerTemplate;
 import com.vaadin.polymer.iron.widget.IronAjax;
 import com.vaadin.polymer.iron.widget.event.ResponseEvent;
 
@@ -18,7 +18,7 @@ public class IronAjaxSample extends Composite {
     private static SampleUiBinder ourUiBinder = GWT.create(SampleUiBinder.class);
 
     @UiField IronAjax ajax;
-    @UiField Template repeat;
+    @UiField PolymerTemplate repeat;
 
     public IronAjaxSample() {
         initWidget(ourUiBinder.createAndBindUi(this));
