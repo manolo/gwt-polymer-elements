@@ -5,21 +5,21 @@
   "author": "Vaadin Ltd",
   "license": "Apache License 2.0",
   "dependencies": {
-    "gwt-api-generator": "vaadin/gwt-api-generator#1.9.3"
+    "gwt-api-generator": "github:manolo/gwt-api-generator#1.9.3"
   },
   "scripts": {
     "postinstall": "gwt-api-generator --package=manolo/gwt-polymer-elements#1.9.3 --artifactId=vaadin-gwt-polymer-elements --groupId=com.vaadin.polymer --pom && mvn clean install javadoc:jar"
   },
   "pom": {
-    "version": "1.9.3.0",
+    "version": "1.9.3.1",
     "organization": {
       "name": "Vaadin Ltd",
       "url": "http://vaadin.com"
     },
     "scm": {
-      "connection": "scm:git:git@github.com:vaadin/gwt-polymer-elements.git",
-      "developerConnection": "scm:git:git@github.com:vaadin/gwt-polymer-elements.git",
-      "url": "https://github.com/vaadin/gwt-polymer-elements"
+      "connection": "scm:git:git@github.com:gwtpolymer/gwt-polymer-elements.git",
+      "developerConnection": "scm:git:git@github.com:gwtpolymer/gwt-polymer-elements.git",
+      "url": "https://github.com/gwtpolymer/gwt-polymer-elements"
     }
   },
   "keywords": [
