@@ -17,14 +17,14 @@
   ],
   "homepage": "https://github.com/vaadin/gwt-polymer-elements",
   "dependencies": {
-    "polymer": "^1.9",
-    "iron-elements": "1 - 2",
-    "app-elements": "1 - 2",
-    "paper-elements": "1 - 2",
-    "platinum-elements": "1 - 2",
+    "polymer": "~1.9.3",
+    "iron-elements": "#master",
+    "app-elements": "#master",
+    "paper-elements": "#master",
+    "platinum-elements": "#master",
     "vaadin-grid": "1 - 1.9",
     "vaadin-combo-box": "1 - 1.9",
-    "vaadin-date-picker": "1 - 1.9",
+    "vaadin-date-picker": "manolo/vaadin-date-picker#master",
     "vaadin-upload": "1 - 1.9",
     "vaadin-split-layout": "1 - 1.9",
     "vaadin-context-menu": "1 - 1.9",
@@ -40,5 +40,8 @@
     "lib",
     "src",
     "target"
-  ]
+  ],
+  "resolutions": {
+    "iron-location": "2.0.1"
+  }
 }

@@ -5,6 +5,6 @@
   "license": "Apache-2.0",
   "repository": "https://github.com/vaadin/gwt-polymer-elements.git",
   "dependencies": {
-    "gwt-api-generator": "vaadin/gwt-api-generator#elemental2"
+    "gwt-api-generator": "vaadin/gwt-api-generator#master"
   }
 }
