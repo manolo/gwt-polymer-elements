@@ -70,14 +70,14 @@ Polymer Iron and Paper collections, so as you don't have to deal with the proces
 
  ```
 
-### Add the Web Components Polyfill (Optional). 
+### Add the Web Components Polyfill (Optional). 
 
 - Only Chrome has full native support for Web Components nowadays, therefore, to make your project work with all modern browsers, you have to include the WebComponents Polyfill.
 
   If you use the polymer components as `Widgets`, the library will lazy load it when needed.
 Otherwise load it very early in your `.html` host page as it is shown in the following code.
 
-   ```html
+```html
 <head>
     <script src="myapp/bower_components/webcomponentsjs/webcomponents.js"></script>
     <script src="myapp/myapp.nocache.js"></script>
