@@ -31,7 +31,7 @@ We took this decision because once demonstrated that polymer elements could be e
  Visit our [show case](http://manolo.github.io/gwt-polymer-elements/demo/) to see how components look like, and to take a look to the example code using each component.
 
 ## Javadocs
- When we parse the original components code to generate the Java API, we copy all the existing JS documentation so as it's available in the [javadoc](http://vaadin.github.io/gwt-polymer-elements/api/). Note that sometimes descriptions would refer to JS, but we consider that it's better to maintain the info.
+ When we parse the original components code to generate the Java API, we copy all the existing JS documentation so as it's available in the [javadoc](http://manolo.github.io/gwt-polymer-elements/api/). Note that sometimes descriptions would refer to JS, but we consider that it's better to maintain the info.
 
 
 ## Using the GWT library
