@@ -272,3 +272,27 @@ To compile the `vaadin-gwt-polymer-elements` library by yourself.
  1. Run `$ mvn gwt:devmode` to run the demo in SuperDevMode, otherwise run `$ mvn clean package` to
  build the demo application under `target` directory.
  1. You can serve the demo directly from the `target/gwt-polymer-demo` or you can deploy the generated `target/gwt-polymer-demo.war` in a servlet container.
+
+
+## License
+
+This program follows the Apache License version 2.0 (http://www.apache.org/licenses/ ).  See LICENSE.txt included with the distribution for details.
+
+That means:
+
+allows It you to:
+
+freely download and use this software, in whole or in part, for personal, company internal, or commercial purposes;
+use this software in packages or distributions that you create.
+
+It requires you to:
+
+include a copy of the license in any redistribution you may make that includes this software;
+provide clear attribution to us, xerial.org for any distributions that include this software
+
+
+It does not require you to:
+
+include the source of this software itself, or of any modifications you may have made to it, in any redistribution you may assemble that includes it;
+submit changes that you make to the software back to this software (though such feedback is encouraged).
+See License FAQ http://www.apache.org/foundation/licence-FAQ.html for more details.
